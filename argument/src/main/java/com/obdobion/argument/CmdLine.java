@@ -94,9 +94,9 @@ public class CmdLine implements ICmdLine, Cloneable
     String               help;
     final char           commandPrefix;
     final char           notPrefix;
-    final List<File>     defaultIncludeDirectories = new ArrayList<File>();
+    final List<File>     defaultIncludeDirectories = new ArrayList<>();
     IParserInput         originalInput;
-    List<ICmdLineArg<?>> allPossibleArgs           = new ArrayList<ICmdLineArg<?>>();
+    List<ICmdLineArg<?>> allPossibleArgs           = new ArrayList<>();
     List<ICmdLineArg<?>> _namedBooleans            = null;
     List<ICmdLineArg<?>> _namedValueArgs           = null;
     List<ICmdLineArg<?>> _namedGroups              = null;
@@ -196,7 +196,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (commandToken == null)
             return null;
 
-        final List<ICmdLineArg<?>> bestArgs = new ArrayList<ICmdLineArg<?>>();
+        final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
         matchingArgs(bestArgs, allPossibleArgs, new Token(commandPrefix,
                 commandToken), true);
 
@@ -268,7 +268,7 @@ public class CmdLine implements ICmdLine, Cloneable
             throws CloneNotSupportedException
     {
         final CmdLine clone = (CmdLine) super.clone();
-        clone.allPossibleArgs = new ArrayList<ICmdLineArg<?>>();
+        clone.allPossibleArgs = new ArrayList<>();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
             clone.allPossibleArgs.add(aIter.next().clone());
@@ -299,7 +299,7 @@ public class CmdLine implements ICmdLine, Cloneable
         final CLAFactory factory = new CLAFactory();
 
         final ICmdLine cmdline = this;
-        final List<String> groupdef = new ArrayList<String>();
+        final List<String> groupdef = new ArrayList<>();
 
         CmdLineCLA group = null;
 
@@ -755,7 +755,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (!tokens[tokenIdx].isCommand())
             return false;
 
-        final List<ICmdLineArg<?>> bestArgs = new ArrayList<ICmdLineArg<?>>();
+        final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
         matchingArgs(bestArgs, possibleArgs, tokens[tokenIdx], true);
 
         if (bestArgs.size() == 0)
@@ -799,7 +799,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (_namedBooleans != null)
             return _namedBooleans;
 
-        _namedBooleans = new ArrayList<ICmdLineArg<?>>();
+        _namedBooleans = new ArrayList<>();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
         {
@@ -815,7 +815,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (_namedGroups != null)
             return _namedGroups;
 
-        _namedGroups = new ArrayList<ICmdLineArg<?>>();
+        _namedGroups = new ArrayList<>();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
         {
@@ -831,7 +831,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (_namedValueArgs != null)
             return _namedValueArgs;
 
-        _namedValueArgs = new ArrayList<ICmdLineArg<?>>();
+        _namedValueArgs = new ArrayList<>();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
         {
@@ -1289,7 +1289,7 @@ public class CmdLine implements ICmdLine, Cloneable
 
         resetArgs();
 
-        final List<ICmdLineArg<?>> args = new ArrayList<ICmdLineArg<?>>();
+        final List<ICmdLineArg<?>> args = new ArrayList<>();
         extractArgumentsFromTokens(tokens, target, args);
 
         if (isUsageRun())
@@ -1314,7 +1314,7 @@ public class CmdLine implements ICmdLine, Cloneable
         return args;
     }
 
-    private void checkForUnusedInput (Token[] tokens) throws ParseException
+    static private void checkForUnusedInput (Token[] tokens) throws ParseException
     {
         if (tokenCount(tokens) > 0)
         {
@@ -1413,7 +1413,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (_positional != null)
             return _positional;
 
-        _positional = new ArrayList<ICmdLineArg<?>>();
+        _positional = new ArrayList<>();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
         {

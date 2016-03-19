@@ -59,7 +59,7 @@ public class DefaultCLA extends AbstractCLA<String>
             else
                 token = new Token(commandPrefix, "" + commandPrefix + commandPrefix + argNameToReset);
 
-            final List<ICmdLineArg<?>> bestArgs = new ArrayList<ICmdLineArg<?>>();
+            final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
             CmdLine.matchingArgs(bestArgs, allKnownArgs, token, true);
             if (bestArgs.isEmpty())
                 return;

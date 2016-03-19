@@ -21,6 +21,7 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     @Override
     public RegxCriteria<E> clone () throws CloneNotSupportedException
     {
+        @SuppressWarnings("unchecked")
         final RegxCriteria<E> clone = (RegxCriteria<E>) super.clone();
         return clone;
     }

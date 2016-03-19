@@ -137,7 +137,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         final StringBuilder part = new StringBuilder();
         boolean inToken = false;
         int startX = 0;
-        final List<Token> tokens = new ArrayList<Token>();
+        final List<Token> tokens = new ArrayList<>();
         char thisChar = ' ';
         char prevChar;
 

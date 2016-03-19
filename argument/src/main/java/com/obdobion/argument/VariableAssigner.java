@@ -44,10 +44,12 @@ public class VariableAssigner implements IVariableAssigner
     private static void assignList (final Field field, final ICmdLineArg<?> arg, final Object target)
             throws IllegalAccessException
     {
+        @SuppressWarnings("unchecked")
         Collection<Object> alist = (Collection<Object>) field.get(target);
+
         if (alist == null)
         {
-            alist = new ArrayList<Object>();
+            alist = new ArrayList<>();
             field.set(target, alist);
         }
         for (int v = 0; v < arg.size(); v++)
@@ -458,10 +460,12 @@ public class VariableAssigner implements IVariableAssigner
             IllegalAccessException,
             InstantiationException
     {
+        @SuppressWarnings("unchecked")
         ArrayList<Object> oldinstance = (ArrayList<Object>) field.get(target);
+
         if (oldinstance == null)
         {
-            oldinstance = new ArrayList<Object>();
+            oldinstance = new ArrayList<>();
             field.set(target, oldinstance);
         }
         return oldinstance;

@@ -3,8 +3,7 @@ package com.obdobion.argument;
 import java.util.Calendar;
 import java.util.Date;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -23,20 +22,19 @@ public class DateTest
 
     }
 
-    private void assertValidReturnDate (
+    static private void assertValidReturnDate (
         final Calendar returnCal,
         final int year,
         final int month,
-        final int date,
+            final int _date,
         final int hour,
         final int minute,
         final int second,
         final int millisecond)
     {
-
         Assert.assertEquals(year, returnCal.get(Calendar.YEAR));
         Assert.assertEquals(month, returnCal.get(Calendar.MONTH));
-        Assert.assertEquals(date, returnCal.get(Calendar.DATE));
+        Assert.assertEquals(_date, returnCal.get(Calendar.DATE));
         Assert.assertEquals(hour, returnCal.get(Calendar.HOUR_OF_DAY));
         Assert.assertEquals(minute, returnCal.get(Calendar.MINUTE));
         Assert.assertEquals(second, returnCal.get(Calendar.SECOND));

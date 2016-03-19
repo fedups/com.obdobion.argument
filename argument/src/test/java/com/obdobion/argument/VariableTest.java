@@ -2,8 +2,7 @@ package com.obdobion.argument;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -12,9 +11,11 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class VariableTest {
+public class VariableTest
+{
 
-    static public class MyGroup {
+    static public class MyGroup
+    {
 
         public String  testString;
         public MyGroup innerGroup;
@@ -31,14 +32,15 @@ public class VariableTest {
     public float[]       testfloatArray;
     public String        testString;
 
-    public String[]      testStringArray;  ;
+    public String[]      testStringArray;
 
     public MyGroup       testGroup;
     public Object        testObjectGroup;
     public MyGroup       testGroupArray[];
     public List<MyGroup> testGroupList;
 
-    public VariableTest() {
+    public VariableTest()
+    {
 
     }
 
@@ -59,7 +61,8 @@ public class VariableTest {
     }
 
     @Test
-    public void groupWithoutOwnVariable () throws Exception {
+    public void groupWithoutOwnVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
@@ -68,7 +71,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variablebooleanAssignment () throws Exception {
+    public void variablebooleanAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Boolean -k i -v testboolean");
@@ -77,7 +81,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableBooleanAssignment () throws Exception {
+    public void variableBooleanAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Boolean -k i -v testBoolean");
@@ -86,36 +91,40 @@ public class VariableTest {
     }
 
     @Test
-    public void variablefloatArrayAssignment () throws Exception {
+    public void variablefloatArrayAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Float -m1 -k i -v testfloatArray");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2.1 1.2"), this);
-        Assert.assertEquals("testfloatArray 0", 2.1F, testfloatArray[0]);
-        Assert.assertEquals("testfloatArray 1", 1.2F, testfloatArray[1]);
+        Assert.assertEquals("testfloatArray 0", 2.1F, testfloatArray[0], 0);
+        Assert.assertEquals("testfloatArray 1", 1.2F, testfloatArray[1], 0);
     }
 
     @Test
-    public void variableFloatArrayAssignment () throws Exception {
+    public void variableFloatArrayAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Float -m1 -k i -v testFloatArray");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2.1 1.2"), this);
-        Assert.assertEquals("testFloatArray 0", 2.1F, testFloatArray[0].floatValue());
-        Assert.assertEquals("testFloatArray 1", 1.2F, testFloatArray[1].floatValue());
+        Assert.assertEquals("testFloatArray 0", 2.1F, testFloatArray[0].floatValue(), 0);
+        Assert.assertEquals("testFloatArray 1", 1.2F, testFloatArray[1].floatValue(), 0);
     }
 
     @Test
-    public void variableFloatAssignment () throws Exception {
+    public void variableFloatAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Float -k i -v testFloat");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 12.3"), this);
-        Assert.assertEquals("testFloat", 12.3F, testFloat.floatValue());
+        Assert.assertEquals("testFloat", 12.3F, testFloat.floatValue(), 0);
     }
 
     @Test
-    public void variableGroupArrayStringAssignment () throws Exception {
+    public void variableGroupArrayStringAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -k g -v testGroupArray -m1", "-t String -k s -v testString -p", "-t end -k g");
@@ -126,7 +135,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableGroupGroupStringAssignment () throws Exception {
+    public void variableGroupGroupStringAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -140,7 +150,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableGroupListStringAssignment () throws Exception {
+    public void variableGroupListStringAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -154,7 +165,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableGroupStringAssignment () throws Exception {
+    public void variableGroupStringAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -k g -v testGroup", "-t String -k s -v testString", "-t end -k g");
@@ -164,7 +176,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableGroupStringAssignmentToObjectList () throws Exception {
+    public void variableGroupStringAssignmentToObjectList () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -177,7 +190,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableIntArrayAssignment () throws Exception {
+    public void variableIntArrayAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Integer -m1 -k i -v testIntArray");
@@ -187,7 +201,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableintAssignment () throws Exception {
+    public void variableintAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Integer -k i -v testInt");
@@ -196,7 +211,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableIntegerArrayAssignment () throws Exception {
+    public void variableIntegerArrayAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Integer -m1 -k i -v testIntegerArray");
@@ -206,7 +222,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableIntegerAssignment () throws Exception {
+    public void variableIntegerAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Integer -k i -v testInteger");
@@ -215,7 +232,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableStringArrayAssignment () throws Exception {
+    public void variableStringArrayAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -m1 -k i -v testStringArray");
@@ -225,7 +243,8 @@ public class VariableTest {
     }
 
     @Test
-    public void variableStringAssignment () throws Exception {
+    public void variableStringAssignment () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i -v testString");

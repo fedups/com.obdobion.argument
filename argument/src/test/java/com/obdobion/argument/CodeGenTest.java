@@ -3,8 +3,7 @@ package com.obdobion.argument;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.codegen.CodeGeneratorFactory;
@@ -27,7 +26,7 @@ public class CodeGenTest
     public void string () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(new StringCLA('v', "variable"));
 
@@ -44,7 +43,7 @@ public class CodeGenTest
     public void twoStrings () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(new StringCLA('a', "s1"));
         arguments.add(new StringCLA('b', "s2"));
@@ -66,7 +65,7 @@ public class CodeGenTest
     public void stringRequired () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v', "variable"));
@@ -85,7 +84,7 @@ public class CodeGenTest
     public void stringCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v', "variable"));
@@ -104,7 +103,7 @@ public class CodeGenTest
     public void stringDefaultCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v', "variable"));
@@ -128,7 +127,7 @@ public class CodeGenTest
     public void stringDefaultNotCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v', "variable"));
@@ -147,7 +146,7 @@ public class CodeGenTest
     public void stringEnum () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -166,7 +165,7 @@ public class CodeGenTest
     public void stringInstance () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -187,7 +186,7 @@ public class CodeGenTest
     public void stringVariable () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -206,7 +205,7 @@ public class CodeGenTest
     public void stringFormat () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -225,7 +224,7 @@ public class CodeGenTest
     public void stringMultiple2 () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -245,7 +244,7 @@ public class CodeGenTest
     public void stringMultiple1 () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -265,7 +264,7 @@ public class CodeGenTest
     public void stringRangeNoCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -284,7 +283,7 @@ public class CodeGenTest
     public void stringRangeCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -304,7 +303,7 @@ public class CodeGenTest
     public void stringListCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -327,7 +326,7 @@ public class CodeGenTest
     public void stringListNoCase () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -348,7 +347,7 @@ public class CodeGenTest
     @Test
     public void stringRegex () throws Exception
     {
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
         ICmdLineArg<?> arg = null;
 
         arguments.add(arg = new StringCLA('v'));
@@ -368,7 +367,7 @@ public class CodeGenTest
     public void date () throws Exception
     {
 
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(new DateCLA('v', "v1"));
 
@@ -385,7 +384,7 @@ public class CodeGenTest
     public void variables () throws Exception
     {
         ICmdLineArg<?> arg = null;
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(arg = new BooleanCLA('a'));
         arg.setVariable("myBool");
@@ -474,7 +473,7 @@ public class CodeGenTest
         ICmdLineArg<?> arg = null;
         CmdLineCLA group = null;
         CmdLineCLA group2 = null;
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(arg = new BooleanCLA('a'));
         arg.setVariable("myBool");
@@ -543,7 +542,7 @@ public class CodeGenTest
         ICmdLineArg<?> arg = null;
         CmdLineCLA group = null;
         CmdLineCLA group2 = null;
-        List<ICmdLineArg<?>> arguments = new ArrayList<ICmdLineArg<?>>();
+        List<ICmdLineArg<?>> arguments = new ArrayList<>();
 
         arguments.add(arg = new BooleanCLA('a'));
         arg.setVariable("myBool");

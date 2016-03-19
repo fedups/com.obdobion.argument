@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -14,6 +13,23 @@ public class DashingTest {
 
     public DashingTest() {
 
+    }
+
+    @Test
+    public void embeddedDashNameCollision () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t Boolean -k a", "-t Boolean -k b 'bee-name'", "-t boolean -k n 'name'");
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --b -n"));
+        Assert.assertEquals("1 cmd count", 3, cl.size());
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee-n -n"));
+        Assert.assertEquals("2 cmd count", 3, cl.size());
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee-n"));
+        Assert.assertEquals("3 cmd count", 2, cl.size());
     }
 
     @Test

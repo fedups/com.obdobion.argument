@@ -2,8 +2,7 @@ package com.obdobion.argument;
 
 import java.text.ParseException;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;

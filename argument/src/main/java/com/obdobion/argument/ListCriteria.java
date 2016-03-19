@@ -19,6 +19,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     @Override
     public ListCriteria<E> clone () throws CloneNotSupportedException
     {
+        @SuppressWarnings("unchecked")
         final ListCriteria<E> clone = (ListCriteria<E>) super.clone();
         return clone;
     }

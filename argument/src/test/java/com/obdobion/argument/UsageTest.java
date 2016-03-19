@@ -5,8 +5,7 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -30,7 +29,7 @@ public class UsageTest
             throws Exception
     {
 
-        final List<String> out = new ArrayList<String>();
+        final List<String> out = new ArrayList<>();
         out.add("CmdLineLevel");
         out.add("");
         out.add("@<filename> will import a specification from the file.");
@@ -64,7 +63,7 @@ public class UsageTest
             throws Exception
     {
 
-        final List<String> out = new ArrayList<String>();
+        final List<String> out = new ArrayList<>();
         out.add("CmdLineLevel");
         out.add("");
         out.add("This is a help message.");
@@ -102,7 +101,7 @@ public class UsageTest
             throws Exception
     {
 
-        final List<String> out = new ArrayList<String>();
+        final List<String> out = new ArrayList<>();
         out.add("CmdLineLevel");
         out.add("optional: -e");
         out.add("");
@@ -139,7 +138,7 @@ public class UsageTest
             throws Exception
     {
 
-        final List<String> out = new ArrayList<String>();
+        final List<String> out = new ArrayList<>();
         out.add("required: -p*wx");
         out.add("          --oParm*,yParm,zParm");
         out.add("optional: -abn*");
@@ -205,7 +204,7 @@ public class UsageTest
             throws Exception
     {
 
-        final List<String> out = new ArrayList<String>();
+        final List<String> out = new ArrayList<>();
         out.add("optional: -a");
         out.add("          --aParameter,bParameter,cParameter,dParameter,eParameter,fParameter,");
         out.add("          gParameter,hParameter,iParameter,jParameter,kParameter,lParameter,");

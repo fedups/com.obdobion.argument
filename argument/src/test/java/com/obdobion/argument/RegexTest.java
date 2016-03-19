@@ -3,8 +3,7 @@ package com.obdobion.argument;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -13,31 +12,37 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class RegexTest  {
+public class RegexTest
+{
 
     public Pattern   regex;
 
     public Pattern[] regexA;
 
-    public RegexTest() {
+    public RegexTest()
+    {
 
     }
 
     @Test
-    public void invalidRegex () throws Exception {
+    public void invalidRegex () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t regex -k r --var regex");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'[+'"), this);
             Assert.fail("should have been an Exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("regex is not valid for --type(-t)", e.getMessage());
         }
     }
 
     @Test
-    public void validRegex () throws Exception {
+    public void validRegex () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t pattern -k r --var regex");
@@ -50,7 +55,8 @@ public class RegexTest  {
     }
 
     @Test
-    public void validRegexArrayCaseDoesNotMatter () throws Exception {
+    public void validRegexArrayCaseDoesNotMatter () throws Exception
+    {
 
         regexA = null;
         final CmdLine cl = new CmdLine();
@@ -64,7 +70,8 @@ public class RegexTest  {
     }
 
     @Test
-    public void validRegexArrayCaseMatters () throws Exception {
+    public void validRegexArrayCaseMatters () throws Exception
+    {
 
         regexA = null;
         final CmdLine cl = new CmdLine();
@@ -78,7 +85,8 @@ public class RegexTest  {
     }
 
     @Test
-    public void validRegexArrayCaseMattersA () throws Exception {
+    public void validRegexArrayCaseMattersA () throws Exception
+    {
 
         regexA = null;
         final CmdLine cl = new CmdLine();

@@ -14,7 +14,7 @@ public class CLAFactory
 {
     static final String TYPE_DEFAULT  = "default";
     static final String TYPE_FILE     = "file";
-    static final String TYPE_WildFILE = "wildfile";
+    static final String TYPE_WILDFILE = "wildfile";
     static final String TYPE_END      = "end";
     static final String TYPE_DOUBLE   = "double";
     static final String TYPE_FLOAT    = "float";
@@ -60,7 +60,7 @@ public class CLAFactory
             type.setListCriteria(new String[]
             {
                     TYPE_BEGIN, TYPE_BOOLEAN, TYPE_BYTE, TYPE_STRING, TYPE_INTEGER, TYPE_ENUM, TYPE_LONG, TYPE_DATE,
-                    TYPE_PATTERN, TYPE_FLOAT, TYPE_DOUBLE, TYPE_END, TYPE_FILE, TYPE_WildFILE, TYPE_DEFAULT
+                    TYPE_PATTERN, TYPE_FLOAT, TYPE_DOUBLE, TYPE_END, TYPE_FILE, TYPE_WILDFILE, TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -262,7 +262,7 @@ public class CLAFactory
             return new FileCLA(keyword);
         }
 
-        if (TYPE_WildFILE.equalsIgnoreCase(type.getValue()))
+        if (TYPE_WILDFILE.equalsIgnoreCase(type.getValue()))
         {
             if (keychar != commandPrefix)
             {

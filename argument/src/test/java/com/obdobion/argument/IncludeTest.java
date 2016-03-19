@@ -5,8 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -21,8 +20,8 @@ public class IncludeTest
     static final File workDir = new File("\\tmp");
 
     static public File createSpecFile (
-        final String specs)
-        throws IOException
+            final String specs)
+            throws IOException
     {
 
         final File file = File.createTempFile("IncludeTest.", ".fun", workDir);
@@ -40,7 +39,7 @@ public class IncludeTest
 
     @Test
     public void includeExactPath ()
-        throws Exception
+            throws Exception
     {
 
         final File spec = createSpecFile("--workDirectory /temp");
@@ -60,7 +59,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundNotQuoted ()
-        throws Exception
+            throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -78,7 +77,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundQuoted ()
-        throws Exception
+            throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -96,7 +95,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundWithSpace ()
-        throws Exception
+            throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -114,7 +113,7 @@ public class IncludeTest
 
     @Test
     public void includeUsingDefaultPath ()
-        throws Exception
+            throws Exception
     {
 
         final File spec = createSpecFile("--workDirectory /temp");

@@ -17,6 +17,7 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E> {
 
     @Override
     public RangedCriteria<E> clone () throws CloneNotSupportedException {
+        @SuppressWarnings("unchecked")
         final RangedCriteria<E> clone = (RangedCriteria<E>) super.clone();
         return clone;
     }

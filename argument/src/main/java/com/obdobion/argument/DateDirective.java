@@ -5,6 +5,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import com.obdobion.calendar.CalendarFactory;
+
 /**
  * This class parses phrases that will be used to compute a date. That date is
  * returned as a literal token to be inserted into the command line at the same
@@ -57,7 +59,7 @@ public class DateDirective extends DirectiveCommand
     {
         final Calendar startingDate = acquireStartDate();
 
-        CalendarFactory.getInstance().modifyImpl(startingDate, datePivot > 0
+        CalendarFactory.modify(startingDate, datePivot > 0
                 ? data.substring(datePivot + 1)
                 : "");
 

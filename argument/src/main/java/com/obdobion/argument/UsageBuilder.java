@@ -38,6 +38,7 @@ abstract public class UsageBuilder
      * @param value
      * @return
      */
+    @SuppressWarnings("null")
     public UsageBuilder append (
         final String value)
     {

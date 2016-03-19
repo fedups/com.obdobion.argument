@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -10,14 +9,17 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class SimpleTest {
+public class SimpleTest
+{
 
-    public SimpleTest() {
+    public SimpleTest()
+    {
 
     }
 
     @Test
-    public void compile () throws Exception {
+    public void compile () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t boolean -k i");
@@ -25,7 +27,8 @@ public class SimpleTest {
     }
 
     @Test
-    public void parse () throws Exception {
+    public void parse () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t boolean -k a", "-t boolean -k b");
@@ -35,7 +38,8 @@ public class SimpleTest {
     }
 
     @Test
-    public void defaultParser () throws Exception {
+    public void defaultParser () throws Exception
+    {
 
         final ICmdLine cl = new CmdLine().compile("-t boolean -k a");
         cl.parse("-a");
@@ -43,7 +47,8 @@ public class SimpleTest {
     }
 
     @Test
-    public void compileNew () throws Exception {
+    public void compileNew () throws Exception
+    {
 
         final ICmdLine cl = CmdLine.create("-t boolean -k a");
         cl.parse("-a");
@@ -51,7 +56,8 @@ public class SimpleTest {
     }
 
     @Test
-    public void oneLine () throws Exception {
+    public void oneLine () throws Exception
+    {
 
         final ICmdLine cl = CmdLine.create("-t boolean -k a");
         cl.parse("-a");

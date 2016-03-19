@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -10,14 +9,17 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class PositionalTest {
+public class PositionalTest
+{
 
-    public PositionalTest() {
+    public PositionalTest()
+    {
 
     }
 
     @Test
-    public void twoStrings () throws Exception {
+    public void twoStrings () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -ks -p", "-t String -kt -p");
@@ -29,7 +31,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void twoStringsOnlyUsed1 () throws Exception {
+    public void twoStringsOnlyUsed1 () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -ks -p", "-t String -kt -p");
@@ -40,7 +43,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void groupingGroupsPositionalBooleans () throws Exception {
+    public void groupingGroupsPositionalBooleans () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -56,7 +60,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void groupingGroupsPositionalGroups () throws Exception {
+    public void groupingGroupsPositionalGroups () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -72,7 +77,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void groupingGroupsPositionalGroupsAndBooleans () throws Exception {
+    public void groupingGroupsPositionalGroupsAndBooleans () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -88,7 +94,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void groupMultiple () throws Exception {
+    public void groupMultiple () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -kg -p -m1", "-t string -ks -p -m1", "-t end -kg");
@@ -104,7 +111,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void testString () throws Exception {
+    public void testString () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -ks -p");
@@ -115,7 +123,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void stringExactMultiple () throws Exception {
+    public void stringExactMultiple () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -ks -p -m1 1", "-t String -kt -p -m1 1");
@@ -127,7 +136,8 @@ public class PositionalTest {
     }
 
     @Test
-    public void stringMultiple () throws Exception {
+    public void stringMultiple () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -ks -p -m1");

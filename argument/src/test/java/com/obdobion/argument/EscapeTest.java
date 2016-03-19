@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -10,14 +9,17 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class EscapeTest {
+public class EscapeTest
+{
 
-    public EscapeTest() {
+    public EscapeTest()
+    {
 
     }
 
     @Test
-    public void escape1 () throws Exception {
+    public void escape1 () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t String -k a");

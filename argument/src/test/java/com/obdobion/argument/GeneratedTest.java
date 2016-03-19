@@ -61,6 +61,9 @@ public class GeneratedTest
     }
     }
 
+    /**
+     * @param configuration
+     */
     private void myApplicationCode (CLAConfiguration configuration)
     {
         /*

@@ -13,11 +13,11 @@ import java.util.regex.Pattern;
  * 
  * @param <E>
  */
-abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineArg<E>, Cloneable
+abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 {
     static private final Pattern     CDATA_NOTNEEDED = Pattern.compile("^[\\p{Alnum}_-]*$");
 
-    protected List<E>                defaultValues   = new ArrayList<E>();
+    protected List<E>                defaultValues   = new ArrayList<>();
     protected String                 help;
     protected Character              keychar;
     protected String                 keyword;
@@ -35,7 +35,7 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
     protected boolean                caseSensitive;
     protected boolean                required;
     protected boolean                requiredValue;
-    protected List<E>                values          = new ArrayList<E>();
+    protected List<E>                values          = new ArrayList<>();
     protected String                 enumClassName;
     protected ICmdLineArgCriteria<?> criteria;
 
@@ -73,8 +73,10 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
     public ICmdLineArg<E> clone ()
             throws CloneNotSupportedException
     {
+        @SuppressWarnings("unchecked")
         final AbstractCLA<E> clone = (AbstractCLA<E>) super.clone();
-        clone.values = new ArrayList<E>();
+
+        clone.values = new ArrayList<>();
         clone.reset();
         return clone;
     }
@@ -468,7 +470,7 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
                     0);
         }
 
-        final List<E> list = new ArrayList<E>();
+        final List<E> list = new ArrayList<>();
         if (!enumClass.isEnum())
             throw new ParseException("Enum class expected, found " + enumClass.getName(),
                     0);
@@ -478,7 +480,7 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
             final String econst = constants[c].toString();
             list.add(convert(econst, true, null));
         }
-        setCriteria(new EnumCriteria<E>(list));
+        setCriteria(new EnumCriteria<>(list));
         return this;
     }
 
@@ -545,10 +547,10 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
     public ICmdLineArg<E> setListCriteria (final String[] arrayOfValidValues)
             throws ParseException, IOException
     {
-        final List<E> list = new ArrayList<E>();
+        final List<E> list = new ArrayList<>();
         for (final String arrayOfValidValue : arrayOfValidValues)
             list.add(convert(arrayOfValidValue, caseSensitive, null));
-        setCriteria(new ListCriteria<E>(list));
+        setCriteria(new ListCriteria<>(list));
         return this;
     }
 
@@ -599,7 +601,7 @@ abstract public class AbstractCLA<E extends Comparable<?>> implements ICmdLineAr
             throws ParseException,
             IOException
     {
-        setCriteria(new RangedCriteria<E>(convert(min),
+        setCriteria(new RangedCriteria<>(convert(min),
                 convert(max)));
         return this;
     }

@@ -1,11 +1,11 @@
 package com.obdobion.argument;
 
-import java.io.File;
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.WildFileCLA.WildFile;
 import com.obdobion.argument.input.CommandLineParser;
 
 /**
@@ -14,8 +14,7 @@ import com.obdobion.argument.input.CommandLineParser;
  */
 public class WildFileTest
 {
-
-    public File[] wildFile;
+    public WildFile wildFile;
 
     public WildFileTest()
     {
@@ -26,11 +25,12 @@ public class WildFileTest
     public void patternConversionsNix ()
     {
         String pathSep = "/";
-        Assert.assertEquals(".*", WildFileCLA.convertWildCardToRegx("*", pathSep, true).pattern());
-        Assert.assertEquals(".*\\..*", WildFileCLA.convertWildCardToRegx("*.*", pathSep, true).pattern());
-        Assert.assertEquals(".?", WildFileCLA.convertWildCardToRegx("?", pathSep, true).pattern());
-        Assert.assertEquals(".*.*", WildFileCLA.convertWildCardToRegx("**", pathSep, true).pattern());
-        Assert.assertEquals(".*.*/.*\\.java", WildFileCLA.convertWildCardToRegx("**/*.java", pathSep, true).pattern());
+        Assert.assertEquals("^.*$", WildFileCLA.WildFile.convertFileWildCardToRegx("*", pathSep).pattern());
+        Assert.assertEquals("^.*\\..*$", WildFileCLA.WildFile.convertFileWildCardToRegx("*.*", pathSep).pattern());
+        Assert.assertEquals("^.?$", WildFileCLA.WildFile.convertFileWildCardToRegx("?", pathSep).pattern());
+        Assert.assertEquals("^.*.*$", WildFileCLA.WildFile.convertFileWildCardToRegx("**", pathSep).pattern());
+        Assert.assertEquals("^.*.*/.*\\.java$", WildFileCLA.WildFile.convertFileWildCardToRegx("**/*.java", pathSep)
+                .pattern());
     }
 
     @Test
@@ -39,19 +39,19 @@ public class WildFileTest
         String pathSep = "/";
 
         Assert.assertTrue(Pattern.matches(
-                WildFileCLA.convertWildCardToRegx("*", pathSep, true).pattern(),
+                WildFileCLA.WildFile.convertFileWildCardToRegx("*", pathSep).pattern(),
                 "any.file.name/With.path"));
 
         Assert.assertTrue(Pattern.matches(
-                WildFileCLA.convertWildCardToRegx("*.*", pathSep, true).pattern(),
+                WildFileCLA.WildFile.convertFileWildCardToRegx("*.*", pathSep).pattern(),
                 "any.file.name/With.path"));
 
         Assert.assertFalse(Pattern.matches(
-                WildFileCLA.convertWildCardToRegx("*.*", pathSep, true).pattern(),
+                WildFileCLA.WildFile.convertFileWildCardToRegx("*.*", pathSep).pattern(),
                 "anyfilename/Withpath"));
 
         Assert.assertTrue(Pattern.matches(
-                WildFileCLA.convertWildCardToRegx("*/?", "/", true).pattern(),
+                WildFileCLA.WildFile.convertFileWildCardToRegx("*/?", "/").pattern(),
                 "any path as long as it is a single char file name/a"));
     }
 
@@ -59,12 +59,12 @@ public class WildFileTest
     public void patternConversionsWin ()
     {
         String pathSep = "\\";
-        Assert.assertEquals(".*", WildFileCLA.convertWildCardToRegx("*", pathSep, true).pattern());
-        Assert.assertEquals(".*\\..*", WildFileCLA.convertWildCardToRegx("*.*", pathSep, true).pattern());
-        Assert.assertEquals(".?", WildFileCLA.convertWildCardToRegx("?", pathSep, true).pattern());
-        Assert.assertEquals(".*.*", WildFileCLA.convertWildCardToRegx("**", pathSep, true).pattern());
-        Assert.assertEquals(".*.*\\\\.*\\.java", WildFileCLA.convertWildCardToRegx("**\\\\*.java", pathSep, true)
-                .pattern());
+        Assert.assertEquals("^.*$", WildFileCLA.WildFile.convertFileWildCardToRegx("*", pathSep).pattern());
+        Assert.assertEquals("^.*\\..*$", WildFileCLA.WildFile.convertFileWildCardToRegx("*.*", pathSep).pattern());
+        Assert.assertEquals("^.?$", WildFileCLA.WildFile.convertFileWildCardToRegx("?", pathSep).pattern());
+        Assert.assertEquals("^.*.*$", WildFileCLA.WildFile.convertFileWildCardToRegx("**", pathSep).pattern());
+        Assert.assertEquals("^.*.*\\\\.*\\.java$", WildFileCLA.WildFile
+                .convertFileWildCardToRegx("**\\\\*.java", pathSep).pattern());
     }
 
     @Test
@@ -72,12 +72,55 @@ public class WildFileTest
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "*.launch *.xml"), this);
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), ".p* .c*"), this);
         /*
          * The current working directory in this case is the root of the
          * project. This is just a convenience and could easily break if that is
          * changed.
          */
-        Assert.assertEquals(4, wildFile.length);
+        Assert.assertEquals(2, wildFile.files().size());
+    }
+
+    @Test
+    public void recursiveDirSearchFileNotFound () throws Exception
+    {
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t wildfile -k w -m1 -p --var wildFile");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "**/*NOTFINDABLE"), this);
+        Assert.assertEquals(0, wildFile.files().size());
+    }
+
+    @Test
+    public void specificDirSearch () throws Exception
+    {
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t wildfile -k w -m1 -p --var wildFile");
+        cl.parse(CommandLineParser.getInstance(
+                cl.getCommandPrefix(),
+                "src/main/java/com/obdobion/argument/*java"), this);
+        Assert.assertNotNull("wildfile files is null", wildFile.files());
+        Assert.assertEquals("number of java classes", 37, wildFile.files().size());
+    }
+
+    @Test
+    public void wildDirSearch1 () throws Exception
+    {
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t wildfile -k w -m1 -p --var wildFile");
+        cl.parse(CommandLineParser.getInstance(
+                cl.getCommandPrefix(),
+                "src/*/java/**/*java"), this);
+        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
+    }
+
+    @Test
+    public void wildDirSearch2 () throws Exception
+    {
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t wildfile -k w -m1 -p --var wildFile");
+        cl.parse(CommandLineParser.getInstance(
+                cl.getCommandPrefix(),
+                "**/*java"), this);
+        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
     }
 }

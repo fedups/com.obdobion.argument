@@ -99,9 +99,9 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
 
     public Token[] parseTokens ()
     {
-        final List<Token> out = new ArrayList<Token>();
-        final List<NodeOc> depth = new ArrayList<NodeOc>();
-        final List<NodeOc> line = new ArrayList<NodeOc>();
+        final List<Token> out = new ArrayList<>();
+        final List<NodeOc> depth = new ArrayList<>();
+        final List<NodeOc> line = new ArrayList<>();
         Arrays.sort(args);
         for (int a = 0; a < args.length; a++)
         {

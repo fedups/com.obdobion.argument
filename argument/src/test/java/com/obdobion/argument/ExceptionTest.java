@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -10,60 +9,74 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class ExceptionTest {
+public class ExceptionTest
+{
 
-    public ExceptionTest() throws Exception {
+    public ExceptionTest() throws Exception
+    {
 
     }
 
     @Test
-    public void missingRightBracket () throws Exception {
+    public void missingRightBracket () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a)(-b"));
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("Unmatched bracket", e.getMessage());
         }
     }
 
     @Test
-    public void tooManyRightBracket () throws Exception {
+    public void tooManyRightBracket () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a))(-b"));
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("Unmatched bracket", e.getMessage());
         }
     }
 
     @Test
-    public void badCharCommand () throws Exception {
+    public void badCharCommand () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t Boolean -ks test ");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-v"));
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("unexpected input: -v ", e.getMessage());
         }
     }
 
     @Test
-    public void badWordCommand () throws Exception {
+    public void badWordCommand () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t Boolean -ks test ");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--version"));
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("unexpected input: --version ", e.getMessage());
         }
     }

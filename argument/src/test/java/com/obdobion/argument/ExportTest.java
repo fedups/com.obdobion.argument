@@ -1,7 +1,6 @@
 package com.obdobion.argument;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -10,14 +9,17 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class ExportTest {
+public class ExportTest
+{
 
-    public ExportTest() {
+    public ExportTest()
+    {
 
     }
 
     @Test
-    public void exportBoolean () throws Exception {
+    public void exportBoolean () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Boolean -k a long");
@@ -34,7 +36,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportBooleans () throws Exception {
+    public void exportBooleans () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t Boolean -k long", "-t Boolean -k b short");
@@ -66,7 +69,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportFloat () throws Exception {
+    public void exportFloat () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t float -k a -m1");
@@ -83,7 +87,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportGroup () throws Exception {
+    public void exportGroup () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
@@ -95,7 +100,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportInteger () throws Exception {
+    public void exportInteger () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t integer -k a -m1");
@@ -112,7 +118,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportMultiGroup () throws Exception {
+    public void exportMultiGroup () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -131,7 +138,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportNegativeFloat () throws Exception {
+    public void exportNegativeFloat () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t float -k a -m1");
@@ -143,7 +151,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportQuoted () throws Exception {
+    public void exportQuoted () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a");
@@ -155,7 +164,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportQuoted2 () throws Exception {
+    public void exportQuoted2 () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a");
@@ -167,7 +177,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportQuoted3 () throws Exception {
+    public void exportQuoted3 () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a");
@@ -179,7 +190,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportQuoted4 () throws Exception {
+    public void exportQuoted4 () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a");
@@ -191,7 +203,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportString () throws Exception {
+    public void exportString () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a");
@@ -208,7 +221,8 @@ public class ExportTest {
     }
 
     @Test
-    public void exportStringParm () throws Exception {
+    public void exportStringParm () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a -m1");

@@ -2,8 +2,7 @@ package com.obdobion.argument;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -12,11 +11,14 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class GroupTest {
+public class GroupTest
+{
 
-    static final class Embed {
+    static final class Embed
+    {
 
-        static public Embed create () throws Exception {
+        static public Embed create () throws Exception
+        {
 
             return new Embed();
         }
@@ -29,12 +31,14 @@ public class GroupTest {
     public Embed[]     embedA;
     public List<Embed> embedL;
 
-    public GroupTest() {
+    public GroupTest()
+    {
 
     }
 
     @Test
-    public void arrayEmbeddedGroups () throws Exception {
+    public void arrayEmbeddedGroups () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg-vembedA-m1", "-tbegin-kz-vchild", "-tboolean-ka-veVar", "-tend-kz", "-tend-kg");
@@ -44,7 +48,8 @@ public class GroupTest {
     }
 
     @Test
-    public void group () throws Exception {
+    public void group () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg", "-tboolean-ka", "-tend-kg");
@@ -56,7 +61,8 @@ public class GroupTest {
     }
 
     @Test
-    public void groupWithNoVariable () throws Exception {
+    public void groupWithNoVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg", "-tboolean-ka-vnoVar", "-tend-kg");
@@ -66,7 +72,8 @@ public class GroupTest {
     }
 
     @Test
-    public void listEmbeddedGroups () throws Exception {
+    public void listEmbeddedGroups () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
@@ -81,7 +88,8 @@ public class GroupTest {
     }
 
     @Test
-    public void multiGroup () throws Exception {
+    public void multiGroup () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
@@ -98,7 +106,8 @@ public class GroupTest {
     }
 
     @Test
-    public void stringSingleQuotedInGroup () throws Exception {
+    public void stringSingleQuotedInGroup () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg--pos", "-tString-ka-m1--pos", "-tend-kg");

@@ -2,8 +2,7 @@ package com.obdobion.argument;
 
 import java.util.List;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -12,11 +11,14 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class InstantiatorTest {
+public class InstantiatorTest
+{
 
-    static abstract public class AbstractColor {
+    static abstract public class AbstractColor
+    {
 
-        static public AbstractColor create (String name) {
+        static public AbstractColor create (String name)
+        {
 
             if ("red".equals(name))
                 return new RedColor();
@@ -26,34 +28,45 @@ public class InstantiatorTest {
         }
     }
 
-    static public class RedColor extends AbstractColor {
+    static public class RedColor extends AbstractColor
+    {
+        //
     }
 
-    static public class BlueColor extends AbstractColor {
+    static public class BlueColor extends AbstractColor
+    {
+        //
     }
 
-    public enum Suit {
+    public enum Suit
+    {
         HEARTS,
         SPADES,
         CLUBS,
         DIAMONDS
-    };
+    }
 
     public List<Finder>  suits;
     public AbstractColor color;
 
-    abstract public static class Finder {
+    abstract public static class Finder
+    {
 
-        static public Finder find (final String key) {
+        static public Finder find (final String key)
+        {
 
             Finder instance = null;
-            if ("what".equalsIgnoreCase(key)) {
+            if ("what".equalsIgnoreCase(key))
+            {
                 instance = new WhatFinder();
-            } else if ("when".equalsIgnoreCase(key)) {
+            } else if ("when".equalsIgnoreCase(key))
+            {
                 instance = new WhenFinder();
-            } else if ("where".equalsIgnoreCase(key)) {
+            } else if ("where".equalsIgnoreCase(key))
+            {
                 instance = new WhereFinder();
-            } else {
+            } else
+            {
                 instance = new SuitFinder(key);
             }
             instance.value = key;
@@ -65,48 +78,57 @@ public class InstantiatorTest {
         abstract String testValue () throws Exception;
     }
 
-    public static class SuitFinder extends Finder {
+    public static class SuitFinder extends Finder
+    {
 
-        public SuitFinder(String key) {
+        public SuitFinder(String key)
+        {
 
             value = key;
         }
 
         @Override
-        public String testValue () throws Exception {
+        public String testValue () throws Exception
+        {
 
             return value;
         }
     }
 
-    public static class WhatFinder extends Finder {
+    public static class WhatFinder extends Finder
+    {
 
         public String test;
 
         @Override
-        public String testValue () throws Exception {
+        public String testValue () throws Exception
+        {
 
             return test;
         }
     }
 
-    public static class WhenFinder extends Finder {
+    public static class WhenFinder extends Finder
+    {
 
         public String test;
 
         @Override
-        public String testValue () throws Exception {
+        public String testValue () throws Exception
+        {
 
             return test;
         }
     }
 
-    public static class WhereFinder extends Finder {
+    public static class WhereFinder extends Finder
+    {
 
         public String test;
 
         @Override
-        public String testValue () throws Exception {
+        public String testValue () throws Exception
+        {
 
             return test;
         }
@@ -120,12 +142,14 @@ public class InstantiatorTest {
     public List<String>  stringList;
     public List<Integer> integerList;
 
-    public InstantiatorTest() {
+    public InstantiatorTest()
+    {
 
     }
 
     @Test
-    public void colorExample1 () throws Exception {
+    public void colorExample1 () throws Exception
+    {
 
         CmdLine.create(
                 "-tString -kcolor --var color --factoryMethod " + AbstractColor.class.getName()
@@ -136,7 +160,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void arrayVariable () throws Exception {
+    public void arrayVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var arrayFinder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find -m1");
@@ -149,7 +174,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void listGroupVariable () throws Exception {
+    public void listGroupVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -k g --var listGroupFinder -m1 " + "--factoryM " + Finder.class.getName()
@@ -166,7 +192,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void listVariable () throws Exception {
+    public void listVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var listFinder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find -m1");
@@ -179,7 +206,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void listStringVariable () throws Exception {
+    public void listStringVariable () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var stringList -m1");
@@ -192,35 +220,39 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void listVariableDefaultClassDefaultMethodClass () throws Exception {
+    public void listVariableDefaultClassDefaultMethodClass () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t string -k i --var listFinder --factoryM find -m1");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT WHEN WHERE"), this);
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("Generics with a factory method must use --class", e.getMessage());
         }
 
     }
 
     @Test
-    public void listVariablePutsNonPolymorphicValues () throws Exception {
+    public void listVariablePutsNonPolymorphicValues () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var listFinder -m1");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT WHEN WHERE"), this);
         Assert.assertNotNull("listFinder instance is null", listFinder);
         Assert.assertEquals("listFinderSize", 3, listFinder.size());
-        Assert.assertFalse("String type expected", listFinder.get(0) instanceof Finder);
         Assert.assertEquals("listFinder 0", "WHAT", listFinder.get(0));
         Assert.assertEquals("listFinder 1", "WHEN", listFinder.get(1));
         Assert.assertEquals("listFinder 2", "WHERE", listFinder.get(2));
     }
 
     @Test
-    public void listVariableDefaultClass () throws Exception {
+    public void listVariableDefaultClass () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var listFinder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find -m1");
@@ -233,7 +265,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void stringKey () throws Exception {
+    public void stringKey () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k i --var finder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find");
@@ -243,7 +276,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void enumKey () throws Exception {
+    public void enumKey () throws Exception
+    {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t enum -k i --var suits -m1 --factoryM com.obdobion.argument.InstantiatorTest$Finder.find --enumlist "
@@ -258,7 +292,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void defaultClassOnMethod () throws Exception {
+    public void defaultClassOnMethod () throws Exception
+    {
 
         finder = null;
         final CmdLine cl = new CmdLine();
@@ -270,22 +305,26 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void classNotValid () throws Exception {
+    public void classNotValid () throws Exception
+    {
 
         finder = null;
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t string -k i --var finder --class doesntmatter --factoryM find");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT"), this);
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals("--class is not valid for -i", e.getMessage());
         }
 
     }
 
     @Test
-    public void classFromVariable () throws Exception {
+    public void classFromVariable () throws Exception
+    {
 
         finder = null;
         final CmdLine cl = new CmdLine();
@@ -297,7 +336,8 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void integerListByDefault () throws Exception {
+    public void integerListByDefault () throws Exception
+    {
 
         finder = null;
         final CmdLine cl = new CmdLine();
@@ -311,15 +351,18 @@ public class InstantiatorTest {
     }
 
     @Test
-    public void badMethod () throws Exception {
+    public void badMethod () throws Exception
+    {
 
         untypedFinder = null;
         final CmdLine cl = new CmdLine();
-        try {
+        try
+        {
             cl.compile("-t string -k i --var finder --factoryM fXnd");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT"), this);
             Assert.fail("expected exception");
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             Assert.assertEquals(
                     "NoSuchMethodException expected: public static com.obdobion.argument.InstantiatorTest$Finder fXnd(java.lang.String) on com.obdobion.argument.InstantiatorTest$Finder",
                     e.getMessage());

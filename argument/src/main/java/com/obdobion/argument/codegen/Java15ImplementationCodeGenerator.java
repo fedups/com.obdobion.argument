@@ -96,7 +96,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
      */
     private List<GeneratedElement> genConfigurationAsString (String elementName)
     {
-        List<GeneratedElement> elements = new ArrayList<GeneratedElement>();
+        List<GeneratedElement> elements = new ArrayList<>();
         writeConfigurationClasses(elements, "CLA", arguments);
         for (GeneratedElement element : elements)
             System.out.println(element.getContents().toString());
@@ -117,7 +117,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
     {
         this.generatorName = _generatorName;
 
-        List<GeneratedElement> elements = new ArrayList<GeneratedElement>();
+        List<GeneratedElement> elements = new ArrayList<>();
         elements.add(genDefinitionAsString(_generatorName + "_Definition"));
         elements.addAll(genConfigurationAsString(_generatorName + "_Configuration"));
         elements.add(genMainAsString(_generatorName + "_Main"));
@@ -168,6 +168,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
         this.arguments = _arguments;
     }
 
+    @SuppressWarnings("null")
     private void writeConfigurationClasses (
             List<GeneratedElement> elements,
             String configClassNamePrefix,

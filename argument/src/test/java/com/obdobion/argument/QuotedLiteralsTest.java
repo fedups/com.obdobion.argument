@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.input.CommandLineParser;
@@ -31,7 +30,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a c:\\temp\\somefile.txt\""));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("url", "c:\\temp\\somefile.txt", (String) cl.arg("-a").getValue(0));
+        Assert.assertEquals("url", "c:\\temp\\somefile.txt", cl.arg("-a").getValue(0));
     }
 
     @Test
@@ -43,7 +42,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"c:\\\\temp\\\\somefile.txt\""));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("url", "c:\\temp\\somefile.txt", (String) cl.arg("-a").getValue());
+        Assert.assertEquals("url", "c:\\temp\\somefile.txt", cl.arg("-a").getValue());
     }
 
     @Test
@@ -54,7 +53,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"quoted literal\""));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a", "quoted literal", (String) cl.arg("-a").getValue());
+        Assert.assertEquals("1a", "quoted literal", cl.arg("-a").getValue());
     }
 
     @Test
@@ -79,7 +78,7 @@ public class QuotedLiteralsTest
             Assert.assertEquals(
                     "line 1 parsed",
                     "echo \"This is a quoted string in a command\"",
-                    (String) cl.arg("--cmd")
+                    cl.arg("--cmd")
                             .getValue());
         } finally
         {
@@ -100,7 +99,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-b '-50'"));
         Assert.assertEquals("1 float -5", 1, cl.size());
-        Assert.assertEquals("1a", -50F, ((Float) cl.arg("-b").getValue()).floatValue());
+        Assert.assertEquals("1a", -50F, ((Float) cl.arg("-b").getValue()).floatValue(), 0);
     }
 
     @Test
@@ -112,7 +111,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a 'quoted\nliteral'"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a", "quoted\nliteral", (String) cl.arg("-a").getValue());
+        Assert.assertEquals("1a", "quoted\nliteral", cl.arg("-a").getValue());
     }
 
     @Test
@@ -124,8 +123,8 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a '\"quoted literal\"' -b \"'quoted literal'\""));
         Assert.assertEquals("1 cmd count", 2, cl.size());
-        Assert.assertEquals("1a", "\"quoted literal\"", (String) cl.arg("-a").getValue());
-        Assert.assertEquals("1b", "'quoted literal'", (String) cl.arg("-b").getValue());
+        Assert.assertEquals("1a", "\"quoted literal\"", cl.arg("-a").getValue());
+        Assert.assertEquals("1b", "'quoted literal'", cl.arg("-b").getValue());
     }
 
     @Test
@@ -137,7 +136,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a 'quoted literal'"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a", "quoted literal", (String) cl.arg("-a").getValue());
+        Assert.assertEquals("1a", "quoted literal", cl.arg("-a").getValue());
     }
 
     @Test
@@ -149,8 +148,8 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--item'what''when'"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a0", "what", (String) cl.arg("-a").getValue(0));
-        Assert.assertEquals("1a1", "when", (String) cl.arg("-a").getValue(1));
+        Assert.assertEquals("1a0", "what", cl.arg("-a").getValue(0));
+        Assert.assertEquals("1a1", "when", cl.arg("-a").getValue(1));
     }
 
     @Test
@@ -162,7 +161,7 @@ public class QuotedLiteralsTest
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a /etc/apache2/conf/httpd.conf"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("unix", "/etc/apache2/conf/httpd.conf", (String) cl.arg("-a").getValue());
+        Assert.assertEquals("unix", "/etc/apache2/conf/httpd.conf", cl.arg("-a").getValue());
     }
 
     @Test
@@ -177,10 +176,10 @@ public class QuotedLiteralsTest
                 "-a http://www.littlegraycould.com/index.html 'http://www.littlegraycould.com/index.html?a=1&b=2'"));
 
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("url", "http://www.littlegraycould.com/index.html", (String) cl.arg("-a").getValue(0));
+        Assert.assertEquals("url", "http://www.littlegraycould.com/index.html", cl.arg("-a").getValue(0));
         Assert.assertEquals(
                 "url",
                 "http://www.littlegraycould.com/index.html?a=1&b=2",
-                (String) cl.arg("-a").getValue(1));
+                cl.arg("-a").getValue(1));
     }
 }
