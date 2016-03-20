@@ -267,10 +267,10 @@ public class CLAFactory
             if (keychar != commandPrefix)
             {
                 if (keyword != null)
-                    return new WildFileCLA(keychar, keyword);
-                return new WildFileCLA(keychar);
+                    return new WildFilesCLA(keychar, keyword);
+                return new WildFilesCLA(keychar);
             }
-            return new WildFileCLA(keyword);
+            return new WildFilesCLA(keyword);
         }
 
         if (TYPE_DATE.equalsIgnoreCase(type.getValue()))
