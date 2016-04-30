@@ -49,7 +49,7 @@
 
 	<properties>
 
-		<calendar.version>1.0.0</calendar.version>
+		<calendar.version>0.0.1-SNAPSHOT</calendar.version>
 
 		<java.target.version>1.7</java.target.version>
 		<java.source.version>1.7</java.source.version>
