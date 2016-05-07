@@ -25,7 +25,7 @@ public class WildFileTest
     {
         Assert.assertEquals("^.*$", WildPath.convertFileWildCardToRegx("*").pattern());
         Assert.assertEquals("^.*\\..*$", WildPath.convertFileWildCardToRegx("*.*").pattern());
-        Assert.assertEquals("^.?$", WildPath.convertFileWildCardToRegx("?").pattern());
+        Assert.assertEquals("^.$", WildPath.convertFileWildCardToRegx("?").pattern());
         Assert.assertEquals("^.*.*$", WildPath.convertFileWildCardToRegx("**").pattern());
         Assert.assertEquals("^.*.*/.*\\.java$", WildPath.convertFileWildCardToRegx("**/*.java").pattern());
     }
@@ -55,7 +55,7 @@ public class WildFileTest
     {
         Assert.assertEquals("^.*$", WildPath.convertFileWildCardToRegx("*").pattern());
         Assert.assertEquals("^.*\\..*$", WildPath.convertFileWildCardToRegx("*.*").pattern());
-        Assert.assertEquals("^.?$", WildPath.convertFileWildCardToRegx("?").pattern());
+        Assert.assertEquals("^.$", WildPath.convertFileWildCardToRegx("?").pattern());
         Assert.assertEquals("^.*.*$", WildPath.convertFileWildCardToRegx("**").pattern());
         Assert.assertEquals("^.*.*\\\\.*\\.java$", WildPath.convertFileWildCardToRegx("**\\\\*.java").pattern());
     }

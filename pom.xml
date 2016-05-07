@@ -4,55 +4,15 @@
 	<groupId>obdobion</groupId>
 	<artifactId>argument</artifactId>
 	<name>argument</name>
-	<version>2.3.41</version>
+	<version>2.3.43</version>
 	<description>A command line parser for Java</description>
-
-	<!-- 1.4.12 Changed argument type parameter from regex to pattern -->
-	<!-- 1.4.12 Changed constraint parameter from regx to matches -->
-	<!-- 1.4.12 Normalize the value of a String type with a list criteria, allows 
-		for partial list values -->
-	<!-- 1.4.12 Changed instanceMethod to factoryMethod -->
-	<!-- 1.4.12 polymorphic construction based on embedded argument values (factoryArgName) -->
-	<!-- 1.4.12 enumList as a criteria uses an enum class to validate an argument -->
-	<!-- 1.4.12 NamespaceParser handling of unnamed, single value arguments, 
-		has been changed to .. -->
-	<!-- 1.5.13 Ignore case on otherwise ambiguous word commands -->
-	<!-- 1.5.14 The variable for File params can now be an array of Files -->
-	<!-- 1.5.15 Dates can be any of about 42 different formats including TODAY 
-		and NOW -->
-	<!-- 1.6.16 Embedded targets of lists and arrays were not instantiating 
-		correctly -->
-	<!-- 1.6.17 Allow date@time and date<space>time; the @ will allow for non-quoted 
-		dates -->
-	<!-- 1.6.18 Clear the variable stored in embedded parsers when the parser 
-		is reset on subsequent uses -->
-	<!-- 1.6.20 _date and _dateTime functions to be used with the argument date 
-		type -->
-	<!-- 1.6.21 convert junit tests to verion 4.0 -->
-	<!-- 1.6.22 added parse exceptions to the dateTime directives -->
-	<!-- 1.6.23 allow for less than 3 digits for the milliseconds in datetimes -->
-	<!-- 1.6.24 allow comments if the first character on a line is '#' -->
-	<!-- 1.6.25 Abstract helper class for application parameters -->
-	<!-- 1.6.26 Refactored the date processing into CalendarFactory. -->
-	<!-- 1.6.27 Made Calendar factory with static methods for non exception 
-		calling -->
-	<!-- 1.6.28 better usage -->
-	<!-- 1.6.29 even better usage -->
-	<!-- 1.6.30 java 1.7 -->
-	<!-- 1.6.31 handle missing qty in calendarfactory -->
-	<!-- 1.6.32 methods to convert dates to formulas -->
-	<!-- 1.6.33 @include and = in date adjustments -->
-	<!-- 2.0.34 prepare for use in the android app, especially the code generation 
-		module -->
-	<!-- 2.0.35 produce java15 hardwired code generator -->
-	<!-- 2.2.37 WildFile parameter -->
 
 	<properties>
 
-		<calendar.version>0.0.1-SNAPSHOT</calendar.version>
+		<calendar.version>1.0.0</calendar.version>
 
-		<java.target.version>1.7</java.target.version>
-		<java.source.version>1.7</java.source.version>
+		<java.target.version>1.8</java.target.version>
+		<java.source.version>1.8</java.source.version>
 		<junit.version>4.8.1</junit.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>

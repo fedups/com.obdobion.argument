@@ -38,7 +38,7 @@ public class WildPath
 
         regex = regex.replaceAll("\\\\", "\\\\\\\\");
         regex = regex.replaceAll("[.]", "\\\\.");
-        regex = regex.replaceAll("[?]", ".?");
+        regex = regex.replaceAll("[?]", ".");
         regex = regex.replaceAll("\\*\\*", ".`");
         regex = regex.replaceAll("[*]", "[^\\\\\\\\]*");
         regex = regex.replaceAll("`", "*");
@@ -54,7 +54,7 @@ public class WildPath
     {
         String regex = wildcard;
         regex = regex.replaceAll("[.]", "\\\\.");
-        regex = regex.replaceAll("[?]", ".?");
+        regex = regex.replaceAll("[?]", ".");
         regex = regex.replaceAll("[*]", ".*");
         return Pattern.compile("^" + regex + "$", Pattern.CASE_INSENSITIVE);
     }
@@ -143,7 +143,10 @@ public class WildPath
                                     fileMatcher.reset(pathname.getName());
                                     final boolean matchFlag = fileMatcher.matches();
                                     if (DEBUG)
-                                        System.out.print(" file matches");
+                                        if (matchFlag)
+                                            System.out.print(" file matches");
+                                        else
+                                            System.out.print(" not matching");
                                     return matchFlag;
                                 }
                                 return false;

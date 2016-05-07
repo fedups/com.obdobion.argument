@@ -1,5 +1,9 @@
 package com.obdobion.argument.input;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -23,10 +27,25 @@ import com.obdobion.argument.Token;
  */
 public class NamespaceParser extends AbstractInputParser implements IParserInput
 {
+    static public IParserInput getInstance (final File file) throws IOException
+    {
+        List<String> args = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file)))
+        {
+            String aConfigLine = null;
+            while ((aConfigLine = reader.readLine()) != null)
+            {
+                args.add(aConfigLine);
+            }
+        }
+
+        final NamespaceParser parser = new NamespaceParser();
+        parser.args = args.toArray(new String[args.size()]);
+        return parser;
+    }
 
     static public IParserInput getInstance (final String... args)
     {
-
         final NamespaceParser parser = new NamespaceParser();
         parser.args = args;
         return parser;
@@ -60,7 +79,7 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
     protected String[] args;
     final char         commandPrefix = '-';
 
-    private NamespaceParser()
+    NamespaceParser()
     {
         super();
     }
