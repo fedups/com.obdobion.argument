@@ -20,8 +20,8 @@ public class IncludeTest
     static final File workDir = new File("\\tmp");
 
     static public File createSpecFile (
-            final String specs)
-            throws IOException
+        final String specs)
+        throws IOException
     {
 
         final File file = File.createTempFile("IncludeTest.", ".fun", workDir);
@@ -39,7 +39,7 @@ public class IncludeTest
 
     @Test
     public void includeExactPath ()
-            throws Exception
+        throws Exception
     {
 
         final File spec = createSpecFile("--workDirectory /temp");
@@ -49,7 +49,7 @@ public class IncludeTest
         {
             cl.compile("-tboolean-ka", "-tboolean-kb", "-tString-kworkDirectory");
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(),
-                    "-a @'" + spec.getAbsolutePath().replaceAll("\\\\", "\\\\\\\\") + "' -b"));
+                "-a @'" + spec.getAbsolutePath().replaceAll("\\\\", "\\\\\\\\") + "' -b"));
         } finally
         {
             Assert.assertTrue("delete of spec file", spec.delete());
@@ -59,7 +59,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundNotQuoted ()
-            throws Exception
+        throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -77,7 +77,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundQuoted ()
-            throws Exception
+        throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -95,7 +95,7 @@ public class IncludeTest
 
     @Test
     public void includeNotFoundWithSpace ()
-            throws Exception
+        throws Exception
     {
 
         final ICmdLine cl = new CmdLine();
@@ -113,7 +113,7 @@ public class IncludeTest
 
     @Test
     public void includeUsingDefaultPath ()
-            throws Exception
+        throws Exception
     {
 
         final File spec = createSpecFile("--workDirectory /temp");

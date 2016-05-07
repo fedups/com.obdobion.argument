@@ -17,7 +17,7 @@ public abstract class AbstractParameter
     public void load (
         final File dashedParameterFile)
         throws IOException,
-            ParseException
+        ParseException
     {
         if (parser == null)
             parser = new CmdLine().compile(parserDefinition());
@@ -29,7 +29,7 @@ public abstract class AbstractParameter
     public void load (
         final String[] dashedCommandLineArgs)
         throws IOException,
-            ParseException
+        ParseException
     {
         if (parser == null)
             parser = new CmdLine().compile(parserDefinition());

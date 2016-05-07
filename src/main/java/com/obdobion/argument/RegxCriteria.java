@@ -18,6 +18,20 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
         this.patternParm = _pattern;
     }
 
+    public void asDefinitionText (StringBuilder sb)
+    {
+        sb.append(" --matches '");
+        sb.append(patternParm);
+        sb.append("'");
+    }
+
+    public void asSetter (StringBuilder sb)
+    {
+        sb.append(".setRegxCriteria(\"");
+        sb.append(patternParm);
+        sb.append("\")");
+    }
+
     @Override
     public RegxCriteria<E> clone () throws CloneNotSupportedException
     {
@@ -43,20 +57,6 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     public E normalizeValue (final E value, final boolean caseSensitive)
     {
         return value;
-    }
-
-    public void asDefinitionText (StringBuilder sb)
-    {
-        sb.append(" --matches '");
-        sb.append(patternParm);
-        sb.append("'");
-    }
-
-    public void asSetter (StringBuilder sb)
-    {
-        sb.append(".setRegxCriteria(\"");
-        sb.append(patternParm);
-        sb.append("\")");
     }
 
     public void usage (final UsageBuilder str, final int indentLevel)

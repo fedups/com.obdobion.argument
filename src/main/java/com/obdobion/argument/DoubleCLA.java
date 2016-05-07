@@ -34,7 +34,7 @@ public class DoubleCLA extends AbstractCLA<Double>
 
     @Override
     public Double convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         return FMT.parse(valueStr).doubleValue();
     }

@@ -12,89 +12,6 @@ import com.obdobion.argument.ICmdLineArg;
  */
 public class Java15HardWireGenerator extends Java15Generator
 {
-    @Override
-    void writeImports (GeneratedElement fullExample)
-    {
-        super.writeImports(fullExample);
-
-        fullExample.getContents().append("import java.util.ArrayList;\n");
-        fullExample.getContents().append("import java.util.List;\n");
-
-        fullExample.getContents().append("import com.obdobion.argument.CmdLine;\n");
-        fullExample.getContents().append("import com.obdobion.argument.CmdLineCLA;\n");
-        fullExample.getContents().append("import com.obdobion.argument.ICmdLine;\n");
-        fullExample.getContents().append("import com.obdobion.argument.ICmdLineArg;\n");
-        fullExample.getContents().append("import com.obdobion.argument.input.CommandLineParser;\n");
-        fullExample.getContents().append("import com.obdobion.argument.input.IParserInput;\n");
-
-    }
-
-    @Override
-    void writeDefinitionStrings (
-            GeneratedElement element,
-            List<ICmdLineArg<?>> localArguments,
-            int recursionLevel, String prefix)
-    {
-        if (recursionLevel == 0)
-        {
-            element.getContents().append("            ICmdLineArg<?> arg = null;\n");
-        }
-
-        for (ICmdLineArg<?> arg : localArguments)
-        {
-
-            if (arg instanceof CmdLineCLA)
-            {
-                element.getContents().append("\n           CmdLineCLA group" + recursionLevel + " = null;\n");
-                if (recursionLevel == 0)
-                {
-                    element.getContents().append("            CommandLine");
-                } else
-                {
-                    element.getContents().append("            group" + (recursionLevel - 1) + ".templateCmdLine");
-                }
-                element.getContents().append(
-                        ".add(group" + recursionLevel + " = new " + constructor(arg) + ");\n");
-                element.getContents().append("           {\n");
-
-                asSetter("group" + recursionLevel, arg, element.getContents());
-
-                element.getContents().append(
-                        "            group" + recursionLevel + ".templateCmdLine = new CmdLine(\"\");");
-
-                writeDefinitionStrings(
-                        element,
-                        ((CmdLineCLA) arg).templateCmdLine.allArgs(),
-                        recursionLevel + 1,
-                        "group" + recursionLevel);
-
-                element.getContents().append("           }\n");
-            } else
-            {
-                if (recursionLevel == 0)
-                {
-                    element.getContents().append("            CommandLine");
-                } else
-                {
-                    element.getContents().append("            group" + (recursionLevel - 1) + ".templateCmdLine");
-                }
-                element.getContents().append(".add(arg = new " + constructor(arg) + ");\n");
-                asSetter("arg", arg, element.getContents());
-            }
-        }
-    }
-
-    static private String constructor (ICmdLineArg<?> arg)
-    {
-        if (arg.getKeychar() != ' ' && arg.getKeyword() != null)
-            return (arg.getClass().getName() + "('" + arg.getKeychar() + "', \"" + arg.getKeyword() + "\")");
-        if (arg.getKeychar() != ' ')
-            return (arg.getClass().getName() + "('" + arg.getKeychar() + "')");
-        if (arg.getKeyword() != null)
-            return (arg.getClass().getName() + "(\"" + arg.getKeyword() + "\")");
-        return (arg.getClass().getName() + "()");
-    }
-
     static private void asSetter (String argVar, ICmdLineArg<?> arg, StringBuilder sb)
     {
         if (arg.isRequired())
@@ -173,5 +90,88 @@ public class Java15HardWireGenerator extends Java15Generator
             arg.getCriteria().asSetter(sb);
             sb.append(";\n");
         }
+    }
+
+    static private String constructor (ICmdLineArg<?> arg)
+    {
+        if (arg.getKeychar() != ' ' && arg.getKeyword() != null)
+            return (arg.getClass().getName() + "('" + arg.getKeychar() + "', \"" + arg.getKeyword() + "\")");
+        if (arg.getKeychar() != ' ')
+            return (arg.getClass().getName() + "('" + arg.getKeychar() + "')");
+        if (arg.getKeyword() != null)
+            return (arg.getClass().getName() + "(\"" + arg.getKeyword() + "\")");
+        return (arg.getClass().getName() + "()");
+    }
+
+    @Override
+    void writeDefinitionStrings (
+        GeneratedElement element,
+        List<ICmdLineArg<?>> localArguments,
+        int recursionLevel, String prefix)
+    {
+        if (recursionLevel == 0)
+        {
+            element.getContents().append("            ICmdLineArg<?> arg = null;\n");
+        }
+
+        for (ICmdLineArg<?> arg : localArguments)
+        {
+
+            if (arg instanceof CmdLineCLA)
+            {
+                element.getContents().append("\n           CmdLineCLA group" + recursionLevel + " = null;\n");
+                if (recursionLevel == 0)
+                {
+                    element.getContents().append("            CommandLine");
+                } else
+                {
+                    element.getContents().append("            group" + (recursionLevel - 1) + ".templateCmdLine");
+                }
+                element.getContents().append(
+                    ".add(group" + recursionLevel + " = new " + constructor(arg) + ");\n");
+                element.getContents().append("           {\n");
+
+                asSetter("group" + recursionLevel, arg, element.getContents());
+
+                element.getContents().append(
+                    "            group" + recursionLevel + ".templateCmdLine = new CmdLine(\"\");");
+
+                writeDefinitionStrings(
+                    element,
+                    ((CmdLineCLA) arg).templateCmdLine.allArgs(),
+                    recursionLevel + 1,
+                    "group" + recursionLevel);
+
+                element.getContents().append("           }\n");
+            } else
+            {
+                if (recursionLevel == 0)
+                {
+                    element.getContents().append("            CommandLine");
+                } else
+                {
+                    element.getContents().append("            group" + (recursionLevel - 1) + ".templateCmdLine");
+                }
+                element.getContents().append(".add(arg = new " + constructor(arg) + ");\n");
+                asSetter("arg", arg, element.getContents());
+            }
+        }
+    }
+
+    @Override
+    void writeImports (GeneratedElement fullExample)
+    {
+        super.writeImports(fullExample);
+
+        fullExample.getContents().append("import java.util.ArrayList;\n");
+        fullExample.getContents().append("import java.util.List;\n");
+
+        fullExample.getContents().append("import com.obdobion.argument.CmdLine;\n");
+        fullExample.getContents().append("import com.obdobion.argument.CmdLineCLA;\n");
+        fullExample.getContents().append("import com.obdobion.argument.ICmdLine;\n");
+        fullExample.getContents().append("import com.obdobion.argument.ICmdLineArg;\n");
+        fullExample.getContents().append("import com.obdobion.argument.input.CommandLineParser;\n");
+        fullExample.getContents().append("import com.obdobion.argument.input.IParserInput;\n");
+
     }
 }

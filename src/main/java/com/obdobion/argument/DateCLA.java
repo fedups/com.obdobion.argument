@@ -34,7 +34,7 @@ public class DateCLA extends AbstractCLA<Date>
         } else
         {
             predefinedFmt[fmtMakerIndex] = new SimpleDateFormat(
-                    format.trim());
+                format.trim());
             predefinedAlg[fmtMakerIndex] = null;
         }
     }
@@ -43,9 +43,9 @@ public class DateCLA extends AbstractCLA<Date>
     {
         // System.err.println(format);
         return Pattern.compile(
-                format.trim(),
-                Pattern.CASE_INSENSITIVE).matcher(
-                "");
+            format.trim(),
+            Pattern.CASE_INSENSITIVE).matcher(
+            "");
     }
 
     /**
@@ -62,28 +62,30 @@ public class DateCLA extends AbstractCLA<Date>
         final String yyFmt = "[0-9]{4}";
         final char[] seps =
         {
-                '-', '/'
+            '-',
+            '/'
         };
         final char[] spaceSeps =
         {
-                ' ', '@'
+            ' ',
+            '@'
         };
 
         predefinedMat = new Matcher[spaceSeps.length
-                * numberOfDateFormats
-                * seps.length
-                * numberOfTimeFormats
-                + numberOfAlgos];
+            * numberOfDateFormats
+            * seps.length
+            * numberOfTimeFormats
+            + numberOfAlgos];
         predefinedFmt = new SimpleDateFormat[spaceSeps.length
-                * numberOfDateFormats
-                * seps.length
-                * numberOfTimeFormats
-                + numberOfAlgos];
+            * numberOfDateFormats
+            * seps.length
+            * numberOfTimeFormats
+            + numberOfAlgos];
         predefinedAlg = new String[spaceSeps.length
-                * numberOfDateFormats
-                * seps.length
-                * numberOfTimeFormats
-                + numberOfAlgos];
+            * numberOfDateFormats
+            * seps.length
+            * numberOfTimeFormats
+            + numberOfAlgos];
 
         String dFormat;
         String dMatcher;
@@ -202,19 +204,8 @@ public class DateCLA extends AbstractCLA<Date>
     }
 
     @Override
-    public Date[] getValueAsDateArray () throws ParseException
-    {
-        final Date[] result = new Date[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
     public Date convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         if (sdf == null)
         {
@@ -224,12 +215,12 @@ public class DateCLA extends AbstractCLA<Date>
                 try
                 {
                     sdf = new SimpleDateFormat(
-                            getFormat());
+                        getFormat());
                 } catch (final Exception e)
                 {
                     throw new ParseException(
-                            "date format: " + e.getMessage(),
-                            0);
+                        "date format: " + e.getMessage(),
+                        0);
                 }
         }
 
@@ -241,8 +232,8 @@ public class DateCLA extends AbstractCLA<Date>
         } catch (final Exception e)
         {
             throw new ParseException(
-                    toString() + " " + getFormat() + ": " + e.getMessage(),
-                    0);
+                toString() + " " + getFormat() + ": " + e.getMessage(),
+                0);
         }
     }
 
@@ -284,6 +275,17 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
+    @Override
+    public Date[] getValueAsDateArray () throws ParseException
+    {
+        final Date[] result = new Date[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
+    }
+
     protected Date parseSpecialDate (final String pattern)
     {
         if (specialAlgoTODAY.equalsIgnoreCase(pattern))
@@ -315,7 +317,7 @@ public class DateCLA extends AbstractCLA<Date>
             }
         }
         throw new ParseException(
-                toString() + " is not in a predefined date / time format (" + valueStr + ")",
-                0);
+            toString() + " is not in a predefined date / time format (" + valueStr + ")",
+            0);
     }
 }

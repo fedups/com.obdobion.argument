@@ -8,21 +8,11 @@ import com.obdobion.argument.input.CommandLineParser;
  */
 public class GeneratedTest
 {
-    final static String[] CLADefinition = new String[]
-                                        {
-            "--type boolean -k a -v myBool",
-            "--type begin  -k g -v myGroup",
-            "--type byte -k b -v myByteInAGroup",
-            "--type begin  -k z -v myGroup2 -m 1 1",
-            "--type byte -k y -v myByteInAGroup2",
-            "--type end  -k z -v myGroup2 -m 1 1",
-            "--type end  -k g -v myGroup",
-            "--type pattern -k j -v myPattern"
-                                        };
-
-    public static class CLAGZConfiguration
+    public static class CLAConfiguration
     {
-        public byte myByteInAGroup2;
+        public boolean                 myBool;
+        public CLAGConfiguration       myGroup;
+        public java.util.regex.Pattern myPattern;
     }
 
     public static class CLAGConfiguration
@@ -31,12 +21,22 @@ public class GeneratedTest
         public CLAGZConfiguration[] myGroup2;
     }
 
-    public static class CLAConfiguration
+    public static class CLAGZConfiguration
     {
-        public boolean                 myBool;
-        public CLAGConfiguration       myGroup;
-        public java.util.regex.Pattern myPattern;
+        public byte myByteInAGroup2;
     }
+
+    final static String[] CLADefinition = new String[]
+                                        {
+        "--type boolean -k a -v myBool",
+        "--type begin  -k g -v myGroup",
+        "--type byte -k b -v myByteInAGroup",
+        "--type begin  -k z -v myGroup2 -m 1 1",
+        "--type byte -k y -v myByteInAGroup2",
+        "--type end  -k z -v myGroup2 -m 1 1",
+        "--type end  -k g -v myGroup",
+        "--type pattern -k j -v myPattern"
+                                        };
 
     public static void main (final String[] args)
     {
@@ -45,8 +45,8 @@ public class GeneratedTest
             final ICmdLine cmdline = new CmdLine("variableBooleans");
             cmdline.compile(CLADefinition);
             CLAConfiguration configuration = (CLAConfiguration) cmdline.parse(
-                    CommandLineParser.getInstance(cmdline.getCommandPrefix(), args),
-                    new CLAConfiguration());
+                CommandLineParser.getInstance(cmdline.getCommandPrefix(), args),
+                new CLAConfiguration());
 
             StringBuilder parameterDump = new StringBuilder();
             cmdline.exportNamespace("", parameterDump);
@@ -58,7 +58,7 @@ public class GeneratedTest
         } catch (final Exception e)
         {
             e.printStackTrace();
-    }
+        }
     }
 
     /**

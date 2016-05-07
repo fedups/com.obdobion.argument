@@ -34,6 +34,44 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
+    public Integer convert (final String valueStr, final boolean _caseSensitive, final Object target)
+        throws ParseException
+    {
+        return FMT.parse(valueStr).intValue();
+    }
+
+    @Override
+    public String defaultInstanceClass ()
+    {
+        return "int";
+    }
+
+    @Override
+    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    {
+        if (getValue(occ) < 0)
+            out.append("'");
+        out.append(FMT.format(getValue(occ)));
+        if (getValue(occ) < 0)
+            out.append("'");
+    }
+
+    @Override
+    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    {
+        out.append(prefix);
+        out.append("=");
+        out.append(FMT.format(getValue(occ)));
+        out.append("\n");
+    }
+
+    @Override
+    protected void exportXmlData (final StringBuilder out, final int occ)
+    {
+        out.append(FMT.format(getValue(occ)));
+    }
+
+    @Override
     public float[] getValueAsfloatArray () throws ParseException
     {
         final float[] result = new float[size()];
@@ -86,43 +124,5 @@ public class IntegerCLA extends AbstractCLA<Integer>
             result[r] = new Long(getValue(r));
 
         return result;
-    }
-
-    @Override
-    public Integer convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
-    {
-        return FMT.parse(valueStr).intValue();
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "int";
-    }
-
-    @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
-    {
-        if (getValue(occ) < 0)
-            out.append("'");
-        out.append(FMT.format(getValue(occ)));
-        if (getValue(occ) < 0)
-            out.append("'");
-    }
-
-    @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
-    {
-        out.append(prefix);
-        out.append("=");
-        out.append(FMT.format(getValue(occ)));
-        out.append("\n");
-    }
-
-    @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
-    {
-        out.append(FMT.format(getValue(occ)));
     }
 }

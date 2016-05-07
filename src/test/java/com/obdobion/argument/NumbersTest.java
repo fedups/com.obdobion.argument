@@ -33,30 +33,6 @@ public class NumbersTest
     }
 
     @Test
-    public void positiveIntegers () throws Exception
-    {
-        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a 1 --bee-name 2"));
-        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
-
-        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
-        Assert.assertEquals("a", 1, a.getValue().intValue());
-        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
-        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
-    }
-
-    @Test
-    public void positiveIntegersNoSpace () throws Exception
-    {
-        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a1 --bee-name 2"));
-        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
-
-        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
-        Assert.assertEquals("a", 1, a.getValue().intValue());
-        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
-        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
-    }
-
-    @Test
     public void negativeIntegers () throws Exception
     {
         sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a -1 --bee-name -2"));
@@ -69,19 +45,6 @@ public class NumbersTest
     }
 
     @Test
-    public void negativeIntegersViaKeyCharNoDelim () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i-100"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("1i", -100, sarg.getValue().intValue());
-    }
-
-    @Test
     public void negativeIntegersViaKeyCharEqualSign () throws Exception
     {
 
@@ -89,6 +52,19 @@ public class NumbersTest
         cl.compile("-t integer -ki");
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i=-100"));
+        Assert.assertEquals("1 cmd count", 1, cl.size());
+        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
+        Assert.assertEquals("1i", -100, sarg.getValue().intValue());
+    }
+
+    @Test
+    public void negativeIntegersViaKeyCharNoDelim () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t integer -ki");
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i-100"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
         IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
         Assert.assertEquals("1i", -100, sarg.getValue().intValue());
@@ -131,6 +107,30 @@ public class NumbersTest
         Assert.assertEquals("1 cmd count", 1, cl.size());
         IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
         Assert.assertEquals("i", -45, sarg.getValue().intValue());
+    }
+
+    @Test
+    public void positiveIntegers () throws Exception
+    {
+        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a 1 --bee-name 2"));
+        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
+
+        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
+        Assert.assertEquals("a", 1, a.getValue().intValue());
+        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
+        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
+    }
+
+    @Test
+    public void positiveIntegersNoSpace () throws Exception
+    {
+        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a1 --bee-name 2"));
+        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
+
+        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
+        Assert.assertEquals("a", 1, a.getValue().intValue());
+        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
+        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
     }
 
 }

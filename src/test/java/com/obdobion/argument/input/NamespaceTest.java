@@ -9,9 +9,11 @@ import com.obdobion.argument.ICmdLine;
  * @author Chris DeGreef
  * 
  */
-public class NamespaceTest extends TestCase {
+public class NamespaceTest extends TestCase
+{
 
-    public void testString () throws Exception {
+    public void testString () throws Exception
+    {
 
         final IParserInput p = NamespaceParser.getInstance("Hello=world", "goodbye=for now");
         final ICmdLine cmd = new CmdLine();

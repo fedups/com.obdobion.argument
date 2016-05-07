@@ -28,17 +28,6 @@ public class StringCLA extends AbstractCLA<String>
     }
 
     @Override
-    public String[] getValueAsStringArray ()
-    {
-        final String[] result = new String[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
     public String convert (final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (_caseSensitive)
@@ -73,5 +62,16 @@ public class StringCLA extends AbstractCLA<String>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ), out);
+    }
+
+    @Override
+    public String[] getValueAsStringArray ()
+    {
+        final String[] result = new String[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

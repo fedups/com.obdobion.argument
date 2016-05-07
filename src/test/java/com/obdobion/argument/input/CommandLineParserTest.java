@@ -9,9 +9,11 @@ import com.obdobion.argument.ICmdLine;
  * @author Chris DeGreef
  * 
  */
-public class CommandLineParserTest extends TestCase {
+public class CommandLineParserTest extends TestCase
+{
 
-    public void testPackedCharCommandWithValue() throws Exception {
+    public void testPackedCharCommandWithValue () throws Exception
+    {
 
         final ICmdLine cmd = new CmdLine("");
         cmd.compile("-tboolean-ka", "-tboolean-kb");

@@ -59,8 +59,21 @@ public class CLAFactory
             type.setRequired(true);
             type.setListCriteria(new String[]
             {
-                    TYPE_BEGIN, TYPE_BOOLEAN, TYPE_BYTE, TYPE_STRING, TYPE_INTEGER, TYPE_ENUM, TYPE_LONG, TYPE_DATE,
-                    TYPE_PATTERN, TYPE_FLOAT, TYPE_DOUBLE, TYPE_END, TYPE_FILE, TYPE_WILDFILE, TYPE_DEFAULT
+                TYPE_BEGIN,
+                TYPE_BOOLEAN,
+                TYPE_BYTE,
+                TYPE_STRING,
+                TYPE_INTEGER,
+                TYPE_ENUM,
+                TYPE_LONG,
+                TYPE_DATE,
+                TYPE_PATTERN,
+                TYPE_FLOAT,
+                TYPE_DOUBLE,
+                TYPE_END,
+                TYPE_FILE,
+                TYPE_WILDFILE,
+                TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -145,7 +158,7 @@ public class CLAFactory
     }
 
     public boolean atEnd (char commandPrefix, final CmdLineCLA group, final String definition)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         factoryParser.parse(CommandLineParser.getInstance(commandPrefix, definition));
         if (TYPE_END.equalsIgnoreCase(type.getValue()))
@@ -194,7 +207,7 @@ public class CLAFactory
         if (keyword != null)
             if (Character.isDigit(keyword.charAt(0)))
                 throw new ParseException("The first character of a Key Word can not be a digit \"" + key.getValue(1)
-                        + "\"", -1);
+                    + "\"", -1);
 
         if (TYPE_BEGIN.equalsIgnoreCase(type.getValue()))
         {

@@ -12,11 +12,13 @@ import com.obdobion.argument.ICmdLine;
  * @author Chris DeGreef
  * 
  */
-public class XmlTest extends TestCase {
+public class XmlTest extends TestCase
+{
 
     InputStream is;
 
-    public void testString () throws Exception {
+    public void testString () throws Exception
+    {
 
         is = new ByteArrayInputStream("<cmdline><Hello>world</Hello><goodbye>for now</goodbye></cmdline>".getBytes());
         final ICmdLine cmd = new CmdLine();

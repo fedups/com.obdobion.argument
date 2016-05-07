@@ -27,8 +27,14 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
+    public void asDefinedType (StringBuilder sb)
+    {
+        sb.append("should not be called");
+    }
+
+    @Override
     public ICmdLineArg<ICmdLine> clone ()
-            throws CloneNotSupportedException
+        throws CloneNotSupportedException
     {
         final CmdLineCLA clone = (CmdLineCLA) super.clone();
         clone.templateCmdLine = templateCmdLine.clone();
@@ -37,11 +43,11 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
 
     @Override
     public ICmdLine convert (
-            final String valueStr,
-            final boolean _caseSensitive,
-            final Object target)
-            throws ParseException,
-            IOException
+        final String valueStr,
+        final boolean _caseSensitive,
+        final Object target)
+        throws ParseException,
+        IOException
     {
         ICmdLine cmdline = null;
         final Object newtarget = null;
@@ -59,12 +65,6 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
-    {
-        sb.append("should not be called");
-    }
-
-    @Override
     public String defaultInstanceClass ()
     {
         return "com.obdobion.argument.CmdLine";
@@ -72,8 +72,8 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
 
     @Override
     protected void exportCommandLineData (
-            final StringBuilder str,
-            final int occ)
+        final StringBuilder str,
+        final int occ)
     {
         str.append("[");
         getValue(occ).exportCommandLine(str);
@@ -82,16 +82,16 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
 
     @Override
     protected void exportNamespaceData (
-            final String prefix,
-            final StringBuilder out,
-            final int occ)
+        final String prefix,
+        final StringBuilder out,
+        final int occ)
     {
         getValue(occ).exportNamespace(prefix + ".", out);
     }
 
     @Override
     public void exportXml (
-            final StringBuilder out)
+        final StringBuilder out)
     {
         out.append("<");
         if (isPositional())
@@ -131,8 +131,8 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
 
     @Override
     protected void exportXmlData (
-            final StringBuilder str,
-            final int occ)
+        final StringBuilder str,
+        final int occ)
     {
         getValue(occ).exportXml(str);
     }

@@ -27,19 +27,8 @@ public class FileCLA extends AbstractCLA<File>
     }
 
     @Override
-    public File[] getValueAsFileArray () throws ParseException
-    {
-        final File[] result = new File[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
     public File convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         if (_caseSensitive)
             return new File(valueStr);
@@ -73,5 +62,16 @@ public class FileCLA extends AbstractCLA<File>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).getAbsolutePath(), out);
+    }
+
+    @Override
+    public File[] getValueAsFileArray () throws ParseException
+    {
+        final File[] result = new File[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

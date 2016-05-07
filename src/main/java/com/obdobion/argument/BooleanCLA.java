@@ -15,8 +15,10 @@ public class BooleanCLA extends AbstractCLA<Boolean>
 
     String[]                     validWords = new String[]
                                             {
-            "yes", "no"
+        "yes",
+        "no"
                                             };
+
     public BooleanCLA(final char _keychar)
     {
         super(_keychar);
@@ -64,13 +66,19 @@ public class BooleanCLA extends AbstractCLA<Boolean>
 
     @Override
     public Boolean convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         Matcher m = null;
         m = YES.matcher(valueStr);
         if (m.matches())
             return Boolean.TRUE;
         return Boolean.FALSE;
+    }
+
+    @Override
+    public String defaultInstanceClass ()
+    {
+        return "boolean";
     }
 
     @Override
@@ -91,12 +99,6 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         // intentionally left blank
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "boolean";
     }
 
     @Override

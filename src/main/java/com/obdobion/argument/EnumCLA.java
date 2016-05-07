@@ -54,13 +54,13 @@ public class EnumCLA extends AbstractCLA<String>
             {
                 if (selectedConstant != null)
                     throw new ParseException("\""
-                            + enumConstantName
-                            + "\" is not a unique enum constant for variable \""
-                            + enumClassFieldName
-                            + "\" ("
-                            + possibleValues.toString()
-                            + ")",
-                            0);
+                        + enumConstantName
+                        + "\" is not a unique enum constant for variable \""
+                        + enumClassFieldName
+                        + "\" ("
+                        + possibleValues.toString()
+                        + ")",
+                        0);
                 selectedConstant = possibleConstants[c];
             }
         }
@@ -68,13 +68,13 @@ public class EnumCLA extends AbstractCLA<String>
             return selectedConstant;
 
         throw new ParseException("\""
-                + enumConstantName
-                + "\" is not a valid enum constant for variable \""
-                + enumClassFieldName
-                + "\" ("
-                + possibleValues.toString()
-                + ")",
-                0);
+            + enumConstantName
+            + "\" is not a valid enum constant for variable \""
+            + enumClassFieldName
+            + "\" ("
+            + possibleValues.toString()
+            + ")",
+            0);
     }
 
     @Override

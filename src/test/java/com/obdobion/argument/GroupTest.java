@@ -77,11 +77,11 @@ public class GroupTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-                "-tbegin-kg-vembedL-m1--factoryMethod " + Embed.class.getName() + ".create",
-                "-tbegin-kz-vchild",
-                "-tboolean-ka-veVar",
-                "-tend-kz",
-                "-tend-kg");
+            "-tbegin-kg-vembedL-m1--factoryMethod " + Embed.class.getName() + ".create",
+            "-tbegin-kz-vchild",
+            "-tboolean-ka-veVar",
+            "-tend-kz",
+            "-tend-kg");
         cl.parse(this, "-g(-z(-a))");
 
         Assert.assertTrue("eVar value", embedL.get(0).child.eVar);
@@ -112,8 +112,8 @@ public class GroupTest
         final CmdLine cl = new CmdLine();
         cl.compile("-tbegin-kg--pos", "-tString-ka-m1--pos", "-tend-kg");
         cl.parse(CommandLineParser.getInstance(
-                cl.getCommandPrefix(),
-                "('1this is single quoted' '2this \\'is single quoted' \"3this \\'is double quoted\" \"4this \\\"is double quoted\")"));
+            cl.getCommandPrefix(),
+            "('1this is single quoted' '2this \\'is single quoted' \"3this \\'is double quoted\" \"4this \\\"is double quoted\")"));
 
         Assert.assertEquals("1 cmd count", 1, cl.size());
         Assert.assertEquals("1g cmd count", 1, cl.arg("-g").size());

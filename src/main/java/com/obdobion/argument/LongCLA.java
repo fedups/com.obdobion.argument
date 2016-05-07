@@ -35,19 +35,8 @@ public class LongCLA extends AbstractCLA<Long>
     }
 
     @Override
-    public Long[] getValueAsLongArray () throws ParseException
-    {
-        final Long[] result = new Long[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
     public Long convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         return FMTin.parse(valueStr).longValue();
     }
@@ -81,5 +70,16 @@ public class LongCLA extends AbstractCLA<Long>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         out.append(FMTout.format(getValue(occ)));
+    }
+
+    @Override
+    public Long[] getValueAsLongArray () throws ParseException
+    {
+        final Long[] result = new Long[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

@@ -86,6 +86,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
             arg.getCriteria().asDefinitionText(sb);
         }
     }
+
     String               generatorName;
 
     List<ICmdLineArg<?>> arguments;
@@ -135,7 +136,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
 
         element.getContents().append("        CLAConfiguration configuration = (CLAConfiguration) cmdline.parse(\n");
         element.getContents().append(
-                "                CommandLineParser.getInstance(cmdline.getCommandPrefix(), args),\n");
+            "                CommandLineParser.getInstance(cmdline.getCommandPrefix(), args),\n");
         element.getContents().append("                new CLAConfiguration());\n\n");
 
         element.getContents().append("       StringBuilder parameterDump = new StringBuilder();\n");
@@ -149,7 +150,6 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
         element.getContents().append("        e.printStackTrace();\n");
         element.getContents().append("    }\n");
         element.getContents().append("}\n\n");
-        
 
         element.getContents().append("private void myApplicationCode (CLAConfiguration configuration)\n");
         element.getContents().append("{\n");
@@ -170,9 +170,9 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
 
     @SuppressWarnings("null")
     private void writeConfigurationClasses (
-            List<GeneratedElement> elements,
-            String configClassNamePrefix,
-            List<ICmdLineArg<?>> localArguments)
+        List<GeneratedElement> elements,
+        String configClassNamePrefix,
+        List<ICmdLineArg<?>> localArguments)
     {
         GeneratedElement element = null;
         boolean firstTime = true;
@@ -196,8 +196,7 @@ public class Java15ImplementationCodeGenerator implements ICodeGenerator
                 element.getContents().append("\n    public ");
                 if (groupName != null)
                     element.getContents().append(groupName + "Configuration");
-                else
-                if (arg.getInstanceClass() != null)
+                else if (arg.getInstanceClass() != null)
                     element.getContents().append(arg.getInstanceClass());
                 else
                     element.getContents().append(arg.defaultInstanceClass());

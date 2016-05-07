@@ -9,9 +9,11 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class InstanceExample {
+public class InstanceExample
+{
 
-    static private void displayArgValue (final StringCLA arg) {
+    static private void displayArgValue (final StringCLA arg)
+    {
         System.out.println("s = " + arg.getValue());
     }
 
@@ -21,8 +23,10 @@ public class InstanceExample {
      * 
      * @param args
      */
-    public static void main (final String[] args) {
-        try {
+    public static void main (final String[] args)
+    {
+        try
+        {
             /*
              * Create a new instance of the command line processor.
              */
@@ -39,7 +43,8 @@ public class InstanceExample {
             final StringCLA myStringArg = (StringCLA) cmdline.arg("-s");
             displayArgValue(myStringArg);
 
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             e.printStackTrace();
         }
     }

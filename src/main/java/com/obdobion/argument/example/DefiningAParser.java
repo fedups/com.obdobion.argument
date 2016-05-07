@@ -8,7 +8,8 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class DefiningAParser {
+public class DefiningAParser
+{
 
     static final private String FastSwitch    = "-tboolean -kfast";
     static final private String CheapSwitch   = "-tboolean -kcheap";
@@ -19,8 +20,10 @@ public class DefiningAParser {
      * 
      * @param args
      */
-    public static void main (final String[] args) {
-        try {
+    public static void main (final String[] args)
+    {
+        try
+        {
             /*
              * Create a new instance of the command line processor.
              */
@@ -38,7 +41,8 @@ public class DefiningAParser {
             System.out.println("cheap = " + cmdline.arg("--cheap").getValue());
             System.out.println("correct = " + cmdline.arg("--correct").getValue());
 
-        } catch (final Exception e) {
+        } catch (final Exception e)
+        {
             e.printStackTrace();
         }
     }

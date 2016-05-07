@@ -14,29 +14,7 @@ public interface ICmdLineArg<E>
 {
     void applyDefaults ();
 
-    File[] getValueAsFileArray () throws ParseException;
-
-    byte[] getValueAsbyteArray () throws ParseException;
-
-    Byte[] getValueAsByteArray () throws ParseException;
-
-    Date[] getValueAsDateArray () throws ParseException;
-
-    Pattern[] getValueAsPatternArray () throws ParseException;
-
-    Pattern getValueAsPattern () throws ParseException;
-
-    int[] getValueAsintArray () throws ParseException;
-
-    Integer[] getValueAsIntegerArray () throws ParseException;
-
-    Long[] getValueAsLongArray () throws ParseException;
-
-    float[] getValueAsfloatArray () throws ParseException;
-
-    Float[] getValueAsFloatArray () throws ParseException;
-
-    String[] getValueAsStringArray () throws ParseException;
+    void asDefinedType (StringBuilder sb);
 
     Object asEnum (String name, Object[] possibleConstants) throws ParseException;
 
@@ -46,7 +24,7 @@ public interface ICmdLineArg<E>
 
     E convert (String valueStr, boolean caseSensitive, Object target) throws ParseException, IOException;
 
-    void asDefinedType (StringBuilder sb);
+    String defaultInstanceClass ();
 
     void exportCommandLine (File file) throws IOException;
 
@@ -62,17 +40,17 @@ public interface ICmdLineArg<E>
 
     ICmdLineArgCriteria<?> getCriteria ();
 
+    List<E> getDefaultValues ();
+
+    String getEnumClassName ();
+
     String getFactoryArgName ();
 
     String getFactoryMethodName ();
 
-    String getInstanceClass ();
-
-    String defaultInstanceClass ();
-
-    String getEnumClassName ();
-
     String getFormat ();
+
+    String getInstanceClass ();
 
     Character getKeychar ();
 
@@ -82,11 +60,33 @@ public interface ICmdLineArg<E>
 
     int getMultipleMin ();
 
-    List<E> getDefaultValues ();
-
     E getValue ();
 
     E getValue (int index);
+
+    byte[] getValueAsbyteArray () throws ParseException;
+
+    Byte[] getValueAsByteArray () throws ParseException;
+
+    Date[] getValueAsDateArray () throws ParseException;
+
+    File[] getValueAsFileArray () throws ParseException;
+
+    float[] getValueAsfloatArray () throws ParseException;
+
+    Float[] getValueAsFloatArray () throws ParseException;
+
+    int[] getValueAsintArray () throws ParseException;
+
+    Integer[] getValueAsIntegerArray () throws ParseException;
+
+    Long[] getValueAsLongArray () throws ParseException;
+
+    Pattern getValueAsPattern () throws ParseException;
+
+    Pattern[] getValueAsPatternArray () throws ParseException;
+
+    String[] getValueAsStringArray () throws ParseException;
 
     String getVariable ();
 

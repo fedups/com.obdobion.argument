@@ -89,9 +89,9 @@ public class Java15StaticStringGenerator extends Java15Generator
 
     @Override
     void writeDefinitionStrings (
-            GeneratedElement element,
-            List<ICmdLineArg<?>> localArguments,
-            int recursionLevel, String prefix)
+        GeneratedElement element,
+        List<ICmdLineArg<?>> localArguments,
+        int recursionLevel, String prefix)
     {
         boolean firstTime = true;
 
@@ -113,10 +113,10 @@ public class Java15StaticStringGenerator extends Java15Generator
                 element.getContents().append("\",\n");
 
                 writeDefinitionStrings(
-                        element,
-                        ((CmdLineCLA) arg).templateCmdLine.allArgs(),
-                        recursionLevel + 1,
-                        prefix);
+                    element,
+                    ((CmdLineCLA) arg).templateCmdLine.allArgs(),
+                    recursionLevel + 1,
+                    prefix);
                 element.getContents().append(",\n");
 
                 element.getContents().append("    \"--type end");

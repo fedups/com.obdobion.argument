@@ -18,38 +18,6 @@ public class ExceptionTest
     }
 
     @Test
-    public void missingRightBracket () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        try
-        {
-            cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a)(-b"));
-            Assert.fail("expected exception");
-        } catch (final Exception e)
-        {
-            Assert.assertEquals("Unmatched bracket", e.getMessage());
-        }
-    }
-
-    @Test
-    public void tooManyRightBracket () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        try
-        {
-            cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a))(-b"));
-            Assert.fail("expected exception");
-        } catch (final Exception e)
-        {
-            Assert.assertEquals("Unmatched bracket", e.getMessage());
-        }
-    }
-
-    @Test
     public void badCharCommand () throws Exception
     {
 
@@ -78,6 +46,38 @@ public class ExceptionTest
         } catch (final Exception e)
         {
             Assert.assertEquals("unexpected input: --version ", e.getMessage());
+        }
+    }
+
+    @Test
+    public void missingRightBracket () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        try
+        {
+            cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
+            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a)(-b"));
+            Assert.fail("expected exception");
+        } catch (final Exception e)
+        {
+            Assert.assertEquals("Unmatched bracket", e.getMessage());
+        }
+    }
+
+    @Test
+    public void tooManyRightBracket () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        try
+        {
+            cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
+            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-a))(-b"));
+            Assert.fail("expected exception");
+        } catch (final Exception e)
+        {
+            Assert.assertEquals("Unmatched bracket", e.getMessage());
         }
     }
 

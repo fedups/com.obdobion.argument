@@ -17,6 +17,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 {
     static private final Pattern     CDATA_NOTNEEDED = Pattern.compile("^[\\p{Alnum}_-]*$");
 
+    public static String             newline         = System.getProperty("line.separator");
     protected List<E>                defaultValues   = new ArrayList<>();
     protected String                 help;
     protected Character              keychar;
@@ -37,9 +38,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     protected boolean                requiredValue;
     protected List<E>                values          = new ArrayList<>();
     protected String                 enumClassName;
-    protected ICmdLineArgCriteria<?> criteria;
 
-    public static String             newline         = System.getProperty("line.separator");
+    protected ICmdLineArgCriteria<?> criteria;
 
     public AbstractCLA(
             final char _keychar)
@@ -69,9 +69,16 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
             getValues().addAll(getDefaultValues());
     }
 
+    abstract public void asDefinedType (StringBuilder sb);
+
+    public Object asEnum (String name, Object[] possibleConstants) throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in an Enum", 0);
+    }
+
     @Override
     public ICmdLineArg<E> clone ()
-            throws CloneNotSupportedException
+        throws CloneNotSupportedException
     {
         @SuppressWarnings("unchecked")
         final AbstractCLA<E> clone = (AbstractCLA<E>) super.clone();
@@ -82,9 +89,9 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public E convert (
-            final String valueStr)
-            throws ParseException,
-            IOException
+        final String valueStr)
+        throws ParseException,
+        IOException
     {
         if (valueStr == null)
             return null;
@@ -92,11 +99,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     abstract public E convert (
-            String valueStr,
-            boolean _caseSensitive,
-            Object target)
-            throws ParseException,
-            IOException;
+        String valueStr,
+        boolean _caseSensitive,
+        Object target)
+        throws ParseException,
+        IOException;
 
     public String defaultInstanceClass ()
     {
@@ -104,13 +111,13 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public void exportCommandLine (
-            final File file)
+        final File file)
     {
         // only the cmdline should implement this
     }
 
     public void exportCommandLine (
-            final StringBuilder out)
+        final StringBuilder out)
     {
         if (!isPositional())
             if (keychar != null)
@@ -133,7 +140,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     abstract protected void exportCommandLineData (StringBuilder str, int occ);
 
     public void exportNamespace (
-            final File file)
+        final File file)
     {
         // only the cmdline should implement this
     }
@@ -156,22 +163,20 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         }
     }
 
-    abstract public void asDefinedType (StringBuilder sb);
-
     abstract protected void exportNamespaceData (
-            String prefix,
-            StringBuilder str,
-            int occ);
+        String prefix,
+        StringBuilder str,
+        int occ);
 
     public void exportXml (
-            final String tag,
-            final File file)
+        final String tag,
+        final File file)
     {
         // only the cmdline should implement this
     }
 
     public void exportXml (
-            final StringBuilder out)
+        final StringBuilder out)
     {
         /*
          * Never write a multiple value xml tag with a delim since we can't
@@ -201,71 +206,6 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     abstract protected void exportXmlData (StringBuilder str, int occ);
 
-    public File[] getValueAsFileArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a File[]", 0);
-    }
-
-    public byte[] getValueAsbyteArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a byte[]", 0);
-    }
-
-    public Byte[] getValueAsByteArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Byte[]", 0);
-    }
-
-    public Date[] getValueAsDateArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
-    }
-
-    public Pattern[] getValueAsPatternArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Pattern[]", 0);
-    }
-
-    public String[] getValueAsStringArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a String[]", 0);
-    }
-
-    public Pattern getValueAsPattern () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Pattern", 0);
-    }
-
-    public float[] getValueAsfloatArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a float[]", 0);
-    }
-
-    public Float[] getValueAsFloatArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Float[]", 0);
-    }
-
-    public int[] getValueAsintArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a int[]", 0);
-    }
-
-    public Integer[] getValueAsIntegerArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
-    }
-
-    public Long[] getValueAsLongArray () throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in a Long[]", 0);
-    }
-
-    public Object asEnum (String name, Object[] possibleConstants) throws ParseException
-    {
-        throw new ParseException("invalid to store " + this.toString() + " in an Enum", 0);
-    }
-
     public ICmdLineArgCriteria<?> getCriteria ()
     {
         return criteria;
@@ -274,6 +214,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public List<E> getDefaultValues ()
     {
         return defaultValues;
+    }
+
+    public String getEnumClassName ()
+    {
+        return enumClassName;
     }
 
     public String getFactoryArgName ()
@@ -337,7 +282,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public E getValue (
-            final int index)
+        final int index)
     {
         if (index < 0 || values == null || values.size() == 0)
             if (defaultValues != null && defaultValues.size() > index)
@@ -352,6 +297,66 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return null;
     }
 
+    public byte[] getValueAsbyteArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a byte[]", 0);
+    }
+
+    public Byte[] getValueAsByteArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Byte[]", 0);
+    }
+
+    public Date[] getValueAsDateArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
+    }
+
+    public File[] getValueAsFileArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a File[]", 0);
+    }
+
+    public float[] getValueAsfloatArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a float[]", 0);
+    }
+
+    public Float[] getValueAsFloatArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Float[]", 0);
+    }
+
+    public int[] getValueAsintArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a int[]", 0);
+    }
+
+    public Integer[] getValueAsIntegerArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
+    }
+
+    public Long[] getValueAsLongArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Long[]", 0);
+    }
+
+    public Pattern getValueAsPattern () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Pattern", 0);
+    }
+
+    public Pattern[] getValueAsPatternArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a Pattern[]", 0);
+    }
+
+    public String[] getValueAsStringArray () throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a String[]", 0);
+    }
+
     public List<E> getValues ()
     {
         return values;
@@ -360,11 +365,6 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public String getVariable ()
     {
         return variable;
-    }
-
-    public String getEnumClassName ()
-    {
-        return enumClassName;
     }
 
     public boolean hasValue ()
@@ -409,7 +409,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public int salience (
-            final Token token)
+        final Token token)
     {
         if (token.isCharCommand(keychar))
             return 1;
@@ -419,14 +419,14 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setCaseSensitive (
-            final boolean _caseSensitive)
+        final boolean _caseSensitive)
     {
         this.caseSensitive = _caseSensitive;
         return this;
     }
 
     private ICmdLineArg<E> setCriteria (
-            final ICmdLineArgCriteria<?> _criteria)
+        final ICmdLineArgCriteria<?> _criteria)
     {
         this.criteria = _criteria;
         return this;
@@ -439,15 +439,15 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     protected void setDefaultValues (
-            final List<E> _defaultValues)
+        final List<E> _defaultValues)
     {
         this.defaultValues = _defaultValues;
     }
 
     public ICmdLineArg<E> setDefaultValues (
-            final String[] defaults)
-            throws ParseException,
-            IOException
+        final String[] defaults)
+        throws ParseException,
+        IOException
     {
         for (final String default1 : defaults)
             getDefaultValues().add(convert(default1, caseSensitive, null));
@@ -455,9 +455,9 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setEnumCriteria (
-            final String _enumClassName)
-            throws ParseException,
-            IOException
+        final String _enumClassName)
+        throws ParseException,
+        IOException
     {
         this.enumClassName = _enumClassName;
         Class<?> enumClass;
@@ -467,13 +467,13 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         } catch (final ClassNotFoundException e)
         {
             throw new ParseException("Enum class not found: " + e.getMessage(),
-                    0);
+                0);
         }
 
         final List<E> list = new ArrayList<>();
         if (!enumClass.isEnum())
             throw new ParseException("Enum class expected, found " + enumClass.getName(),
-                    0);
+                0);
         final Object[] constants = enumClass.getEnumConstants();
         for (int c = 0; c < constants.length; c++)
         {
@@ -485,7 +485,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setEnumCriteriaAllowError (
-            final String _enumClassName)
+        final String _enumClassName)
     {
         try
         {
@@ -498,54 +498,54 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setFactoryArgName (
-            final String _factoryArgName)
+        final String _factoryArgName)
     {
         this.factoryArgName = _factoryArgName;
         return this;
     }
 
     public ICmdLineArg<E> setFactoryMethodName (
-            final String instantiatorName)
+        final String instantiatorName)
     {
         this.factoryMethodName = instantiatorName;
         return this;
     }
 
     public ICmdLineArg<E> setFormat (
-            final String _format)
+        final String _format)
     {
         this.format = _format;
         return this;
     }
 
     public ICmdLineArg<E> setHelp (
-            final String helpString)
+        final String helpString)
     {
         help = helpString;
         return this;
     }
 
     public ICmdLineArg<E> setInstanceClass (
-            final String _instanceClass)
+        final String _instanceClass)
     {
         this.instanceClass = _instanceClass;
         return this;
     }
 
     protected void setKeychar (
-            final Character _keychar)
+        final Character _keychar)
     {
         this.keychar = _keychar;
     }
 
     protected void setKeyword (
-            final String _keyword)
+        final String _keyword)
     {
         this.keyword = _keyword;
     }
 
     public ICmdLineArg<E> setListCriteria (final String[] arrayOfValidValues)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         final List<E> list = new ArrayList<>();
         for (final String arrayOfValidValue : arrayOfValidValues)
@@ -555,8 +555,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setMultiple (
-            final boolean bool)
-            throws ParseException
+        final boolean bool)
+        throws ParseException
     {
         return setMultiple(0, bool
                 ? Integer.MAX_VALUE
@@ -564,16 +564,16 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setMultiple (
-            final int _multipleMin)
-            throws ParseException
+        final int _multipleMin)
+        throws ParseException
     {
         return setMultiple(_multipleMin, Integer.MAX_VALUE);
     }
 
     public ICmdLineArg<E> setMultiple (
-            final int _multipleMin,
-            final int _multipleMax)
-            throws ParseException
+        final int _multipleMin,
+        final int _multipleMax)
+        throws ParseException
     {
         this.multipleMin = _multipleMin;
         this.multipleMax = _multipleMax;
@@ -582,69 +582,62 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setParsed (
-            final boolean bool)
+        final boolean bool)
     {
         parsed = bool;
         return this;
     }
 
     public ICmdLineArg<E> setPositional (final boolean bool)
-            throws ParseException
+        throws ParseException
     {
         positional = bool;
         return this;
     }
 
     public ICmdLineArg<E> setRangeCriteria (
-            final String min,
-            final String max)
-            throws ParseException,
-            IOException
+        final String min,
+        final String max)
+        throws ParseException,
+        IOException
     {
         setCriteria(new RangedCriteria<>(convert(min),
-                convert(max)));
+            convert(max)));
         return this;
     }
 
     public ICmdLineArg<E> setRegxCriteria (
-            final String pattern)
-            throws ParseException
+        final String pattern)
+        throws ParseException
     {
         setCriteria(new RegxCriteria<E>(pattern));
         return this;
     }
 
     public ICmdLineArg<E> setRequired (
-            final boolean bool)
-            throws ParseException
+        final boolean bool)
+        throws ParseException
     {
         required = bool;
         return this;
     }
 
     public ICmdLineArg<E> setRequiredValue (
-            final boolean bool)
-            throws ParseException
+        final boolean bool)
+        throws ParseException
     {
         if (!bool)
             throw new ParseException("requiredValue must be true for type: " + getClass().getName(),
-                    -1);
+                -1);
         requiredValue = bool;
         return this;
     }
 
     public void setValue (
-            final E value)
+        final E value)
     {
         setParsed(true);
         getValues().add(value);
-    }
-
-    public void setValue (
-            final List<E> value)
-    {
-        setParsed(true);
-        getValues().addAll(value);
     }
 
     public void setValue (final int index, final E value)
@@ -653,14 +646,21 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         getValues().set(index, value);
     }
 
+    public void setValue (
+        final List<E> value)
+    {
+        setParsed(true);
+        getValues().addAll(value);
+    }
+
     protected void setValues (
-            final List<E> _values)
+        final List<E> _values)
     {
         this.values = _values;
     }
 
     public ICmdLineArg<E> setVariable (
-            final String _variable)
+        final String _variable)
     {
         this.variable = _variable;
         return this;
@@ -686,14 +686,14 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public void update (
-            final E value)
+        final E value)
     {
         update(0, value);
     }
 
     public void update (
-            final int index,
-            final E value)
+        final int index,
+        final E value)
     {
         setParsed(true);
         if (index >= size())
@@ -709,8 +709,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     protected void xmlEncode (
-            final String in,
-            final StringBuilder builder)
+        final String in,
+        final StringBuilder builder)
     {
         if (!CDATA_NOTNEEDED.matcher(in).matches())
             builder.append("<![CDATA[").append(in).append("]]>");

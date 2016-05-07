@@ -135,9 +135,9 @@ public class WildPath
                                         System.out.print(" dir matches: " + pathname.getParentFile().getPath());
                                     else
                                         System.out.print(" dir NOT matching: "
-                                                + pathname.getParentFile().getPath()
-                                                + " with "
-                                                + directoryMatcher.pattern().pattern());
+                                            + pathname.getParentFile().getPath()
+                                            + " with "
+                                            + directoryMatcher.pattern().pattern());
                                 if (directoryMatchFlag)
                                 {
                                     fileMatcher.reset(pathname.getName());
