@@ -6,6 +6,11 @@
 	<name>argument</name>
 	<version>2.3.43</version>
 	<description>A command line parser for Java</description>
+    <url>https://github.com/fedup41/argument</url>
+    <organization>
+        <name>Obdobion</name>
+        <url>https://github.com/fedup41</url>
+    </organization>
 
 	<properties>
 

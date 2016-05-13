@@ -6,8 +6,7 @@ import com.obdobion.argument.Token;
  * @author Chris DeGreef
  * 
  */
-public interface IParserInput
-{
+public interface IParserInput {
 
     public Token[] parseTokens ();
 

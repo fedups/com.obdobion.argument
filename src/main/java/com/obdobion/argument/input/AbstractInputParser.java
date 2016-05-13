@@ -34,7 +34,7 @@ abstract public class AbstractInputParser
     }
 
     protected void buildCommandLine (final StringBuilder out, final List<NodeOc> depth, final List<NodeOc> line,
-        final String value)
+            final String value)
     {
         for (int n = 0; n < line.size(); n++)
         {
@@ -108,7 +108,7 @@ abstract public class AbstractInputParser
     }
 
     protected void buildTokens (char commandPrefix, final List<Token> tokens, final List<NodeOc> depth,
-        final List<NodeOc> line, final String value)
+            final List<NodeOc> line, final String value)
     {
         for (int n = 0; n < line.size(); n++)
         {

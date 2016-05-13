@@ -17,5 +17,5 @@ public abstract class DirectiveCommand
     }
 
     abstract Token replaceToken (Token[] tokens, int replacingFromTokenIndex, int replaceToTokenIndex)
-        throws ParseException, IOException;
+            throws ParseException, IOException;
 }

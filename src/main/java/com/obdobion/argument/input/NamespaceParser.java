@@ -51,6 +51,44 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    static protected String quote (final String value)
+    {
+        return value;
+    }
+
+    static public String unparseTokens (final List<ICmdLineArg<?>> args)
+    {
+        final StringBuilder out = new StringBuilder();
+        unparseTokens("", args, out);
+        return out.toString();
+    }
+
+    static public void unparseTokens (final String prefix, final List<ICmdLineArg<?>> args, final StringBuilder out)
+    {
+        final Iterator<ICmdLineArg<?>> aIter = args.iterator();
+        while (aIter.hasNext())
+        {
+            final ICmdLineArg<?> arg = aIter.next();
+            if (arg.isParsed())
+            {
+                arg.exportNamespace(prefix, out);
+            }
+        }
+    }
+
+    protected String[] args;
+    final char         commandPrefix = '-';
+
+    NamespaceParser()
+    {
+        super();
+    }
+
+    public String substring (int inclusiveStart, int exclusiveEnd)
+    {
+        return "";
+    }
+
     static private String parseNamespaceLine (final String arg, final List<NodeOc> line)
     {
         final String[] keyValue = arg.split("=");
@@ -78,40 +116,6 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return "";
     }
 
-    static protected String quote (final String value)
-    {
-        return value;
-    }
-
-    static public String unparseTokens (final List<ICmdLineArg<?>> args)
-    {
-        final StringBuilder out = new StringBuilder();
-        unparseTokens("", args, out);
-        return out.toString();
-    }
-
-    static public void unparseTokens (final String prefix, final List<ICmdLineArg<?>> args, final StringBuilder out)
-    {
-        final Iterator<ICmdLineArg<?>> aIter = args.iterator();
-        while (aIter.hasNext())
-        {
-            final ICmdLineArg<?> arg = aIter.next();
-            if (arg.isParsed())
-            {
-                arg.exportNamespace(prefix, out);
-            }
-        }
-    }
-
-    protected String[] args;
-
-    final char         commandPrefix = '-';
-
-    NamespaceParser()
-    {
-        super();
-    }
-
     public Token[] parseTokens ()
     {
         final List<Token> out = new ArrayList<>();
@@ -128,10 +132,5 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
             out.add(new Token(commandPrefix, CLOSE_GROUP, 0, 0, false));
 
         return out.toArray(new Token[out.size()]);
-    }
-
-    public String substring (int inclusiveStart, int exclusiveEnd)
-    {
-        return "";
     }
 }

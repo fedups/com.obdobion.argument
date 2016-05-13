@@ -6,6 +6,6 @@ package com.obdobion.argument.codegen;
  */
 public enum CodeGeneratorType
 {
-        Java15HardWire,
-        Java15String
+    Java15HardWire,
+    Java15String
 }

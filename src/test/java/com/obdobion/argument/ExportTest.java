@@ -123,13 +123,13 @@ public class ExportTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-tbegin-kg-m1",
-            "-tboolean-ka",
-            "-tboolean-kb",
-            "-tboolean-kc",
-            "-tboolean-kd",
-            "-tboolean-ke--re",
-            "-tend-kg");
+                "-tbegin-kg-m1",
+                "-tboolean-ka",
+                "-tboolean-kb",
+                "-tboolean-kc",
+                "-tboolean-kd",
+                "-tboolean-ke--re",
+                "-tend-kg");
 
         final StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-bae)(-cde)(-e)"));

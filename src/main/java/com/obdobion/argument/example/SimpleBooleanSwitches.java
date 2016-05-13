@@ -8,18 +8,15 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class SimpleBooleanSwitches
-{
+public class SimpleBooleanSwitches {
     /**
      * This program shows how to accept simple boolean commands from the
      * command-line and display them on the console.
      * 
      * @param args
      */
-    public static void main (final String[] args)
-    {
-        try
-        {
+    public static void main (final String[] args) {
+        try {
             /*
              * Create a new instance of the command line processor.
              */
@@ -38,8 +35,7 @@ public class SimpleBooleanSwitches
             System.out.println("-a = " + cmdline.arg("-a").getValue());
             System.out.println("-b = " + cmdline.arg("-b").getValue());
 
-        } catch (final Exception e)
-        {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }

@@ -40,8 +40,8 @@ public class MultipleTest
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -kg -m3",
-            "-t string -ki",
-            "-t end -kg");
+                "-t string -ki",
+                "-t end -kg");
 
         try
         {
@@ -59,8 +59,8 @@ public class MultipleTest
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t begin -kg",
-            "-t string -ki",
-            "-t end -kg");
+                "-t string -ki",
+                "-t end -kg");
 
         try
         {

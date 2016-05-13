@@ -18,38 +18,6 @@ public class ExceptionTest
     }
 
     @Test
-    public void badCharCommand () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        try
-        {
-            cl.compile("-t Boolean -ks test ");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-v"));
-            Assert.fail("expected exception");
-        } catch (final Exception e)
-        {
-            Assert.assertEquals("unexpected input: -v ", e.getMessage());
-        }
-    }
-
-    @Test
-    public void badWordCommand () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        try
-        {
-            cl.compile("-t Boolean -ks test ");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--version"));
-            Assert.fail("expected exception");
-        } catch (final Exception e)
-        {
-            Assert.assertEquals("unexpected input: --version ", e.getMessage());
-        }
-    }
-
-    @Test
     public void missingRightBracket () throws Exception
     {
 
@@ -78,6 +46,38 @@ public class ExceptionTest
         } catch (final Exception e)
         {
             Assert.assertEquals("Unmatched bracket", e.getMessage());
+        }
+    }
+
+    @Test
+    public void badCharCommand () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        try
+        {
+            cl.compile("-t Boolean -ks test ");
+            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-v"));
+            Assert.fail("expected exception");
+        } catch (final Exception e)
+        {
+            Assert.assertEquals("unexpected input: -v ", e.getMessage());
+        }
+    }
+
+    @Test
+    public void badWordCommand () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        try
+        {
+            cl.compile("-t Boolean -ks test ");
+            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--version"));
+            Assert.fail("expected exception");
+        } catch (final Exception e)
+        {
+            Assert.assertEquals("unexpected input: --version ", e.getMessage());
         }
     }
 

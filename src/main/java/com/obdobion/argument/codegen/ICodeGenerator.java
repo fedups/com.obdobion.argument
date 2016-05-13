@@ -10,7 +10,7 @@ import com.obdobion.argument.ICmdLineArg;
  */
 public interface ICodeGenerator
 {
-    List<GeneratedElement> generateElements (String elementNamePrefix);
-
     void setArguments (List<ICmdLineArg<?>> arguments);
+
+    List<GeneratedElement> generateElements (String elementNamePrefix);
 }

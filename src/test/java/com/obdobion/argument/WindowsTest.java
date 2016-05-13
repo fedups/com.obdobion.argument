@@ -12,11 +12,22 @@ import com.obdobion.argument.input.CommandLineParser;
 public class WindowsTest
 {
 
-    public boolean aBool, bBool;
-
     public WindowsTest()
     {
 
+    }
+
+    public boolean aBool, bBool;
+
+    @Test
+    public void simple () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine("windows test", '/', '-');
+        cl.compile("-t boolean -k a --var aBool", "-t boolean -k b --var bBool");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "/a /b"), this);
+        Assert.assertEquals(true, aBool);
+        Assert.assertEquals(true, bBool);
     }
 
     @Test
@@ -39,16 +50,5 @@ public class WindowsTest
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "/ab /-b"), this);
         Assert.assertEquals(true, aBool);
         Assert.assertEquals(false, bBool);
-    }
-
-    @Test
-    public void simple () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine("windows test", '/', '-');
-        cl.compile("-t boolean -k a --var aBool", "-t boolean -k b --var bBool");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "/a /b"), this);
-        Assert.assertEquals(true, aBool);
-        Assert.assertEquals(true, bBool);
     }
 }

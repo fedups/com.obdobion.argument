@@ -28,8 +28,8 @@ public class DateDirective extends DirectiveCommand
     }
 
     private Calendar acquireStartDate ()
-        throws ParseException,
-        IOException
+            throws ParseException,
+            IOException
     {
         final Calendar cal = Calendar.getInstance();
 
@@ -54,8 +54,8 @@ public class DateDirective extends DirectiveCommand
 
     @Override
     public Token replaceToken (Token[] tokens, int replacingFromTokenIndex, int replaceToTokenIndex)
-        throws ParseException,
-        IOException
+            throws ParseException,
+            IOException
     {
         final Calendar startingDate = acquireStartDate();
 
@@ -64,10 +64,10 @@ public class DateDirective extends DirectiveCommand
                 : "");
 
         return new Token(tokens[replacingFromTokenIndex].charCommand(),
-            replaceTokenDateFormat().format(startingDate.getTime()),
-            tokens[replacingFromTokenIndex].getInputStartX(),
-            tokens[replaceToTokenIndex].getInputEndX(),
-            true);
+                replaceTokenDateFormat().format(startingDate.getTime()),
+                tokens[replacingFromTokenIndex].getInputStartX(),
+                tokens[replaceToTokenIndex].getInputEndX(),
+                true);
     }
 
     protected SimpleDateFormat replaceTokenDateFormat ()

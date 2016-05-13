@@ -8,8 +8,7 @@ import com.obdobion.argument.input.CommandLineParser;
  * @author Chris DeGreef
  * 
  */
-public class SimpleBooleanSwitchesAssigned
-{
+public class SimpleBooleanSwitchesAssigned {
     /**
      * This program shows how to accept simple boolean commands from the
      * command-line and display them on the console using the auto-assign
@@ -17,8 +16,7 @@ public class SimpleBooleanSwitchesAssigned
      * 
      * @param args
      */
-    public static void main (final String[] args)
-    {
+    public static void main (final String[] args) {
         final SimpleBooleanSwitchesAssigned me = new SimpleBooleanSwitchesAssigned();
         me.run(args);
 
@@ -27,10 +25,8 @@ public class SimpleBooleanSwitchesAssigned
     boolean aBool;
     boolean bBool;
 
-    void run (final String[] args)
-    {
-        try
-        {
+    void run (final String[] args) {
+        try {
             /*
              * Create a new instance of the command line processor.
              */
@@ -49,8 +45,7 @@ public class SimpleBooleanSwitchesAssigned
             System.out.println("-a = " + aBool);
             System.out.println("-b = " + bBool);
 
-        } catch (final Exception e)
-        {
+        } catch (final Exception e) {
             e.printStackTrace();
         }
     }

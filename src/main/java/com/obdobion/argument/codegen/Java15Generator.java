@@ -15,42 +15,6 @@ abstract public class Java15Generator implements ICodeGenerator
     String               generatorName;
     List<ICmdLineArg<?>> arguments;
 
-    /**
-     * @param elementName
-     * @return
-     */
-    private List<GeneratedElement> genConfigurationAsString (String elementName)
-    {
-        List<GeneratedElement> elements = new ArrayList<>();
-        writeConfigurationClasses(elements, "CLA", arguments);
-        return elements;
-    }
-
-    private GeneratedElement genDefinitionAsString (String elementName)
-    {
-        GeneratedElement element = new GeneratedElement(elementName);
-
-        element.getContents().append("    static final ICmdLine CommandLine;\n");
-        element.getContents().append("    static\n");
-        element.getContents().append("    {\n");
-        element.getContents().append("        CommandLine = new CmdLine(\"" + generatorName + "\");\n");
-        element.getContents().append("        try\n");
-        element.getContents().append("        {\n");
-
-        writeDefinitionStrings(element, arguments, 0, "arg");
-
-        element.getContents().append("        } catch (Exception e)\n");
-        element.getContents().append("        {\n");
-        element.getContents().append(
-            "            System.err.println(\"Static compilation of " + generatorName
-                + " - \" + e.getMessage());\n");
-        element.getContents().append("            Runtime.getRuntime().exit(1);\n");
-        element.getContents().append("        }\n");
-        element.getContents().append("    }\n");
-
-        return element;
-    }
-
     public List<GeneratedElement> generateElements (String _generatorName)
     {
         this.generatorName = _generatorName;
@@ -68,71 +32,9 @@ abstract public class Java15Generator implements ICodeGenerator
         return elements;
     }
 
-    private GeneratedElement genMainAsString (String elementName)
-    {
-        GeneratedElement element = new GeneratedElement(elementName);
-
-        element.getContents().append("    /**\n");
-        element.getContents().append(
-            "     * Create an instance of the application and run it with the configuration.\n");
-        element.getContents().append("     * \n");
-        element.getContents().append("     * @param args are supplied by the user on the command console.\n");
-        element.getContents().append("     */\n");
-        element.getContents().append("    public static void main (final String[] args)\n");
-        element.getContents().append("    {\n");
-        element.getContents().append("        try\n");
-        element.getContents().append("        {\n");
-        element.getContents().append("            new " + generatorName + "().run(createConfiguration(args));\n\n");
-
-        element.getContents().append("       } catch (final Exception e)\n");
-        element.getContents().append("       {\n");
-        element.getContents().append("           e.printStackTrace();\n");
-        element.getContents().append("       }\n");
-        element.getContents().append("    }\n\n");
-
-        element.getContents().append("    private static CLAConfiguration createConfiguration (final String[] args)\n");
-        element.getContents().append("        throws ParseException, IOException\n");
-        element.getContents().append("    {\n");
-        element.getContents().append("        /*\n");
-        element.getContents().append("         * Wrap the command line parameters in a parser. This parser will be\n");
-        element.getContents().append("         * used to read the command line.\n");
-        element.getContents().append("         */\n");
-        element
-                .getContents()
-                .append(
-                    "        IParserInput userInput = CommandLineParser.getInstance(CommandLine.getCommandPrefix(), args);\n");
-
-        element.getContents().append("        /*\n");
-        element.getContents().append("         * Create an instance of the configuration value object and parse the\n");
-        element.getContents().append(
-            "         * user input into it. CommandLine will return the configuration object.\n");
-        element.getContents().append("         */\n");
-        element.getContents().append(
-            "        return (CLAConfiguration) CommandLine.parse(userInput, new CLAConfiguration());\n");
-        element.getContents().append("    }\n\n");
-
-        element.getContents().append("    /**\n");
-        element.getContents().append("     * Application code inserted in this method.\n");
-        element.getContents().append("     */\n");
-        element.getContents().append("    private void run (CLAConfiguration configuration)\n");
-        element.getContents().append("    {\n");
-        element.getContents()
-                .append("        /* Echo the command line to the command console. This is commented out\n");
-        element.getContents().append(
-            "         * since it is not likely to be included in a finished application. But\n");
-        element.getContents().append("         * it is extremely handy during initial development.\n");
-        element.getContents().append("         */\n");
-        element.getContents().append("        // StringBuilder parameterDump = new StringBuilder();\n");
-        element.getContents().append("        // CommandLine.exportNamespace(\"\", parameterDump);\n");
-        element.getContents().append("        // System.out.print(parameterDump);\n");
-        element.getContents().append("    }");
-
-        return element;
-    }
-
     private void replaceElementsWithSingleWorkingClassExample (
-        String configClassNamePrefix,
-        List<GeneratedElement> generatedElements)
+            String configClassNamePrefix,
+            List<GeneratedElement> generatedElements)
     {
         GeneratedElement fullExample = new GeneratedElement(configClassNamePrefix);
         int defIdx = 0;
@@ -163,16 +65,28 @@ abstract public class Java15Generator implements ICodeGenerator
         generatedElements.add(fullExample);
     }
 
-    public void setArguments (List<ICmdLineArg<?>> _arguments)
+    void writeImports (GeneratedElement fullExample)
     {
-        this.arguments = _arguments;
+        fullExample.getContents().append("import java.io.IOException;\n");
+        fullExample.getContents().append("import java.text.ParseException;\n");
+    }
+
+    /**
+     * @param elementName
+     * @return
+     */
+    private List<GeneratedElement> genConfigurationAsString (String elementName)
+    {
+        List<GeneratedElement> elements = new ArrayList<>();
+        writeConfigurationClasses(elements, "CLA", arguments);
+        return elements;
     }
 
     @SuppressWarnings("null")
     private void writeConfigurationClasses (
-        List<GeneratedElement> elements,
-        String configClassNamePrefix,
-        List<ICmdLineArg<?>> localArguments)
+            List<GeneratedElement> elements,
+            String configClassNamePrefix,
+            List<ICmdLineArg<?>> localArguments)
     {
         GeneratedElement element = null;
         boolean firstTime = true;
@@ -217,14 +131,100 @@ abstract public class Java15Generator implements ICodeGenerator
         }
     }
 
-    abstract void writeDefinitionStrings (
-        GeneratedElement element,
-        List<ICmdLineArg<?>> localArguments,
-        int recursionLevel, String prefix);
-
-    void writeImports (GeneratedElement fullExample)
+    private GeneratedElement genMainAsString (String elementName)
     {
-        fullExample.getContents().append("import java.io.IOException;\n");
-        fullExample.getContents().append("import java.text.ParseException;\n");
+        GeneratedElement element = new GeneratedElement(elementName);
+
+        element.getContents().append("    /**\n");
+        element.getContents().append(
+                "     * Create an instance of the application and run it with the configuration.\n");
+        element.getContents().append("     * \n");
+        element.getContents().append("     * @param args are supplied by the user on the command console.\n");
+        element.getContents().append("     */\n");
+        element.getContents().append("    public static void main (final String[] args)\n");
+        element.getContents().append("    {\n");
+        element.getContents().append("        try\n");
+        element.getContents().append("        {\n");
+        element.getContents().append("            new " + generatorName + "().run(createConfiguration(args));\n\n");
+
+        element.getContents().append("       } catch (final Exception e)\n");
+        element.getContents().append("       {\n");
+        element.getContents().append("           e.printStackTrace();\n");
+        element.getContents().append("       }\n");
+        element.getContents().append("    }\n\n");
+
+        element.getContents().append("    private static CLAConfiguration createConfiguration (final String[] args)\n");
+        element.getContents().append("        throws ParseException, IOException\n");
+        element.getContents().append("    {\n");
+        element.getContents().append("        /*\n");
+        element.getContents().append("         * Wrap the command line parameters in a parser. This parser will be\n");
+        element.getContents().append("         * used to read the command line.\n");
+        element.getContents().append("         */\n");
+        element
+                .getContents()
+                .append(
+                        "        IParserInput userInput = CommandLineParser.getInstance(CommandLine.getCommandPrefix(), args);\n");
+
+        element.getContents().append("        /*\n");
+        element.getContents().append("         * Create an instance of the configuration value object and parse the\n");
+        element.getContents().append(
+                "         * user input into it. CommandLine will return the configuration object.\n");
+        element.getContents().append("         */\n");
+        element.getContents().append(
+                "        return (CLAConfiguration) CommandLine.parse(userInput, new CLAConfiguration());\n");
+        element.getContents().append("    }\n\n");
+
+        element.getContents().append("    /**\n");
+        element.getContents().append("     * Application code inserted in this method.\n");
+        element.getContents().append("     */\n");
+        element.getContents().append("    private void run (CLAConfiguration configuration)\n");
+        element.getContents().append("    {\n");
+        element.getContents()
+                .append("        /* Echo the command line to the command console. This is commented out\n");
+        element.getContents().append(
+                "         * since it is not likely to be included in a finished application. But\n");
+        element.getContents().append("         * it is extremely handy during initial development.\n");
+        element.getContents().append("         */\n");
+        element.getContents().append("        // StringBuilder parameterDump = new StringBuilder();\n");
+        element.getContents().append("        // CommandLine.exportNamespace(\"\", parameterDump);\n");
+        element.getContents().append("        // System.out.print(parameterDump);\n");
+        element.getContents().append("    }");
+
+        return element;
+    }
+
+    private GeneratedElement genDefinitionAsString (String elementName)
+    {
+        GeneratedElement element = new GeneratedElement(elementName);
+
+        element.getContents().append("    static final ICmdLine CommandLine;\n");
+        element.getContents().append("    static\n");
+        element.getContents().append("    {\n");
+        element.getContents().append("        CommandLine = new CmdLine(\"" + generatorName + "\");\n");
+        element.getContents().append("        try\n");
+        element.getContents().append("        {\n");
+
+        writeDefinitionStrings(element, arguments, 0, "arg");
+
+        element.getContents().append("        } catch (Exception e)\n");
+        element.getContents().append("        {\n");
+        element.getContents().append(
+                "            System.err.println(\"Static compilation of " + generatorName
+                        + " - \" + e.getMessage());\n");
+        element.getContents().append("            Runtime.getRuntime().exit(1);\n");
+        element.getContents().append("        }\n");
+        element.getContents().append("    }\n");
+
+        return element;
+    }
+
+    abstract void writeDefinitionStrings (
+            GeneratedElement element,
+            List<ICmdLineArg<?>> localArguments,
+            int recursionLevel, String prefix);
+
+    public void setArguments (List<ICmdLineArg<?>> _arguments)
+    {
+        this.arguments = _arguments;
     }
 }

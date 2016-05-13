@@ -31,34 +31,19 @@ public class CmdLine implements ICmdLine, Cloneable
     public static final char   MinHelpCommandName  = '?';
     public static final char   NegateCommandName   = '!';
 
-    static private void checkForUnusedInput (Token[] tokens) throws ParseException
-    {
-        if (tokenCount(tokens) > 0)
-        {
-            StringBuilder extraInput = new StringBuilder();
-            for (Token token : tokens)
-            {
-                if (token.isUsed())
-                    continue;
-                extraInput.append(token.getValue());
-            }
-            throw new ParseException("extraneous input is not valid: " + extraInput.toString(), 0);
-        }
-    }
-
     static public ICmdLine create (
-        final String... definition)
-        throws ParseException,
-        IOException
+            final String... definition)
+            throws ParseException,
+            IOException
     {
         return new CmdLine().compile(definition);
     }
 
     static public int matchingArgs (
-        final List<ICmdLineArg<?>> bestArgs,
-        final List<ICmdLineArg<?>> possibleArgs,
-        final Token token,
-        final boolean includeAlreadyParsed)
+            final List<ICmdLineArg<?>> bestArgs,
+            final List<ICmdLineArg<?>> possibleArgs,
+            final Token token,
+            final boolean includeAlreadyParsed)
     {
         int maxTokenLengthUsed = -1;
         final Iterator<ICmdLineArg<?>> aIter = possibleArgs.iterator();
@@ -105,297 +90,17 @@ public class CmdLine implements ICmdLine, Cloneable
         return maxTokenLengthUsed;
     }
 
-    static private boolean mostSalient (
-        final List<ICmdLineArg<?>> possibleArgs,
-        final Token[] tokens,
-        final int tokenIdx,
-        final List<ICmdLineArg<?>> args)
-        throws ParseException
-    {
-        if (!tokens[tokenIdx].isCommand())
-            return false;
-
-        final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
-        matchingArgs(bestArgs, possibleArgs, tokens[tokenIdx], true);
-
-        if (bestArgs.size() == 0)
-            return false;
-        if (bestArgs.size() == 1)
-        {
-            final ICmdLineArg<?> arg = bestArgs.get(0);
-            if (arg != null)
-            {
-                args.add(arg);
-                arg.setParsed(true);
-                if (tokens[tokenIdx].isWordCommand())
-                {
-                    tokens[tokenIdx].setUsed(true);
-                    return true;
-                }
-                // max must be 1 at this point since verbose must match
-                // entire tokens
-                tokens[tokenIdx].removeCharCommand();
-                return true;
-            }
-            return false;
-        }
-
-        final Iterator<ICmdLineArg<?>> bIter = bestArgs.iterator();
-        final StringBuilder bldr = new StringBuilder();
-        bldr.append("ambiguous token ");
-        bldr.append(tokens[tokenIdx].getValue());
-        bldr.append(" matches ");
-        while (bIter.hasNext())
-        {
-            bldr.append(bIter.next().getKeyword());
-            bldr.append(' ');
-        }
-        throw new ParseException(bldr.toString(),
-            -1);
-    }
-
-    @SuppressWarnings("null")
-    static private int parseGroup (
-        final CmdLineCLA group,
-        final Token[] tokens,
-        int _tokenIndex,
-        final Object target)
-        throws ParseException,
-        IOException
-    {
-        StringBuilder str = null;
-
-        int tlex = 0;
-        int tokenIndex = _tokenIndex;
-
-        for (tokenIndex++; tokenIndex < tokens.length; tokenIndex++)
-        {
-            if (tokens[tokenIndex].isUsed())
-                continue;
-            if (tokens[tokenIndex].isGroupStart())
-            {
-                tlex++;
-                if (tlex == 1)
-                {
-                    tokens[tokenIndex].setUsed(true);
-                    str = new StringBuilder();
-                    continue;
-                }
-            }
-            if (tokens[tokenIndex].isGroupEnd())
-            {
-                tlex--;
-                if (tlex == 0)
-                {
-                    tokens[tokenIndex].setUsed(true);
-                    group.setValue(group.convert(str.toString(), false, target));
-                    continue;
-                }
-            }
-            if (tlex == 0)
-            {
-                tokenIndex--; // reuse last token later
-                break;
-            }
-
-            if (tokens[tokenIndex].isLiteral())
-            {
-                /*
-                 * Always quote the value in case it was quoted. It doesn't hurt
-                 * to unnecesarily quote. But it would hurt not to quote at all.
-                 */
-                String value = tokens[tokenIndex].getValue();
-
-                value = replaceEscapes(value);
-                final boolean singlequote = value.contains("'");
-                final boolean doublequote = value.contains("\"");
-                char delim;
-                if (singlequote)
-                    if (doublequote)
-                    {
-                        delim = '"';
-                        value = value.replace("\"", "\\\"");
-                    } else
-                        delim = '"';
-                else
-                    delim = '\'';
-                str.append(delim);
-                str.append(value);
-                str.append(delim);
-                str.append(" ");
-            } else
-            {
-                str.append(tokens[tokenIndex].getValue());
-                str.append(" ");
-            }
-            tokens[tokenIndex].setUsed(true);
-        }
-        if (tlex != 0)
-            throw new ParseException("Missing " + tlex + " right bracket(s)",
-                0);
-        validateMultipleEntries(group);
-        return tokenIndex;
-    }
-
-    static private void parseOrphaned (
-        final Token[] tokens)
-        throws ParseException
-    {
-        final StringBuilder bldr = new StringBuilder();
-        for (int t = 0; t < tokens.length; t++)
-        {
-            if (!tokens[t].isUsed())
-            {
-                bldr.append(tokens[t].getValue());
-                bldr.append(' ');
-            }
-        }
-        if (bldr.length() != 0)
-            throw new ParseException("unexpected input: " + bldr.toString(),
-                -1);
-    }
-
-    @SuppressWarnings(
-    {
-        "rawtypes",
-        "unchecked"
-    })
-    static private int parseValues (
-        final ICmdLineArg arg,
-        final Token[] tokens,
-        int t)
-        throws ParseException,
-        IOException
-    {
-        int tokenIndex = t;
-        /*
-         * take remainder of the token if any as parm 1
-         */
-        boolean aValueWasFound = false;
-        if (!tokens[tokenIndex].isUsed())
-        {
-            // skip the dash
-            arg.setValue(arg.convert(
-                tokens[tokenIndex].remainderValue(),
-                (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()),
-                null));
-            tokens[tokenIndex].setUsed(true);
-            aValueWasFound = true;
-        }
-
-        /*
-         * take any following non-dash parms
-         */
-
-        if (!aValueWasFound || arg.isMultiple())
-            for (tokenIndex++; tokenIndex < tokens.length; tokenIndex++)
-            {
-                if (arg.isMultiple() && arg.size() == arg.getMultipleMax())
-                {
-                    tokenIndex--; // make sure to allow reuse of - token
-                    break;
-                }
-                if (tokens[tokenIndex].isUsed())
-                    continue;
-                if (!tokens[tokenIndex].isCommand())
-                {
-                    arg.setValue(arg.convert(tokens[tokenIndex].getValue(),
-                        (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()),
-                        null));
-                    tokens[tokenIndex].setUsed(true);
-                    if (!arg.isMultiple())
-                        break;
-                } else
-                {
-                    tokenIndex--; // make sure to allow reuse of - token
-                    break;
-                }
-            }
-
-        validateMultipleEntries(arg);
-
-        if (arg.hasValue() && arg.getCriteria() != null)
-        {
-            for (int v = 0; v < arg.size(); v++)
-            {
-                /*
-                 * The user may have entered in a partial value. If the value
-                 * can be normalized to something in the criteria then we will
-                 * use the normalized value. This pretty much only applies to
-                 * lists even though it is implemented on all criteria.
-                 */
-                arg.setValue(v, arg.getCriteria().normalizeValue(arg.getValue(v), arg.isCaseSensitive()));
-                if (!arg.getCriteria().isSelected((Comparable) arg.getValue(v), arg.isCaseSensitive()))
-                {
-                    throw new ParseException(arg.getValue(v) + " is not valid for " + arg,
-                        -1);
-                }
-            }
-        }
-        return tokenIndex;
-    }
-
-    static private String replaceEscapes (
-        String value)
-    {
-        final boolean backslash = value.contains("\\");
-        if (backslash)
-            return value.replace("\\", "\\\\");
-        return value;
-    }
-
-    static private int tokenCount (
-        final Token[] tokens)
-    {
-        int cnt = 0;
-        for (int t = 0; t < tokens.length; t++)
-            if (!tokens[t].isUsed())
-                cnt++;
-        return cnt;
-    }
-
-    /**
-     * Verify the multiple requirement if any. Use group->values().size().
-     */
-    static private void validateMultipleEntries (ICmdLineArg<?> arg) throws ParseException
-    {
-        if (arg.isRequiredValue() && !arg.hasValue())
-            throw new ParseException("missing a required value for " + arg,
-                -1);
-        if (arg.hasValue() && arg.size() > 1 && !arg.isMultiple())
-            throw new ParseException("multiple values not allowed for " + arg,
-                -1);
-
-        if (arg.hasValue() && arg.isMultiple())
-        {
-            if (arg.size() < arg.getMultipleMin())
-                throw new ParseException("insufficient required values for " + arg,
-                    -1);
-            if (arg.size() > arg.getMultipleMax())
-                throw new ParseException("excessive required values for " + arg,
-                    -1);
-        }
-    }
-
     String               name;
     String               help;
     final char           commandPrefix;
     final char           notPrefix;
-
     final List<File>     defaultIncludeDirectories = new ArrayList<>();
-
     IParserInput         originalInput;
-
     List<ICmdLineArg<?>> allPossibleArgs           = new ArrayList<>();
-
     List<ICmdLineArg<?>> _namedBooleans            = null;
-
     List<ICmdLineArg<?>> _namedValueArgs           = null;
-
     List<ICmdLineArg<?>> _namedGroups              = null;
-
     List<ICmdLineArg<?>> _positional               = null;
-
     int                  depth;
 
     public CmdLine()
@@ -456,13 +161,13 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public void add (
-        final ICmdLineArg<?> arg)
+            final ICmdLineArg<?> arg)
     {
         allPossibleArgs.add(arg);
     }
 
     public void addDefaultIncludeDirectory (
-        final File defaultIncludeDirectory)
+            final File defaultIncludeDirectory)
     {
         this.defaultIncludeDirectories.add(defaultIncludeDirectory);
     }
@@ -486,14 +191,14 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public ICmdLineArg<?> arg (
-        final String commandToken)
+            final String commandToken)
     {
         if (commandToken == null)
             return null;
 
         final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
         matchingArgs(bestArgs, allPossibleArgs, new Token(commandPrefix,
-            commandToken), true);
+                commandToken), true);
 
         if (bestArgs.size() == 0)
             // throw new ParseException(commandToken + " is unknown", -1);
@@ -504,20 +209,9 @@ public class CmdLine implements ICmdLine, Cloneable
         return bestArgs.get(0);
     }
 
-    public void asDefinedType (StringBuilder sb)
-    {
-        // should not be called.
-    }
-
-    public Object asEnum (String _name, Object[] _possibleConstants) throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in an Enum", 0);
-    }
-
     public void assignVariables (
-        final Object target)
-        throws ParseException
+            final Object target)
+            throws ParseException
     {
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
         while (aIter.hasNext())
@@ -529,8 +223,8 @@ public class CmdLine implements ICmdLine, Cloneable
                 for (final ICmdLine cl : cmdArg.getValues())
                 {
                     Object newtarget = VariableAssigner.getInstance().newGroupVariable(cmdArg,
-                        target,
-                        cl.arg(cmdArg.factoryArgName));
+                            target,
+                            cl.arg(cmdArg.factoryArgName));
                     if (newtarget == null)
                         newtarget = target;
                     cl.assignVariables(newtarget);
@@ -551,7 +245,7 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     private void checkRequired ()
-        throws ParseException
+            throws ParseException
     {
         final StringBuilder bldr = new StringBuilder();
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
@@ -566,12 +260,12 @@ public class CmdLine implements ICmdLine, Cloneable
         }
         if (bldr.length() != 0)
             throw new ParseException("missing required parameters: " + bldr.toString(),
-                -1);
+                    -1);
     }
 
     @Override
     public ICmdLine clone ()
-        throws CloneNotSupportedException
+            throws CloneNotSupportedException
     {
         final CmdLine clone = (CmdLine) super.clone();
         clone.allPossibleArgs = new ArrayList<>();
@@ -583,24 +277,24 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public int compareTo (
-        final ICmdLine o)
+            final ICmdLine o)
     {
         return 0;
     }
 
     public void compile (
-        final List<String> definition)
-        throws ParseException,
-        IOException
+            final List<String> definition)
+            throws ParseException,
+            IOException
     {
         final String[] args = definition.toArray(new String[definition.size()]);
         compile(args);
     }
 
     public ICmdLine compile (
-        final String... definition)
-        throws ParseException,
-        IOException
+            final String... definition)
+            throws ParseException,
+            IOException
     {
         final CLAFactory factory = new CLAFactory();
 
@@ -618,8 +312,8 @@ public class CmdLine implements ICmdLine, Cloneable
                     group.templateCmdLine = new CmdLine(group.keyword == null
                             ? ("" + group.keychar)
                             : ("" + group.keychar + "," + group.keyword),
-                        commandPrefix,
-                        notPrefix);
+                            commandPrefix,
+                            notPrefix);
                     group.templateCmdLine.compile(groupdef.toArray(new String[groupdef.size()]));
                     groupdef.clear();
                     group = null;
@@ -639,11 +333,11 @@ public class CmdLine implements ICmdLine, Cloneable
         }
         if (group != null)
             throw new ParseException("unended group: " + group.toString(),
-                -1);
+                    -1);
 
         cmdline.add(factory.instanceFor(commandPrefix, "-tDefault -k'"
-            + notPrefix
-            + "' -m1 -h'Return one or more arguments to their initial states.'"));
+                + notPrefix
+                + "' -m1 -h'Return one or more arguments to their initial states.'"));
         cmdline.add(factory.instanceFor(commandPrefix, "-tBoolean -k'?' -h'Show an abbreviated help message.'"));
         cmdline.add(factory.instanceFor(commandPrefix, "-tBoolean -k help -h'Show complete help.'"));
 
@@ -657,9 +351,9 @@ public class CmdLine implements ICmdLine, Cloneable
      * @throws IOException
      */
     public void compile (
-        final String[][] definition)
-        throws ParseException,
-        IOException
+            final String[][] definition)
+            throws ParseException,
+            IOException
     {
         int maxSize = 0;
         for (final String[] x : definition)
@@ -673,9 +367,9 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public ICmdLine convert (
-        final String valueStr)
-        throws ParseException,
-        IOException
+            final String valueStr)
+            throws ParseException,
+            IOException
     {
         /*
          * This is only here as a place-holder so that this class can be a sub
@@ -685,11 +379,11 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public ICmdLine convert (
-        final String valueStr,
-        final boolean caseSensitive,
-        final Object target)
-        throws ParseException,
-        IOException
+            final String valueStr,
+            final boolean caseSensitive,
+            final Object target)
+            throws ParseException,
+            IOException
     {
         /*
          * This is only here as a place-holder so that this class can be a sub
@@ -702,40 +396,16 @@ public class CmdLine implements ICmdLine, Cloneable
      * @throws ParseException
      */
     private void crossCheck ()
-        throws ParseException
+            throws ParseException
     {
         /*
          * not yet, but probably needs a new criteria class
          */
     }
 
-    public String defaultInstanceClass ()
-    {
-        return null;
-    }
-
-    @Override
-    public boolean equals (Object obj)
-    {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        CmdLine other = (CmdLine) obj;
-        if (name == null)
-        {
-            if (other.name != null)
-                return false;
-        } else if (!name.equals(other.name))
-            return false;
-        return true;
-    }
-
     public void exportCommandLine (
-        final File file)
-        throws IOException
+            final File file)
+            throws IOException
     {
         final FileWriter fis = new FileWriter(file);
         final BufferedWriter buf = new BufferedWriter(fis);
@@ -746,14 +416,14 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public void exportCommandLine (
-        final StringBuilder str)
+            final StringBuilder str)
     {
         CommandLineParser.unparseTokens(allPossibleArgs, str);
     }
 
     public void exportNamespace (
-        final File file)
-        throws IOException
+            final File file)
+            throws IOException
     {
         final FileWriter fis = new FileWriter(file);
         final BufferedWriter buf = new BufferedWriter(fis);
@@ -764,16 +434,16 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public void exportNamespace (
-        final String prefix,
-        final StringBuilder out)
+            final String prefix,
+            final StringBuilder out)
     {
         NamespaceParser.unparseTokens(prefix, allPossibleArgs, out);
     }
 
     public void exportXml (
-        final String tag,
-        final File file)
-        throws IOException
+            final String tag,
+            final File file)
+            throws IOException
     {
         final FileWriter fis = new FileWriter(file);
         final BufferedWriter buf = new BufferedWriter(fis);
@@ -786,17 +456,17 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public void exportXml (
-        final StringBuilder out)
+            final StringBuilder out)
     {
         XmlParser.unparseTokens(allPossibleArgs, out);
     }
 
     private void extractArgumentsFromTokens (
-        final Token[] tokens,
-        final Object target,
-        final List<ICmdLineArg<?>> args)
-        throws ParseException,
-        IOException
+            final Token[] tokens,
+            final Object target,
+            final List<ICmdLineArg<?>> args)
+            throws ParseException,
+            IOException
     {
         if (tokenCount(tokens) > 0)
             parseDirectives(args, tokens, target);
@@ -834,20 +504,9 @@ public class CmdLine implements ICmdLine, Cloneable
         return null;
     }
 
-    public List<ICmdLine> getDefaultValues ()
-    {
-        return null;
-    }
-
     int getDepth ()
     {
         return depth;
-    }
-
-    public String getEnumClassName ()
-    {
-        // should not be called.
-        return null;
     }
 
     public String getFactoryArgName ()
@@ -856,11 +515,6 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public String getFactoryMethodName ()
-    {
-        return null;
-    }
-
-    public String getFormat ()
     {
         return null;
     }
@@ -930,7 +584,7 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public ICmdLine getValue (
-        final int index)
+            final int index)
     {
         /*
          * This is only here as a place-holder so that this class can be a sub
@@ -939,76 +593,9 @@ public class CmdLine implements ICmdLine, Cloneable
         return null;
     }
 
-    public byte[] getValueAsbyteArray () throws ParseException
+    public List<ICmdLine> getDefaultValues ()
     {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a byte[]", 0);
-    }
-
-    public Byte[] getValueAsByteArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Byte[]", 0);
-    }
-
-    public Date[] getValueAsDateArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
-    }
-
-    public File[] getValueAsFileArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a File[]", 0);
-    }
-
-    public float[] getValueAsfloatArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a float[]", 0);
-    }
-
-    public Float[] getValueAsFloatArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Float[]", 0);
-    }
-
-    public int[] getValueAsintArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a int[]", 0);
-    }
-
-    public Integer[] getValueAsIntegerArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
-    }
-
-    public Long[] getValueAsLongArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Long[]", 0);
-    }
-
-    public Pattern getValueAsPattern () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Pattern", 0);
-    }
-
-    public Pattern[] getValueAsPatternArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a Pattern[]", 0);
-    }
-
-    public String[] getValueAsStringArray () throws ParseException
-    {
-        // should not be called.
-        throw new ParseException("invalid to store " + this.toString() + " in a String[]", 0);
+        return null;
     }
 
     public String getVariable ()
@@ -1021,12 +608,12 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     private Token handleDirective (
-        final Token[] tokens,
-        final int directiveIdx,
-        final int parmStart,
-        final int parmEnd)
-        throws ParseException,
-        IOException
+            final Token[] tokens,
+            final int directiveIdx,
+            final int parmStart,
+            final int parmEnd)
+            throws ParseException,
+            IOException
     {
         int originalInputStart = tokens[parmStart].getInputStartX();
         int originalInputEnd = tokens[parmEnd].getInputEndX();
@@ -1041,18 +628,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if ("_time".equals(directiveName))
             return new TimeDirective(data).replaceToken(tokens, parmStart, parmEnd);
         throw new ParseException("Unknown Directive: " + tokens[directiveIdx],
-            0);
-    }
-
-    @Override
-    public int hashCode ()
-    {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((name == null)
-                ? 0
-                : name.hashCode());
-        return result;
+                0);
     }
 
     public boolean hasValue ()
@@ -1140,8 +716,8 @@ public class CmdLine implements ICmdLine, Cloneable
      * @return
      */
     private Token[] loadCommandLineParserIncludeFile (
-        final String filename)
-        throws ParseException
+            final String filename)
+            throws ParseException
     {
         File specFile = new File(filename);
         /*
@@ -1152,7 +728,7 @@ public class CmdLine implements ICmdLine, Cloneable
             for (final File dir : defaultIncludeDirectories)
             {
                 specFile = new File(dir,
-                    nameOnly);
+                        nameOnly);
                 if (specFile.exists())
                     break;
             }
@@ -1165,8 +741,57 @@ public class CmdLine implements ICmdLine, Cloneable
         } catch (final IOException e)
         {
             throw new ParseException(INCLUDE_FILE_PREFIX + nameOnly + " could not be found",
-                0);
+                    0);
         }
+    }
+
+    static private boolean mostSalient (
+            final List<ICmdLineArg<?>> possibleArgs,
+            final Token[] tokens,
+            final int tokenIdx,
+            final List<ICmdLineArg<?>> args)
+            throws ParseException
+    {
+        if (!tokens[tokenIdx].isCommand())
+            return false;
+
+        final List<ICmdLineArg<?>> bestArgs = new ArrayList<>();
+        matchingArgs(bestArgs, possibleArgs, tokens[tokenIdx], true);
+
+        if (bestArgs.size() == 0)
+            return false;
+        if (bestArgs.size() == 1)
+        {
+            final ICmdLineArg<?> arg = bestArgs.get(0);
+            if (arg != null)
+            {
+                args.add(arg);
+                arg.setParsed(true);
+                if (tokens[tokenIdx].isWordCommand())
+                {
+                    tokens[tokenIdx].setUsed(true);
+                    return true;
+                }
+                // max must be 1 at this point since verbose must match
+                // entire tokens
+                tokens[tokenIdx].removeCharCommand();
+                return true;
+            }
+            return false;
+        }
+
+        final Iterator<ICmdLineArg<?>> bIter = bestArgs.iterator();
+        final StringBuilder bldr = new StringBuilder();
+        bldr.append("ambiguous token ");
+        bldr.append(tokens[tokenIdx].getValue());
+        bldr.append(" matches ");
+        while (bIter.hasNext())
+        {
+            bldr.append(bIter.next().getKeyword());
+            bldr.append(' ');
+        }
+        throw new ParseException(bldr.toString(),
+                -1);
     }
 
     private List<ICmdLineArg<?>> namedBooleans ()
@@ -1218,29 +843,29 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public Object parse (
-        final IParserInput data)
-        throws IOException,
-        ParseException
+            final IParserInput data)
+            throws IOException,
+            ParseException
     {
         parseTokens(data, null);
         return null;
     }
 
     public Object parse (
-        final IParserInput data,
-        final Object target)
-        throws IOException,
-        ParseException
+            final IParserInput data,
+            final Object target)
+            throws IOException,
+            ParseException
     {
         parseTokens(data, target);
         return target;
     }
 
     public Object parse (
-        final Object target,
-        final String... args)
-        throws IOException,
-        ParseException
+            final Object target,
+            final String... args)
+            throws IOException,
+            ParseException
     {
         final IParserInput data = CommandLineParser.getInstance(getCommandPrefix(), args);
         parseTokens(data, target);
@@ -1248,9 +873,9 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public Object parse (
-        final String... args)
-        throws IOException,
-        ParseException
+            final String... args)
+            throws IOException,
+            ParseException
     {
         final IParserInput data = CommandLineParser.getInstance(getCommandPrefix(), args);
         parseTokens(data, null);
@@ -1265,11 +890,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * @throws IOException
      */
     private void parseDirectives (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens,
-        final Object target)
-        throws ParseException,
-        IOException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens,
+            final Object target)
+            throws ParseException,
+            IOException
     {
         for (int t = 0; t < tokens.length; t++)
         {
@@ -1310,7 +935,7 @@ public class CmdLine implements ICmdLine, Cloneable
                     }
                     if (parmEnd == -1)
                         throw new ParseException("unended directive: " + tokens[t],
-                            0);
+                                0);
 
                     /*
                      * Start and end tokens by requirement are () and not really
@@ -1325,12 +950,118 @@ public class CmdLine implements ICmdLine, Cloneable
 
     }
 
+    @SuppressWarnings("null")
+    static private int parseGroup (
+            final CmdLineCLA group,
+            final Token[] tokens,
+            int _tokenIndex,
+            final Object target)
+            throws ParseException,
+            IOException
+    {
+        StringBuilder str = null;
+
+        int tlex = 0;
+        int tokenIndex = _tokenIndex;
+
+        for (tokenIndex++; tokenIndex < tokens.length; tokenIndex++)
+        {
+            if (tokens[tokenIndex].isUsed())
+                continue;
+            if (tokens[tokenIndex].isGroupStart())
+            {
+                tlex++;
+                if (tlex == 1)
+                {
+                    tokens[tokenIndex].setUsed(true);
+                    str = new StringBuilder();
+                    continue;
+                }
+            }
+            if (tokens[tokenIndex].isGroupEnd())
+            {
+                tlex--;
+                if (tlex == 0)
+                {
+                    tokens[tokenIndex].setUsed(true);
+                    group.setValue(group.convert(str.toString(), false, target));
+                    continue;
+                }
+            }
+            if (tlex == 0)
+            {
+                tokenIndex--; // reuse last token later
+                break;
+            }
+
+            if (tokens[tokenIndex].isLiteral())
+            {
+                /*
+                 * Always quote the value in case it was quoted. It doesn't hurt
+                 * to unnecesarily quote. But it would hurt not to quote at all.
+                 */
+                String value = tokens[tokenIndex].getValue();
+
+                value = replaceEscapes(value);
+                final boolean singlequote = value.contains("'");
+                final boolean doublequote = value.contains("\"");
+                char delim;
+                if (singlequote)
+                    if (doublequote)
+                    {
+                        delim = '"';
+                        value = value.replace("\"", "\\\"");
+                    } else
+                        delim = '"';
+                else
+                    delim = '\'';
+                str.append(delim);
+                str.append(value);
+                str.append(delim);
+                str.append(" ");
+            } else
+            {
+                str.append(tokens[tokenIndex].getValue());
+                str.append(" ");
+            }
+            tokens[tokenIndex].setUsed(true);
+        }
+        if (tlex != 0)
+            throw new ParseException("Missing " + tlex + " right bracket(s)",
+                    0);
+        validateMultipleEntries(group);
+        return tokenIndex;
+    }
+
+    /**
+     * Verify the multiple requirement if any. Use group->values().size().
+     */
+    static private void validateMultipleEntries (ICmdLineArg<?> arg) throws ParseException
+    {
+        if (arg.isRequiredValue() && !arg.hasValue())
+            throw new ParseException("missing a required value for " + arg,
+                    -1);
+        if (arg.hasValue() && arg.size() > 1 && !arg.isMultiple())
+            throw new ParseException("multiple values not allowed for " + arg,
+                    -1);
+
+        if (arg.hasValue() && arg.isMultiple())
+        {
+            if (arg.size() < arg.getMultipleMin())
+                throw new ParseException("insufficient required values for " + arg,
+                        -1);
+            if (arg.size() > arg.getMultipleMax())
+                throw new ParseException("excessive required values for " + arg,
+                        -1);
+        }
+    }
+
     private void parseIncludeFiles (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens,
-        final Object target)
-        throws ParseException,
-        IOException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens,
+            final Object target)
+            throws ParseException,
+            IOException
     {
         for (int t = 0; t < tokens.length; t++)
         {
@@ -1358,13 +1089,13 @@ public class CmdLine implements ICmdLine, Cloneable
 
                         if (filenameT >= tokens.length)
                             throw new ParseException("end of input found instead of include directive file name",
-                                0);
+                                    0);
 
                         if (!tokens[filenameT].isLiteral())
                             throw new ParseException("missing include directive file name, found \""
-                                + tokens[filenameT].toString()
-                                + "\"",
-                                0);
+                                    + tokens[filenameT].toString()
+                                    + "\"",
+                                    0);
 
                         tokens[filenameT].setUsed(true);
                         newTokens = loadCommandLineParserIncludeFile(tokens[filenameT].getValue());
@@ -1385,9 +1116,9 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     private void parseNamedBoolean (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens)
-        throws ParseException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens)
+            throws ParseException
     {
         final List<ICmdLineArg<?>> possibleArgs = namedBooleans();
         int tlex = 0;
@@ -1430,15 +1161,15 @@ public class CmdLine implements ICmdLine, Cloneable
         }
         if (tlex != 0)
             throw new ParseException("Unmatched bracket",
-                0);
+                    0);
     }
 
     private void parseNamedGroups (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens,
-        final Object target)
-        throws ParseException,
-        IOException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens,
+            final Object target)
+            throws ParseException,
+            IOException
     {
         final List<ICmdLineArg<?>> possibleArgs = namedGroups();
         for (int t = 0; t < tokens.length; t++)
@@ -1456,10 +1187,10 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     private void parseNamedValueArgs (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens)
-        throws ParseException,
-        IOException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens)
+            throws ParseException,
+            IOException
     {
         final List<ICmdLineArg<?>> possibleArgs = namedValueArgs();
         int tlex = 0;
@@ -1490,14 +1221,32 @@ public class CmdLine implements ICmdLine, Cloneable
         }
         if (tlex != 0)
             throw new ParseException("Unmatched bracket",
-                0);
+                    0);
+    }
+
+    static private void parseOrphaned (
+            final Token[] tokens)
+            throws ParseException
+    {
+        final StringBuilder bldr = new StringBuilder();
+        for (int t = 0; t < tokens.length; t++)
+        {
+            if (!tokens[t].isUsed())
+            {
+                bldr.append(tokens[t].getValue());
+                bldr.append(' ');
+            }
+        }
+        if (bldr.length() != 0)
+            throw new ParseException("unexpected input: " + bldr.toString(),
+                    -1);
     }
 
     private void parsePositional (
-        final List<ICmdLineArg<?>> args,
-        final Token[] tokens)
-        throws ParseException,
-        IOException
+            final List<ICmdLineArg<?>> args,
+            final Token[] tokens)
+            throws ParseException,
+            IOException
     {
         final List<ICmdLineArg<?>> possibleArgs = positional();
         final Iterator<ICmdLineArg<?>> pIter = possibleArgs.iterator();
@@ -1529,10 +1278,10 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     private List<ICmdLineArg<?>> parseTokens (
-        final IParserInput data,
-        final Object target)
-        throws ParseException,
-        IOException
+            final IParserInput data,
+            final Object target)
+            throws ParseException,
+            IOException
     {
         originalInput = data;
 
@@ -1565,6 +1314,100 @@ public class CmdLine implements ICmdLine, Cloneable
         return args;
     }
 
+    static private void checkForUnusedInput (Token[] tokens) throws ParseException
+    {
+        if (tokenCount(tokens) > 0)
+        {
+            StringBuilder extraInput = new StringBuilder();
+            for (Token token : tokens)
+            {
+                if (token.isUsed())
+                    continue;
+                extraInput.append(token.getValue());
+            }
+            throw new ParseException("extraneous input is not valid: " + extraInput.toString(), 0);
+        }
+    }
+
+    @SuppressWarnings(
+    {
+            "rawtypes", "unchecked"
+    })
+    static private int parseValues (
+            final ICmdLineArg arg,
+            final Token[] tokens,
+            int t)
+            throws ParseException,
+            IOException
+    {
+        int tokenIndex = t;
+        /*
+         * take remainder of the token if any as parm 1
+         */
+        boolean aValueWasFound = false;
+        if (!tokens[tokenIndex].isUsed())
+        {
+            // skip the dash
+            arg.setValue(arg.convert(
+                    tokens[tokenIndex].remainderValue(),
+                    (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()),
+                    null));
+            tokens[tokenIndex].setUsed(true);
+            aValueWasFound = true;
+        }
+
+        /*
+         * take any following non-dash parms
+         */
+
+        if (!aValueWasFound || arg.isMultiple())
+            for (tokenIndex++; tokenIndex < tokens.length; tokenIndex++)
+            {
+                if (arg.isMultiple() && arg.size() == arg.getMultipleMax())
+                {
+                    tokenIndex--; // make sure to allow reuse of - token
+                    break;
+                }
+                if (tokens[tokenIndex].isUsed())
+                    continue;
+                if (!tokens[tokenIndex].isCommand())
+                {
+                    arg.setValue(arg.convert(tokens[tokenIndex].getValue(),
+                            (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()),
+                            null));
+                    tokens[tokenIndex].setUsed(true);
+                    if (!arg.isMultiple())
+                        break;
+                } else
+                {
+                    tokenIndex--; // make sure to allow reuse of - token
+                    break;
+                }
+            }
+
+        validateMultipleEntries(arg);
+
+        if (arg.hasValue() && arg.getCriteria() != null)
+        {
+            for (int v = 0; v < arg.size(); v++)
+            {
+                /*
+                 * The user may have entered in a partial value. If the value
+                 * can be normalized to something in the criteria then we will
+                 * use the normalized value. This pretty much only applies to
+                 * lists even though it is implemented on all criteria.
+                 */
+                arg.setValue(v, arg.getCriteria().normalizeValue(arg.getValue(v), arg.isCaseSensitive()));
+                if (!arg.getCriteria().isSelected((Comparable) arg.getValue(v), arg.isCaseSensitive()))
+                {
+                    throw new ParseException(arg.getValue(v) + " is not valid for " + arg,
+                            -1);
+                }
+            }
+        }
+        return tokenIndex;
+    }
+
     private List<ICmdLineArg<?>> positional ()
     {
         if (_positional != null)
@@ -1579,6 +1422,15 @@ public class CmdLine implements ICmdLine, Cloneable
                 _positional.add(arg);
         }
         return _positional;
+    }
+
+    static private String replaceEscapes (
+            String value)
+    {
+        final boolean backslash = value.contains("\\");
+        if (backslash)
+            return value.replace("\\", "\\\\");
+        return value;
     }
 
     public void reset ()
@@ -1597,7 +1449,7 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public int salience (
-        final Token word)
+            final Token word)
     {
         /*
          * This is only here as a place-holder so that this class can be a sub
@@ -1607,167 +1459,162 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     public ICmdLineArg<ICmdLine> setCaseSensitive (
-        final boolean bool)
-        throws ParseException
+            final boolean bool)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setDefaultValue (
-        final String defaultValue)
-        throws ParseException,
-        IOException
+            final String defaultValue)
+            throws ParseException,
+            IOException
     {
         return this;
     }
 
     void setDepth (
-        final int _depth)
+            final int _depth)
     {
         this.depth = _depth;
     }
 
     public ICmdLineArg<ICmdLine> setEnumCriteria (
-        final String enumClassName)
-        throws ParseException,
-        IOException
-    {
-        return null;
-    }
-
-    public ICmdLineArg<ICmdLine> setEnumCriteriaAllowError (String enumClassName)
+            final String enumClassName)
+            throws ParseException,
+            IOException
     {
         return null;
     }
 
     public ICmdLineArg<ICmdLine> setFactoryArgName (
-        final String argName)
-        throws ParseException
+            final String argName)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setFactoryMethodName (
-        final String methodName)
-        throws ParseException
+            final String methodName)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setFormat (
-        final String format)
-        throws ParseException
+            final String format)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setHelp (
-        final String _help)
+            final String _help)
     {
         this.help = _help;
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setInstanceClass (
-        final String classString)
+            final String classString)
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setListCriteria (
-        final String[] values)
-        throws ParseException,
-        IOException
+            final String[] values)
+            throws ParseException,
+            IOException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setMultiple (
-        final boolean bool)
-        throws ParseException
+            final boolean bool)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setMultiple (
-        final int min)
-        throws ParseException
+            final int min)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setMultiple (
-        final int min,
-        final int max)
-        throws ParseException
+            final int min,
+            final int max)
+            throws ParseException
     {
         return this;
     }
 
     public void setName (
-        final String _name)
+            final String _name)
     {
         this.name = _name;
     }
 
     public ICmdLineArg<ICmdLine> setParsed (
-        final boolean bool)
+            final boolean bool)
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setPositional (
-        final boolean bool)
-        throws ParseException
+            final boolean bool)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setRangeCriteria (
-        final String min,
-        final String max)
-        throws ParseException,
-        IOException
+            final String min,
+            final String max)
+            throws ParseException,
+            IOException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setRegxCriteria (
-        final String pattern)
-        throws ParseException
+            final String pattern)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setRequired (
-        final boolean bool)
-        throws ParseException
+            final boolean bool)
+            throws ParseException
     {
         return this;
     }
 
     public ICmdLineArg<ICmdLine> setRequiredValue (
-        final boolean bool)
-        throws ParseException
+            final boolean bool)
+            throws ParseException
     {
         return this;
     }
 
     public void setValue (
-        final ICmdLine value)
+            final ICmdLine value)
     {
         // intentionally left blank
     }
 
     public void setValue (
-        final int index,
-        final ICmdLine value)
+            final int index,
+            final ICmdLine value)
     {
         // intentionally left blank
     }
 
     public ICmdLineArg<ICmdLine> setVariable (
-        final String string)
+            final String string)
     {
         return this;
     }
@@ -1787,15 +1634,25 @@ public class CmdLine implements ICmdLine, Cloneable
         return cnt;
     }
 
+    static private int tokenCount (
+            final Token[] tokens)
+    {
+        int cnt = 0;
+        for (int t = 0; t < tokens.length; t++)
+            if (!tokens[t].isUsed())
+                cnt++;
+        return cnt;
+    }
+
     public void update (
-        final ICmdLine value)
+            final ICmdLine value)
     {
         // intentionally left blank
     }
 
     public void update (
-        final int index,
-        final ICmdLine value)
+            final int index,
+            final ICmdLine value)
     {
         // intentionally left blank
     }
@@ -1806,5 +1663,139 @@ public class CmdLine implements ICmdLine, Cloneable
          * This is only here as a place-holder so that this class can be a sub
          * command line as well as a top level.
          */
+    }
+
+    public void asDefinedType (StringBuilder sb)
+    {
+        // should not be called.
+    }
+
+    public File[] getValueAsFileArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a File[]", 0);
+    }
+
+    public byte[] getValueAsbyteArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a byte[]", 0);
+    }
+
+    public Byte[] getValueAsByteArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Byte[]", 0);
+    }
+
+    public Date[] getValueAsDateArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
+    }
+
+    public Pattern[] getValueAsPatternArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Pattern[]", 0);
+    }
+
+    public String[] getValueAsStringArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a String[]", 0);
+    }
+
+    public Pattern getValueAsPattern () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Pattern", 0);
+    }
+
+    public float[] getValueAsfloatArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a float[]", 0);
+    }
+
+    public Float[] getValueAsFloatArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Float[]", 0);
+    }
+
+    public int[] getValueAsintArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a int[]", 0);
+    }
+
+    public Integer[] getValueAsIntegerArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
+    }
+
+    public Long[] getValueAsLongArray () throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Long[]", 0);
+    }
+
+    public Object asEnum (String _name, Object[] _possibleConstants) throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in an Enum", 0);
+    }
+
+    public String getEnumClassName ()
+    {
+        // should not be called.
+        return null;
+    }
+
+    public ICmdLineArg<ICmdLine> setEnumCriteriaAllowError (String enumClassName)
+    {
+        return null;
+    }
+
+    public String getFormat ()
+    {
+        return null;
+    }
+
+    public String defaultInstanceClass ()
+    {
+        return null;
+    }
+
+    @Override
+    public int hashCode ()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null)
+                ? 0
+                : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals (Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CmdLine other = (CmdLine) obj;
+        if (name == null)
+        {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        return true;
     }
 }

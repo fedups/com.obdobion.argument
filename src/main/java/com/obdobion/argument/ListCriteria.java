@@ -16,33 +16,6 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         list = listOfValidValues;
     }
 
-    public void asDefinitionText (StringBuilder sb)
-    {
-        sb.append(" --list");
-        for (final E item : list)
-        {
-            sb.append(" '");
-            sb.append(item.toString());
-            sb.append("'");
-        }
-    }
-
-    public void asSetter (StringBuilder sb)
-    {
-        sb.append(".setListCriteria(new String[] {");
-        boolean firstTime = true;
-        for (final E item : list)
-        {
-            if (!firstTime)
-                sb.append(",");
-            sb.append("\"");
-            sb.append(item.toString());
-            sb.append("\"");
-            firstTime = false;
-        }
-        sb.append("})");
-    }
-
     @Override
     public ListCriteria<E> clone () throws CloneNotSupportedException
     {
@@ -116,6 +89,33 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
          * This will most likely cause a validation error later.
          */
         return value;
+    }
+
+    public void asDefinitionText (StringBuilder sb)
+    {
+        sb.append(" --list");
+        for (final E item : list)
+        {
+            sb.append(" '");
+            sb.append(item.toString());
+            sb.append("'");
+        }
+    }
+
+    public void asSetter (StringBuilder sb)
+    {
+        sb.append(".setListCriteria(new String[] {");
+        boolean firstTime = true;
+        for (final E item : list)
+        {
+            if (!firstTime)
+                sb.append(",");
+            sb.append("\"");
+            sb.append(item.toString());
+            sb.append("\"");
+            firstTime = false;
+        }
+        sb.append("})");
     }
 
     public void usage (final UsageBuilder str, final int indentLevel)

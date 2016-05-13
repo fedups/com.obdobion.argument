@@ -7,15 +7,15 @@ package com.obdobion.argument;
  */
 public interface ICmdLineArgCriteria<E> extends Cloneable
 {
-    void asDefinitionText (StringBuilder sb);
-
-    void asSetter (StringBuilder sb);
-
     ICmdLineArgCriteria<E> clone () throws CloneNotSupportedException;
 
     public boolean isSelected (Comparable<E> value, boolean caseSensitive);
 
     E normalizeValue (E value, boolean caseSensitive);
+
+    void asDefinitionText (StringBuilder sb);
+
+    void asSetter (StringBuilder sb);
 
     void usage (UsageBuilder str, int indentLevel);
 }

@@ -19,7 +19,7 @@ public class NullAssigner implements IVariableAssigner
     }
 
     public Object newGroupVariable (CmdLineCLA group, Object target, ICmdLineArg<?> factoryValueArg)
-        throws ParseException
+            throws ParseException
     {
         return null;
     }

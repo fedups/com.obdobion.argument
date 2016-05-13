@@ -45,16 +45,6 @@ public class VariableTest
     }
 
     @Test
-    public void groupWithoutOwnVariable () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
-        cl.parse(this, "-g('1string')");
-        Assert.assertEquals("string", "1string", testString);
-    }
-
-    @Test
     public void nullAssigner () throws Exception
     {
         IVariableAssigner previousAssigner = VariableAssigner.setInstance(new NullAssigner());
@@ -68,6 +58,16 @@ public class VariableTest
         {
             VariableAssigner.setInstance(previousAssigner);
         }
+    }
+
+    @Test
+    public void groupWithoutOwnVariable () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
+        cl.parse(this, "-g('1string')");
+        Assert.assertEquals("string", "1string", testString);
     }
 
     @Test
@@ -140,11 +140,11 @@ public class VariableTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t begin -k g -v testGroup",
-            "-t begin -k h -v innerGroup",
-            "-t String -k s -v testString",
-            "-t end -k h",
-            "-t end -k g");
+                "-t begin -k g -v testGroup",
+                "-t begin -k h -v innerGroup",
+                "-t String -k s -v testString",
+                "-t end -k h",
+                "-t end -k g");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-h(-s 'a group string'))"), this);
         Assert.assertEquals("group.string", "a group string", testGroup.innerGroup.testString);
     }
@@ -155,9 +155,9 @@ public class VariableTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t begin -k g -v testGroupList --class com.obdobion.argument.VariableTest$MyGroup -m1",
-            "-t String -k s -v testString -p",
-            "-t end -k g");
+                "-t begin -k g -v testGroupList --class com.obdobion.argument.VariableTest$MyGroup -m1",
+                "-t String -k s -v testString -p",
+                "-t end -k g");
         cl.parse(this, "-g('1string')('2string')('-s3')");
         Assert.assertEquals("group1.string", "1string", testGroupList.get(0).testString);
         Assert.assertEquals("group2.string", "2string", testGroupList.get(1).testString);
@@ -181,9 +181,9 @@ public class VariableTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t begin -k g -v testObjectGroup --class " + MyGroup.class.getName(),
-            "-t String -k s -v testString",
-            "-t end -k g");
+                "-t begin -k g -v testObjectGroup --class " + MyGroup.class.getName(),
+                "-t String -k s -v testString",
+                "-t end -k g");
         cl.parse(this, "-g(-s 'a group string')");
         Assert.assertNotNull("testObjectGroup should not be null", testObjectGroup);
         Assert.assertEquals("group.string", "a group string", ((MyGroup) testObjectGroup).testString);

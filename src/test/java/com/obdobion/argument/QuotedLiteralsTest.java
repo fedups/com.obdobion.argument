@@ -76,10 +76,10 @@ public class QuotedLiteralsTest
             Assert.assertEquals("line 1 raw", "--cmd 'echo \"This is a quoted string in a command\"'", line);
             cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), line));
             Assert.assertEquals(
-                "line 1 parsed",
-                "echo \"This is a quoted string in a command\"",
-                cl.arg("--cmd")
-                        .getValue());
+                    "line 1 parsed",
+                    "echo \"This is a quoted string in a command\"",
+                    cl.arg("--cmd")
+                            .getValue());
         } finally
         {
             in.close();
@@ -172,14 +172,14 @@ public class QuotedLiteralsTest
         cl.compile("-t string -k a -m1 ");
 
         cl.parse(CommandLineParser.getInstance(
-            cl.getCommandPrefix(),
-            "-a http://www.littlegraycould.com/index.html 'http://www.littlegraycould.com/index.html?a=1&b=2'"));
+                cl.getCommandPrefix(),
+                "-a http://www.littlegraycould.com/index.html 'http://www.littlegraycould.com/index.html?a=1&b=2'"));
 
         Assert.assertEquals("1 cmd count", 1, cl.size());
         Assert.assertEquals("url", "http://www.littlegraycould.com/index.html", cl.arg("-a").getValue(0));
         Assert.assertEquals(
-            "url",
-            "http://www.littlegraycould.com/index.html?a=1&b=2",
-            cl.arg("-a").getValue(1));
+                "url",
+                "http://www.littlegraycould.com/index.html?a=1&b=2",
+                cl.arg("-a").getValue(1));
     }
 }

@@ -30,8 +30,30 @@ public class FloatCLA extends AbstractCLA<Float>
     }
 
     @Override
+    public float[] getValueAsfloatArray () throws ParseException
+    {
+        final float[] result = new float[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).floatValue();
+
+        return result;
+    }
+
+    @Override
+    public Float[] getValueAsFloatArray () throws ParseException
+    {
+        final Float[] result = new Float[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
+    }
+
+    @Override
     public Float convert (final String valueStr, final boolean _caseSensitive, final Object target)
-        throws ParseException
+            throws ParseException
     {
         return FMTin.parse(valueStr).floatValue();
     }
@@ -65,27 +87,5 @@ public class FloatCLA extends AbstractCLA<Float>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
-    }
-
-    @Override
-    public float[] getValueAsfloatArray () throws ParseException
-    {
-        final float[] result = new float[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r).floatValue();
-
-        return result;
-    }
-
-    @Override
-    public Float[] getValueAsFloatArray () throws ParseException
-    {
-        final Float[] result = new Float[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
     }
 }

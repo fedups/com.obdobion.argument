@@ -27,12 +27,14 @@ public class SimpleTest
     }
 
     @Test
-    public void compileNew () throws Exception
+    public void parse () throws Exception
     {
 
-        final ICmdLine cl = CmdLine.create("-t boolean -k a");
-        cl.parse("-a");
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t boolean -k a", "-t boolean -k b");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a -b"));
         Assert.assertNotNull(cl.arg("-a"));
+        Assert.assertNotNull(cl.arg("-b"));
     }
 
     @Test
@@ -45,7 +47,7 @@ public class SimpleTest
     }
 
     @Test
-    public void oneLine () throws Exception
+    public void compileNew () throws Exception
     {
 
         final ICmdLine cl = CmdLine.create("-t boolean -k a");
@@ -54,13 +56,11 @@ public class SimpleTest
     }
 
     @Test
-    public void parse () throws Exception
+    public void oneLine () throws Exception
     {
 
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t boolean -k a", "-t boolean -k b");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a -b"));
+        final ICmdLine cl = CmdLine.create("-t boolean -k a");
+        cl.parse("-a");
         Assert.assertNotNull(cl.arg("-a"));
-        Assert.assertNotNull(cl.arg("-b"));
     }
 }

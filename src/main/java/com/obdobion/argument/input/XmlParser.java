@@ -89,6 +89,11 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         super();
     }
 
+    public String substring (int inclusiveStart, int exclusiveEnd)
+    {
+        return "";
+    }
+
     public Token[] parseTokens ()
     {
         final List<Token> out = new ArrayList<>();
@@ -134,7 +139,7 @@ public class XmlParser extends AbstractInputParser implements IParserInput
 
                 @Override
                 public void endElement (final String uri, final String localName, final String name)
-                    throws SAXException
+                        throws SAXException
                 {
                     if (rootTag.equals(name))
                         return;
@@ -161,7 +166,7 @@ public class XmlParser extends AbstractInputParser implements IParserInput
 
                 @Override
                 public void startElement (final String uri, final String localName, final String name,
-                    final Attributes attributes) throws SAXException
+                        final Attributes attributes) throws SAXException
                 {
                     if (rootTag.equals(name))
                         return;
@@ -216,10 +221,5 @@ public class XmlParser extends AbstractInputParser implements IParserInput
             e.printStackTrace();
             return null;
         }
-    }
-
-    public String substring (int inclusiveStart, int exclusiveEnd)
-    {
-        return "";
     }
 }

@@ -24,6 +24,12 @@ public class DefaultCLA extends AbstractCLA<String>
         super(_keyword);
     }
 
+    @Override
+    public void asDefinedType (StringBuilder sb)
+    {
+        sb.append(CLAFactory.TYPE_DEFAULT);
+    }
+
     /**
      * not called. A special case in the caller will redirect this call to the
      * one with the args as a parameter.
@@ -32,6 +38,12 @@ public class DefaultCLA extends AbstractCLA<String>
     public void applyDefaults ()
     {
         // intentionally left blank
+    }
+
+    @Override
+    public String defaultInstanceClass ()
+    {
+        return "Object";
     }
 
     public void applyDefaults (char commandPrefix, final List<ICmdLineArg<?>> allKnownArgs)
@@ -58,23 +70,11 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_DEFAULT);
-    }
-
-    @Override
     public String convert (final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (_caseSensitive)
             return valueStr;
         return valueStr.toLowerCase();
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "Object";
     }
 
     @Override

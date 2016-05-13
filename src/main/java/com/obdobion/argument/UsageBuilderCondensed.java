@@ -21,7 +21,7 @@ public class UsageBuilderCondensed extends UsageBuilder
 
     @Override
     void prettyPrint (
-        final ICmdLine icmdLine)
+            final ICmdLine icmdLine)
     {
         prettyPrintNoHelp(icmdLine);
 
@@ -32,7 +32,7 @@ public class UsageBuilderCondensed extends UsageBuilder
     }
 
     private void prettyPrintNoHelp (
-        final ICmdLine icmdLine)
+            final ICmdLine icmdLine)
     {
         final CmdLine cmdLine = (CmdLine) icmdLine;
         usageHeader(cmdLine.commandPrefix, cmdLine, 0);
@@ -50,12 +50,12 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @return
      */
     boolean showCondensedOwnedArgs (
-        final boolean isRequired,
-        final String header,
-        final List<ICmdLineArg<?>> aIter,
-        final char _commandPrefix,
-        final ICmdLineArg<?> _cmdLine,
-        final int indentLevel)
+            final boolean isRequired,
+            final String header,
+            final List<ICmdLineArg<?>> aIter,
+            final char _commandPrefix,
+            final ICmdLineArg<?> _cmdLine,
+            final int indentLevel)
     {
         setIndentLevel(indentLevel + 1);
         boolean anyShown = false;
@@ -86,10 +86,10 @@ public class UsageBuilderCondensed extends UsageBuilder
     }
 
     void showEachOwnedArg (
-        final List<ICmdLineArg<?>> aIter,
-        final char commandPrefix,
-        final ICmdLineArg<?> cmdLine,
-        final int indentLevel)
+            final List<ICmdLineArg<?>> aIter,
+            final char commandPrefix,
+            final ICmdLineArg<?> cmdLine,
+            final int indentLevel)
     {
         boolean anyShown, anyEverShown = false;
         String header;
@@ -131,10 +131,10 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param indentLevel
      */
     void showEmbeddedParsers (
-        final List<ICmdLineArg<?>> aIter,
-        final char commandPrefix,
-        final ICmdLineArg<?> cmdLine,
-        final int indentLevel)
+            final List<ICmdLineArg<?>> aIter,
+            final char commandPrefix,
+            final ICmdLineArg<?> cmdLine,
+            final int indentLevel)
     {
         for (final ICmdLineArg<?> arg : aIter)
         {
@@ -154,12 +154,12 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @return
      */
     boolean showVerboseOwnedArgs (
-        final boolean isRequired,
-        final String header,
-        final List<ICmdLineArg<?>> aIter,
-        final char commandPrefix,
-        final ICmdLineArg<?> cmdLine,
-        final int indentLevel)
+            final boolean isRequired,
+            final String header,
+            final List<ICmdLineArg<?>> aIter,
+            final char commandPrefix,
+            final ICmdLineArg<?> cmdLine,
+            final int indentLevel)
     {
         setIndentLevel(indentLevel + 1);
         boolean anyShown = false;
@@ -210,9 +210,9 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param indentLevel
      */
     void usageHeader (
-        final char commandPrefix,
-        final ICmdLine icmdLine,
-        final int indentLevel)
+            final char commandPrefix,
+            final ICmdLine icmdLine,
+            final int indentLevel)
     {
         final CmdLine arg = (CmdLine) icmdLine;
 

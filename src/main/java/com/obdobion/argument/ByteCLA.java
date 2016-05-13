@@ -12,51 +12,36 @@ public class ByteCLA extends AbstractCLA<Byte>
      */
     static public final String[] ByteLiteral =
                                              {
-        "null",
-        "soh",
-        "stx",
-        "etx",
-        "eot",
-        "enq",
-        "ack",
-        "bel",
-        "bs",
-        "ht",
-        "lf",
-        "vt",
-        "ff",
-        "cr",
-        "so",
-        "si",
-        "dle",
-        "dc1",
-        "dc2",
-        "dc3",
-        "dc4",
-        "nak",
-        "syn",
-        "etb",
-        "can",
-        "em",
-        "sub",
-        "esc",
-        "fs",
-        "gs",
-        "rs",
-        "us",
-        "sp"
+            "null", "soh", "stx", "etx", "eot", "enq", "ack", "bel", "bs", "ht",
+            "lf", "vt", "ff", "cr", "so", "si", "dle", "dc1", "dc2", "dc3", "dc4", "nak", "syn", "etb", "can", "em",
+            "sub", "esc", "fs", "gs", "rs", "us", "sp"
                                              };
-
-    static public String asLiteral (byte aByte)
-    {
-        if (aByte < ByteLiteral.length)
-            return ByteLiteral[aByte] + "(" + (int) aByte + ")";
-        return (char) aByte + "(" + (int) aByte + ")";
-    }
 
     public ByteCLA(final char _keychar)
     {
         super(_keychar);
+    }
+
+    @Override
+    public byte[] getValueAsbyteArray ()
+    {
+        final byte[] result = new byte[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).byteValue();
+
+        return result;
+    }
+
+    @Override
+    public Byte[] getValueAsByteArray ()
+    {
+        final Byte[] result = new Byte[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 
     public ByteCLA(final char _keychar, final String _keyword)
@@ -70,9 +55,22 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
+    public String defaultInstanceClass ()
+    {
+        return "byte";
+    }
+
+    @Override
     public void asDefinedType (StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_BYTE);
+    }
+
+    static public String asLiteral (byte aByte)
+    {
+        if (aByte < ByteLiteral.length)
+            return ByteLiteral[aByte] + "(" + (int) aByte + ")";
+        return (char) aByte + "(" + (int) aByte + ")";
     }
 
     @Override
@@ -113,12 +111,6 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    public String defaultInstanceClass ()
-    {
-        return "byte";
-    }
-
-    @Override
     protected void exportCommandLineData (final StringBuilder out, final int occ)
     {
         out.append('"');
@@ -139,27 +131,5 @@ public class ByteCLA extends AbstractCLA<Byte>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
-    }
-
-    @Override
-    public byte[] getValueAsbyteArray ()
-    {
-        final byte[] result = new byte[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r).byteValue();
-
-        return result;
-    }
-
-    @Override
-    public Byte[] getValueAsByteArray ()
-    {
-        final Byte[] result = new Byte[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
     }
 }

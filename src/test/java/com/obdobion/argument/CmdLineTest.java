@@ -20,15 +20,57 @@ public class CmdLineTest
     }
 
     @Test
+    public void testBoolean () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile(
+                "-t boolean -k i inputfile ",
+                "-t boolean -ke ebcdic",
+                "-t boolean -k x dup1 -d true",
+                "-t boolean -kd");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i"));
+
+        Assert.assertEquals("1 cmd count", 1, cl.size());
+        BooleanCLA barg = (BooleanCLA) cl.arg("-i");
+        // example of a casting the value rather than the arg.
+        Assert.assertEquals("1i", Boolean.TRUE, cl.arg("-i").getValue());
+        barg = (BooleanCLA) cl.arg("-e");
+        Assert.assertEquals("1e", Boolean.FALSE, barg.getValue());
+        barg = (BooleanCLA) cl.arg("-x");
+        Assert.assertEquals("1x", Boolean.TRUE, barg.getValue());
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-exi"));
+
+        Assert.assertEquals("2 cmd count", 3, cl.size());
+        barg = (BooleanCLA) cl.arg("-i");
+        Assert.assertEquals("2i", Boolean.TRUE, barg.getValue());
+        barg = (BooleanCLA) cl.arg("-e");
+        Assert.assertEquals("2e", Boolean.TRUE, barg.getValue());
+        barg = (BooleanCLA) cl.arg("-x");
+        Assert.assertEquals("2x", Boolean.FALSE, barg.getValue());
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--e --dup1 --i"));
+
+        Assert.assertEquals("3 cmd count", 3, cl.size());
+        barg = (BooleanCLA) cl.arg("--i");
+        Assert.assertEquals("3i", Boolean.TRUE, barg.getValue());
+        barg = (BooleanCLA) cl.arg("--e");
+        Assert.assertEquals("3e", Boolean.TRUE, barg.getValue());
+        barg = (BooleanCLA) cl.arg("--dup1");
+        Assert.assertEquals("3x", Boolean.FALSE, barg.getValue());
+    }
+
+    @Test
     public void booleanConcats () throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t boolean -k i inputfile ",
-            "-t boolean -k e ebcdic ",
-            "-t boolean -k x dup1 ",
-            "-t boolean -k d dup2 ");
+                "-t boolean -k i inputfile ",
+                "-t boolean -k e ebcdic ",
+                "-t boolean -k x dup1 ",
+                "-t boolean -k d dup2 ");
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i -e"));
         Assert.assertEquals("1 cmd count", 2, cl.size());
@@ -67,6 +109,78 @@ public class CmdLineTest
     }
 
     @Test
+    public void numericKeyCharIsBad () throws Exception
+    {
+        try
+        {
+            final ICmdLine cl = new CmdLine();
+            cl.compile("-t boolean -k 1");
+        } catch (ParseException p)
+        {
+            return;
+        }
+        Assert.fail("should not have allowed a key char to be a digit");
+    }
+
+    @Test
+    public void numericKeyWordIsBad () throws Exception
+    {
+        try
+        {
+            final ICmdLine cl = new CmdLine();
+            cl.compile("-t boolean -k c 1word");
+        } catch (ParseException p)
+        {
+            return;
+        }
+        Assert.fail("should not have allowed the 1st char of a key word to be a digit");
+    }
+
+    @Test
+    public void numberInAKeyWordIsOK () throws Exception
+    {
+        try
+        {
+            final ICmdLine cl = new CmdLine();
+            cl.compile("-t boolean -k c word1");
+        } catch (ParseException p)
+        {
+            Assert.fail("should have allowed a digit after the 1st char in a key word");
+        }
+    }
+
+    @Test
+    public void testDouble () throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t double -ki -r", "-t double -km -m1 2 --range 1 3000");
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 1.0 -m1 2026.25"));
+        Assert.assertEquals("1 cmd count", 2, cl.size());
+        DoubleCLA sarg = (DoubleCLA) cl.arg("-i");
+        Assert.assertEquals("1i", new Double(1.0), sarg.getValue());
+        sarg = (DoubleCLA) cl.arg("-m");
+        Assert.assertEquals("1m1", new Double(1.0), sarg.getValue(0));
+        Assert.assertEquals("1m2", new Double(2026.25), sarg.getValue(1));
+    }
+
+    @Test
+    public void testFloats () throws Exception
+    {
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t float -ki -r", "-t float -km -m1 2 --range 1 3000");
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 1.0 -m1 2026.25"));
+        Assert.assertEquals("1 cmd count", 2, cl.size());
+        FloatCLA sarg = (FloatCLA) cl.arg("-i");
+        Assert.assertEquals("1i", new Float(1.0), sarg.getValue());
+        sarg = (FloatCLA) cl.arg("-m");
+        Assert.assertEquals("1m1", new Float(1.0), sarg.getValue(0));
+        Assert.assertEquals("1m2", new Float(2026.25), sarg.getValue(1));
+    }
+
+    @Test
     public void grouping () throws Exception
     {
         final CmdLine cl = new CmdLine();
@@ -82,12 +196,12 @@ public class CmdLineTest
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t begin -kg",
-            "-t boolean -k a item1",
-            "-t begin -kd",
-            "-t boolean -k b item2 ",
-            "-t end -kd ",
-            "-t end -kg ");
+                "-t begin -kg",
+                "-t boolean -k a item1",
+                "-t begin -kd",
+                "-t boolean -k b item2 ",
+                "-t end -kd ",
+                "-t end -kg ");
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-ad(-b))"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
@@ -157,56 +271,15 @@ public class CmdLineTest
     }
 
     @Test
-    public void numberInAKeyWordIsOK () throws Exception
-    {
-        try
-        {
-            final ICmdLine cl = new CmdLine();
-            cl.compile("-t boolean -k c word1");
-        } catch (ParseException p)
-        {
-            Assert.fail("should have allowed a digit after the 1st char in a key word");
-        }
-    }
-
-    @Test
-    public void numericKeyCharIsBad () throws Exception
-    {
-        try
-        {
-            final ICmdLine cl = new CmdLine();
-            cl.compile("-t boolean -k 1");
-        } catch (ParseException p)
-        {
-            return;
-        }
-        Assert.fail("should not have allowed a key char to be a digit");
-    }
-
-    @Test
-    public void numericKeyWordIsBad () throws Exception
-    {
-        try
-        {
-            final ICmdLine cl = new CmdLine();
-            cl.compile("-t boolean -k c 1word");
-        } catch (ParseException p)
-        {
-            return;
-        }
-        Assert.fail("should not have allowed the 1st char of a key word to be a digit");
-    }
-
-    @Test
     public void parmed () throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile(
-            "-t string -k i inputfile --required",
-            "-t boolean -k e ebcdic",
-            "-t boolean -k x dup1",
-            "-t string -k d dup2 -m1");
+                "-t string -k i inputfile --required",
+                "-t boolean -k e ebcdic",
+                "-t boolean -k x dup1",
+                "-t string -k d dup2 -m1");
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i infile"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
@@ -277,78 +350,5 @@ public class CmdLineTest
         Assert.assertEquals("1i", "when", sarg.getValue());
         sarg = (StringCLA) cl.arg("-s");
         Assert.assertEquals("1i", "what", sarg.getValue());
-    }
-
-    @Test
-    public void testBoolean () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile(
-            "-t boolean -k i inputfile ",
-            "-t boolean -ke ebcdic",
-            "-t boolean -k x dup1 -d true",
-            "-t boolean -kd");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i"));
-
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        BooleanCLA barg = (BooleanCLA) cl.arg("-i");
-        // example of a casting the value rather than the arg.
-        Assert.assertEquals("1i", Boolean.TRUE, cl.arg("-i").getValue());
-        barg = (BooleanCLA) cl.arg("-e");
-        Assert.assertEquals("1e", Boolean.FALSE, barg.getValue());
-        barg = (BooleanCLA) cl.arg("-x");
-        Assert.assertEquals("1x", Boolean.TRUE, barg.getValue());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-exi"));
-
-        Assert.assertEquals("2 cmd count", 3, cl.size());
-        barg = (BooleanCLA) cl.arg("-i");
-        Assert.assertEquals("2i", Boolean.TRUE, barg.getValue());
-        barg = (BooleanCLA) cl.arg("-e");
-        Assert.assertEquals("2e", Boolean.TRUE, barg.getValue());
-        barg = (BooleanCLA) cl.arg("-x");
-        Assert.assertEquals("2x", Boolean.FALSE, barg.getValue());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--e --dup1 --i"));
-
-        Assert.assertEquals("3 cmd count", 3, cl.size());
-        barg = (BooleanCLA) cl.arg("--i");
-        Assert.assertEquals("3i", Boolean.TRUE, barg.getValue());
-        barg = (BooleanCLA) cl.arg("--e");
-        Assert.assertEquals("3e", Boolean.TRUE, barg.getValue());
-        barg = (BooleanCLA) cl.arg("--dup1");
-        Assert.assertEquals("3x", Boolean.FALSE, barg.getValue());
-    }
-
-    @Test
-    public void testDouble () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t double -ki -r", "-t double -km -m1 2 --range 1 3000");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 1.0 -m1 2026.25"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-        DoubleCLA sarg = (DoubleCLA) cl.arg("-i");
-        Assert.assertEquals("1i", new Double(1.0), sarg.getValue());
-        sarg = (DoubleCLA) cl.arg("-m");
-        Assert.assertEquals("1m1", new Double(1.0), sarg.getValue(0));
-        Assert.assertEquals("1m2", new Double(2026.25), sarg.getValue(1));
-    }
-
-    @Test
-    public void testFloats () throws Exception
-    {
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t float -ki -r", "-t float -km -m1 2 --range 1 3000");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 1.0 -m1 2026.25"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-        FloatCLA sarg = (FloatCLA) cl.arg("-i");
-        Assert.assertEquals("1i", new Float(1.0), sarg.getValue());
-        sarg = (FloatCLA) cl.arg("-m");
-        Assert.assertEquals("1m1", new Float(1.0), sarg.getValue(0));
-        Assert.assertEquals("1m2", new Float(2026.25), sarg.getValue(1));
     }
 }

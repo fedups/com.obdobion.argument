@@ -23,9 +23,9 @@ import com.obdobion.argument.Token;
 public class CommandLineParser extends AbstractInputParser implements IParserInput
 {
     static private StringBuilder convertToString (
-        final File commandFile)
-        throws FileNotFoundException,
-        IOException
+            final File commandFile)
+            throws FileNotFoundException,
+            IOException
     {
         final FileReader fis = new FileReader(commandFile);
         final BufferedReader buf = new BufferedReader(fis);
@@ -49,10 +49,10 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     static public IParserInput getInstance (
-        final char commandPrefix,
-        final boolean allowEmbeddedCommandPrefix,
-        final File args)
-        throws IOException
+            final char commandPrefix,
+            final boolean allowEmbeddedCommandPrefix,
+            final File args)
+            throws IOException
     {
         final CommandLineParser parser = new CommandLineParser();
         parser.commandPrefix = commandPrefix;
@@ -62,9 +62,9 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     static public IParserInput getInstance (
-        final char commandPrefix,
-        final boolean allowEmbeddedCommandPrefix,
-        final String... args)
+            final char commandPrefix,
+            final boolean allowEmbeddedCommandPrefix,
+            final String... args)
     {
         final CommandLineParser parser = new CommandLineParser();
         parser.commandPrefix = commandPrefix;
@@ -80,22 +80,22 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     static public IParserInput getInstance (
-        final char commandPrefix,
-        final File args)
-        throws IOException
+            final char commandPrefix,
+            final File args)
+            throws IOException
     {
         return getInstance(commandPrefix, false, args);
     }
 
     static public IParserInput getInstance (
-        final char commandPrefix,
-        final String... args)
+            final char commandPrefix,
+            final String... args)
     {
         return getInstance(commandPrefix, false, args);
     }
 
     static public String unparseTokens (
-        final List<ICmdLineArg<?>> args)
+            final List<ICmdLineArg<?>> args)
     {
         final StringBuilder out = new StringBuilder();
         unparseTokens(args, out);
@@ -103,8 +103,8 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     static public void unparseTokens (
-        final List<ICmdLineArg<?>> args,
-        final StringBuilder out)
+            final List<ICmdLineArg<?>> args,
+            final StringBuilder out)
     {
         final Iterator<ICmdLineArg<?>> aIter = args.iterator();
         boolean first = true;
@@ -120,7 +120,6 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
             }
         }
     }
-
     protected String commandLine;
     char             commandPrefix;
 
@@ -151,28 +150,28 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                 if (delim != ' ' && thisChar == delim)
                 {
                     tokens.add(new Token(commandPrefix,
-                        part.toString(),
-                        startX,
-                        scanX + 1,
-                        true));
+                            part.toString(),
+                            startX,
+                            scanX + 1,
+                            true));
                     part.delete(0, part.length());
                     inToken = false;
                 } else if (delim == ' '
-                    && (Character.isWhitespace(thisChar)
-                        || thisChar == '('
-                        || thisChar == ')'
-                        || thisChar == '['
-                        || thisChar == ']'
-                        || thisChar == ';'
-                        || thisChar == ','
-                        || thisChar == '='
-                        || thisChar == '"'
-                        // These two lines don't provide any known
-                        // benefit.
-                        // || (part.length() == 0 && thisChar == '@')
-                        // || (part.length() == 0 && thisChar == '_')
-                        || thisChar == '\''
-                        || (!allowEmbeddedCommandPrefix && thisChar == commandPrefix && prevChar != commandPrefix)))
+                        && (Character.isWhitespace(thisChar)
+                                || thisChar == '('
+                                || thisChar == ')'
+                                || thisChar == '['
+                                || thisChar == ']'
+                                || thisChar == ';'
+                                || thisChar == ','
+                                || thisChar == '='
+                                || thisChar == '"'
+                                // These two lines don't provide any known
+                                // benefit.
+                                // || (part.length() == 0 && thisChar == '@')
+                                // || (part.length() == 0 && thisChar == '_')
+                                || thisChar == '\''
+                                || (!allowEmbeddedCommandPrefix && thisChar == commandPrefix && prevChar != commandPrefix)))
                 {
                     boolean forceLiteral = false;
                     /*
@@ -183,14 +182,14 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                     if (part.length() > 1)
                     {
                         if (part.charAt(0) == commandPrefix
-                            && Character.isDigit(part.charAt(1)))
+                                && Character.isDigit(part.charAt(1)))
                             forceLiteral = true;
                     }
                     tokens.add(new Token(commandPrefix,
-                        part.toString(),
-                        startX,
-                        scanX,
-                        forceLiteral));
+                            part.toString(),
+                            startX,
+                            scanX,
+                            forceLiteral));
                     part.delete(0, part.length());
                     /*
                      * rescan char
@@ -206,18 +205,18 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
             } else
             {
                 if (Character.isWhitespace(thisChar)
-                    || thisChar == ':'
-                    || thisChar == ';'
-                    || thisChar == ','
-                    || thisChar == '=')
+                        || thisChar == ':'
+                        || thisChar == ';'
+                        || thisChar == ','
+                        || thisChar == '=')
                     continue;
                 if (thisChar == '(' || thisChar == ')' || thisChar == '[' || thisChar == ']')
                 {
                     tokens.add(new Token(commandPrefix,
-                        "" + thisChar,
-                        scanX,
-                        scanX + 1,
-                        false));
+                            "" + thisChar,
+                            scanX,
+                            scanX + 1,
+                            false));
                     continue;
                 }
                 if (thisChar == '"' || thisChar == '\'')
@@ -234,10 +233,10 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         }
         if (inToken)
             tokens.add(new Token(commandPrefix,
-                part.toString(),
-                startX,
-                commandLine.length(),
-                delim != ' '));
+                    part.toString(),
+                    startX,
+                    commandLine.length(),
+                    delim != ' '));
 
         return tokens.toArray(new Token[tokens.size()]);
     }

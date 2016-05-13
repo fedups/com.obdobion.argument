@@ -15,11 +15,18 @@ import com.obdobion.argument.input.CommandLineParser;
 public class DateTest
 {
 
+    public Date   date;
+
+    public DateTest()
+    {
+
+    }
+
     static private void assertValidReturnDate (
         final Calendar returnCal,
         final int year,
         final int month,
-        final int _date,
+            final int _date,
         final int hour,
         final int minute,
         final int second,
@@ -32,13 +39,6 @@ public class DateTest
         Assert.assertEquals(minute, returnCal.get(Calendar.MINUTE));
         Assert.assertEquals(second, returnCal.get(Calendar.SECOND));
         Assert.assertEquals(millisecond, returnCal.get(Calendar.MILLISECOND));
-    }
-
-    public Date date;
-
-    public DateTest()
-    {
-
     }
 
     @Test
@@ -128,7 +128,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =2011YEAR)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =2011YEAR)"),
             this);
 
         final Calendar cal = Calendar.getInstance();
@@ -193,7 +193,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5minutes)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5minutes)"),
             this);
 
         final Calendar cal = Calendar.getInstance();
@@ -210,7 +210,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5Months)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5Months)"),
             this);
 
         final Calendar cal = Calendar.getInstance();
@@ -243,7 +243,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5seconds)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5seconds)"),
             this);
 
         final Calendar cal = Calendar.getInstance();
@@ -318,7 +318,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5minutes)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5minutes)"),
             this);
 
         final Calendar cal = Calendar.getInstance();
@@ -367,7 +367,7 @@ public class DateTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
-            CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5seconds)"),
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5seconds)"),
             this);
 
         final Calendar cal = Calendar.getInstance();

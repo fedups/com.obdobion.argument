@@ -26,7 +26,7 @@ public class UsageTest
     @Test
     @Ignore
     public void cmdLineLevel ()
-        throws Exception
+            throws Exception
     {
 
         final List<String> out = new ArrayList<>();
@@ -60,7 +60,7 @@ public class UsageTest
     @Test
     @Ignore
     public void cmdLineLevelHelp ()
-        throws Exception
+            throws Exception
     {
 
         final List<String> out = new ArrayList<>();
@@ -82,7 +82,7 @@ public class UsageTest
         System.setOut(new PrintStream(sw));
 
         final CmdLine cl = new CmdLine("CmdLineLevel",
-            "This is a help message.");
+                "This is a help message.");
         cl.compile();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-?"));
         System.err.println(sw.toString());
@@ -98,7 +98,7 @@ public class UsageTest
     @Test
     // @Ignore
     public void embedded ()
-        throws Exception
+            throws Exception
     {
 
         final List<String> out = new ArrayList<>();
@@ -119,8 +119,8 @@ public class UsageTest
 
         final CmdLine cl = new CmdLine("CmdLineLevel");
         cl.compile("--type begin --key e",
-            "--type Integer --key i integer --req --def 5 --ran 3,7 --help 'This is integer help'",
-            "--type end --key e");
+                "--type Integer --key i integer --req --def 5 --ran 3,7 --help 'This is integer help'",
+                "--type end --key e");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-?"));
         System.err.println(sw.toString());
 
@@ -135,7 +135,7 @@ public class UsageTest
     @Test
     // @Ignore
     public void minimal ()
-        throws Exception
+            throws Exception
     {
 
         final List<String> out = new ArrayList<>();
@@ -152,17 +152,17 @@ public class UsageTest
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t boolean -k a aParm  ",
-            "-t boolean -k b ",
-            "-t boolean -k cParm ",
-            "-t boolean -k dParm ",
-            "-t boolean -k mParm --pos ",
-            "-t boolean -k n --pos  ",
-            "-t boolean -k oParm --pos --req ",
-            "-t boolean -k p --pos --req ",
-            "-t boolean -k w wParm --req ",
-            "-t boolean -k x --req",
-            "-t boolean -k yParm --req",
-            "-t boolean -k zParm --req");
+                "-t boolean -k b ",
+                "-t boolean -k cParm ",
+                "-t boolean -k dParm ",
+                "-t boolean -k mParm --pos ",
+                "-t boolean -k n --pos  ",
+                "-t boolean -k oParm --pos --req ",
+                "-t boolean -k p --pos --req ",
+                "-t boolean -k w wParm --req ",
+                "-t boolean -k x --req",
+                "-t boolean -k yParm --req",
+                "-t boolean -k zParm --req");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-?"));
         System.err.println(sw.toString());
 
@@ -177,15 +177,15 @@ public class UsageTest
     @Test
     @Ignore
     public void testInt ()
-        throws Exception
+            throws Exception
     {
         final ByteArrayOutputStream sw = new ByteArrayOutputStream();
         System.setOut(new PrintStream(sw));
 
         final CmdLine cl = new CmdLine("CmdLineLevel");
         cl.compile(
-            "--type Integer --key i integer --req --def 5 --ran 3,7 --help 'This is integer help.  Sometimes it is needed to write a lot of help for very complex parameters, and that help would need to wrap and indent nicely when --help is requested.'",
-            "--type String --format .* -m1,5 --case --key s string --def what --list what,when,where,how,why --help 'This is integer help.  Sometimes it is needed to write a lot of help for very complex parameters, and that help would need to wrap and indent nicely when --help is requested.'");
+                "--type Integer --key i integer --req --def 5 --ran 3,7 --help 'This is integer help.  Sometimes it is needed to write a lot of help for very complex parameters, and that help would need to wrap and indent nicely when --help is requested.'",
+                "--type String --format .* -m1,5 --case --key s string --def what --list what,when,where,how,why --help 'This is integer help.  Sometimes it is needed to write a lot of help for very complex parameters, and that help would need to wrap and indent nicely when --help is requested.'");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--" + CmdLine.MaxHelpCommandName));
 
         System.err.println(sw.toString());
@@ -201,7 +201,7 @@ public class UsageTest
     @Test
     // @Ignore
     public void wrapping ()
-        throws Exception
+            throws Exception
     {
 
         final List<String> out = new ArrayList<>();
@@ -220,32 +220,32 @@ public class UsageTest
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t boolean -k a aParm  ",
-            "-t boolean -k aParameter ",
-            "-t boolean -k bParameter ",
-            "-t boolean -k cParameter ",
-            "-t boolean -k dParameter ",
-            "-t boolean -k eParameter ",
-            "-t boolean -k fParameter ",
-            "-t boolean -k gParameter ",
-            "-t boolean -k hParameter ",
-            "-t boolean -k iParameter ",
-            "-t boolean -k jParameter ",
-            "-t boolean -k kParameter ",
-            "-t boolean -k lParameter ",
-            "-t boolean -k mParameter ",
-            "-t boolean -k nParameter ",
-            "-t boolean -k oParameter ",
-            "-t boolean -k pParameter ",
-            "-t boolean -k qParameter ",
-            "-t boolean -k rParameter ",
-            "-t boolean -k sParameter ",
-            "-t boolean -k tParameter ",
-            "-t boolean -k uParameter ",
-            "-t boolean -k vParameter ",
-            "-t boolean -k wParameter ",
-            "-t boolean -k xParameter ",
-            "-t boolean -k yParameter ",
-            "-t boolean -k zParameter");
+                "-t boolean -k aParameter ",
+                "-t boolean -k bParameter ",
+                "-t boolean -k cParameter ",
+                "-t boolean -k dParameter ",
+                "-t boolean -k eParameter ",
+                "-t boolean -k fParameter ",
+                "-t boolean -k gParameter ",
+                "-t boolean -k hParameter ",
+                "-t boolean -k iParameter ",
+                "-t boolean -k jParameter ",
+                "-t boolean -k kParameter ",
+                "-t boolean -k lParameter ",
+                "-t boolean -k mParameter ",
+                "-t boolean -k nParameter ",
+                "-t boolean -k oParameter ",
+                "-t boolean -k pParameter ",
+                "-t boolean -k qParameter ",
+                "-t boolean -k rParameter ",
+                "-t boolean -k sParameter ",
+                "-t boolean -k tParameter ",
+                "-t boolean -k uParameter ",
+                "-t boolean -k vParameter ",
+                "-t boolean -k wParameter ",
+                "-t boolean -k xParameter ",
+                "-t boolean -k yParameter ",
+                "-t boolean -k zParameter");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-" + CmdLine.MinHelpCommandName));
 
         System.err.println(sw.toString());

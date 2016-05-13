@@ -19,10 +19,10 @@ public class Token
     public Token(final char _commandPrefix, final String _value)
     {
         this(_commandPrefix,
-            _value,
-            0,
-            _value.length() - 1,
-            false);
+                _value,
+                0,
+                _value.length() - 1,
+                false);
     }
 
     public Token(
