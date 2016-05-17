@@ -52,4 +52,16 @@ public class WildFiles
         return userSuppliedPatterns.get(userSuppliedIndex);
     }
 
+    @Override
+    public String toString ()
+    {
+        final StringBuilder sb = new StringBuilder();
+        for (final String pattern : userSuppliedPatterns)
+        {
+            sb.append(pattern);
+            sb.append(" ");
+        }
+        return sb.toString();
+    }
+
 }

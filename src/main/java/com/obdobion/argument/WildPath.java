@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * A path pattern can contain three types of wild cards; ?, *, and **. This is
  * not a regex.
@@ -18,6 +21,8 @@ import java.util.regex.Pattern;
  */
 public class WildPath
 {
+    static final Logger  logger                        = LoggerFactory.getLogger(WildPath.class);
+
     static final boolean DEBUG                         = false;
 
     final static Matcher pathSegmentMatcher            = Pattern.compile("[^\\\\/]+").matcher("");
@@ -65,6 +70,10 @@ public class WildPath
     Matcher      directoryMatcher;
     Matcher      fileMatcher;
     List<File>   files        = new ArrayList<>();
+    boolean      directorySearchRequired;
+
+    int          scanDirCount;
+    int          scanFileCount;
 
     public WildPath(final String pattern)
     {
@@ -79,12 +88,9 @@ public class WildPath
         final Pattern dirPattern = convertDirWildCardToRegx(dir.toString());
         final Pattern filePattern = convertFileWildCardToRegx(exactRequest.getName());
 
-        if (DEBUG)
-        {
-            System.out.println("user supplied " + userSuppliedPattern);
-            System.out.println("dirPattern  " + dirPattern.toString());
-            System.out.println("filePattern " + filePattern.toString());
-        }
+        logger.trace("user supplied {}", userSuppliedPattern);
+        logger.trace("dirPattern {}", dirPattern.toString());
+        logger.trace("filePattern {}", filePattern.toString());
 
         directoryMatcher = dirPattern.matcher("");
         fileMatcher = filePattern.matcher("");
@@ -92,11 +98,15 @@ public class WildPath
 
     public List<File> files () throws ParseException, IOException
     {
-        return files(new File(startingPath));
+        final List<File> files1 = files(new File(startingPath));
+        logger.info("wildfile counts: dir({}) files({})", scanDirCount, scanFileCount);
+        return files1;
     }
 
     List<File> files (final File directory) throws ParseException, IOException
     {
+        scanDirCount++;
+
         final File[] foundDirectories = directory.listFiles(
                 new FileFilter()
                 {
@@ -122,31 +132,31 @@ public class WildPath
                             {
                                 return false;
                             }
-                            if (DEBUG)
-                            {
-                                System.out.print("matching file " + pathname.getPath());
-                            }
+
+                            scanFileCount++;
+
+                            // logger.trace("matching file " +
+                            // pathname.getPath());
+
                             try
                             {
                                 directoryMatcher.reset(pathname.getParentFile().getPath());
                                 final boolean directoryMatchFlag = directoryMatcher.matches();
-                                if (DEBUG)
-                                    if (directoryMatchFlag)
-                                        System.out.print(" dir matches: " + pathname.getParentFile().getPath());
-                                    else
-                                        System.out.print(" dir NOT matching: "
-                                                + pathname.getParentFile().getPath()
-                                                + " with "
-                                                + directoryMatcher.pattern().pattern());
+                                // if (directoryMatchFlag)
+                                // logger.trace(" dir matches: {}",
+                                // pathname.getParentFile().getPath());
+                                // else
+                                // logger.trace(" dir NOT matching: {} with {} "
+                                // , pathname.getParentFile().getPath()
+                                // , directoryMatcher.pattern().pattern());
                                 if (directoryMatchFlag)
                                 {
                                     fileMatcher.reset(pathname.getName());
                                     final boolean matchFlag = fileMatcher.matches();
-                                    if (DEBUG)
-                                        if (matchFlag)
-                                            System.out.print(" file matches");
-                                        else
-                                            System.out.print(" not matching");
+                                    // if (matchFlag)
+                                    // logger.trace(" file matches");
+                                    // else
+                                    // logger.trace(" not matching");
                                     return matchFlag;
                                 }
                                 return false;
@@ -161,7 +171,7 @@ public class WildPath
                     });
         }
 
-        if (foundDirectories != null)
+        if (isDirectorySearchRequired() && foundDirectories != null)
         {
             for (final File oneDir : foundDirectories)
                 files(oneDir);
@@ -173,6 +183,11 @@ public class WildPath
                 files.add(oneFile);
         }
         return files;
+    }
+
+    boolean isDirectorySearchRequired ()
+    {
+        return directorySearchRequired;
     }
 
     synchronized void parsePattern (final String pattern)
@@ -198,7 +213,10 @@ public class WildPath
         {
             wildCardInSegmentMatcher.reset(segment);
             if (wildCardInSegmentMatcher.find())
+            {
+                directorySearchRequired = true;
                 break;
+            }
             startingPathBuilder.append(segment);
             startingPathBuilder.append("/");
         }
