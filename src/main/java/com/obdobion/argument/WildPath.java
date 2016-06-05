@@ -99,7 +99,7 @@ public class WildPath
     public List<File> files () throws ParseException, IOException
     {
         final List<File> files1 = files(new File(startingPath));
-        logger.info("wildfile counts: dir({}) files({})", scanDirCount, scanFileCount);
+        logger.debug("wildfile counts: dir({}) files({})", scanDirCount, scanFileCount);
         return files1;
     }
 

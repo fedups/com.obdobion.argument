@@ -8,7 +8,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class CLAFactory
 {
@@ -27,6 +27,7 @@ public class CLAFactory
     static final String TYPE_BYTE     = "byte";
     static final String TYPE_BOOLEAN  = "boolean";
     static final String TYPE_BEGIN    = "begin";
+    static final String TYPE_EQU      = "equ";
 
     CmdLine             factoryParser;
     StringCLA           type;
@@ -59,8 +60,22 @@ public class CLAFactory
             type.setRequired(true);
             type.setListCriteria(new String[]
             {
-                    TYPE_BEGIN, TYPE_BOOLEAN, TYPE_BYTE, TYPE_STRING, TYPE_INTEGER, TYPE_ENUM, TYPE_LONG, TYPE_DATE,
-                    TYPE_PATTERN, TYPE_FLOAT, TYPE_DOUBLE, TYPE_END, TYPE_FILE, TYPE_WILDFILE, TYPE_DEFAULT
+                TYPE_BEGIN,
+                TYPE_BOOLEAN,
+                TYPE_BYTE,
+                TYPE_STRING,
+                TYPE_INTEGER,
+                TYPE_ENUM,
+                TYPE_LONG,
+                TYPE_DATE,
+                TYPE_PATTERN,
+                TYPE_FLOAT,
+                TYPE_DOUBLE,
+                TYPE_END,
+                TYPE_FILE,
+                TYPE_WILDFILE,
+                TYPE_EQU,
+                TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -144,8 +159,8 @@ public class CLAFactory
         }
     }
 
-    public boolean atEnd (char commandPrefix, final CmdLineCLA group, final String definition)
-            throws ParseException, IOException
+    public boolean atEnd (final char commandPrefix, final CmdLineCLA group, final String definition)
+        throws ParseException, IOException
     {
         factoryParser.parse(CommandLineParser.getInstance(commandPrefix, definition));
         if (TYPE_END.equalsIgnoreCase(type.getValue()))
@@ -173,7 +188,7 @@ public class CLAFactory
         return false;
     }
 
-    private ICmdLineArg<?> createArgFor (char commandPrefix) throws ParseException
+    private ICmdLineArg<?> createArgFor (final char commandPrefix) throws ParseException
     {
         char keychar = commandPrefix; // dummy value to indicate non-usage
         String keyword = null;
@@ -194,7 +209,7 @@ public class CLAFactory
         if (keyword != null)
             if (Character.isDigit(keyword.charAt(0)))
                 throw new ParseException("The first character of a Key Word can not be a digit \"" + key.getValue(1)
-                        + "\"", -1);
+                    + "\"", -1);
 
         if (TYPE_BEGIN.equalsIgnoreCase(type.getValue()))
         {
@@ -216,6 +231,17 @@ public class CLAFactory
                 return new BooleanCLA(keychar);
             }
             return new BooleanCLA(keyword);
+        }
+
+        if (TYPE_EQU.equalsIgnoreCase(type.getValue()))
+        {
+            if (keychar != commandPrefix)
+            {
+                if (keyword != null)
+                    return new EquCLA(keychar, keyword);
+                return new EquCLA(keychar);
+            }
+            return new EquCLA(keyword);
         }
 
         if (TYPE_DEFAULT.equalsIgnoreCase(type.getValue()))
@@ -353,7 +379,8 @@ public class CLAFactory
         throw new ParseException("invalid type: " + type.getValue(), -1);
     }
 
-    public ICmdLineArg<?> instanceFor (char commandPrefix, final String definition) throws ParseException, IOException
+    public ICmdLineArg<?> instanceFor (final char commandPrefix, final String definition) throws ParseException,
+        IOException
     {
         factoryParser.parse(definition);
         final ICmdLineArg<?> arg = createArgFor(commandPrefix);
