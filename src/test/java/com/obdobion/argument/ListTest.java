@@ -5,7 +5,7 @@ import org.junit.Test;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class ListTest
 {
@@ -27,7 +27,7 @@ public class ListTest
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("list value", "abcd is not valid for -s", e.getMessage());
+            Assert.assertEquals("list value", "abcd is not valid for string -s", e.getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ public class ListTest
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("list value", "aB is not valid for -s", e.getMessage());
+            Assert.assertEquals("list value", "aB is not valid for string -s", e.getMessage());
         }
     }
 

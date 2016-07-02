@@ -7,7 +7,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class RequiredTest
 {
@@ -31,7 +31,10 @@ public class RequiredTest
             Assert.fail("should have failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("requires int", "missing required parameters: --maxUpdates(-m) ", e.getMessage());
+            Assert.assertEquals(
+                    "requires int",
+                    "missing required parameters: integer --maxUpdates(-m) ",
+                    e.getMessage());
         }
 
     }

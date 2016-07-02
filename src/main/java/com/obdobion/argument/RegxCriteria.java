@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  * @param <E>
  */
 public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
@@ -19,6 +19,22 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     @Override
+    public void asDefinitionText (StringBuilder sb)
+    {
+        sb.append(" --matches '");
+        sb.append(patternParm);
+        sb.append("'");
+    }
+
+    @Override
+    public void asSetter (StringBuilder sb)
+    {
+        sb.append(".setRegxCriteria(\"");
+        sb.append(patternParm);
+        sb.append("\")");
+    }
+
+    @Override
     public RegxCriteria<E> clone () throws CloneNotSupportedException
     {
         @SuppressWarnings("unchecked")
@@ -26,6 +42,12 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
         return clone;
     }
 
+    public String getPatternParm ()
+    {
+        return patternParm;
+    }
+
+    @Override
     public boolean isSelected (final Comparable<E> value, final boolean caseSensitive)
     {
         if (pattern == null)
@@ -40,25 +62,13 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     /**
      * Normalization is not possible for patterns.
      */
+    @Override
     public E normalizeValue (final E value, final boolean caseSensitive)
     {
         return value;
     }
 
-    public void asDefinitionText (StringBuilder sb)
-    {
-        sb.append(" --matches '");
-        sb.append(patternParm);
-        sb.append("'");
-    }
-
-    public void asSetter (StringBuilder sb)
-    {
-        sb.append(".setRegxCriteria(\"");
-        sb.append(patternParm);
-        sb.append("\")");
-    }
-
+    @Override
     public void usage (final UsageBuilder str, final int indentLevel)
     {
         str.append("The value must match this regular expression: ").append(patternParm).append(".");

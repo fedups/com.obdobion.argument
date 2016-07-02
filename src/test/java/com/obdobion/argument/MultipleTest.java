@@ -9,7 +9,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class MultipleTest
 {
@@ -31,7 +31,7 @@ public class MultipleTest
 
         } catch (ParseException e)
         {
-            Assert.assertEquals("insufficient required values for -i", e.getMessage());
+            Assert.assertEquals("insufficient required values for string -i", e.getMessage());
         }
     }
 
@@ -39,7 +39,8 @@ public class MultipleTest
     public void minOnlyFailGroup () throws Exception
     {
         final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -kg -m3",
+        cl.compile(
+                "-t begin -kg -m3",
                 "-t string -ki",
                 "-t end -kg");
 
@@ -50,7 +51,7 @@ public class MultipleTest
 
         } catch (ParseException e)
         {
-            Assert.assertEquals("insufficient required values for -g", e.getMessage());
+            Assert.assertEquals("insufficient required values for begin -g", e.getMessage());
         }
     }
 
@@ -58,7 +59,8 @@ public class MultipleTest
     public void oneOnlyFailGroup () throws Exception
     {
         final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -kg",
+        cl.compile(
+                "-t begin -kg",
                 "-t string -ki",
                 "-t end -kg");
 
@@ -69,7 +71,7 @@ public class MultipleTest
 
         } catch (ParseException e)
         {
-            Assert.assertEquals("multiple values not allowed for -g", e.getMessage());
+            Assert.assertEquals("multiple values not allowed for begin -g", e.getMessage());
         }
     }
 }

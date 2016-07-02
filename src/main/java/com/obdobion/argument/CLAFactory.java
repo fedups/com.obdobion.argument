@@ -36,6 +36,9 @@ public class CLAFactory
     BooleanCLA          positional;
     IntegerCLA          multiple;
 
+    BooleanCLA          camelCaps;
+    BooleanCLA          metaphone;
+
     StringCLA           instanceClass;
     StringCLA           factoryMethod;
     StringCLA           factoryArgName;
@@ -60,22 +63,22 @@ public class CLAFactory
             type.setRequired(true);
             type.setListCriteria(new String[]
             {
-                TYPE_BEGIN,
-                TYPE_BOOLEAN,
-                TYPE_BYTE,
-                TYPE_STRING,
-                TYPE_INTEGER,
-                TYPE_ENUM,
-                TYPE_LONG,
-                TYPE_DATE,
-                TYPE_PATTERN,
-                TYPE_FLOAT,
-                TYPE_DOUBLE,
-                TYPE_END,
-                TYPE_FILE,
-                TYPE_WILDFILE,
-                TYPE_EQU,
-                TYPE_DEFAULT
+                    TYPE_BEGIN,
+                    TYPE_BOOLEAN,
+                    TYPE_BYTE,
+                    TYPE_STRING,
+                    TYPE_INTEGER,
+                    TYPE_ENUM,
+                    TYPE_LONG,
+                    TYPE_DATE,
+                    TYPE_PATTERN,
+                    TYPE_FLOAT,
+                    TYPE_DOUBLE,
+                    TYPE_END,
+                    TYPE_FILE,
+                    TYPE_WILDFILE,
+                    TYPE_EQU,
+                    TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -96,6 +99,15 @@ public class CLAFactory
             key.setMultiple(1, 2);
             key.setRequired(true);
             factoryParser.add(key);
+
+            camelCaps = new BooleanCLA("camelCaps");
+            camelCaps.setCamelCapsAllowed(true);
+            camelCaps.setMetaphoneAllowed(true);
+            factoryParser.add(camelCaps);
+
+            metaphone = new BooleanCLA("metaphone");
+            metaphone.setMetaphoneAllowed(true);
+            factoryParser.add(metaphone);
 
             multiple = new IntegerCLA('m', "multiple");
             multiple.setMultiple(1, 2);
@@ -160,7 +172,7 @@ public class CLAFactory
     }
 
     public boolean atEnd (final char commandPrefix, final CmdLineCLA group, final String definition)
-        throws ParseException, IOException
+            throws ParseException, IOException
     {
         factoryParser.parse(CommandLineParser.getInstance(commandPrefix, definition));
         if (TYPE_END.equalsIgnoreCase(type.getValue()))
@@ -209,7 +221,7 @@ public class CLAFactory
         if (keyword != null)
             if (Character.isDigit(keyword.charAt(0)))
                 throw new ParseException("The first character of a Key Word can not be a digit \"" + key.getValue(1)
-                    + "\"", -1);
+                        + "\"", -1);
 
         if (TYPE_BEGIN.equalsIgnoreCase(type.getValue()))
         {
@@ -380,12 +392,14 @@ public class CLAFactory
     }
 
     public ICmdLineArg<?> instanceFor (final char commandPrefix, final String definition) throws ParseException,
-        IOException
+            IOException
     {
         factoryParser.parse(definition);
         final ICmdLineArg<?> arg = createArgFor(commandPrefix);
         if (help.hasValue())
             arg.setHelp(help.getValue());
+        arg.setCamelCapsAllowed(camelCaps.getValue().booleanValue());
+        arg.setMetaphoneAllowed(metaphone.getValue().booleanValue());
         arg.setRequired(required.getValue().booleanValue());
         arg.setPositional(positional.getValue().booleanValue());
         arg.setCaseSensitive(caseSensitive.getValue().booleanValue());
@@ -441,7 +455,7 @@ public class CLAFactory
             arg.setListCriteria(critters);
         }
         if (enumList.hasValue())
-            arg.setEnumCriteria(enumList.getValue());
+            arg.setEnumCriteriaAllowError(enumList.getValue());
         /*
          * It is not possible to figure out the values until the parse is given
          * an instance. So stop trying to show the enum constants.

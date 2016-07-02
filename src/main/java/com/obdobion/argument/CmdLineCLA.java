@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class CmdLineCLA extends AbstractCLA<ICmdLine>
 {
@@ -27,11 +27,18 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
+    public void asDefinedType (final StringBuilder sb)
+    {
+        sb.append("begin");
+    }
+
+    @Override
     public ICmdLineArg<ICmdLine> clone ()
             throws CloneNotSupportedException
     {
         final CmdLineCLA clone = (CmdLineCLA) super.clone();
-        clone.templateCmdLine = templateCmdLine.clone();
+        if (templateCmdLine != null)
+            clone.templateCmdLine = templateCmdLine.clone();
         return clone;
     }
 
@@ -40,8 +47,8 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
             final String valueStr,
             final boolean _caseSensitive,
             final Object target)
-            throws ParseException,
-            IOException
+                    throws ParseException,
+                    IOException
     {
         ICmdLine cmdline = null;
         final Object newtarget = null;
@@ -56,12 +63,6 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
             return null;
         }
         return cmdline;
-    }
-
-    @Override
-    public void asDefinedType (StringBuilder sb)
-    {
-        sb.append("should not be called");
     }
 
     @Override
@@ -142,4 +143,11 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     {
         values.clear();
     }
+
+    @Override
+    public String uniqueId ()
+    {
+        return "subparser[" + hashCode() + "]";
+    }
+
 }

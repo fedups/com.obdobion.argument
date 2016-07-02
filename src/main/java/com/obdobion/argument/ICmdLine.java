@@ -9,11 +9,13 @@ import com.obdobion.argument.input.IParserInput;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
 {
     void add (ICmdLineArg<?> arg);
+
+    void add (int index, ICmdLineArg<?> arg);
 
     void addDefaultIncludeDirectory (File directory);
 
@@ -31,6 +33,8 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
 
     String getName ();
 
+    int indexOf (ICmdLineArg<?> arg);
+
     Object parse (IParserInput cmd) throws IOException, ParseException;
 
     Object parse (IParserInput cmd, Object target) throws IOException, ParseException;
@@ -38,6 +42,10 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
     Object parse (Object target, String... args) throws IOException, ParseException;
 
     Object parse (String... args) throws IOException, ParseException;
+
+    void remove (ICmdLineArg<?> arg);
+
+    void remove (int argIndex);
 
     int size ();
 }

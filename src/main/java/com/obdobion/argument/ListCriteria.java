@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  * @param <E>
  */
 public class ListCriteria<E> implements ICmdLineArgCriteria<E>
@@ -17,6 +17,35 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     @Override
+    public void asDefinitionText (StringBuilder sb)
+    {
+        sb.append(" --list");
+        for (final E item : list)
+        {
+            sb.append(" '");
+            sb.append(item.toString());
+            sb.append("'");
+        }
+    }
+
+    @Override
+    public void asSetter (StringBuilder sb)
+    {
+        sb.append(".setListCriteria(new String[] {");
+        boolean firstTime = true;
+        for (final E item : list)
+        {
+            if (!firstTime)
+                sb.append(",");
+            sb.append("\"");
+            sb.append(item.toString());
+            sb.append("\"");
+            firstTime = false;
+        }
+        sb.append("})");
+    }
+
+    @Override
     public ListCriteria<E> clone () throws CloneNotSupportedException
     {
         @SuppressWarnings("unchecked")
@@ -24,6 +53,12 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return clone;
     }
 
+    public List<E> getList ()
+    {
+        return list;
+    }
+
+    @Override
     public boolean isSelected (final Comparable<E> value, final boolean caseSensitive)
     {
         if (!list.isEmpty() && list.get(0) instanceof String && !caseSensitive)
@@ -33,6 +68,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return list.contains(value);
     }
 
+    @Override
     public E normalizeValue (final E value, final boolean caseSensitive)
     {
         E bestSoFar = null;
@@ -91,33 +127,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return value;
     }
 
-    public void asDefinitionText (StringBuilder sb)
-    {
-        sb.append(" --list");
-        for (final E item : list)
-        {
-            sb.append(" '");
-            sb.append(item.toString());
-            sb.append("'");
-        }
-    }
-
-    public void asSetter (StringBuilder sb)
-    {
-        sb.append(".setListCriteria(new String[] {");
-        boolean firstTime = true;
-        for (final E item : list)
-        {
-            if (!firstTime)
-                sb.append(",");
-            sb.append("\"");
-            sb.append(item.toString());
-            sb.append("\"");
-            firstTime = false;
-        }
-        sb.append("})");
-    }
-
+    @Override
     public void usage (final UsageBuilder str, final int indentLevel)
     {
         str.append("Possible choices are: ");

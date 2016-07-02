@@ -1,8 +1,10 @@
 package com.obdobion.argument;
 
+import org.apache.commons.codec.language.Metaphone;
+
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class Token
 {
@@ -18,11 +20,7 @@ public class Token
 
     public Token(final char _commandPrefix, final String _value)
     {
-        this(_commandPrefix,
-                _value,
-                0,
-                _value.length() - 1,
-                false);
+        this(_commandPrefix, _value, 0, _value.length() - 1, false);
     }
 
     public Token(
@@ -107,9 +105,9 @@ public class Token
         return charCommand;
     }
 
-    public boolean isCharCommand (final Character keychar)
+    public boolean isCharCommand (final ICmdLineArg<?> argDef)
     {
-        return keychar != null && isCharCommand() && (charCommand() == keychar.charValue());
+        return argDef.getKeychar() != null && isCharCommand() && (charCommand() == argDef.getKeychar().charValue());
     }
 
     public boolean isCommand ()
@@ -165,18 +163,32 @@ public class Token
         return wordCommand;
     }
 
-    public boolean isWordCommand (final String keyword)
+    public boolean isWordCommand (final ICmdLineArg<?> argDef)
     {
-        if (keyword == null || isUsed() || !isWordCommand() || getValue().length() < 3)
+        if (argDef.getKeyword() == null || isUsed() || !isWordCommand() || getValue().length() < 3)
             return false;
-        if (getWordCommand().length() == keyword.length())
+        if (getWordCommand().length() == argDef.getKeyword().length())
         {
-            if (getWordCommand().equalsIgnoreCase(keyword))
+            if (getWordCommand().equalsIgnoreCase(argDef.getKeyword()))
                 return true;
-        } else if (getWordCommand().length() < keyword.length())
+        } else if (getWordCommand().length() < argDef.getKeyword().length())
         {
-            if (keyword.substring(0, getWordCommand().length()).equalsIgnoreCase(getWordCommand()))
+            if (argDef.getKeyword().substring(0, getWordCommand().length()).equalsIgnoreCase(getWordCommand()))
                 return true;
+            if (argDef.isCamelCapsAllowed())
+                /*
+                 * Check for camel caps
+                 */
+                if (argDef.getCamelCaps() != null)
+                    if (argDef.getCamelCaps().equalsIgnoreCase(getWordCommand()))
+                        return true;
+            if (argDef.isMetaphoneAllowed())
+                /*
+                 * Check for metaphone
+                 */
+                if (argDef.getMetaphone() != null)
+                    if (new Metaphone().metaphone(getWordCommand()).equals(argDef.getMetaphone()))
+                        return true;
         }
         return false;
     }

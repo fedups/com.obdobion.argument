@@ -28,6 +28,8 @@ public interface ICmdLineArg<E>
 
     String defaultInstanceClass ();
 
+    void dontAllowCamelCaps ();
+
     void exportCommandLine (File file) throws IOException;
 
     void exportCommandLine (StringBuilder str);
@@ -39,6 +41,8 @@ public interface ICmdLineArg<E>
     void exportXml (String tag, File file) throws IOException;
 
     void exportXml (StringBuilder str);
+
+    String getCamelCaps ();
 
     ICmdLineArgCriteria<?> getCriteria ();
 
@@ -52,11 +56,15 @@ public interface ICmdLineArg<E>
 
     String getFormat ();
 
+    String getHelp ();
+
     String getInstanceClass ();
 
     Character getKeychar ();
 
     String getKeyword ();
+
+    Object getMetaphone ();
 
     int getMultipleMax ();
 
@@ -98,7 +106,11 @@ public interface ICmdLineArg<E>
 
     boolean hasValue ();
 
+    boolean isCamelCapsAllowed ();
+
     boolean isCaseSensitive ();
+
+    boolean isMetaphoneAllowed ();
 
     boolean isMultiple ();
 
@@ -110,11 +122,17 @@ public interface ICmdLineArg<E>
 
     boolean isRequiredValue ();
 
+    boolean isSystemGenerated ();
+
     void reset ();
+
+    ICmdLineArg<E> resetCriteria ();
 
     int salience (Token word);
 
-    ICmdLineArg<E> setCaseSensitive (boolean bool) throws ParseException;
+    ICmdLineArg<E> setCamelCapsAllowed (boolean bool);
+
+    ICmdLineArg<E> setCaseSensitive (boolean bool);
 
     ICmdLineArg<E> setDefaultValue (String defaultValue) throws ParseException, IOException;
 
@@ -122,17 +140,23 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setEnumCriteriaAllowError (String enumClassName);
 
-    ICmdLineArg<E> setFactoryArgName (String argName) throws ParseException;
+    ICmdLineArg<E> setFactoryArgName (String argName);
 
-    ICmdLineArg<E> setFactoryMethodName (String methodName) throws ParseException;
+    ICmdLineArg<E> setFactoryMethodName (String methodName) throws ParseException;;
 
     ICmdLineArg<E> setFormat (String format) throws ParseException;
 
     ICmdLineArg<E> setHelp (String p_helpString);
 
-    ICmdLineArg<E> setInstanceClass (String p_instanceClassString);
+    ICmdLineArg<E> setInstanceClass (String p_instanceClassString) throws ParseException;;
+
+    ICmdLineArg<E> setKeychar (final Character _keychar);
+
+    ICmdLineArg<E> setKeyword (final String _keyword);
 
     ICmdLineArg<E> setListCriteria (String[] values) throws ParseException, IOException;
+
+    ICmdLineArg<E> setMetaphoneAllowed (boolean bool);
 
     ICmdLineArg<E> setMultiple (boolean bool) throws ParseException;
 
@@ -142,7 +166,7 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setParsed (boolean bool);
 
-    ICmdLineArg<E> setPositional (boolean bool) throws ParseException;
+    ICmdLineArg<E> setPositional (boolean bool);
 
     ICmdLineArg<E> setRangeCriteria (String min, String max) throws ParseException, IOException;
 
@@ -152,6 +176,8 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setRequiredValue (boolean bool) throws ParseException;
 
+    ICmdLineArg<E> setSystemGenerated (boolean bool) throws ParseException;
+
     void setValue (E value);
 
     void setValue (int index, E value);
@@ -159,6 +185,10 @@ public interface ICmdLineArg<E>
     ICmdLineArg<E> setVariable (String p_variableString);
 
     int size ();
+
+    public void uncompile (StringBuilder stringBuilder, boolean showType);
+
+    String uniqueId ();
 
     public void update (E value);
 

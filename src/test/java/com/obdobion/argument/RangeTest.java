@@ -7,7 +7,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class RangeTest
 {
@@ -30,7 +30,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1.0 is not valid for -i", e.getMessage());
+            Assert.assertEquals("-1.0 is not valid for float -i", e.getMessage());
         }
         try
         {
@@ -38,7 +38,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1.0E-5 is not valid for -i", e.getMessage());
+            Assert.assertEquals("-1.0E-5 is not valid for float -i", e.getMessage());
         }
 
     }
@@ -56,7 +56,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1 is not valid for -i", e.getMessage());
+            Assert.assertEquals("-1 is not valid for integer -i", e.getMessage());
         }
 
     }
@@ -74,7 +74,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1 is not valid for -i", e.getMessage());
+            Assert.assertEquals("-1 is not valid for integer -i", e.getMessage());
         }
 
         try
@@ -83,7 +83,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("1001 is not valid for -i", e.getMessage());
+            Assert.assertEquals("1001 is not valid for integer -i", e.getMessage());
         }
 
     }
@@ -102,7 +102,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("android is not valid for -s", e.getMessage());
+            Assert.assertEquals("android is not valid for string -s", e.getMessage());
         }
 
     }
@@ -120,7 +120,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("g is not valid for -s", e.getMessage());
+            Assert.assertEquals("g is not valid for string -s", e.getMessage());
         }
         try
         {
@@ -128,7 +128,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("a is not valid for -s", e.getMessage());
+            Assert.assertEquals("a is not valid for string -s", e.getMessage());
         }
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-s b fam c"));
         try
@@ -137,7 +137,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("famished is not valid for -s", e.getMessage());
+            Assert.assertEquals("famished is not valid for string -s", e.getMessage());
         }
 
     }

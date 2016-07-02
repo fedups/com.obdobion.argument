@@ -10,7 +10,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class RegexTest
 {
@@ -36,7 +36,7 @@ public class RegexTest
             Assert.fail("should have been an Exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("regex is not valid for --type(-t)", e.getMessage());
+            Assert.assertEquals("regex is not valid for string --type(-t)", e.getMessage());
         }
     }
 

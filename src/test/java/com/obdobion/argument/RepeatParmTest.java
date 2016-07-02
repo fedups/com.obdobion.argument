@@ -9,20 +9,21 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class RepeatParmTest
 {
+
+    public int[]    intArray;
+
+    public int      maxUpdates = 0;
+    public String[] someStrings;
+    public boolean  bool;
 
     public RepeatParmTest()
     {
 
     }
-
-    public int[]    intArray;
-    public int      maxUpdates = 0;
-    public String[] someStrings;
-    public boolean  bool;
 
     @Test
     public void repeatedBoolean () throws Exception
@@ -36,13 +37,57 @@ public class RepeatParmTest
     }
 
     @Test
-    public void turnOffLast () throws Exception
+    public void repeatedMultiple () throws Exception
+    {
+
+        someStrings = null;
+        CmdLine cl = new CmdLine();
+        cl.compile("-t String --key s --var someStrings --mult 1");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-s first -s second"), this);
+        Assert.assertEquals("someStrings 0", "first", someStrings[0]);
+        Assert.assertEquals("someStrings 1", "second", someStrings[1]);
+
+    }
+
+    @Test
+    public void repeatedNonMultiple () throws Exception
+    {
+        CmdLine cl = new CmdLine();
+        cl.compile("-t Integer --key m maxUpdates --req --var maxUpdates");
+        try
+        {
+            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m1-!m-m2"), this);
+            Assert.fail("expected exception");
+        } catch (ParseException e)
+        {
+            Assert.assertEquals(
+                    "maxUpdates",
+                    "multiple values not allowed for integer --maxUpdates(-m)",
+                    e.getMessage());
+        }
+
+    }
+
+    @Test
+    public void repeatedPositional () throws Exception
+    {
+
+        someStrings = null;
+        CmdLine cl = new CmdLine();
+        cl.compile("-t String --key s --pos--var someStrings --mult 1");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "first second"), this);
+        Assert.assertEquals("someStrings 0", "first", someStrings[0]);
+        Assert.assertEquals("someStrings 1", "second", someStrings[1]);
+
+    }
+
+    public void testTurnOffIntegerListOnly () throws Exception
     {
 
         CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean --key m --var bool");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m -!m"), this);
-        Assert.assertFalse("bool", bool);
+        cl.compile("-t Integer --key m  -m1 --var intArray ");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-!m"), this);
+        Assert.assertNull("intArray", intArray);
 
     }
 
@@ -69,13 +114,13 @@ public class RepeatParmTest
     }
 
     @Test
-    public void turnOffIntegerOnly () throws Exception
+    public void turnOffIntegerList () throws Exception
     {
 
         CmdLine cl = new CmdLine();
-        cl.compile("-t Integer --key m maxUpdates --var maxUpdates --def '-999'");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-!m"), this);
-        Assert.assertEquals("maxUpdates", -999, maxUpdates);
+        cl.compile("-t Integer --key m  -m1 --var intArray ");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m 1,2,3 -!m"), this);
+        Assert.assertNull("intArray", intArray);
 
     }
 
@@ -91,65 +136,24 @@ public class RepeatParmTest
     }
 
     @Test
-    public void turnOffIntegerList () throws Exception
+    public void turnOffIntegerOnly () throws Exception
     {
 
         CmdLine cl = new CmdLine();
-        cl.compile("-t Integer --key m  -m1 --var intArray ");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m 1,2,3 -!m"), this);
-        Assert.assertNull("intArray", intArray);
-
-    }
-
-    public void testTurnOffIntegerListOnly () throws Exception
-    {
-
-        CmdLine cl = new CmdLine();
-        cl.compile("-t Integer --key m  -m1 --var intArray ");
+        cl.compile("-t Integer --key m maxUpdates --var maxUpdates --def '-999'");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-!m"), this);
-        Assert.assertNull("intArray", intArray);
+        Assert.assertEquals("maxUpdates", -999, maxUpdates);
 
     }
 
     @Test
-    public void repeatedNonMultiple () throws Exception
-    {
-        CmdLine cl = new CmdLine();
-        cl.compile("-t Integer --key m maxUpdates --req --var maxUpdates");
-        try
-        {
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m1-!m-m2"), this);
-            Assert.fail("expected exception");
-        } catch (ParseException e)
-        {
-            Assert.assertEquals("maxUpdates", "multiple values not allowed for --maxUpdates(-m)", e.getMessage());
-        }
-
-    }
-
-    @Test
-    public void repeatedMultiple () throws Exception
+    public void turnOffLast () throws Exception
     {
 
-        someStrings = null;
         CmdLine cl = new CmdLine();
-        cl.compile("-t String --key s --var someStrings --mult 1");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-s first -s second"), this);
-        Assert.assertEquals("someStrings 0", "first", someStrings[0]);
-        Assert.assertEquals("someStrings 1", "second", someStrings[1]);
-
-    }
-
-    @Test
-    public void repeatedPositional () throws Exception
-    {
-
-        someStrings = null;
-        CmdLine cl = new CmdLine();
-        cl.compile("-t String --key s --pos--var someStrings --mult 1");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "first second"), this);
-        Assert.assertEquals("someStrings 0", "first", someStrings[0]);
-        Assert.assertEquals("someStrings 1", "second", someStrings[1]);
+        cl.compile("-t Boolean --key m --var bool");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-m -!m"), this);
+        Assert.assertFalse("bool", bool);
 
     }
 }

@@ -4,7 +4,7 @@
 	<groupId>com.obdobion</groupId>
 	<artifactId>argument</artifactId>
 	<name>argument</name>
-	<version>2.3.47</version>
+	<version>3.0.1</version>
 	<description>A command line parser for Java</description>
     <url>https://github.com/fedup41/argument</url>
     <organization>

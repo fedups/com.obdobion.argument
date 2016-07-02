@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class UsageBuilderVerbose extends UsageBuilder
 {
@@ -16,7 +16,7 @@ public class UsageBuilderVerbose extends UsageBuilder
 
     @Override
     void prettyPrint (
-            final ICmdLine icmdLine)
+        final ICmdLine icmdLine)
     {
         final CmdLine cmdLine = (CmdLine) icmdLine;
         usageHeader((cmdLine).commandPrefix, cmdLine, 0);
@@ -30,10 +30,10 @@ public class UsageBuilderVerbose extends UsageBuilder
      * @param indentLevel
      */
     void showEachOwnedArg (
-            final Iterator<ICmdLineArg<?>> aIter,
-            final char commandPrefix,
-            final ICmdLineArg<?> cmdLine,
-            final int indentLevel)
+        final Iterator<ICmdLineArg<?>> aIter,
+        final char commandPrefix,
+        final ICmdLineArg<?> cmdLine,
+        final int indentLevel)
     {
         int cnt = 0;
         while (aIter.hasNext())
@@ -58,18 +58,18 @@ public class UsageBuilderVerbose extends UsageBuilder
     }
 
     void usageDetail (
-            final char commandPrefix,
-            final CmdLineCLA cmdLine,
-            final int indentLevel)
+        final char commandPrefix,
+        final CmdLineCLA cmdLine,
+        final int indentLevel)
     {
         usageDetail(commandPrefix, ((ICmdLineArg<?>) cmdLine), indentLevel);
         showEachOwnedArg((cmdLine.templateCmdLine).allArgs().iterator(), commandPrefix, cmdLine, indentLevel);
     }
 
     void usageDetail (
-            final char commandPrefix,
-            final ICmdLineArg<?> arg,
-            int _indentLevel)
+        final char commandPrefix,
+        final ICmdLineArg<?> arg,
+        final int _indentLevel)
     {
         int indentLevel = _indentLevel;
 
@@ -80,17 +80,22 @@ public class UsageBuilderVerbose extends UsageBuilder
         if (!arg.isPositional())
         {
             if (arg.getKeyword() != null)
+            {
                 if (arg.getKeychar() != null && arg.getKeychar().charValue() != ' ')
                     append(""
-                            + commandPrefix
-                            + arg.getKeychar().charValue()
-                            + " "
-                            + commandPrefix
-                            + commandPrefix
-                            + arg.getKeyword());
+                        + commandPrefix
+                        + arg.getKeychar().charValue()
+                        + " "
+                        + commandPrefix
+                        + commandPrefix
+                        + arg.getKeyword());
                 else
                     append("" + commandPrefix + commandPrefix + arg.getKeyword());
-
+                if (arg.isCamelCapsAllowed())
+                    append(" " + commandPrefix + commandPrefix + arg.getCamelCaps());
+                if (arg.isMetaphoneAllowed())
+                    append(" " + commandPrefix + commandPrefix + arg.getMetaphone());
+            }
             else if (arg.getKeychar() != null && arg.getKeychar().charValue() != ' ')
                 append("" + commandPrefix + arg.getKeychar().charValue());
             else
@@ -118,7 +123,7 @@ public class UsageBuilderVerbose extends UsageBuilder
         if (!arg.isRequired())
             append("]");
 
-        String help = ((AbstractCLA<?>) arg).getHelp();
+        final String help = ((AbstractCLA<?>) arg).getHelp();
 
         newLine(++indentLevel);
         if (help != null && help.trim().length() > 0)
@@ -131,7 +136,7 @@ public class UsageBuilderVerbose extends UsageBuilder
 
         if (((AbstractCLA<?>) arg).getFormat() != null)
             newLine(indentLevel).append("The value must adhere to \"").append(
-                    ((AbstractCLA<?>) arg).getFormat() + "\".");
+                ((AbstractCLA<?>) arg).getFormat() + "\".");
     }
 
     /**
@@ -140,9 +145,9 @@ public class UsageBuilderVerbose extends UsageBuilder
      * @param indentLevel
      */
     void usageDetailModifiers (
-            final char commandPrefix,
-            final ICmdLineArg<?> arg,
-            final int indentLevel)
+        final char commandPrefix,
+        final ICmdLineArg<?> arg,
+        final int indentLevel)
     {
 
         final String n = arg.getClass().getSimpleName();
@@ -156,27 +161,27 @@ public class UsageBuilderVerbose extends UsageBuilder
             if (arg.getMultipleMax() == Integer.MAX_VALUE)
                 if (arg.isRequired())
                     newLine(indentLevel).append(
-                            "Although multiple values are allowed, you must specify at least " + arg.getMultipleMin()
-                                    + ".");
+                        "Although multiple values are allowed, you must specify at least " + arg.getMultipleMin()
+                            + ".");
                 else
                     newLine(indentLevel).append(
-                            "Although no value is required, if you specify one you must specify at least "
-                                    + arg.getMultipleMin() + ".");
+                        "Although no value is required, if you specify one you must specify at least "
+                            + arg.getMultipleMin() + ".");
             else
             {
                 if (arg.isRequired())
                     newLine(indentLevel).append("It is required that you specify at least "
+                        + arg.getMultipleMin()
+                        + " and at most "
+                        + arg.getMultipleMax()
+                        + " values.");
+                else
+                    newLine(indentLevel).append(
+                        "Although no value is required, if you specify one you must specify at least "
                             + arg.getMultipleMin()
                             + " and at most "
                             + arg.getMultipleMax()
                             + " values.");
-                else
-                    newLine(indentLevel).append(
-                            "Although no value is required, if you specify one you must specify at least "
-                                    + arg.getMultipleMin()
-                                    + " and at most "
-                                    + arg.getMultipleMax()
-                                    + " values.");
             }
         }
 
@@ -216,9 +221,9 @@ public class UsageBuilderVerbose extends UsageBuilder
      * @param indentLevel
      */
     void usageHeader (
-            final char commandPrefix,
-            final ICmdLine icmdLine,
-            final int indentLevel)
+        final char commandPrefix,
+        final ICmdLine icmdLine,
+        final int indentLevel)
     {
         final CmdLine commandLineParser = (CmdLine) icmdLine;
 

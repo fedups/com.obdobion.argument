@@ -10,27 +10,20 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class DateTest
 {
 
-    public Date   date;
-
-    public DateTest()
-    {
-
-    }
-
     static private void assertValidReturnDate (
-        final Calendar returnCal,
-        final int year,
-        final int month,
+            final Calendar returnCal,
+            final int year,
+            final int month,
             final int _date,
-        final int hour,
-        final int minute,
-        final int second,
-        final int millisecond)
+            final int hour,
+            final int minute,
+            final int second,
+            final int millisecond)
     {
         Assert.assertEquals(year, returnCal.get(Calendar.YEAR));
         Assert.assertEquals(month, returnCal.get(Calendar.MONTH));
@@ -41,9 +34,16 @@ public class DateTest
         Assert.assertEquals(millisecond, returnCal.get(Calendar.MILLISECOND));
     }
 
+    public Date date;
+
+    public DateTest()
+    {
+
+    }
+
     @Test
     public void dateDirectiveAbsDay ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -58,13 +58,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveAbsMin ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5min)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5min)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -74,13 +75,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveAbsMonth ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5MONTH)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5MONTH)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -90,13 +92,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveAbsMs ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5ms)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5ms)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -106,13 +109,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveAbsSec ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5sec)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5sec)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -122,14 +126,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveAbsYear ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =2011YEAR)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -139,13 +143,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveBeginOfYesterday ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =bd)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =bd)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -155,13 +160,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveEndOfYesterday ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =ed)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =ed)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -171,13 +177,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusDay ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016 -1day -1day)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016 -1day -1day)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -187,14 +194,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusMin ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5minutes)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -204,14 +211,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusMonth ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5Months)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -221,13 +228,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusMs ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5ms)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5ms)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -237,14 +245,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusSec ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5seconds)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -254,13 +262,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusWeekOfYear ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(12/30/2010@13:14:15.016 -5w)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(12/30/2010@13:14:15.016 -5w)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -270,13 +279,14 @@ public class DateTest
 
     @Test
     public void dateDirectiveMinusYear ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5YEARS)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5YEARS)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -286,7 +296,7 @@ public class DateTest
 
     @Test
     public void dateDirectiveNowMinus5Min ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -297,7 +307,7 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusDay ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -312,14 +322,14 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusMin ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5minutes)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -329,13 +339,14 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusMonth ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5mon)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5mon)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -345,13 +356,14 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusMs ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +34l)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +34l)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -361,14 +373,14 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusSec ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
         cl.parse(
                 CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5seconds)"),
-            this);
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -378,13 +390,14 @@ public class DateTest
 
     @Test
     public void dateDirectivePlusYear ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5y)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5y)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -394,7 +407,7 @@ public class DateTest
 
     @Test
     public void dateDirectiveWithoutAdj ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -409,13 +422,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveBMin ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMin)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMin)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -425,13 +439,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveBOD ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BDay)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BDay)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -441,13 +456,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveBOM ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMON)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMON)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -457,13 +473,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveBOY ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =By)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =By)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -473,13 +490,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveEHour ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EHour)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EHour)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -489,13 +507,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveEMin ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMin)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMin)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -505,13 +524,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveEOD ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EDay)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EDay)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -521,13 +541,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveEOM ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMon)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMon)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -537,13 +558,14 @@ public class DateTest
 
     @Test
     public void dateTimeDirectiveEOY ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EY)"),
-            this);
+        cl.parse(
+                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EY)"),
+                this);
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -565,13 +587,13 @@ public class DateTest
 
         } catch (final Exception e)
         {
-            Assert.assertEquals("-r yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
+            Assert.assertEquals("date -r yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
         }
     }
 
     @Test
     public void lastWeekSat ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -586,7 +608,7 @@ public class DateTest
 
     @Test
     public void nextWeekSat ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -601,7 +623,7 @@ public class DateTest
 
     @Test
     public void predefined_fullTime ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -616,7 +638,7 @@ public class DateTest
 
     @Test
     public void predefined_fullTime_underbar ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -631,7 +653,7 @@ public class DateTest
 
     @Test
     public void predefined_hh ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -646,7 +668,7 @@ public class DateTest
 
     @Test
     public void predefined_hhmm ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -661,7 +683,7 @@ public class DateTest
 
     @Test
     public void predefined_hhmmss ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -676,7 +698,7 @@ public class DateTest
 
     @Test
     public void predefined_hhmmss_1digit ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -691,7 +713,7 @@ public class DateTest
 
     @Test
     public void predefined_HourOnly ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -700,13 +722,21 @@ public class DateTest
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertValidReturnDate(cal, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 17, 0, 0, 0);
+        assertValidReturnDate(
+                cal,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DATE),
+                17,
+                0,
+                0,
+                0);
 
     }
 
     @Test
     public void predefined_mdy ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -721,7 +751,7 @@ public class DateTest
 
     @Test
     public void predefined_mdy2 ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -736,7 +766,7 @@ public class DateTest
 
     @Test
     public void predefined_now ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -745,20 +775,21 @@ public class DateTest
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertValidReturnDate(cal,
-            cal.get(Calendar.YEAR),
-            cal.get(Calendar.MONTH),
-            cal.get(Calendar.DATE),
-            cal.get(Calendar.HOUR_OF_DAY),
-            cal.get(Calendar.MINUTE),
-            cal.get(Calendar.SECOND),
-            cal.get(Calendar.MILLISECOND));
+        assertValidReturnDate(
+                cal,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DATE),
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                cal.get(Calendar.SECOND),
+                cal.get(Calendar.MILLISECOND));
 
     }
 
     @Test
     public void predefined_TimeOnly ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -767,20 +798,21 @@ public class DateTest
 
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertValidReturnDate(cal,
-            cal.get(Calendar.YEAR),
-            cal.get(Calendar.MONTH),
-            cal.get(Calendar.DATE),
-            23,
-            59,
-            59,
-            999);
+        assertValidReturnDate(
+                cal,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DATE),
+                23,
+                59,
+                59,
+                999);
 
     }
 
     @Test
     public void predefined_today ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -795,7 +827,7 @@ public class DateTest
 
     @Test
     public void predefined_ymd ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -810,7 +842,7 @@ public class DateTest
 
     @Test
     public void predefined_ymd2 ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -837,14 +869,14 @@ public class DateTest
 
         } catch (final Exception e)
         {
-            Assert.assertEquals("-r is not in a predefined date / time format (208-04-09)", e.getMessage());
+            Assert.assertEquals("date -r is not in a predefined date / time format (208-04-09)", e.getMessage());
         }
 
     }
 
     @Test
     public void thisWeekMon ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -859,7 +891,7 @@ public class DateTest
 
     @Test
     public void thisWeekSat ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -874,7 +906,7 @@ public class DateTest
 
     @Test
     public void valid ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -890,7 +922,7 @@ public class DateTest
 
     @Test
     public void validWithTime ()
-        throws Exception
+            throws Exception
     {
 
         final CmdLine cl = new CmdLine();
