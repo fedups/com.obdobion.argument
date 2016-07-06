@@ -920,8 +920,9 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         }
         if (getFactoryArgName() != null)
         {
-            sb.append(" --factoryArgName ");
+            sb.append(" --factoryArgName '");
             sb.append(getFactoryArgName());
+            sb.append("'");
         }
         if (getVariable() != null)
         {
