@@ -121,7 +121,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public ICmdLineArg<E> clone ()
-            throws CloneNotSupportedException
+        throws CloneNotSupportedException
     {
         @SuppressWarnings("unchecked")
         final AbstractCLA<E> clone = (AbstractCLA<E>) super.clone();
@@ -141,7 +141,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     abstract public E convert (String valueStr, boolean _caseSensitive, Object target)
-            throws ParseException, IOException;
+        throws ParseException, IOException;
 
     @Override
     public String defaultInstanceClass ()
@@ -162,14 +162,14 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public void exportCommandLine (
-            final File file)
+        final File file)
     {
         // only the cmdline should implement this
     }
 
     @Override
     public void exportCommandLine (
-            final StringBuilder out)
+        final StringBuilder out)
     {
         if (!isPositional())
             if (keychar != null)
@@ -193,7 +193,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public void exportNamespace (
-            final File file)
+        final File file)
     {
         // only the cmdline should implement this
     }
@@ -218,21 +218,21 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     abstract protected void exportNamespaceData (
-            String prefix,
-            StringBuilder str,
-            int occ);
+        String prefix,
+        StringBuilder str,
+        int occ);
 
     @Override
     public void exportXml (
-            final String tag,
-            final File file)
+        final String tag,
+        final File file)
     {
         // only the cmdline should implement this
     }
 
     @Override
     public void exportXml (
-            final StringBuilder out)
+        final StringBuilder out)
     {
         /*
          * Never write a multiple value xml tag with a delim since we can't
@@ -363,7 +363,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public E getValue (
-            final int index)
+        final int index)
     {
         if (index < 0 || values == null || values.size() == 0)
             if (defaultValues != null && defaultValues.size() > index)
@@ -550,7 +550,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public int salience (
-            final Token token)
+        final Token token)
     {
         if (token.isCharCommand(this))
             return 1;
@@ -577,7 +577,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     {
         if (criteria != null)
         {
-            StringBuilder sb = new StringBuilder();
+            final StringBuilder sb = new StringBuilder();
             sb.append("Only one criteria is allowed for \"");
             sb.append(toString());
             sb.append("\", found \"");
@@ -604,7 +604,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public ICmdLineArg<E> setDefaultValues (final String[] defaults)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         for (final String default1 : defaults)
             getDefaultValues().add(convert(default1, caseSensitive, null));
@@ -613,7 +613,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public ICmdLineArg<E> setEnumCriteria (final String _enumClassName)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         this.enumClassName = _enumClassName;
         Class<?> enumClass;
@@ -622,16 +622,14 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
             enumClass = getClass().getClassLoader().loadClass(_enumClassName);
         } catch (final ClassNotFoundException e)
         {
-            throw new ParseException("Enum class not found: " + e.getMessage(),
-                    0);
+            throw new ParseException("Enum class not found: " + e.getMessage(), 0);
         }
 
         final List<E> list = new ArrayList<>();
         if (!enumClass.isEnum())
-            throw new ParseException("Enum class expected, found " + enumClass.getName(),
-                    0);
+            throw new ParseException("Enum class expected, found " + enumClass.getName(), 0);
         final Object[] constants = enumClass.getEnumConstants();
-        for (Object constant : constants)
+        for (final Object constant : constants)
         {
             final String econst = constant.toString();
             list.add(convert(econst, true, null));
@@ -663,23 +661,19 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     @Override
     public ICmdLineArg<E> setFactoryMethodName (final String instantiatorName) throws ParseException
     {
-        if (instanceClass != null)
-            throw new ParseException("--class and --factoryMethod can not be used together", 0);
         this.factoryMethodName = instantiatorName;
         return this;
     }
 
     @Override
-    public ICmdLineArg<E> setFormat (
-            final String _format)
+    public ICmdLineArg<E> setFormat (final String _format)
     {
         this.format = _format;
         return this;
     }
 
     @Override
-    public ICmdLineArg<E> setHelp (
-            final String helpString)
+    public ICmdLineArg<E> setHelp (final String helpString)
     {
         help = helpString;
         return this;
@@ -688,8 +682,6 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     @Override
     public ICmdLineArg<E> setInstanceClass (final String _instanceClass) throws ParseException
     {
-        if (factoryMethodName != null)
-            throw new ParseException("--class and --factoryMethod can not be used together", 0);
         this.instanceClass = _instanceClass;
         return this;
     }
@@ -712,7 +704,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public ICmdLineArg<E> setListCriteria (final String[] arrayOfValidValues)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         final List<E> list = new ArrayList<>();
         for (final String arrayOfValidValue : arrayOfValidValues)
@@ -767,7 +759,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public ICmdLineArg<E> setRangeCriteria (final String min, final String max)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         setCriteria(new RangedCriteria<>(convert(min), convert(max)));
         return this;
@@ -791,8 +783,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public ICmdLineArg<E> setRequiredValue (final boolean bool) throws ParseException
     {
         if (!bool)
-            throw new ParseException("requiredValue must be true for type: " + getClass().getName(),
-                    -1);
+            throw new ParseException("requiredValue must be true for type: " + getClass().getName(), -1);
         requiredValue = bool;
         return this;
     }
@@ -806,7 +797,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public void setValue (
-            final E value)
+        final E value)
     {
         setParsed(true);
         getValues().add(value);
@@ -820,21 +811,21 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     public void setValue (
-            final List<E> value)
+        final List<E> value)
     {
         setParsed(true);
         getValues().addAll(value);
     }
 
     protected void setValues (
-            final List<E> _values)
+        final List<E> _values)
     {
         this.values = _values;
     }
 
     @Override
     public ICmdLineArg<E> setVariable (
-            final String _variable)
+        final String _variable)
     {
         this.variable = _variable;
         return this;
@@ -849,7 +840,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     @Override
     public String toString ()
     {
-        StringBuilder sb = new StringBuilder();
+        final StringBuilder sb = new StringBuilder();
         asDefinedType(sb);
         sb.append(" ");
         if (keyword != null)
@@ -967,15 +958,15 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     @Override
     public void update (
-            final E value)
+        final E value)
     {
         update(0, value);
     }
 
     @Override
     public void update (
-            final int index,
-            final E value)
+        final int index,
+        final E value)
     {
         setParsed(true);
         if (index >= size())
@@ -992,8 +983,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     protected void xmlEncode (
-            final String in,
-            final StringBuilder builder)
+        final String in,
+        final StringBuilder builder)
     {
         if (!CDATA_NOTNEEDED.matcher(in).matches())
             builder.append("<![CDATA[").append(in).append("]]>");
