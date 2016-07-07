@@ -172,7 +172,7 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setRegxCriteria (String pattern) throws ParseException;
 
-    ICmdLineArg<E> setRequired (boolean bool) throws ParseException;
+    ICmdLineArg<E> setRequired (boolean bool);
 
     ICmdLineArg<E> setRequiredValue (boolean bool) throws ParseException;
 

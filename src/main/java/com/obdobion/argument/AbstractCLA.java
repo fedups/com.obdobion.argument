@@ -773,7 +773,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     @Override
-    public ICmdLineArg<E> setRequired (final boolean bool) throws ParseException
+    public ICmdLineArg<E> setRequired (final boolean bool)
     {
         required = bool;
         return this;
