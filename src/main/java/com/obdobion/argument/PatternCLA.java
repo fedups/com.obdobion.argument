@@ -6,7 +6,7 @@ import java.util.regex.PatternSyntaxException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class PatternCLA extends AbstractCLA<ComparablePattern>
 {
@@ -26,37 +26,14 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType (final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_PATTERN);
     }
 
     @Override
-    public Pattern[] getValueAsPatternArray () throws ParseException
-    {
-        final Pattern[] result = new Pattern[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r).delegate;
-
-        return result;
-    }
-
-    @Override
-    public Pattern getValueAsPattern () throws ParseException
-    {
-        return getValue().delegate;
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "java.util.regex.Pattern";
-    }
-
-    @Override
     public ComparablePattern convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         try
         {
@@ -67,6 +44,12 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
         {
             throw new ParseException(pse.getMessage(), 0);
         }
+    }
+
+    @Override
+    public String defaultInstanceClass ()
+    {
+        return "java.util.regex.Pattern";
     }
 
     @Override
@@ -90,5 +73,34 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).pattern(), out);
+    }
+
+    @Override
+    public Object getDelegateOrValue ()
+    {
+        return getValue().delegate;
+    }
+
+    @Override
+    public Object getDelegateOrValue (final int occurrence)
+    {
+        return getValue(occurrence).delegate;
+    }
+
+    @Override
+    public Pattern getValueAsPattern () throws ParseException
+    {
+        return getValue().delegate;
+    }
+
+    @Override
+    public Pattern[] getValueAsPatternArray () throws ParseException
+    {
+        final Pattern[] result = new Pattern[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).delegate;
+
+        return result;
     }
 }

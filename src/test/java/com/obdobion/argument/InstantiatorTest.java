@@ -236,7 +236,14 @@ public class InstantiatorTest
     @Test
     public void enumKey () throws Exception
     {
-
+        /*
+         * This is the only known time when --enumlist is actually needed.
+         * Otherwise the list of possible enum names can be determined from
+         * either the instance variable type of the instanceClass argument. In
+         * this case, neither of these can be used to know that an enum is
+         * involved and the enumlist provide a set of values that the input will
+         * be normalized, verified too.
+         */
         final CmdLine cl = new CmdLine();
         cl.compile("-t enum -k i --var suits -m1 --factoryM com.obdobion.argument.InstantiatorTest$Finder.find --enumlist "
             + Suit.class.getName()

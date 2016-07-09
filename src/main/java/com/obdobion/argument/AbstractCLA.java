@@ -280,6 +280,16 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return defaultValues;
     }
 
+    public Object getDelegateOrValue ()
+    {
+        return getValue();
+    }
+
+    public Object getDelegateOrValue (final int occurrence)
+    {
+        return getValue(occurrence);
+    }
+
     @Override
     public String getEnumClassName ()
     {
@@ -874,7 +884,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         {
             if (getKeychar() != null && getKeychar() != ' ')
                 sb.append(" ");
-            sb.append(getKeyword());
+
+            uncompileQuoter(sb, getKeyword());
         }
         if (isPositional())
             sb.append(" -p");
@@ -888,9 +899,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
             sb.append(" --metaphone");
         if (getHelp() != null && getHelp().trim().length() != 0)
         {
-            sb.append(" -h '");
-            sb.append(getHelp().replaceAll("'", "\\\\'"));
-            sb.append("'");
+            sb.append(" -h ");
+            uncompileQuoter(sb, getHelp());
         }
         final List<?> defaults = getDefaultValues();
         if (defaults.size() > 0 && !(this instanceof BooleanCLA))
@@ -898,57 +908,70 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
             sb.append(" -d");
             for (final Object oneDefault : defaults)
             {
-                sb.append(" '");
-                sb.append(oneDefault.toString().replaceAll("'", "\\\\'"));
-                sb.append("'");
+                sb.append(" ");
+                if (this instanceof ByteCLA)
+                    sb.append(ByteCLA.byteToLit(oneDefault.toString()));
+                else
+                {
+                    uncompileQuoter(sb, oneDefault.toString());
+                }
             }
-        }
-        if (getEnumClassName() != null)
-        {
-            sb.append(" --enumlist ");
-            sb.append(getEnumClassName());
         }
         if (getInstanceClass() != null)
         {
             sb.append(" --class ");
-            sb.append(getInstanceClass());
+            uncompileQuoter(sb, getInstanceClass());
         }
         if (getFactoryMethodName() != null)
         {
             sb.append(" --factoryMethod ");
-            sb.append(getFactoryMethodName());
+            uncompileQuoter(sb, getFactoryMethodName());
         }
         if (getFactoryArgName() != null)
         {
-            sb.append(" --factoryArgName '");
-            sb.append(getFactoryArgName());
-            sb.append("'");
+            sb.append(" --factoryArgName ");
+            uncompileQuoter(sb, getFactoryArgName());
         }
         if (getVariable() != null)
         {
             sb.append(" -v ");
-            sb.append(getVariable());
+            uncompileQuoter(sb, getVariable());
         }
         if (getFormat() != null)
         {
-            sb.append(" -f '");
-            sb.append(getFormat().replaceAll("'", "\\\\'"));
-            sb.append("'");
+            sb.append(" -f ");
+            uncompileQuoter(sb, getFormat());
         }
         if (isMultiple())
         {
             sb.append(" -m ");
-            sb.append(getMultipleMin());
+            uncompileQuoter(sb, "" + getMultipleMin());
             if (getMultipleMax() != Integer.MAX_VALUE)
             {
                 sb.append(" ");
-                sb.append(getMultipleMax());
+                uncompileQuoter(sb, "" + getMultipleMax());
             }
         }
-        if (!(this instanceof BooleanCLA) && getCriteria() != null)
+        /*
+         * The enumList argument sets a --list criteria that should be ignored
+         * for uncompiling.
+         */
+        if (getEnumClassName() != null)
+        {
+            sb.append(" --enumlist ");
+            uncompileQuoter(sb, getEnumClassName());
+
+        } else if (!(this instanceof BooleanCLA) && getCriteria() != null)
         {
             getCriteria().asDefinitionText(sb);
         }
+    }
+
+    private void uncompileQuoter (final StringBuilder sb, final String value)
+    {
+        sb.append("'");
+        sb.append(value.replaceAll("'", "\\\\'").replaceAll("\"", "\\\\\""));
+        sb.append("'");
     }
 
     @Override

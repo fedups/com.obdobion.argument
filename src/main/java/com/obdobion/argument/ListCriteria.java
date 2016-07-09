@@ -17,7 +17,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     @Override
-    public void asDefinitionText (StringBuilder sb)
+    public void asDefinitionText (final StringBuilder sb)
     {
         sb.append(" --list");
         for (final E item : list)
@@ -29,7 +29,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     @Override
-    public void asSetter (StringBuilder sb)
+    public void asSetter (final StringBuilder sb)
     {
         sb.append(".setListCriteria(new String[] {");
         boolean firstTime = true;
@@ -125,6 +125,14 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
          * This will most likely cause a validation error later.
          */
         return value;
+    }
+
+    @Override
+    public String toString ()
+    {
+        if (list == null)
+            return "null list";
+        return list.toString();
     }
 
     @Override

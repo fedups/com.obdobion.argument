@@ -845,6 +845,24 @@ public class CmdLine implements ICmdLine, Cloneable
         return null;
     }
 
+    public Object getDelegateOrValue ()
+    {
+        /*
+         * This is only here as a place-holder so that this class can be a sub
+         * command line as well as a top level.
+         */
+        return null;
+    }
+
+    public Object getDelegateOrValue (final int occurrence)
+    {
+        /*
+         * This is only here as a place-holder so that this class can be a sub
+         * command line as well as a top level.
+         */
+        return null;
+    }
+
     int getDepth ()
     {
         return depth;

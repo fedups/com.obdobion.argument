@@ -75,6 +75,18 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     }
 
     @Override
+    public Object getDelegateOrValue ()
+    {
+        return getValue().delegate;
+    }
+
+    @Override
+    public Object getDelegateOrValue (final int occurrence)
+    {
+        return getValue(occurrence).delegate;
+    }
+
+    @Override
     public Equ getValueAsEquation () throws ParseException
     {
         return getValue().delegate;
