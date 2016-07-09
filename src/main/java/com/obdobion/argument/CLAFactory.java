@@ -63,22 +63,22 @@ public class CLAFactory
             type.setRequired(true);
             type.setListCriteria(new String[]
             {
-                    TYPE_BEGIN,
-                    TYPE_BOOLEAN,
-                    TYPE_BYTE,
-                    TYPE_STRING,
-                    TYPE_INTEGER,
-                    TYPE_ENUM,
-                    TYPE_LONG,
-                    TYPE_DATE,
-                    TYPE_PATTERN,
-                    TYPE_FLOAT,
-                    TYPE_DOUBLE,
-                    TYPE_END,
-                    TYPE_FILE,
-                    TYPE_WILDFILE,
-                    TYPE_EQU,
-                    TYPE_DEFAULT
+                TYPE_BEGIN,
+                TYPE_BOOLEAN,
+                TYPE_BYTE,
+                TYPE_STRING,
+                TYPE_INTEGER,
+                TYPE_ENUM,
+                TYPE_LONG,
+                TYPE_DATE,
+                TYPE_PATTERN,
+                TYPE_FLOAT,
+                TYPE_DOUBLE,
+                TYPE_END,
+                TYPE_FILE,
+                TYPE_WILDFILE,
+                TYPE_EQU,
+                TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -172,7 +172,7 @@ public class CLAFactory
     }
 
     public boolean atEnd (final char commandPrefix, final CmdLineCLA group, final String definition)
-            throws ParseException, IOException
+        throws ParseException, IOException
     {
         factoryParser.parse(CommandLineParser.getInstance(commandPrefix, definition));
         if (TYPE_END.equalsIgnoreCase(type.getValue()))
@@ -220,8 +220,9 @@ public class CLAFactory
             throw new ParseException("The Key Character can not be a digit \"" + key.getValue(0) + "\"", -1);
         if (keyword != null)
             if (Character.isDigit(keyword.charAt(0)))
-                throw new ParseException("The first character of a Key Word can not be a digit \"" + key.getValue(1)
-                        + "\"", -1);
+                throw new ParseException("The first character of a Key Word can not be a digit \""
+                    + key.getValue(1)
+                    + "\"", -1);
 
         if (TYPE_BEGIN.equalsIgnoreCase(type.getValue()))
         {
@@ -392,7 +393,7 @@ public class CLAFactory
     }
 
     public ICmdLineArg<?> instanceFor (final char commandPrefix, final String definition) throws ParseException,
-            IOException
+        IOException
     {
         factoryParser.parse(definition);
         final ICmdLineArg<?> arg = createArgFor(commandPrefix);
@@ -414,8 +415,6 @@ public class CLAFactory
             arg.setVariable(variable.getValue());
         if (instanceClass.hasValue())
         {
-            if (!(arg instanceof CmdLineCLA) || factoryMethod.hasValue())
-                throw new ParseException("--class is not valid for " + arg.toString(), 0);
             arg.setInstanceClass(instanceClass.getValue());
         }
         if (factoryMethod.hasValue())

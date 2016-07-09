@@ -2,7 +2,7 @@ package com.obdobion.argument;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class ByteCLA extends AbstractCLA<Byte>
 {
@@ -11,37 +11,61 @@ public class ByteCLA extends AbstractCLA<Byte>
      * index.
      */
     static public final String[] ByteLiteral =
-                                             {
-            "null", "soh", "stx", "etx", "eot", "enq", "ack", "bel", "bs", "ht",
-            "lf", "vt", "ff", "cr", "so", "si", "dle", "dc1", "dc2", "dc3", "dc4", "nak", "syn", "etb", "can", "em",
-            "sub", "esc", "fs", "gs", "rs", "us", "sp"
-                                             };
+    {
+        "null",
+        "soh",
+        "stx",
+        "etx",
+        "eot",
+        "enq",
+        "ack",
+        "bel",
+        "bs",
+        "ht",
+        "lf",
+        "vt",
+        "ff",
+        "cr",
+        "so",
+        "si",
+        "dle",
+        "dc1",
+        "dc2",
+        "dc3",
+        "dc4",
+        "nak",
+        "syn",
+        "etb",
+        "can",
+        "em",
+        "sub",
+        "esc",
+        "fs",
+        "gs",
+        "rs",
+        "us",
+        "sp"
+    };
+
+    static public String asLiteral (final byte aByte)
+    {
+        if (aByte < ByteLiteral.length)
+            return ByteLiteral[aByte] + "(" + (int) aByte + ")";
+        return (char) aByte + "(" + (int) aByte + ")";
+    }
+
+    static public String byteToLit (final String number)
+    {
+        final byte aByte = (byte) Integer.parseInt(number);
+
+        if (aByte < ByteLiteral.length)
+            return ByteLiteral[aByte];
+        return "" + (int) aByte;
+    }
 
     public ByteCLA(final char _keychar)
     {
         super(_keychar);
-    }
-
-    @Override
-    public byte[] getValueAsbyteArray ()
-    {
-        final byte[] result = new byte[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r).byteValue();
-
-        return result;
-    }
-
-    @Override
-    public Byte[] getValueAsByteArray ()
-    {
-        final Byte[] result = new Byte[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
     }
 
     public ByteCLA(final char _keychar, final String _keyword)
@@ -55,22 +79,9 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    public String defaultInstanceClass ()
-    {
-        return "byte";
-    }
-
-    @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType (final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_BYTE);
-    }
-
-    static public String asLiteral (byte aByte)
-    {
-        if (aByte < ByteLiteral.length)
-            return ByteLiteral[aByte] + "(" + (int) aByte + ")";
-        return (char) aByte + "(" + (int) aByte + ")";
     }
 
     @Override
@@ -91,9 +102,9 @@ public class ByteCLA extends AbstractCLA<Byte>
         try
         {
             intValue = Integer.parseInt(valueStr);
-        } catch (NumberFormatException e)
+        } catch (final NumberFormatException e)
         {
-            StringBuilder errMsg = new StringBuilder();
+            final StringBuilder errMsg = new StringBuilder();
             errMsg.append(valueStr);
             errMsg.append(" is not a valid byte code.  Try one of these codes or the corresponding number: ");
             for (int b = 0; b < ByteLiteral.length; b++)
@@ -108,6 +119,12 @@ public class ByteCLA extends AbstractCLA<Byte>
         if (intValue > 0xff)
             throw new NumberFormatException(intValue + " is too large, max = 255");
         return new Byte((byte) intValue);
+    }
+
+    @Override
+    public String defaultInstanceClass ()
+    {
+        return "byte";
     }
 
     @Override
@@ -131,5 +148,27 @@ public class ByteCLA extends AbstractCLA<Byte>
     protected void exportXmlData (final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
+    }
+
+    @Override
+    public byte[] getValueAsbyteArray ()
+    {
+        final byte[] result = new byte[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).byteValue();
+
+        return result;
+    }
+
+    @Override
+    public Byte[] getValueAsByteArray ()
+    {
+        final Byte[] result = new Byte[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

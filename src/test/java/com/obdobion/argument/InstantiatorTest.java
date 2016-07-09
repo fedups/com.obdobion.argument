@@ -17,7 +17,7 @@ public class InstantiatorTest
     static abstract public class AbstractColor
     {
 
-        static public AbstractColor create (String name)
+        static public AbstractColor create (final String name)
         {
 
             if ("red".equals(name))
@@ -69,16 +69,16 @@ public class InstantiatorTest
 
     public enum Suit
     {
-        HEARTS,
-        SPADES,
-        CLUBS,
-        DIAMONDS
+            HEARTS,
+            SPADES,
+            CLUBS,
+            DIAMONDS
     }
 
     public static class SuitFinder extends Finder
     {
 
-        public SuitFinder(String key)
+        public SuitFinder(final String key)
         {
 
             value = key;
@@ -153,8 +153,7 @@ public class InstantiatorTest
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile(
-                "-t string -k i --var arrayFinder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find -m1");
+        cl.compile("-t string -k i --var arrayFinder --factoryM com.obdobion.argument.InstantiatorTest$Finder.find -m1");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT WHEN WHERE"), this);
         Assert.assertNotNull("arrayFinder instance is null", arrayFinder);
         Assert.assertEquals("arrayFinderSize", 3, arrayFinder.length);
@@ -176,9 +175,8 @@ public class InstantiatorTest
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals(
-                    "NoSuchMethodException expected: public static com.obdobion.argument.InstantiatorTest$Finder fXnd(java.lang.String) on com.obdobion.argument.InstantiatorTest$Finder",
-                    e.getMessage());
+            Assert.assertEquals("NoSuchMethodException expected: public static com.obdobion.argument.InstantiatorTest$Finder fXnd(java.lang.String) on com.obdobion.argument.InstantiatorTest$Finder", e
+                    .getMessage());
         }
 
     }
@@ -202,25 +200,20 @@ public class InstantiatorTest
 
         finder = null;
         final CmdLine cl = new CmdLine();
-        try
-        {
-            cl.compile("-t string -k i --var finder --class doesntmatter --factoryM find");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT"), this);
-            Assert.fail("expected exception");
-        } catch (final Exception e)
-        {
-            Assert.assertEquals("--class is not valid for string -i", e.getMessage());
-        }
-
+        cl.compile("-t string -k i --var finder --class doesntmatter --factoryM find");
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i WHAT"), this);
+        Assert.assertNotNull("finder instance is null", finder);
+        Assert.assertTrue("finder type", finder instanceof WhatFinder);
+        Assert.assertEquals("finder key", "WHAT", finder.value);
     }
 
     @Test
     public void colorExample1 () throws Exception
     {
 
-        CmdLine.create(
-                "-tString -kcolor --var color --factoryMethod " + AbstractColor.class.getName()
-                        + ".create --list red blue")
+        CmdLine.create("-tString -kcolor --var color --factoryMethod "
+            + AbstractColor.class.getName()
+            + ".create --list red blue")
                 .parse(this, "--color red");
 
         Assert.assertNotNull(color);
@@ -243,11 +236,18 @@ public class InstantiatorTest
     @Test
     public void enumKey () throws Exception
     {
-
+        /*
+         * This is the only known time when --enumlist is actually needed.
+         * Otherwise the list of possible enum names can be determined from
+         * either the instance variable type of the instanceClass argument. In
+         * this case, neither of these can be used to know that an enum is
+         * involved and the enumlist provide a set of values that the input will
+         * be normalized, verified too.
+         */
         final CmdLine cl = new CmdLine();
-        cl.compile(
-                "-t enum -k i --var suits -m1 --factoryM com.obdobion.argument.InstantiatorTest$Finder.find --enumlist "
-                        + Suit.class.getName() + " --case");
+        cl.compile("-t enum -k i --var suits -m1 --factoryM com.obdobion.argument.InstantiatorTest$Finder.find --enumlist "
+            + Suit.class.getName()
+            + " --case");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i H C"), this);
         Assert.assertNotNull("finder instance is null", suits);
         Assert.assertEquals("finder size", 2, suits.size());
@@ -277,8 +277,10 @@ public class InstantiatorTest
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -k g --var listGroupFinder -m1 " + "--factoryM " + Finder.class.getName()
-                + ".find --factoryA '-i'", "-t string -k i --var test -p", "-t end -k g");
+        cl.compile("-t begin -k g --var listGroupFinder -m1 "
+            + "--factoryM "
+            + Finder.class.getName()
+            + ".find --factoryA '-i'", "-t string -k i --var test -p", "-t end -k g");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g (WHAT)(WHEN)(WHERE)"), this);
         Assert.assertNotNull("listGroupFinder instance is null", listGroupFinder);
         Assert.assertEquals("listGroupFinder", 3, listGroupFinder.size());

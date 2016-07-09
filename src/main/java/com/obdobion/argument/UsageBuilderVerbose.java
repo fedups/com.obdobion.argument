@@ -9,7 +9,7 @@ import java.util.Iterator;
  */
 public class UsageBuilderVerbose extends UsageBuilder
 {
-    UsageBuilderVerbose()
+    public UsageBuilderVerbose()
     {
         super();
     }
@@ -40,11 +40,7 @@ public class UsageBuilderVerbose extends UsageBuilder
         {
             final ICmdLineArg<?> arg = aIter.next();
 
-            if (arg.getKeychar().charValue() == CmdLine.NegateCommandName)
-                continue;
-            if (arg.getKeychar().charValue() == CmdLine.MinHelpCommandName)
-                continue;
-            if (arg.getKeyword() != null && arg.getKeyword().equalsIgnoreCase(CmdLine.MaxHelpCommandName))
+            if (arg.isSystemGenerated())
                 continue;
 
             if (cnt++ > 0)
@@ -66,7 +62,7 @@ public class UsageBuilderVerbose extends UsageBuilder
         showEachOwnedArg((cmdLine.templateCmdLine).allArgs().iterator(), commandPrefix, cmdLine, indentLevel);
     }
 
-    void usageDetail (
+    public void usageDetail (
         final char commandPrefix,
         final ICmdLineArg<?> arg,
         final int _indentLevel)
@@ -95,8 +91,7 @@ public class UsageBuilderVerbose extends UsageBuilder
                     append(" " + commandPrefix + commandPrefix + arg.getCamelCaps());
                 if (arg.isMetaphoneAllowed())
                     append(" " + commandPrefix + commandPrefix + arg.getMetaphone());
-            }
-            else if (arg.getKeychar() != null && arg.getKeychar().charValue() != ' ')
+            } else if (arg.getKeychar() != null && arg.getKeychar().charValue() != ' ')
                 append("" + commandPrefix + arg.getKeychar().charValue());
             else
                 append("unnamed");
@@ -111,8 +106,7 @@ public class UsageBuilderVerbose extends UsageBuilder
         if ("Boolean".equals(name))
         {
             // intentionally left blank
-        }
-        else if ("CmdLine".equals(name))
+        } else if ("CmdLine".equals(name))
             append(" ()");
         else
         {
@@ -135,8 +129,8 @@ public class UsageBuilderVerbose extends UsageBuilder
         usageDetailModifiers(commandPrefix, arg, indentLevel);
 
         if (((AbstractCLA<?>) arg).getFormat() != null)
-            newLine(indentLevel).append("The value must adhere to \"").append(
-                ((AbstractCLA<?>) arg).getFormat() + "\".");
+            newLine(indentLevel).append("The value must adhere to \"")
+                    .append(((AbstractCLA<?>) arg).getFormat() + "\".");
     }
 
     /**
@@ -160,13 +154,14 @@ public class UsageBuilderVerbose extends UsageBuilder
         {
             if (arg.getMultipleMax() == Integer.MAX_VALUE)
                 if (arg.isRequired())
-                    newLine(indentLevel).append(
-                        "Although multiple values are allowed, you must specify at least " + arg.getMultipleMin()
-                            + ".");
+                    newLine(indentLevel).append("Although multiple values are allowed, you must specify at least "
+                        + arg.getMultipleMin()
+                        + ".");
                 else
-                    newLine(indentLevel).append(
-                        "Although no value is required, if you specify one you must specify at least "
-                            + arg.getMultipleMin() + ".");
+                    newLine(indentLevel)
+                            .append("Although no value is required, if you specify one you must specify at least "
+                                + arg.getMultipleMin()
+                                + ".");
             else
             {
                 if (arg.isRequired())
@@ -176,12 +171,12 @@ public class UsageBuilderVerbose extends UsageBuilder
                         + arg.getMultipleMax()
                         + " values.");
                 else
-                    newLine(indentLevel).append(
-                        "Although no value is required, if you specify one you must specify at least "
-                            + arg.getMultipleMin()
-                            + " and at most "
-                            + arg.getMultipleMax()
-                            + " values.");
+                    newLine(indentLevel)
+                            .append("Although no value is required, if you specify one you must specify at least "
+                                + arg.getMultipleMin()
+                                + " and at most "
+                                + arg.getMultipleMax()
+                                + " values.");
             }
         }
 

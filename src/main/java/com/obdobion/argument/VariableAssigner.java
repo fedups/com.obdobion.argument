@@ -20,7 +20,7 @@ public class VariableAssigner implements IVariableAssigner
         final Field field,
         final ICmdLineArg<?> arg,
         final Object target)
-        throws ParseException
+            throws ParseException
     {
         if (arg.getVariable() == null)
             return;
@@ -53,14 +53,14 @@ public class VariableAssigner implements IVariableAssigner
             field.set(target, alist);
         }
         for (int v = 0; v < arg.size(); v++)
-            alist.add(arg.getValue(v));
+            alist.add(arg.getDelegateOrValue(v));
     }
 
     static private void assignStandard (
         final Field field,
         final ICmdLineArg<?> arg,
         final Object target)
-        throws ParseException
+            throws ParseException
     {
         final String errMsg = "expected: public "
             + arg.getValue().getClass().getName()
@@ -103,7 +103,7 @@ public class VariableAssigner implements IVariableAssigner
             else if (isList(field))
                 assignList(field, arg, target);
             else
-                field.set(target, arg.getValue());
+                field.set(target, arg.getDelegateOrValue());
         } catch (final SecurityException e)
         {
             throw new ParseException("SecurityException: " + errMsg, -1);
@@ -121,7 +121,7 @@ public class VariableAssigner implements IVariableAssigner
         final Field field,
         final ICmdLineArg<?> arg,
         final Object target)
-        throws ParseException
+            throws ParseException
     {
         Class<?> clazz = null;
         Method method = null;
@@ -154,8 +154,7 @@ public class VariableAssigner implements IVariableAssigner
                      * list. To add multi value items to a list the --class
                      * parameter must be used.
                      */
-                    throw new ParseException("Generics with a factory method must use --class",
-                        0);
+                    throw new ParseException("Generics with a factory method must use --class", 0);
 
                 errMsg = "expected: public static "
                     + baseClassName
@@ -235,11 +234,24 @@ public class VariableAssigner implements IVariableAssigner
 
     static private String factoryArgValue (final ICmdLineArg<?> arg)
     {
-        if (arg == null)
-            return null;
-        if (!arg.isParsed())
-            return null;
-        return (String) arg.getValue();
+        try
+        {
+            if (arg == null)
+                return null;
+            if (!arg.isParsed())
+                return null;
+            if (arg instanceof EnumCLA)
+            {
+                final Class<?> clazz = ClassLoader.getSystemClassLoader().loadClass(arg.getInstanceClass());
+                final Object[] possibleConstants = clazz.getEnumConstants();
+                return ((EnumCLA) arg).asEnum((String) arg.getValue(), possibleConstants).toString();
+            }
+            return (String) arg.getValue();
+        } catch (final ClassNotFoundException | ParseException e)
+        {
+            e.printStackTrace();
+            return (String) arg.getValue();
+        }
     }
 
     static public IVariableAssigner getInstance ()
@@ -350,9 +362,9 @@ public class VariableAssigner implements IVariableAssigner
         final Object target,
         final Field field,
         final Class<?> baseClazz)
-        throws ClassNotFoundException,
-        IllegalAccessException,
-        InstantiationException
+            throws ClassNotFoundException,
+            IllegalAccessException,
+            InstantiationException
     {
         final Object[] oldinstance = (Object[]) field.get(target);
         int oldsize = 0;
@@ -392,14 +404,14 @@ public class VariableAssigner implements IVariableAssigner
         final String _baseClassName,
         final ICmdLineArg<?> factoryValueArg,
         final boolean reusable)
-        throws ClassNotFoundException,
-        InstantiationException,
-        IllegalAccessException,
-        SecurityException,
-        NoSuchMethodException,
-        IllegalArgumentException,
-        InvocationTargetException,
-        ParseException
+            throws ClassNotFoundException,
+            InstantiationException,
+            IllegalAccessException,
+            SecurityException,
+            NoSuchMethodException,
+            IllegalArgumentException,
+            InvocationTargetException,
+            ParseException
     {
         String baseClassName = _baseClassName;
         /*
@@ -435,13 +447,13 @@ public class VariableAssigner implements IVariableAssigner
                     method = clazz.getDeclaredMethod(group.getFactoryMethodName(), String.class);
             } else
             {
-                clazz = ClassLoader.getSystemClassLoader().loadClass(
-                    group.getFactoryMethodName().substring(0, methodPvt));
+                clazz = ClassLoader.getSystemClassLoader()
+                        .loadClass(group.getFactoryMethodName().substring(0, methodPvt));
                 if (factoryValue == null)
                     method = clazz.getDeclaredMethod(group.getFactoryMethodName().substring(methodPvt + 1));
                 else
-                    method = clazz.getDeclaredMethod(group.getFactoryMethodName().substring(methodPvt + 1),
-                        String.class);
+                    method = clazz
+                            .getDeclaredMethod(group.getFactoryMethodName().substring(methodPvt + 1), String.class);
             }
             if (factoryValue == null)
                 groupInstance = method.invoke(clazz, new Object[] {});
@@ -470,9 +482,9 @@ public class VariableAssigner implements IVariableAssigner
     static private ArrayList<Object> newList (
         final Object target,
         final Field field)
-        throws ClassNotFoundException,
-        IllegalAccessException,
-        InstantiationException
+            throws ClassNotFoundException,
+            IllegalAccessException,
+            InstantiationException
     {
         @SuppressWarnings("unchecked")
         ArrayList<Object> oldinstance = (ArrayList<Object>) field.get(target);
@@ -512,12 +524,10 @@ public class VariableAssigner implements IVariableAssigner
             field = target.getClass().getField(arg.getVariable());
         } catch (final SecurityException e)
         {
-            throw new ParseException("SecurityException " + errMsg,
-                -1);
+            throw new ParseException("SecurityException " + errMsg, -1);
         } catch (final NoSuchFieldException e)
         {
-            throw new ParseException("NoSuchFieldException " + errMsg,
-                -1);
+            throw new ParseException("NoSuchFieldException " + errMsg, -1);
         }
         assign(field, arg, target);
     }
@@ -526,7 +536,7 @@ public class VariableAssigner implements IVariableAssigner
         final CmdLineCLA group,
         final Object target,
         final ICmdLineArg<?> factoryValueArg)
-        throws ParseException
+            throws ParseException
     {
         try
         {
@@ -548,12 +558,8 @@ public class VariableAssigner implements IVariableAssigner
                         baseClassName = group.getInstanceClass();
                         final Class<?> baseClazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
                         final Object[] array = newArray(target, field, baseClazz);
-                        array[array.length - 1] = newInstanceForGroup(group,
-                            target,
-                            field,
-                            baseClassName,
-                            factoryValueArg,
-                            false);
+                        array[array.length
+                            - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
                         groupInstance = array[array.length - 1];
                     } else
                     {
@@ -566,12 +572,8 @@ public class VariableAssigner implements IVariableAssigner
                     baseClassName = field.getType().getName().substring(2, field.getType().getName().length() - 1);
                     final Class<?> baseClazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
                     final Object[] array = newArray(target, field, baseClazz);
-                    array[array.length - 1] = newInstanceForGroup(group,
-                        target,
-                        field,
-                        baseClassName,
-                        factoryValueArg,
-                        false);
+                    array[array.length
+                        - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
                     groupInstance = array[array.length - 1];
                 } else
                 {
@@ -604,8 +606,7 @@ public class VariableAssigner implements IVariableAssigner
                 + target.getClass().getSimpleName()
                 + " "
                 + group.getVariable()
-                + ")",
-                -1);
+                + ")", -1);
         } catch (final IllegalArgumentException e)
         {
             throw new ParseException("IllegalArgumentException (" + group.getVariable() + ")", -1);

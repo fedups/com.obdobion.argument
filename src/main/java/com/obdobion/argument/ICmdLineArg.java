@@ -48,6 +48,10 @@ public interface ICmdLineArg<E>
 
     List<E> getDefaultValues ();
 
+    Object getDelegateOrValue ();
+
+    Object getDelegateOrValue (int occurrence);
+
     String getEnumClassName ();
 
     String getFactoryArgName ();
@@ -140,15 +144,15 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setEnumCriteriaAllowError (String enumClassName);
 
-    ICmdLineArg<E> setFactoryArgName (String argName);
+    ICmdLineArg<E> setFactoryArgName (String argName);;
 
-    ICmdLineArg<E> setFactoryMethodName (String methodName) throws ParseException;;
+    ICmdLineArg<E> setFactoryMethodName (String methodName) throws ParseException;
 
     ICmdLineArg<E> setFormat (String format) throws ParseException;
 
-    ICmdLineArg<E> setHelp (String p_helpString);
+    ICmdLineArg<E> setHelp (String p_helpString);;
 
-    ICmdLineArg<E> setInstanceClass (String p_instanceClassString) throws ParseException;;
+    ICmdLineArg<E> setInstanceClass (String p_instanceClassString) throws ParseException;
 
     ICmdLineArg<E> setKeychar (final Character _keychar);
 
@@ -172,7 +176,7 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setRegxCriteria (String pattern) throws ParseException;
 
-    ICmdLineArg<E> setRequired (boolean bool) throws ParseException;
+    ICmdLineArg<E> setRequired (boolean bool);
 
     ICmdLineArg<E> setRequiredValue (boolean bool) throws ParseException;
 

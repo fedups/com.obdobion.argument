@@ -29,7 +29,7 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
 
     @Override
     public WildFiles convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
+        throws ParseException
     {
         wildFile.add(valueStr);
         return wildFile;
@@ -38,7 +38,7 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
     @Override
     public String defaultInstanceClass ()
     {
-        return "com.obdobion.argument.WildFilesCLA.WildFile";
+        return "com.obdobion.argument.WildFiles";
     }
 
     @Override
