@@ -25,60 +25,81 @@ public class CLAFactory
     static final String TYPE_INTEGER  = "integer";
     static final String TYPE_STRING   = "string";
     static final String TYPE_BYTE     = "byte";
+    static final String TYPE_CHAR     = "character";
     static final String TYPE_BOOLEAN  = "boolean";
     static final String TYPE_BEGIN    = "begin";
     static final String TYPE_EQU      = "equ";
 
-    CmdLine             factoryParser;
-    StringCLA           type;
-    StringCLA           variable;
-    StringCLA           key;
-    BooleanCLA          positional;
-    IntegerCLA          multiple;
+    static CLAFactory   instance;
 
-    BooleanCLA          camelCaps;
-    BooleanCLA          metaphone;
+    static public CLAFactory getInstance()
+    {
+        if (instance == null)
+            instance = new CLAFactory();
+        return instance;
+    }
 
-    StringCLA           instanceClass;
-    StringCLA           factoryMethod;
-    StringCLA           factoryArgName;
+    static public void reset()
+    {
+        instance = null;
+    }
 
-    StringCLA           defaultValue;
-    StringCLA           range;
-    StringCLA           regx;
-    StringCLA           list;
-    StringCLA           enumList;
-    StringCLA           format;                    // for dates
-    BooleanCLA          required;
-    BooleanCLA          caseSensitive;
-    StringCLA           help;
+    int        nextUniqueId;
 
-    public CLAFactory()
+    CmdLine    factoryParser;
+
+    IntegerCLA uniqueId;
+    StringCLA  type;
+    StringCLA  variable;
+    StringCLA  key;
+    BooleanCLA positional;
+
+    IntegerCLA multiple;
+    BooleanCLA camelCaps;
+
+    BooleanCLA metaphone;
+    StringCLA  instanceClass;
+    StringCLA  factoryMethod;
+
+    StringCLA  factoryArgName;
+    StringCLA  defaultValue;
+    StringCLA  range;
+    StringCLA  regx;
+    StringCLA  list;
+    StringCLA  enumList;
+    StringCLA  format;        // for dates
+    BooleanCLA required;
+    BooleanCLA caseSensitive;
+
+    StringCLA  help;
+
+    private CLAFactory()
     {
         super();
+        nextUniqueId = 1;
         factoryParser = new CmdLine("parser compiler", '-', '!');
         try
         {
             type = new StringCLA('t', "type");
             type.setRequired(true);
-            type.setListCriteria(new String[]
-            {
-                TYPE_BEGIN,
-                TYPE_BOOLEAN,
-                TYPE_BYTE,
-                TYPE_STRING,
-                TYPE_INTEGER,
-                TYPE_ENUM,
-                TYPE_LONG,
-                TYPE_DATE,
-                TYPE_PATTERN,
-                TYPE_FLOAT,
-                TYPE_DOUBLE,
-                TYPE_END,
-                TYPE_FILE,
-                TYPE_WILDFILE,
-                TYPE_EQU,
-                TYPE_DEFAULT
+            type.setListCriteria(new String[] {
+                    TYPE_BEGIN,
+                    TYPE_BOOLEAN,
+                    TYPE_BYTE,
+                    TYPE_CHAR,
+                    TYPE_STRING,
+                    TYPE_INTEGER,
+                    TYPE_ENUM,
+                    TYPE_LONG,
+                    TYPE_DATE,
+                    TYPE_PATTERN,
+                    TYPE_FLOAT,
+                    TYPE_DOUBLE,
+                    TYPE_END,
+                    TYPE_FILE,
+                    TYPE_WILDFILE,
+                    TYPE_EQU,
+                    TYPE_DEFAULT
             });
             factoryParser.add(type);
 
@@ -99,6 +120,9 @@ public class CLAFactory
             key.setMultiple(1, 2);
             key.setRequired(true);
             factoryParser.add(key);
+
+            uniqueId = new IntegerCLA("uid");
+            factoryParser.add(uniqueId);
 
             camelCaps = new BooleanCLA("camelCaps");
             camelCaps.setCamelCapsAllowed(true);
@@ -171,8 +195,8 @@ public class CLAFactory
         }
     }
 
-    public boolean atEnd (final char commandPrefix, final CmdLineCLA group, final String definition)
-        throws ParseException, IOException
+    public boolean atEnd(final char commandPrefix, final CmdLineCLA group, final String definition)
+            throws ParseException, IOException
     {
         factoryParser.parse(CommandLineParser.getInstance(commandPrefix, definition));
         if (TYPE_END.equalsIgnoreCase(type.getValue()))
@@ -200,7 +224,7 @@ public class CLAFactory
         return false;
     }
 
-    private ICmdLineArg<?> createArgFor (final char commandPrefix) throws ParseException
+    private ICmdLineArg<?> createArgFor(final char commandPrefix) throws ParseException
     {
         char keychar = commandPrefix; // dummy value to indicate non-usage
         String keyword = null;
@@ -221,8 +245,8 @@ public class CLAFactory
         if (keyword != null)
             if (Character.isDigit(keyword.charAt(0)))
                 throw new ParseException("The first character of a Key Word can not be a digit \""
-                    + key.getValue(1)
-                    + "\"", -1);
+                        + key.getValue(1)
+                        + "\"", -1);
 
         if (TYPE_BEGIN.equalsIgnoreCase(type.getValue()))
         {
@@ -288,6 +312,17 @@ public class CLAFactory
                 return new ByteCLA(keychar);
             }
             return new ByteCLA(keyword);
+        }
+
+        if (TYPE_CHAR.equalsIgnoreCase(type.getValue()))
+        {
+            if (keychar != commandPrefix)
+            {
+                if (keyword != null)
+                    return new CharacterCLA(keychar, keyword);
+                return new CharacterCLA(keychar);
+            }
+            return new CharacterCLA(keyword);
         }
 
         if (TYPE_FILE.equalsIgnoreCase(type.getValue()))
@@ -392,11 +427,21 @@ public class CLAFactory
         throw new ParseException("invalid type: " + type.getValue(), -1);
     }
 
-    public ICmdLineArg<?> instanceFor (final char commandPrefix, final String definition) throws ParseException,
-        IOException
+    public ICmdLineArg<?> instanceFor(final char commandPrefix, final String definition) throws ParseException,
+            IOException
     {
+        factoryParser.reset();
         factoryParser.parse(definition);
         final ICmdLineArg<?> arg = createArgFor(commandPrefix);
+
+        if (uniqueId.hasValue() && uniqueId.getValue() > 0)
+        {
+            arg.setUniqueId(uniqueId.getValue());
+            if (arg.getUniqueId() >= nextUniqueId)
+                nextUniqueId = arg.getUniqueId() + 1;
+        } else
+            arg.setUniqueId(nextUniqueId++);
+
         if (help.hasValue())
             arg.setHelp(help.getValue());
         arg.setCamelCapsAllowed(camelCaps.getValue().booleanValue());

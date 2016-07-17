@@ -1,5 +1,7 @@
 package com.obdobion.argument;
 
+import java.text.ParseException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -18,7 +20,7 @@ public class DashingTest
     }
 
     @Test
-    public void camelCaps () throws Exception
+    public void camelCaps() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -29,7 +31,7 @@ public class DashingTest
     }
 
     @Test
-    public void camelCapsCompetesWithExactKeyword () throws Exception
+    public void camelCapsCompetesWithExactKeyword() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -40,7 +42,7 @@ public class DashingTest
     }
 
     @Test
-    public void camelCapsCompetesWithPartialKeyword () throws Exception
+    public void camelCapsCompetesWithPartialKeyword() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -51,7 +53,7 @@ public class DashingTest
     }
 
     @Test
-    public void dashDoubleDash () throws Exception
+    public void dashDoubleDash() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -69,7 +71,7 @@ public class DashingTest
     }
 
     @Test
-    public void dashDoubleDash2 () throws Exception
+    public void dashDoubleDash2() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -87,7 +89,7 @@ public class DashingTest
     }
 
     @Test
-    public void embeddedDash () throws Exception
+    public void embeddedDash() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -104,7 +106,7 @@ public class DashingTest
     }
 
     @Test
-    public void embeddedDashNameCollision () throws Exception
+    public void embeddedDashNameCollision() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -121,18 +123,29 @@ public class DashingTest
     }
 
     @Test
-    public void metaphone () throws Exception
+    public void metaphoneIssues() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a inputFileName --metaphone", "-t Boolean -k a inputFileNum");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--inptflnm"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
+        try
+        {
+            cl.compile("-t Boolean -k a inputFileName --metaphone", "-t Boolean -k a inputFileNum --metaphone");
+            Assert.fail("expected an exception");
+        } catch (final ParseException e)
+        {
+            Assert.assertEquals("multiple parse exceptions", e.getMessage());
+            Assert.assertEquals(2, cl.getParseExceptions().size());
+            Assert.assertEquals(
+                    "duplicate short name, found \"boolean --inputFileName(-a)\"' and \"boolean --inputFileNum(-a)\"",
+                    cl.getParseExceptions().get(0).getMessage());
+            Assert.assertEquals(
+                    "duplicate values for metaphone, found \"boolean --inputFileName(-a)\"' and \"boolean --inputFileNum(-a)\"",
+                    cl.getParseExceptions().get(1).getMessage());
+        }
     }
 
     @Test
-    public void metaphoneVersion () throws Exception
+    public void metaphoneVersion() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -143,7 +156,7 @@ public class DashingTest
     }
 
     @Test
-    public void requiredFirst () throws Exception
+    public void requiredFirst() throws Exception
     {
 
         final CmdLine cl = new CmdLine();

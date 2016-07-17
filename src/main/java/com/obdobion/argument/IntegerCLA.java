@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class IntegerCLA extends AbstractCLA<Integer>
 {
@@ -28,13 +28,56 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_INTEGER);
     }
 
     @Override
-    public float[] getValueAsfloatArray () throws ParseException
+    public Integer convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException
+    {
+        return FMT.parse(valueStr).intValue();
+    }
+
+    @Override
+    public String defaultInstanceClass()
+    {
+        return "int";
+    }
+
+    @Override
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
+    {
+        if (getValue(occ) < 0)
+            out.append("'");
+        out.append(FMT.format(getValue(occ)));
+        if (getValue(occ) < 0)
+            out.append("'");
+    }
+
+    @Override
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
+    {
+        out.append(prefix);
+        out.append("=");
+        out.append(FMT.format(getValue(occ)));
+        out.append("\n");
+    }
+
+    @Override
+    protected void exportXmlData(final StringBuilder out, final int occ)
+    {
+        out.append(FMT.format(getValue(occ)));
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.Integer";
+    }
+
+    @Override
+    public float[] getValueAsfloatArray() throws ParseException
     {
         final float[] result = new float[size()];
 
@@ -45,7 +88,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
-    public Float[] getValueAsFloatArray () throws ParseException
+    public Float[] getValueAsFloatArray() throws ParseException
     {
         final Float[] result = new Float[size()];
 
@@ -56,7 +99,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
-    public int[] getValueAsintArray () throws ParseException
+    public int[] getValueAsintArray() throws ParseException
     {
         final int[] result = new int[size()];
 
@@ -67,7 +110,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
-    public Integer[] getValueAsIntegerArray () throws ParseException
+    public Integer[] getValueAsIntegerArray() throws ParseException
     {
         final Integer[] result = new Integer[size()];
 
@@ -78,7 +121,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
     }
 
     @Override
-    public Long[] getValueAsLongArray () throws ParseException
+    public Long[] getValueAsLongArray() throws ParseException
     {
         final Long[] result = new Long[size()];
 
@@ -86,43 +129,5 @@ public class IntegerCLA extends AbstractCLA<Integer>
             result[r] = new Long(getValue(r));
 
         return result;
-    }
-
-    @Override
-    public Integer convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
-    {
-        return FMT.parse(valueStr).intValue();
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "int";
-    }
-
-    @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
-    {
-        if (getValue(occ) < 0)
-            out.append("'");
-        out.append(FMT.format(getValue(occ)));
-        if (getValue(occ) < 0)
-            out.append("'");
-    }
-
-    @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
-    {
-        out.append(prefix);
-        out.append("=");
-        out.append(FMT.format(getValue(occ)));
-        out.append("\n");
-    }
-
-    @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
-    {
-        out.append(FMT.format(getValue(occ)));
     }
 }

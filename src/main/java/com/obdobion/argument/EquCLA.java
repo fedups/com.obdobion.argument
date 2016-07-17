@@ -26,14 +26,14 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     }
 
     @Override
-    public void asDefinedType (final StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_EQU);
     }
 
     @Override
-    public ComparableEqu convert (final String valueStr, final boolean _caseSensitive, final Object target)
-        throws ParseException
+    public ComparableEqu convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException
     {
         try
         {
@@ -46,13 +46,13 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "com.obdobion.algebrain.Equ";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).toString().replaceAll("\"", "\\\\\""));
@@ -60,7 +60,7 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -69,31 +69,36 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
     }
 
+    public String genericClassName()
+    {
+        return "com.obdobion.algebrain.Equ";
+    }
+
     @Override
-    public Object getDelegateOrValue ()
+    public Object getDelegateOrValue()
     {
         return getValue().delegate;
     }
 
     @Override
-    public Object getDelegateOrValue (final int occurrence)
+    public Object getDelegateOrValue(final int occurrence)
     {
         return getValue(occurrence).delegate;
     }
 
     @Override
-    public Equ getValueAsEquation () throws ParseException
+    public Equ getValueAsEquation() throws ParseException
     {
         return getValue().delegate;
     }
 
     @Override
-    public Equ[] getValueAsEquationArray () throws ParseException
+    public Equ[] getValueAsEquationArray() throws ParseException
     {
         final Equ[] result = new Equ[size()];
 

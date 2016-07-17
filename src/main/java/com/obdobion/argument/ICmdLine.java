@@ -13,39 +13,43 @@ import com.obdobion.argument.input.IParserInput;
  */
 public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
 {
-    void add (ICmdLineArg<?> arg);
+    void add(ICmdLineArg<?> arg);
 
-    void add (int index, ICmdLineArg<?> arg);
+    void add(int index, ICmdLineArg<?> arg);
 
-    void addDefaultIncludeDirectory (File directory);
+    void addDefaultIncludeDirectory(File directory);
 
-    List<ICmdLineArg<?>> allArgs ();
+    List<ICmdLineArg<?>> allArgs();
 
-    ICmdLineArg<?> arg (String commandToken);
+    ICmdLineArg<?> arg(String commandToken);
 
-    void assignVariables (Object target) throws ParseException;
+    void assignVariables(Object target) throws ParseException;
 
-    ICmdLine clone () throws CloneNotSupportedException;
+    ICmdLine clone() throws CloneNotSupportedException;
 
-    ICmdLine compile (String... definition) throws ParseException, IOException;
+    ICmdLine compile(List<String> definition) throws ParseException, IOException;
 
-    public char getCommandPrefix ();
+    ICmdLine compile(String... definition) throws ParseException, IOException;
 
-    String getName ();
+    public char getCommandPrefix();
 
-    int indexOf (ICmdLineArg<?> arg);
+    String getName();
 
-    Object parse (IParserInput cmd) throws IOException, ParseException;
+    List<ParseException> getParseExceptions();
 
-    Object parse (IParserInput cmd, Object target) throws IOException, ParseException;
+    int indexOf(ICmdLineArg<?> arg);
 
-    Object parse (Object target, String... args) throws IOException, ParseException;
+    Object parse(IParserInput cmd) throws IOException, ParseException;
 
-    Object parse (String... args) throws IOException, ParseException;
+    Object parse(IParserInput cmd, Object target) throws IOException, ParseException;
 
-    void remove (ICmdLineArg<?> arg);
+    Object parse(Object target, String... args) throws IOException, ParseException;
 
-    void remove (int argIndex);
+    Object parse(String... args) throws IOException, ParseException;
 
-    int size ();
+    void remove(ICmdLineArg<?> arg);
+
+    void remove(int argIndex);
+
+    int size();
 }

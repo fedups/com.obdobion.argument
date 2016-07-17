@@ -24,13 +24,56 @@ public class FloatCLA extends AbstractCLA<Float>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_FLOAT);
     }
 
     @Override
-    public float[] getValueAsfloatArray () throws ParseException
+    public Float convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException
+    {
+        return FMTin.parse(valueStr).floatValue();
+    }
+
+    @Override
+    public String defaultInstanceClass()
+    {
+        return "float";
+    }
+
+    @Override
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
+    {
+        if (getValue(occ) < 0.0)
+            out.append("'");
+        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
+        if (getValue(occ) < 0.0)
+            out.append("'");
+    }
+
+    @Override
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
+    {
+        out.append(prefix);
+        out.append("=");
+        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
+        out.append("\n");
+    }
+
+    @Override
+    protected void exportXmlData(final StringBuilder out, final int occ)
+    {
+        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.Float";
+    }
+
+    @Override
+    public float[] getValueAsfloatArray() throws ParseException
     {
         final float[] result = new float[size()];
 
@@ -41,7 +84,7 @@ public class FloatCLA extends AbstractCLA<Float>
     }
 
     @Override
-    public Float[] getValueAsFloatArray () throws ParseException
+    public Float[] getValueAsFloatArray() throws ParseException
     {
         final Float[] result = new Float[size()];
 
@@ -49,43 +92,5 @@ public class FloatCLA extends AbstractCLA<Float>
             result[r] = getValue(r);
 
         return result;
-    }
-
-    @Override
-    public Float convert (final String valueStr, final boolean _caseSensitive, final Object target)
-            throws ParseException
-    {
-        return FMTin.parse(valueStr).floatValue();
-    }
-
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "float";
-    }
-
-    @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
-    {
-        if (getValue(occ) < 0.0)
-            out.append("'");
-        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
-        if (getValue(occ) < 0.0)
-            out.append("'");
-    }
-
-    @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
-    {
-        out.append(prefix);
-        out.append("=");
-        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
-        out.append("\n");
-    }
-
-    @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
-    {
-        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
     }
 }

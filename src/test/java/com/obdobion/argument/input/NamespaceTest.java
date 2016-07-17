@@ -1,17 +1,19 @@
 package com.obdobion.argument.input;
 
-import junit.framework.TestCase;
-
 import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.ICmdLine;
 
+import junit.framework.TestCase;
+
 /**
  * @author Chris DeGreef
- * 
+ *
  */
-public class NamespaceTest extends TestCase {
+public class NamespaceTest extends TestCase
+{
 
-    public void testString () throws Exception {
+    public void testString () throws Exception
+    {
 
         final IParserInput p = NamespaceParser.getInstance("Hello=world", "goodbye=for now");
         final ICmdLine cmd = new CmdLine();
@@ -19,6 +21,6 @@ public class NamespaceTest extends TestCase {
         cmd.parse(p);
         final StringBuilder buf = new StringBuilder();
         cmd.exportCommandLine(buf);
-        assertEquals("--Hello\"world\" --goodbye\"for now\"", buf.toString());
+        assertEquals("--Hello'world' --goodbye'for now'", buf.toString());
     }
 }

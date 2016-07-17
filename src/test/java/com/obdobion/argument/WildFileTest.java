@@ -73,7 +73,7 @@ public class WildFileTest
         cl.parse(CommandLineParser
                 .getInstance(cl.getCommandPrefix(), "src/main/java/com/obdobion/argument/*java"), this);
         Assert.assertNotNull("wildfile files is null", wildFile.files());
-        Assert.assertEquals("number of java classes", 41, wildFile.files().size());
+        Assert.assertEquals("number of java classes", 42, wildFile.files().size());
     }
 
     @Test
@@ -96,7 +96,7 @@ public class WildFileTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "src/*/java/**/*java"), this);
-        Assert.assertEquals("number of java classes", 91, wildFile.files().size());
+        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
     }
 
     @Test
@@ -105,6 +105,6 @@ public class WildFileTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "**/*java"), this);
-        Assert.assertEquals("number of java classes", 91, wildFile.files().size());
+        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
     }
 }

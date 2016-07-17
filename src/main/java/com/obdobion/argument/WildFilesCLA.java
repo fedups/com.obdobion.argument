@@ -22,27 +22,27 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
     }
 
     @Override
-    public void asDefinedType (final StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_WILDFILE);
     }
 
     @Override
-    public WildFiles convert (final String valueStr, final boolean _caseSensitive, final Object target)
-        throws ParseException
+    public WildFiles convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException
     {
         wildFile.add(valueStr);
         return wildFile;
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "com.obdobion.argument.WildFiles";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).get(0).replaceAll("\"", "\\\\\""));
@@ -50,7 +50,7 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -59,13 +59,18 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).get(0), out);
     }
 
+    public String genericClassName()
+    {
+        return "com.obdobion.argument.WildFiles";
+    }
+
     @Override
-    public void reset ()
+    public void reset()
     {
         super.reset();
         wildFile = new WildFiles();

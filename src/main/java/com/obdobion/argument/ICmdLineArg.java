@@ -14,189 +14,197 @@ import com.obdobion.algebrain.Equ;
  */
 public interface ICmdLineArg<E>
 {
-    void applyDefaults ();
+    void applyDefaults();
 
-    void asDefinedType (StringBuilder sb);
+    void asDefinedType(StringBuilder sb);
 
-    Object asEnum (String name, Object[] possibleConstants) throws ParseException;
+    Object asEnum(String name, Object[] possibleConstants) throws ParseException;
 
-    ICmdLineArg<E> clone () throws CloneNotSupportedException;
+    ICmdLineArg<E> clone() throws CloneNotSupportedException;
 
-    E convert (String valueStr) throws ParseException, IOException;
+    E convert(String valueStr) throws ParseException, IOException;
 
-    E convert (String valueStr, boolean caseSensitive, Object target) throws ParseException, IOException;
+    E convert(String valueStr, boolean caseSensitive, Object target) throws ParseException, IOException;
 
-    String defaultInstanceClass ();
+    String defaultInstanceClass();
 
-    void dontAllowCamelCaps ();
+    void dontAllowCamelCaps();
 
-    void exportCommandLine (File file) throws IOException;
+    void exportCommandLine(File file) throws IOException;
 
-    void exportCommandLine (StringBuilder str);
+    void exportCommandLine(StringBuilder str);
 
-    void exportNamespace (File file) throws IOException;
+    void exportNamespace(File file) throws IOException;
 
-    void exportNamespace (String prefix, StringBuilder str);
+    void exportNamespace(String prefix, StringBuilder str);
 
-    void exportXml (String tag, File file) throws IOException;
+    void exportXml(String tag, File file) throws IOException;
 
-    void exportXml (StringBuilder str);
+    void exportXml(StringBuilder str);
 
-    String getCamelCaps ();
+    String genericClassName();
 
-    ICmdLineArgCriteria<?> getCriteria ();
+    String getCamelCaps();
 
-    List<E> getDefaultValues ();
+    ICmdLineArgCriteria<?> getCriteria();
 
-    Object getDelegateOrValue ();
+    List<E> getDefaultValues();
 
-    Object getDelegateOrValue (int occurrence);
+    Object getDelegateOrValue();
 
-    String getEnumClassName ();
+    Object getDelegateOrValue(int occurrence);
 
-    String getFactoryArgName ();
+    String getEnumClassName();
 
-    String getFactoryMethodName ();
+    String getFactoryArgName();
 
-    String getFormat ();
+    String getFactoryMethodName();
 
-    String getHelp ();
+    String getFormat();
 
-    String getInstanceClass ();
+    String getHelp();
 
-    Character getKeychar ();
+    String getInstanceClass();
 
-    String getKeyword ();
+    Character getKeychar();
 
-    Object getMetaphone ();
+    String getKeyword();
 
-    int getMultipleMax ();
+    Object getMetaphone();
 
-    int getMultipleMin ();
+    int getMultipleMax();
 
-    E getValue ();
+    int getMultipleMin();
 
-    E getValue (int index);
+    int getUniqueId();
 
-    byte[] getValueAsbyteArray () throws ParseException;
+    E getValue();
 
-    Byte[] getValueAsByteArray () throws ParseException;
+    E getValue(int index);
 
-    Date[] getValueAsDateArray () throws ParseException;
+    byte[] getValueAsbyteArray() throws ParseException;
 
-    Equ getValueAsEquation () throws ParseException;
+    Byte[] getValueAsByteArray() throws ParseException;
 
-    Equ[] getValueAsEquationArray () throws ParseException;
+    Character[] getValueAsCharacterArray() throws ParseException;
 
-    File[] getValueAsFileArray () throws ParseException;
+    char[] getValueAscharArray() throws ParseException;
 
-    float[] getValueAsfloatArray () throws ParseException;
+    Date[] getValueAsDateArray() throws ParseException;
 
-    Float[] getValueAsFloatArray () throws ParseException;
+    Equ getValueAsEquation() throws ParseException;
 
-    int[] getValueAsintArray () throws ParseException;
+    Equ[] getValueAsEquationArray() throws ParseException;
 
-    Integer[] getValueAsIntegerArray () throws ParseException;
+    File[] getValueAsFileArray() throws ParseException;
 
-    Long[] getValueAsLongArray () throws ParseException;
+    float[] getValueAsfloatArray() throws ParseException;
 
-    Pattern getValueAsPattern () throws ParseException;
+    Float[] getValueAsFloatArray() throws ParseException;
 
-    Pattern[] getValueAsPatternArray () throws ParseException;
+    int[] getValueAsintArray() throws ParseException;
 
-    String[] getValueAsStringArray () throws ParseException;
+    Integer[] getValueAsIntegerArray() throws ParseException;
 
-    String getVariable ();
+    Long[] getValueAsLongArray() throws ParseException;
 
-    boolean hasValue ();
+    Pattern getValueAsPattern() throws ParseException;
 
-    boolean isCamelCapsAllowed ();
+    Pattern[] getValueAsPatternArray() throws ParseException;
 
-    boolean isCaseSensitive ();
+    String[] getValueAsStringArray() throws ParseException;
 
-    boolean isMetaphoneAllowed ();
+    String getVariable();
 
-    boolean isMultiple ();
+    boolean hasValue();
 
-    boolean isParsed ();
+    boolean isCamelCapsAllowed();
 
-    boolean isPositional ();
+    boolean isCaseSensitive();
 
-    boolean isRequired ();
+    boolean isMetaphoneAllowed();
 
-    boolean isRequiredValue ();
+    boolean isMultiple();
 
-    boolean isSystemGenerated ();
+    boolean isParsed();
 
-    void reset ();
+    boolean isPositional();
 
-    ICmdLineArg<E> resetCriteria ();
+    boolean isRequired();
 
-    int salience (Token word);
+    boolean isRequiredValue();
 
-    ICmdLineArg<E> setCamelCapsAllowed (boolean bool);
+    boolean isSystemGenerated();
 
-    ICmdLineArg<E> setCaseSensitive (boolean bool);
+    void reset();
 
-    ICmdLineArg<E> setDefaultValue (String defaultValue) throws ParseException, IOException;
+    ICmdLineArg<E> resetCriteria();
 
-    ICmdLineArg<E> setEnumCriteria (String enumClassName) throws ParseException, IOException;
+    int salience(Token word);
 
-    ICmdLineArg<E> setEnumCriteriaAllowError (String enumClassName);
+    ICmdLineArg<E> setCamelCapsAllowed(boolean bool);
 
-    ICmdLineArg<E> setFactoryArgName (String argName);;
+    ICmdLineArg<E> setCaseSensitive(boolean bool);
 
-    ICmdLineArg<E> setFactoryMethodName (String methodName) throws ParseException;
+    ICmdLineArg<E> setDefaultValue(String defaultValue) throws ParseException, IOException;
 
-    ICmdLineArg<E> setFormat (String format) throws ParseException;
+    ICmdLineArg<E> setEnumCriteria(String enumClassName) throws ParseException, IOException;;
 
-    ICmdLineArg<E> setHelp (String p_helpString);;
+    ICmdLineArg<E> setEnumCriteriaAllowError(String enumClassName);
 
-    ICmdLineArg<E> setInstanceClass (String p_instanceClassString) throws ParseException;
+    ICmdLineArg<E> setFactoryArgName(String argName);
 
-    ICmdLineArg<E> setKeychar (final Character _keychar);
+    ICmdLineArg<E> setFactoryMethodName(String methodName) throws ParseException;;
 
-    ICmdLineArg<E> setKeyword (final String _keyword);
+    ICmdLineArg<E> setFormat(String format) throws ParseException;
 
-    ICmdLineArg<E> setListCriteria (String[] values) throws ParseException, IOException;
+    ICmdLineArg<E> setHelp(String p_helpString);
 
-    ICmdLineArg<E> setMetaphoneAllowed (boolean bool);
+    ICmdLineArg<E> setInstanceClass(String p_instanceClassString) throws ParseException;
 
-    ICmdLineArg<E> setMultiple (boolean bool) throws ParseException;
+    ICmdLineArg<E> setKeychar(final Character _keychar);
 
-    ICmdLineArg<E> setMultiple (int min) throws ParseException;
+    ICmdLineArg<E> setKeyword(final String _keyword);
 
-    ICmdLineArg<E> setMultiple (int min, int max) throws ParseException;
+    ICmdLineArg<E> setListCriteria(String[] values) throws ParseException, IOException;
 
-    ICmdLineArg<E> setParsed (boolean bool);
+    ICmdLineArg<E> setMetaphoneAllowed(boolean bool);
 
-    ICmdLineArg<E> setPositional (boolean bool);
+    ICmdLineArg<E> setMultiple(boolean bool) throws ParseException;
 
-    ICmdLineArg<E> setRangeCriteria (String min, String max) throws ParseException, IOException;
+    ICmdLineArg<E> setMultiple(int min) throws ParseException;
 
-    ICmdLineArg<E> setRegxCriteria (String pattern) throws ParseException;
+    ICmdLineArg<E> setMultiple(int min, int max) throws ParseException;
 
-    ICmdLineArg<E> setRequired (boolean bool);
+    ICmdLineArg<E> setParsed(boolean bool);
 
-    ICmdLineArg<E> setRequiredValue (boolean bool) throws ParseException;
+    ICmdLineArg<E> setPositional(boolean bool);
 
-    ICmdLineArg<E> setSystemGenerated (boolean bool) throws ParseException;
+    ICmdLineArg<E> setRangeCriteria(String min, String max) throws ParseException, IOException;
 
-    void setValue (E value);
+    ICmdLineArg<E> setRegxCriteria(String pattern) throws ParseException;
 
-    void setValue (int index, E value);
+    ICmdLineArg<E> setRequired(boolean bool);
 
-    ICmdLineArg<E> setVariable (String p_variableString);
+    ICmdLineArg<E> setRequiredValue(boolean bool) throws ParseException;
 
-    int size ();
+    ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;
 
-    public void uncompile (StringBuilder stringBuilder, boolean showType);
+    void setUniqueId(int i);
 
-    String uniqueId ();
+    void setValue(E value);
 
-    public void update (E value);
+    void setValue(int index, E value);
 
-    public void update (int index, E value);
+    ICmdLineArg<E> setVariable(String p_variableString);
 
-    void useDefaults ();
+    int size();
+
+    public void uncompile(StringBuilder stringBuilder, boolean showType);
+
+    public void update(E value);
+
+    public void update(int index, E value);
+
+    void useDefaults();
 }

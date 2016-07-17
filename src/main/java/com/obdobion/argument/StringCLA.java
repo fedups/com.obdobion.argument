@@ -2,7 +2,7 @@ package com.obdobion.argument;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class StringCLA extends AbstractCLA<String>
 {
@@ -22,24 +22,13 @@ public class StringCLA extends AbstractCLA<String>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_STRING);
     }
 
     @Override
-    public String[] getValueAsStringArray ()
-    {
-        final String[] result = new String[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
-    public String convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (_caseSensitive)
             return valueStr;
@@ -47,21 +36,19 @@ public class StringCLA extends AbstractCLA<String>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "String";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ));
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -70,8 +57,24 @@ public class StringCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ), out);
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.String";
+    }
+
+    @Override
+    public String[] getValueAsStringArray()
+    {
+        final String[] result = new String[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

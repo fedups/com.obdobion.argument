@@ -16,11 +16,11 @@ public class VariableAssigner implements IVariableAssigner
 {
     static private IVariableAssigner instance;
 
-    static private void assign (
-        final Field field,
-        final ICmdLineArg<?> arg,
-        final Object target)
-            throws ParseException
+    static private void assign(
+            final Field field,
+            final ICmdLineArg<?> arg,
+            final Object target)
+                    throws ParseException
     {
         if (arg.getVariable() == null)
             return;
@@ -41,8 +41,8 @@ public class VariableAssigner implements IVariableAssigner
      * provided on the field. If the value is not what they expect then they
      * need to provide a --factory set of methods.
      */
-    private static void assignList (final Field field, final ICmdLineArg<?> arg, final Object target)
-        throws IllegalAccessException
+    private static void assignList(final Field field, final ICmdLineArg<?> arg, final Object target)
+            throws IllegalAccessException
     {
         @SuppressWarnings("unchecked")
         Collection<Object> alist = (Collection<Object>) field.get(target);
@@ -56,18 +56,18 @@ public class VariableAssigner implements IVariableAssigner
             alist.add(arg.getDelegateOrValue(v));
     }
 
-    static private void assignStandard (
-        final Field field,
-        final ICmdLineArg<?> arg,
-        final Object target)
-            throws ParseException
+    static private void assignStandard(
+            final Field field,
+            final ICmdLineArg<?> arg,
+            final Object target)
+                    throws ParseException
     {
         final String errMsg = "expected: public "
-            + arg.getValue().getClass().getName()
-            + " "
-            + arg.getVariable()
-            + " on "
-            + target.getClass().getName();
+                + arg.getValue().getClass().getName()
+                + " "
+                + arg.getVariable()
+                + " on "
+                + target.getClass().getName();
         try
         {
             if (isStringArray(field))
@@ -80,6 +80,8 @@ public class VariableAssigner implements IVariableAssigner
                 field.set(target, arg.getValueAsintArray());
             else if (isbyteArray(field))
                 field.set(target, arg.getValueAsbyteArray());
+            else if (ischarArray(field))
+                field.set(target, arg.getValueAscharArray());
             else if (isfloatArray(field))
                 field.set(target, arg.getValueAsfloatArray());
             else if (isFloatArray(field))
@@ -96,6 +98,8 @@ public class VariableAssigner implements IVariableAssigner
                 field.set(target, arg.getValueAsDateArray());
             else if (isByteArray(field))
                 field.set(target, arg.getValueAsByteArray());
+            else if (isCharacterArray(field))
+                field.set(target, arg.getValueAsCharacterArray());
             else if (isFileArray(field))
                 field.set(target, arg.getValueAsFileArray());
             else if (isEnum(field))
@@ -117,11 +121,11 @@ public class VariableAssigner implements IVariableAssigner
 
     }
 
-    static private void assignWithInstantiator (
-        final Field field,
-        final ICmdLineArg<?> arg,
-        final Object target)
-            throws ParseException
+    static private void assignWithInstantiator(
+            final Field field,
+            final ICmdLineArg<?> arg,
+            final Object target)
+                    throws ParseException
     {
         Class<?> clazz = null;
         Method method = null;
@@ -157,25 +161,25 @@ public class VariableAssigner implements IVariableAssigner
                     throw new ParseException("Generics with a factory method must use --class", 0);
 
                 errMsg = "expected: public static "
-                    + baseClassName
-                    + " "
-                    + arg.getFactoryMethodName()
-                    + "("
-                    + parmClass.getName()
-                    + ") on "
-                    + baseClassName;
+                        + baseClassName
+                        + " "
+                        + arg.getFactoryMethodName()
+                        + "("
+                        + parmClass.getName()
+                        + ") on "
+                        + baseClassName;
                 clazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
                 method = clazz.getDeclaredMethod(arg.getFactoryMethodName(), parmClass);
             } else
             {
                 errMsg = "expected: public static "
-                    + arg.getFactoryMethodName().substring(0, methodPvt)
-                    + " "
-                    + arg.getFactoryMethodName().substring(methodPvt + 1)
-                    + "("
-                    + parmClass.getName()
-                    + ") on "
-                    + arg.getFactoryMethodName().substring(0, methodPvt);
+                        + arg.getFactoryMethodName().substring(0, methodPvt)
+                        + " "
+                        + arg.getFactoryMethodName().substring(methodPvt + 1)
+                        + "("
+                        + parmClass.getName()
+                        + ") on "
+                        + arg.getFactoryMethodName().substring(0, methodPvt);
                 clazz = ClassLoader.getSystemClassLoader()
                         .loadClass(arg.getFactoryMethodName().substring(0, methodPvt));
                 method = clazz.getDeclaredMethod(arg.getFactoryMethodName().substring(methodPvt + 1), parmClass);
@@ -232,7 +236,7 @@ public class VariableAssigner implements IVariableAssigner
 
     }
 
-    static private String factoryArgValue (final ICmdLineArg<?> arg)
+    static private String factoryArgValue(final ICmdLineArg<?> arg)
     {
         try
         {
@@ -254,69 +258,79 @@ public class VariableAssigner implements IVariableAssigner
         }
     }
 
-    static public IVariableAssigner getInstance ()
+    static public IVariableAssigner getInstance()
     {
         if (instance == null)
             instance = new VariableAssigner();
         return instance;
     }
 
-    private static boolean isbyteArray (final Field field)
+    private static boolean isbyteArray(final Field field)
     {
         return "[B".equals(field.getType().getName());
     }
 
-    private static boolean isByteArray (final Field field)
+    private static boolean isByteArray(final Field field)
     {
         return "[Ljava.lang.Byte;".equals(field.getType().getName());
     }
 
-    private static boolean isDateArray (final Field field)
+    private static boolean isCharacterArray(final Field field)
+    {
+        return "[Ljava.lang.Character;".equals(field.getType().getName());
+    }
+
+    private static boolean ischarArray(final Field field)
+    {
+        return "[C".equals(field.getType().getName());
+    }
+
+    private static boolean isDateArray(final Field field)
     {
         return "[Ljava.util.Date;".equals(field.getType().getName());
     }
 
-    static private boolean isEnum (final Field field)
+    static private boolean isEnum(final Field field)
     {
         return field.getType().isEnum();
     }
 
-    private static boolean isEquation (final Field field)
+    private static boolean isEquation(final Field field)
     {
         return "com.obdobion.algebrain.Equ".equals(field.getType().getName());
     }
 
-    private static boolean isEquationArray (final Field field)
+    private static boolean isEquationArray(final Field field)
     {
         return "[Lcom.obdobion.algebrain.Equ;".equals(field.getType().getName());
     }
 
-    private static boolean isFileArray (final Field field)
+    private static boolean isFileArray(final Field field)
     {
         return "[Ljava.io.File;".equals(field.getType().getName());
     }
 
-    private static boolean isfloatArray (final Field field)
+    private static boolean isfloatArray(final Field field)
     {
         return "[F".equals(field.getType().getName());
     }
 
-    private static boolean isFloatArray (final Field field)
+    private static boolean isFloatArray(final Field field)
     {
         return "[Ljava.lang.Float;".equals(field.getType().getName());
     }
 
-    private static boolean isintArray (final Field field)
+    private static boolean isintArray(final Field field)
     {
         return "[I".equals(field.getType().getName());
     }
 
-    private static boolean isIntegerArray (final Field field)
+    private static boolean isIntegerArray(final Field field)
     {
         return "[Ljava.lang.Integer;".equals(field.getType().getName());
     }
 
-    static private boolean isList (final Field field)
+    static private boolean isList(final Field field)
     {
         final Class<?>[] interfaces = field.getType().getInterfaces();
         if (interfaces.length == 0)
@@ -329,22 +343,22 @@ public class VariableAssigner implements IVariableAssigner
         return false;
     }
 
-    private static boolean isLongArray (final Field field)
+    private static boolean isLongArray(final Field field)
     {
         return "[Ljava.lang.Long;".equals(field.getType().getName());
     }
 
-    private static boolean isPattern (final Field field)
+    private static boolean isPattern(final Field field)
     {
         return "java.util.regex.Pattern".equals(field.getType().getName());
     }
 
-    private static boolean isPatternArray (final Field field)
+    private static boolean isPatternArray(final Field field)
     {
         return "[Ljava.util.regex.Pattern;".equals(field.getType().getName());
     }
 
-    private static boolean isStringArray (final Field field)
+    private static boolean isStringArray(final Field field)
     {
         return "[Ljava.lang.String;".equals(field.getType().getName());
     }
@@ -358,13 +372,13 @@ public class VariableAssigner implements IVariableAssigner
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    static private Object[] newArray (
-        final Object target,
-        final Field field,
-        final Class<?> baseClazz)
-            throws ClassNotFoundException,
-            IllegalAccessException,
-            InstantiationException
+    static private Object[] newArray(
+            final Object target,
+            final Field field,
+            final Class<?> baseClazz)
+                    throws ClassNotFoundException,
+                    IllegalAccessException,
+                    InstantiationException
     {
         final Object[] oldinstance = (Object[]) field.get(target);
         int oldsize = 0;
@@ -397,21 +411,21 @@ public class VariableAssigner implements IVariableAssigner
      * @throws InvocationTargetException
      * @throws ParseException
      */
-    static private Object newInstanceForGroup (
-        final CmdLineCLA group,
-        final Object target,
-        final Field field,
-        final String _baseClassName,
-        final ICmdLineArg<?> factoryValueArg,
-        final boolean reusable)
-            throws ClassNotFoundException,
-            InstantiationException,
-            IllegalAccessException,
-            SecurityException,
-            NoSuchMethodException,
-            IllegalArgumentException,
-            InvocationTargetException,
-            ParseException
+    static private Object newInstanceForGroup(
+            final CmdLineCLA group,
+            final Object target,
+            final Field field,
+            final String _baseClassName,
+            final ICmdLineArg<?> factoryValueArg,
+            final boolean reusable)
+                    throws ClassNotFoundException,
+                    InstantiationException,
+                    IllegalAccessException,
+                    SecurityException,
+                    NoSuchMethodException,
+                    IllegalArgumentException,
+                    InvocationTargetException,
+                    ParseException
     {
         String baseClassName = _baseClassName;
         /*
@@ -458,9 +472,8 @@ public class VariableAssigner implements IVariableAssigner
             if (factoryValue == null)
                 groupInstance = method.invoke(clazz, new Object[] {});
             else
-                groupInstance = method.invoke(clazz, new Object[]
-                {
-                    factoryValue
+                groupInstance = method.invoke(clazz, new Object[] {
+                        factoryValue
                 });
 
         } else
@@ -479,12 +492,12 @@ public class VariableAssigner implements IVariableAssigner
      * @throws IllegalAccessException
      * @throws InstantiationException
      */
-    static private ArrayList<Object> newList (
-        final Object target,
-        final Field field)
-            throws ClassNotFoundException,
-            IllegalAccessException,
-            InstantiationException
+    static private ArrayList<Object> newList(
+            final Object target,
+            final Field field)
+                    throws ClassNotFoundException,
+                    IllegalAccessException,
+                    InstantiationException
     {
         @SuppressWarnings("unchecked")
         ArrayList<Object> oldinstance = (ArrayList<Object>) field.get(target);
@@ -497,14 +510,14 @@ public class VariableAssigner implements IVariableAssigner
         return oldinstance;
     }
 
-    static public IVariableAssigner setInstance (final IVariableAssigner newInstance)
+    static public IVariableAssigner setInstance(final IVariableAssigner newInstance)
     {
         final IVariableAssigner previousAssigner = instance;
         instance = newInstance;
         return previousAssigner;
     }
 
-    public void assign (final ICmdLineArg<?> arg, final Object target) throws ParseException
+    public void assign(final ICmdLineArg<?> arg, final Object target) throws ParseException
     {
         if (arg == null)
             return;
@@ -513,11 +526,11 @@ public class VariableAssigner implements IVariableAssigner
         Field field = null;
 
         final String errMsg = "expected: public "
-            + arg.getValue().getClass().getName()
-            + " "
-            + arg.getVariable()
-            + " on "
-            + target.getClass().getName();
+                + arg.getValue().getClass().getName()
+                + " "
+                + arg.getVariable()
+                + " on "
+                + target.getClass().getName();
 
         try
         {
@@ -532,11 +545,11 @@ public class VariableAssigner implements IVariableAssigner
         assign(field, arg, target);
     }
 
-    public Object newGroupVariable (
-        final CmdLineCLA group,
-        final Object target,
-        final ICmdLineArg<?> factoryValueArg)
-            throws ParseException
+    public Object newGroupVariable(
+            final CmdLineCLA group,
+            final Object target,
+            final ICmdLineArg<?> factoryValueArg)
+                    throws ParseException
     {
         try
         {
@@ -559,7 +572,7 @@ public class VariableAssigner implements IVariableAssigner
                         final Class<?> baseClazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
                         final Object[] array = newArray(target, field, baseClazz);
                         array[array.length
-                            - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
+                                - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
                         groupInstance = array[array.length - 1];
                     } else
                     {
@@ -573,7 +586,7 @@ public class VariableAssigner implements IVariableAssigner
                     final Class<?> baseClazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
                     final Object[] array = newArray(target, field, baseClazz);
                     array[array.length
-                        - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
+                            - 1] = newInstanceForGroup(group, target, field, baseClassName, factoryValueArg, false);
                     groupInstance = array[array.length - 1];
                 } else
                 {
@@ -603,20 +616,20 @@ public class VariableAssigner implements IVariableAssigner
         } catch (final NoSuchFieldException e)
         {
             throw new ParseException("NoSuchFieldException ("
-                + target.getClass().getSimpleName()
-                + " "
-                + group.getVariable()
-                + ")", -1);
+                    + target.getClass().getSimpleName()
+                    + " "
+                    + group.getVariable()
+                    + ")", -1);
         } catch (final IllegalArgumentException e)
         {
             throw new ParseException("IllegalArgumentException (" + group.getVariable() + ")", -1);
         } catch (final NoSuchMethodException e)
         {
             throw new ParseException("NoSuchMethodException ("
-                + target.getClass().getSimpleName()
-                + " "
-                + group.getVariable()
-                + ")", -1);
+                    + target.getClass().getSimpleName()
+                    + " "
+                    + group.getVariable()
+                    + ")", -1);
         } catch (final InvocationTargetException e)
         {
             throw new ParseException("InvocationTargetException (" + group.getVariable() + ")", -1);

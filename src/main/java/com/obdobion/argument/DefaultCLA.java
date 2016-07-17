@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class DefaultCLA extends AbstractCLA<String>
 {
@@ -24,29 +24,17 @@ public class DefaultCLA extends AbstractCLA<String>
         super(_keyword);
     }
 
-    @Override
-    public void asDefinedType (StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_DEFAULT);
-    }
-
     /**
      * not called. A special case in the caller will redirect this call to the
      * one with the args as a parameter.
      */
     @Override
-    public void applyDefaults ()
+    public void applyDefaults()
     {
         // intentionally left blank
     }
 
-    @Override
-    public String defaultInstanceClass ()
-    {
-        return "Object";
-    }
-
-    public void applyDefaults (char commandPrefix, final List<ICmdLineArg<?>> allKnownArgs)
+    public void applyDefaults(final char commandPrefix, final List<ICmdLineArg<?>> allKnownArgs)
     {
         for (final String argNameToReset : getValues())
         {
@@ -70,7 +58,13 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     @Override
-    public String convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public void asDefinedType(final StringBuilder sb)
+    {
+        sb.append(CLAFactory.TYPE_DEFAULT);
+    }
+
+    @Override
+    public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (_caseSensitive)
             return valueStr;
@@ -78,7 +72,13 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    public String defaultInstanceClass()
+    {
+        return "Object";
+    }
+
+    @Override
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).replaceAll("\"", "\\\\\""));
@@ -86,7 +86,7 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -95,8 +95,13 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ), out);
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.String";
     }
 }

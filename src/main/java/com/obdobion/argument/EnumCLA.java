@@ -4,7 +4,7 @@ import java.text.ParseException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class EnumCLA extends AbstractCLA<String>
 {
@@ -24,15 +24,15 @@ public class EnumCLA extends AbstractCLA<String>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_ENUM);
     }
 
     @Override
-    public Object asEnum (String enumClassFieldName, Object[] possibleConstants) throws ParseException
+    public Object asEnum(final String enumClassFieldName, final Object[] possibleConstants) throws ParseException
     {
-        String enumConstantName = getValue();
+        final String enumConstantName = getValue();
 
         Object selectedConstant = null;
 
@@ -78,7 +78,7 @@ public class EnumCLA extends AbstractCLA<String>
     }
 
     @Override
-    public String convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (_caseSensitive)
             return valueStr;
@@ -86,13 +86,13 @@ public class EnumCLA extends AbstractCLA<String>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return enumClassName;
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).replaceAll("\"", "\\\\\""));
@@ -100,7 +100,7 @@ public class EnumCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -109,8 +109,13 @@ public class EnumCLA extends AbstractCLA<String>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(getValue(occ));
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.String";
     }
 }

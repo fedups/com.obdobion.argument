@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class DateCLA extends AbstractCLA<Date>
 {
@@ -25,7 +25,7 @@ public class DateCLA extends AbstractCLA<Date>
     static final String           specialAlgoNOW      = "now";
     static final SimpleDateFormat outputSDF           = new SimpleDateFormat("yyyy-MM-dd@HH:mm:ss.SSS");
 
-    static private void createFormat (final String format)
+    static private void createFormat(final String format)
     {
         if (format.charAt(0) == '*')
         {
@@ -39,20 +39,20 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
-    static private Matcher createMatcher (final String format)
+    static private Matcher createMatcher(final String format)
     {
         // System.err.println(format);
         return Pattern.compile(
                 format.trim(),
                 Pattern.CASE_INSENSITIVE).matcher(
-                "");
+                        "");
     }
 
     /**
      * Create these so that the matchers are paired with the date formats. When
      * the matcher succeeds then the date format will be used.
      */
-    synchronized static private void createPredefinedDateFormats ()
+    synchronized static private void createPredefinedDateFormats()
     {
         if (predefinedMat != null)
             return;
@@ -60,12 +60,10 @@ public class DateCLA extends AbstractCLA<Date>
         final String mmFmt = "[0-9]{1,2}";
         final String ddFmt = "[0-9]{1,2}";
         final String yyFmt = "[0-9]{4}";
-        final char[] seps =
-        {
+        final char[] seps = {
                 '-', '/'
         };
-        final char[] spaceSeps =
-        {
+        final char[] spaceSeps = {
                 ' ', '@'
         };
 
@@ -125,7 +123,7 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
-    static private void createWithTimePattern (final String dFormat, final String dMatcher, final char space)
+    static private void createWithTimePattern(final String dFormat, final String dMatcher, final char space)
     {
         final String hhFmt = "[0-9]{1,2}";
         final String miFmt = "[0-9]{1,2}";
@@ -196,24 +194,13 @@ public class DateCLA extends AbstractCLA<Date>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_DATE);
     }
 
     @Override
-    public Date[] getValueAsDateArray () throws ParseException
-    {
-        final Date[] result = new Date[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
-    public Date convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public Date convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         if (sdf == null)
@@ -247,13 +234,13 @@ public class DateCLA extends AbstractCLA<Date>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "java.util.Date";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         synchronized (outputSDF)
         {
@@ -264,7 +251,7 @@ public class DateCLA extends AbstractCLA<Date>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         synchronized (outputSDF)
         {
@@ -276,7 +263,7 @@ public class DateCLA extends AbstractCLA<Date>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         synchronized (outputSDF)
         {
@@ -284,7 +271,23 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
-    protected Date parseSpecialDate (final String pattern)
+    public String genericClassName()
+    {
+        return "java.util.Date";
+    }
+
+    @Override
+    public Date[] getValueAsDateArray() throws ParseException
+    {
+        final Date[] result = new Date[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
+    }
+
+    protected Date parseSpecialDate(final String pattern)
     {
         if (specialAlgoTODAY.equalsIgnoreCase(pattern))
         {
@@ -300,7 +303,7 @@ public class DateCLA extends AbstractCLA<Date>
         return new Date();
     }
 
-    Date parseWithPredefinedParsers (final String valueStr) throws ParseException
+    Date parseWithPredefinedParsers(final String valueStr) throws ParseException
     {
         for (int f = 0; f < predefinedMat.length; f++)
         {

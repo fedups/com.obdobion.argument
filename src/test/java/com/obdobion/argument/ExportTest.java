@@ -7,7 +7,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class ExportTest
 {
@@ -18,7 +18,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportBoolean () throws Exception
+    public void exportBoolean() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -36,7 +36,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportBooleans () throws Exception
+    public void exportBooleans() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -69,7 +69,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportFloat () throws Exception
+    public void exportFloat() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -87,7 +87,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportGroup () throws Exception
+    public void exportGroup() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -100,7 +100,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportInteger () throws Exception
+    public void exportInteger() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -118,7 +118,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportMultiGroup () throws Exception
+    public void exportMultiGroup() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -138,7 +138,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportNegativeFloat () throws Exception
+    public void exportNegativeFloat() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -151,7 +151,7 @@ public class ExportTest
     }
 
     @Test
-    public void exportQuoted () throws Exception
+    public void exportQuoted() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -160,11 +160,11 @@ public class ExportTest
         final StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"what\""));
         cl.exportCommandLine(str);
-        Assert.assertEquals("export", "-a\"what\"", str.toString());
+        Assert.assertEquals("export", "-a'what'", str.toString());
     }
 
     @Test
-    public void exportQuoted2 () throws Exception
+    public void exportQuoted2() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -173,11 +173,11 @@ public class ExportTest
         final StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a 'echo \"what\"'"));
         cl.exportCommandLine(str);
-        Assert.assertEquals("export", "-a\"echo \\\"what\\\"\"", str.toString());
+        Assert.assertEquals("export", "-a'echo \\\"what\\\"'", str.toString());
     }
 
     @Test
-    public void exportQuoted3 () throws Exception
+    public void exportQuoted3() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -186,11 +186,11 @@ public class ExportTest
         final StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"echo \\\"what\\\"\""));
         cl.exportCommandLine(str);
-        Assert.assertEquals("export", "-a\"echo \\\"what\\\"\"", str.toString());
+        Assert.assertEquals("export", "-a'echo \\\"what\\\"'", str.toString());
     }
 
     @Test
-    public void exportQuoted4 () throws Exception
+    public void exportQuoted4() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -199,11 +199,11 @@ public class ExportTest
         final StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"echo 'what'\""));
         cl.exportCommandLine(str);
-        Assert.assertEquals("export", "-a\"echo 'what'\"", str.toString());
+        Assert.assertEquals("export", "-a'echo \\\'what\\\''", str.toString());
     }
 
     @Test
-    public void exportString () throws Exception
+    public void exportString() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -212,16 +212,16 @@ public class ExportTest
         StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a what"));
         cl.exportCommandLine(str);
-        Assert.assertEquals("1 export", "-a\"what\"", str.toString());
+        Assert.assertEquals("1 export", "-a'what'", str.toString());
 
         str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a 'wh\"at'"));
         cl.exportCommandLine(str);
-        Assert.assertEquals("2 export", "-a\"wh\\\"at\"", str.toString());
+        Assert.assertEquals("2 export", "-a'wh\\\"at'", str.toString());
     }
 
     @Test
-    public void exportStringParm () throws Exception
+    public void exportStringParm() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -230,12 +230,12 @@ public class ExportTest
         StringBuilder str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a what"));
         cl.exportCommandLine(str);
-        Assert.assertEquals("1 export", "-a\"what\"", str.toString());
+        Assert.assertEquals("1 export", "-a'what'", str.toString());
 
         str = new StringBuilder();
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a what when"));
         cl.exportCommandLine(str);
-        Assert.assertEquals("2 export", "-a\"what\" \"when\"", str.toString());
+        Assert.assertEquals("2 export", "-a'what' 'when'", str.toString());
     }
 
 }

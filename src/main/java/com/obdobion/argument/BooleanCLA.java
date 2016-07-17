@@ -7,16 +7,16 @@ import java.util.regex.Pattern;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class BooleanCLA extends AbstractCLA<Boolean>
 {
     static final private Pattern YES        = Pattern.compile("y(es)?|true|on", Pattern.CASE_INSENSITIVE);
 
-    String[]                     validWords = new String[]
-                                            {
-            "yes", "no"
+    String[]                     validWords = new String[] {
+                                                    "yes", "no"
                                             };
+
     public BooleanCLA(final char _keychar)
     {
         super(_keychar);
@@ -57,13 +57,13 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_BOOLEAN);
     }
 
     @Override
-    public Boolean convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public Boolean convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         Matcher m = null;
@@ -74,13 +74,19 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    public String defaultInstanceClass()
+    {
+        return "boolean";
+    }
+
+    @Override
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         // intentionally left blank
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -88,19 +94,18 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         // intentionally left blank
     }
 
-    @Override
-    public String defaultInstanceClass ()
+    public String genericClassName()
     {
-        return "boolean";
+        return "java.lang.Boolean";
     }
 
     @Override
-    public Boolean getValue ()
+    public Boolean getValue()
     {
         if (isParsed())
             return super.getValue().booleanValue()
@@ -110,13 +115,13 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
-    public boolean isRequiredValue ()
+    public boolean isRequiredValue()
     {
         return false;
     }
 
     @Override
-    public ICmdLineArg<Boolean> setDefaultValue (final String defaultValue) throws ParseException, IOException
+    public ICmdLineArg<Boolean> setDefaultValue(final String defaultValue) throws ParseException, IOException
     {
         getDefaultValues().clear();
         getDefaultValues().add(convert(defaultValue));
@@ -124,13 +129,13 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
-    public ICmdLineArg<Boolean> setMultiple (final boolean bool) throws ParseException
+    public ICmdLineArg<Boolean> setMultiple(final boolean bool) throws ParseException
     {
         throw new ParseException("setMultiple is not valid for boolean types", -1);
     }
 
     @Override
-    public ICmdLineArg<Boolean> setRequiredValue (final boolean bool) throws ParseException
+    public ICmdLineArg<Boolean> setRequiredValue(final boolean bool) throws ParseException
     {
         requiredValue = bool;
         return this;

@@ -21,24 +21,13 @@ public class FileCLA extends AbstractCLA<File>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_FILE);
     }
 
     @Override
-    public File[] getValueAsFileArray () throws ParseException
-    {
-        final File[] result = new File[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
-    public File convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public File convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         if (_caseSensitive)
@@ -47,13 +36,13 @@ public class FileCLA extends AbstractCLA<File>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "java.io.File";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).getAbsolutePath().replaceAll("\"", "\\\\\""));
@@ -61,7 +50,7 @@ public class FileCLA extends AbstractCLA<File>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -70,8 +59,24 @@ public class FileCLA extends AbstractCLA<File>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).getAbsolutePath(), out);
+    }
+
+    public String genericClassName()
+    {
+        return "java.io.File";
+    }
+
+    @Override
+    public File[] getValueAsFileArray() throws ParseException
+    {
+        final File[] result = new File[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }

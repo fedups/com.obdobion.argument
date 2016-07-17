@@ -27,13 +27,13 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public void asDefinedType (final StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append("begin");
     }
 
     @Override
-    public ICmdLineArg<ICmdLine> clone ()
+    public ICmdLineArg<ICmdLine> clone()
             throws CloneNotSupportedException
     {
         final CmdLineCLA clone = (CmdLineCLA) super.clone();
@@ -43,7 +43,7 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public ICmdLine convert (
+    public ICmdLine convert(
             final String valueStr,
             final boolean _caseSensitive,
             final Object target)
@@ -66,13 +66,13 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "com.obdobion.argument.CmdLine";
     }
 
     @Override
-    protected void exportCommandLineData (
+    protected void exportCommandLineData(
             final StringBuilder str,
             final int occ)
     {
@@ -82,7 +82,7 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    protected void exportNamespaceData (
+    protected void exportNamespaceData(
             final String prefix,
             final StringBuilder out,
             final int occ)
@@ -91,7 +91,7 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public void exportXml (
+    public void exportXml(
             final StringBuilder out)
     {
         out.append("<");
@@ -131,23 +131,21 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    protected void exportXmlData (
+    protected void exportXmlData(
             final StringBuilder str,
             final int occ)
     {
         getValue(occ).exportXml(str);
     }
 
+    public String genericClassName()
+    {
+        return "com.obdobion.argument.ICmdLine";
+    }
+
     @Override
-    public void reset ()
+    public void reset()
     {
         values.clear();
     }
-
-    @Override
-    public String uniqueId ()
-    {
-        return "subparser[" + hashCode() + "]";
-    }
-
 }

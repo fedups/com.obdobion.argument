@@ -1,5 +1,7 @@
 package com.obdobion.argument;
 
+import java.text.ParseException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -7,7 +9,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class PositionalTest
 {
@@ -18,32 +20,7 @@ public class PositionalTest
     }
 
     @Test
-    public void twoStrings () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ks -p", "-t String -kt -p");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1,input2"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-        Assert.assertEquals("only value", "input1", cl.arg("-s").getValue());
-        Assert.assertEquals("only value", "input2", cl.arg("-t").getValue());
-    }
-
-    @Test
-    public void twoStringsOnlyUsed1 () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ks -p", "-t String -kt -p");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("only value", "input1", cl.arg("-s").getValue());
-    }
-
-    @Test
-    public void groupingGroupsPositionalBooleans () throws Exception
+    public void groupingGroupsPositionalBooleans() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -60,7 +37,7 @@ public class PositionalTest
     }
 
     @Test
-    public void groupingGroupsPositionalGroups () throws Exception
+    public void groupingGroupsPositionalGroups() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -77,7 +54,7 @@ public class PositionalTest
     }
 
     @Test
-    public void groupingGroupsPositionalGroupsAndBooleans () throws Exception
+    public void groupingGroupsPositionalGroupsAndBooleans() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -94,7 +71,7 @@ public class PositionalTest
     }
 
     @Test
-    public void groupMultiple () throws Exception
+    public void groupMultiple() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -111,7 +88,37 @@ public class PositionalTest
     }
 
     @Test
-    public void testString () throws Exception
+    public void multipleValuesWithMultiplePositionals() throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        try
+        {
+            cl.compile("-t String -ks -p -m1 1", "-t String -kt -p -m1 1");
+            Assert.fail("expected a parse exception");
+        } catch (final ParseException e)
+        {
+            Assert.assertEquals(
+                    "a multi-value positional argument must be the only positional argument, found \"string -s\"' and \"string -t\"",
+                    e.getMessage());
+        }
+    }
+
+    @Test
+    public void stringMultiple() throws Exception
+    {
+
+        final CmdLine cl = new CmdLine();
+        cl.compile("-t String -ks -p -m1");
+
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1,input2"));
+        Assert.assertEquals("1 cmd count", 1, cl.size());
+        Assert.assertEquals("1st value", "input1", cl.arg("-s").getValue(0));
+        Assert.assertEquals("2nd value", "input2", cl.arg("-s").getValue(1));
+    }
+
+    @Test
+    public void testString() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -123,29 +130,28 @@ public class PositionalTest
     }
 
     @Test
-    public void stringExactMultiple () throws Exception
+    public void twoStrings() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ks -p -m1 1", "-t String -kt -p -m1 1");
+        cl.compile("-t String -ks -p", "-t String -kt -p");
 
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1,input2"));
         Assert.assertEquals("1 cmd count", 2, cl.size());
-        Assert.assertEquals("1st value", "input1", cl.arg("-s").getValue());
-        Assert.assertEquals("2nd value", "input2", cl.arg("-t").getValue());
+        Assert.assertEquals("only value", "input1", cl.arg("-s").getValue());
+        Assert.assertEquals("only value", "input2", cl.arg("-t").getValue());
     }
 
     @Test
-    public void stringMultiple () throws Exception
+    public void twoStringsOnlyUsed1() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ks -p -m1");
+        cl.compile("-t String -ks -p", "-t String -kt -p");
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1,input2"));
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "input1"));
         Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1st value", "input1", cl.arg("-s").getValue(0));
-        Assert.assertEquals("2nd value", "input2", cl.arg("-s").getValue(1));
+        Assert.assertEquals("only value", "input1", cl.arg("-s").getValue());
     }
 
 }

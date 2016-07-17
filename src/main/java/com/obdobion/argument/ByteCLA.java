@@ -10,51 +10,50 @@ public class ByteCLA extends AbstractCLA<Byte>
      * These literals represent the number that happens to be the same as its
      * index.
      */
-    static public final String[] ByteLiteral =
-    {
-        "null",
-        "soh",
-        "stx",
-        "etx",
-        "eot",
-        "enq",
-        "ack",
-        "bel",
-        "bs",
-        "ht",
-        "lf",
-        "vt",
-        "ff",
-        "cr",
-        "so",
-        "si",
-        "dle",
-        "dc1",
-        "dc2",
-        "dc3",
-        "dc4",
-        "nak",
-        "syn",
-        "etb",
-        "can",
-        "em",
-        "sub",
-        "esc",
-        "fs",
-        "gs",
-        "rs",
-        "us",
-        "sp"
+    static public final String[] ByteLiteral = {
+            "null",
+            "soh",
+            "stx",
+            "etx",
+            "eot",
+            "enq",
+            "ack",
+            "bel",
+            "bs",
+            "ht",
+            "lf",
+            "vt",
+            "ff",
+            "cr",
+            "so",
+            "si",
+            "dle",
+            "dc1",
+            "dc2",
+            "dc3",
+            "dc4",
+            "nak",
+            "syn",
+            "etb",
+            "can",
+            "em",
+            "sub",
+            "esc",
+            "fs",
+            "gs",
+            "rs",
+            "us",
+            "sp"
     };
 
-    static public String asLiteral (final byte aByte)
+    static public String asLiteral(final byte aByte)
     {
         if (aByte < ByteLiteral.length)
             return ByteLiteral[aByte] + "(" + (int) aByte + ")";
         return (char) aByte + "(" + (int) aByte + ")";
     }
 
-    static public String byteToLit (final String number)
+    static public String byteToLit(final String number)
     {
         final byte aByte = (byte) Integer.parseInt(number);
 
@@ -79,13 +78,13 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    public void asDefinedType (final StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_BYTE);
     }
 
     @Override
-    public Byte convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public Byte convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
         if (valueStr.length() == 1)
         {
@@ -122,21 +121,20 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "byte";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
+        out.append(" ");
         out.append(getValue(occ));
-        out.append('"');
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -145,13 +143,18 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
     }
 
+    public String genericClassName()
+    {
+        return "java.lang.Byte";
+    }
+
     @Override
-    public byte[] getValueAsbyteArray ()
+    public byte[] getValueAsbyteArray()
     {
         final byte[] result = new byte[size()];
 
@@ -162,7 +165,7 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     @Override
-    public Byte[] getValueAsByteArray ()
+    public Byte[] getValueAsByteArray()
     {
         final Byte[] result = new Byte[size()];
 

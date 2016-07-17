@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class DoubleCLA extends AbstractCLA<Double>
 {
@@ -27,26 +27,26 @@ public class DoubleCLA extends AbstractCLA<Double>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_DOUBLE);
     }
 
     @Override
-    public Double convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public Double convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         return FMT.parse(valueStr).doubleValue();
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "double";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         if (getValue(occ) < 0.0)
             out.append("'");
@@ -56,7 +56,7 @@ public class DoubleCLA extends AbstractCLA<Double>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -65,8 +65,13 @@ public class DoubleCLA extends AbstractCLA<Double>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(FMT.format(getValue(occ)).replaceAll(",", ""));
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.Double";
     }
 }

@@ -26,14 +26,14 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     }
 
     @Override
-    public void asDefinedType (final StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_PATTERN);
     }
 
     @Override
-    public ComparablePattern convert (final String valueStr, final boolean _caseSensitive, final Object target)
-        throws ParseException
+    public ComparablePattern convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException
     {
         try
         {
@@ -47,13 +47,13 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "java.util.regex.Pattern";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         out.append('"');
         out.append(getValue(occ).pattern().replaceAll("\"", "\\\\\""));
@@ -61,7 +61,7 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -70,31 +70,36 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).pattern(), out);
     }
 
+    public String genericClassName()
+    {
+        return "java.util.regex.Pattern";
+    }
+
     @Override
-    public Object getDelegateOrValue ()
+    public Object getDelegateOrValue()
     {
         return getValue().delegate;
     }
 
     @Override
-    public Object getDelegateOrValue (final int occurrence)
+    public Object getDelegateOrValue(final int occurrence)
     {
         return getValue(occurrence).delegate;
     }
 
     @Override
-    public Pattern getValueAsPattern () throws ParseException
+    public Pattern getValueAsPattern() throws ParseException
     {
         return getValue().delegate;
     }
 
     @Override
-    public Pattern[] getValueAsPatternArray () throws ParseException
+    public Pattern[] getValueAsPatternArray() throws ParseException
     {
         final Pattern[] result = new Pattern[size()];
 

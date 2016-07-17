@@ -6,7 +6,7 @@ import java.text.ParseException;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class LongCLA extends AbstractCLA<Long>
 {
@@ -29,37 +29,26 @@ public class LongCLA extends AbstractCLA<Long>
     }
 
     @Override
-    public void asDefinedType (StringBuilder sb)
+    public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_LONG);
     }
 
     @Override
-    public Long[] getValueAsLongArray () throws ParseException
-    {
-        final Long[] result = new Long[size()];
-
-        for (int r = 0; r < size(); r++)
-            result[r] = getValue(r);
-
-        return result;
-    }
-
-    @Override
-    public Long convert (final String valueStr, final boolean _caseSensitive, final Object target)
+    public Long convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         return FMTin.parse(valueStr).longValue();
     }
 
     @Override
-    public String defaultInstanceClass ()
+    public String defaultInstanceClass()
     {
         return "long";
     }
 
     @Override
-    protected void exportCommandLineData (final StringBuilder out, final int occ)
+    protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         if (getValue(occ) < 0)
             out.append("'");
@@ -69,7 +58,7 @@ public class LongCLA extends AbstractCLA<Long>
     }
 
     @Override
-    protected void exportNamespaceData (final String prefix, final StringBuilder out, final int occ)
+    protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         out.append(prefix);
         out.append("=");
@@ -78,8 +67,24 @@ public class LongCLA extends AbstractCLA<Long>
     }
 
     @Override
-    protected void exportXmlData (final StringBuilder out, final int occ)
+    protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(FMTout.format(getValue(occ)));
+    }
+
+    public String genericClassName()
+    {
+        return "java.lang.Long";
+    }
+
+    @Override
+    public Long[] getValueAsLongArray() throws ParseException
+    {
+        final Long[] result = new Long[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
     }
 }
