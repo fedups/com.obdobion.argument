@@ -16,16 +16,16 @@ import com.obdobion.argument.Token;
  * This parser takes a typical command line entry and creates tokens. A command
  * line is made up of key words and values. A key word is prefixed by a - or
  * two. Brackets or parenthesis may be used to create subparsers.
- * 
+ *
  * @author Chris DeGreef
- * 
+ *
  */
 public class CommandLineParser extends AbstractInputParser implements IParserInput
 {
-    static private StringBuilder convertToString (
+    static private StringBuilder convertToString(
             final File commandFile)
-            throws FileNotFoundException,
-            IOException
+                    throws FileNotFoundException,
+                    IOException
     {
         final FileReader fis = new FileReader(commandFile);
         final BufferedReader buf = new BufferedReader(fis);
@@ -48,11 +48,11 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return str;
     }
 
-    static public IParserInput getInstance (
+    static public IParserInput getInstance(
             final char commandPrefix,
             final boolean allowEmbeddedCommandPrefix,
             final File args)
-            throws IOException
+                    throws IOException
     {
         final CommandLineParser parser = new CommandLineParser();
         parser.commandPrefix = commandPrefix;
@@ -61,7 +61,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return parser;
     }
 
-    static public IParserInput getInstance (
+    static public IParserInput getInstance(
             final char commandPrefix,
             final boolean allowEmbeddedCommandPrefix,
             final String... args)
@@ -72,29 +72,29 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         final StringBuilder str = new StringBuilder();
         for (int c = 0; c < args.length; c++)
         {
-            str.append(args[c]);
+            str.append(args[c].replaceAll("\\\\", "\\\\\\\\"));
             str.append(" ");
         }
         parser.commandLine = str.toString();
         return parser;
     }
 
-    static public IParserInput getInstance (
+    static public IParserInput getInstance(
             final char commandPrefix,
             final File args)
-            throws IOException
+                    throws IOException
     {
         return getInstance(commandPrefix, false, args);
     }
 
-    static public IParserInput getInstance (
+    static public IParserInput getInstance(
             final char commandPrefix,
             final String... args)
     {
         return getInstance(commandPrefix, false, args);
     }
 
-    static public String unparseTokens (
+    static public String unparseTokens(
             final List<ICmdLineArg<?>> args)
     {
         final StringBuilder out = new StringBuilder();
@@ -102,7 +102,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return out.toString();
     }
 
-    static public void unparseTokens (
+    static public void unparseTokens(
             final List<ICmdLineArg<?>> args,
             final StringBuilder out)
     {
@@ -120,6 +120,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
             }
         }
     }
+
     protected String commandLine;
     char             commandPrefix;
 
@@ -131,7 +132,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         allowEmbeddedCommandPrefix = true;
     }
 
-    public Token[] parseTokens ()
+    public Token[] parseTokens()
     {
         char delim = ' ';
         final StringBuilder part = new StringBuilder();
@@ -171,7 +172,8 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                                 // || (part.length() == 0 && thisChar == '@')
                                 // || (part.length() == 0 && thisChar == '_')
                                 || thisChar == '\''
-                                || (!allowEmbeddedCommandPrefix && thisChar == commandPrefix && prevChar != commandPrefix)))
+                                || (!allowEmbeddedCommandPrefix && thisChar == commandPrefix
+                                        && prevChar != commandPrefix)))
                 {
                     boolean forceLiteral = false;
                     /*
@@ -198,7 +200,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                     inToken = false;
                 } else
                 {
-                    if (delim != ' ' && thisChar == '\\')
+                    if (thisChar == '\\')
                         thisChar = commandLine.charAt(++scanX);
                     part.append(thisChar);
                 }
@@ -241,7 +243,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return tokens.toArray(new Token[tokens.size()]);
     }
 
-    public String substring (int inclusiveStart, int exclusiveEnd)
+    public String substring(final int inclusiveStart, final int exclusiveEnd)
     {
         return commandLine.substring(inclusiveStart, exclusiveEnd);
     }

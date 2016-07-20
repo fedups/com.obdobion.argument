@@ -40,7 +40,7 @@ public class QuotedLiteralsTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a -m1 ");
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"c:\\\\temp\\\\somefile.txt\""));
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"c:\\temp\\somefile.txt\""));
         Assert.assertEquals("1 cmd count", 1, cl.size());
         Assert.assertEquals("url", "c:\\temp\\somefile.txt", cl.arg("-a").getValue());
     }

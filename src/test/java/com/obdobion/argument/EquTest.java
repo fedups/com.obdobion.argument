@@ -21,34 +21,37 @@ public class EquTest
     }
 
     @Test
-    public void parensEquationsWithDot () throws Exception
+    public void parensEquationsWithDot() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t equ -k e --var equ");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a.([0-9]+).b\")'"), this);
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a.([0-9]+).b\")'"),
+                this);
         Assert.assertEquals("123", equ.evaluate());
     }
 
     @Test
-    public void parensEquationsWithEscape () throws Exception
+    public void parensEquationsWithEscape() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t equ -k e --var equ");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a\\\\(([0-9]+)\\\\)b\")'"), this);
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a\\(([0-9]+)\\)b\")'"),
+                this);
         Assert.assertEquals("123", equ.evaluate());
     }
 
     @Test
-    public void parensEquationsWithSet () throws Exception
+    public void parensEquationsWithSet() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t equ -k e --var equ");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a[(]([0-9]+)[)]b\")'"), this);
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-e'matches(\"a(123)b\", \"a[(]([0-9]+)[)]b\")'"),
+                this);
         Assert.assertEquals("123", equ.evaluate());
     }
 
     @Test
-    public void quotedEquation () throws Exception
+    public void quotedEquation() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t equ -k e --var equ");
@@ -57,7 +60,7 @@ public class EquTest
     }
 
     @Test
-    public void simpleEquation () throws Exception
+    public void simpleEquation() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t equ -k e --var equ");

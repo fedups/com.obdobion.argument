@@ -184,7 +184,7 @@ public class ExportTest
         cl.compile("-t string -k a");
 
         final StringBuilder str = new StringBuilder();
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a \"echo \\\"what\\\"\""));
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a 'echo \"what\"'"));
         cl.exportCommandLine(str);
         Assert.assertEquals("export", "-a'echo \\\"what\\\"'", str.toString());
     }
