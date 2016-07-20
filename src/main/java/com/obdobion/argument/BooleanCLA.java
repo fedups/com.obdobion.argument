@@ -2,6 +2,7 @@ package com.obdobion.argument;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -57,6 +58,15 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
+    public void applyDefaults()
+    {
+        if (noValuesEntered() || valuesAreTheSameAsDefault())
+        {
+            reset();
+        }
+    }
+
+    @Override
     public void asDefinedType(final StringBuilder sb)
     {
         sb.append(CLAFactory.TYPE_BOOLEAN);
@@ -80,17 +90,64 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     }
 
     @Override
+    public void exportCommandLine(
+            final StringBuilder out)
+    {
+        if (isParsed())
+            if (keychar != null && keychar != ' ')
+            {
+                out.append("-");
+                out.append(keychar.charValue());
+            } else if (keyword != null && keyword.trim().length() > 0)
+            {
+                out.append("--");
+                out.append(keyword);
+            }
+    }
+
+    @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         // intentionally left blank
     }
 
     @Override
+    public void exportNamespace(final String prefix, final StringBuilder out)
+    {
+        if (isParsed())
+        {
+            out.append(prefix);
+            if (keychar != null)
+                out.append(keychar.charValue());
+            else if (keyword != null)
+                out.append(keyword);
+            out.append("=");
+            /*
+             * No actual value for booleans. Just being there takes on the
+             * opposite of the default value.
+             */
+            out.append("\n");
+        }
+    }
+
+    @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
-        out.append(prefix);
-        out.append("=");
-        out.append("\n");
+        // not called for booleans
+    }
+
+    @Override
+    public void exportXml(final StringBuilder out)
+    {
+        if (isParsed())
+        {
+            out.append("<");
+            if (keychar != null)
+                out.append(keychar.charValue());
+            else if (keyword != null)
+                out.append(keyword);
+            out.append("/>");
+        }
     }
 
     @Override
@@ -108,9 +165,10 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     public Boolean getValue()
     {
         if (isParsed())
-            return super.getValue().booleanValue()
-                    ? Boolean.FALSE
-                    : Boolean.TRUE;
+            if (getDefaultValues().get(0).equals(Boolean.TRUE))
+                return Boolean.FALSE;
+            else
+                return Boolean.TRUE;
         return getDefaultValues().get(0);
     }
 
@@ -118,6 +176,12 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     public boolean isRequiredValue()
     {
         return false;
+    }
+
+    @Override
+    boolean noValuesEntered()
+    {
+        return !isParsed();
     }
 
     @Override
@@ -139,5 +203,29 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     {
         requiredValue = bool;
         return this;
+    }
+
+    @Override
+    public void setValue(final Boolean value)
+    {
+        /*
+         * a reset is not necessary before setting a value on a boolean since
+         * there is only one possible value at any one time. In fact, values are
+         * not even stored for booleans. The simple knowledge that it is parsed
+         * indicates that the boolean is the opposite of the default.
+         */
+        setParsed(!getDefaultValues().get(0).equals(value));
+    }
+
+    @Override
+    public void setValue(final int index, final Boolean value)
+    {
+        // multiple values for a boolean are not value
+    }
+
+    @Override
+    public void setValue(final List<Boolean> value)
+    {
+        // multiple values for a boolean are not value
     }
 }

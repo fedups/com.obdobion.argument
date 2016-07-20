@@ -54,11 +54,18 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return new Metaphone().metaphone(_keyword);
     }
 
+    static public void uncompileQuoter(final StringBuilder out, final String value)
+    {
+        out.append("'");
+        if (value != null)
+            out.append(value.replaceAll("'", "\\\\'").replaceAll("\"", "\\\\\""));
+        out.append("'");
+    }
+
     /**
      * Set when this argument is created in the factory.
      */
     protected int                    uniqueId;
-
     protected List<E>                defaultValues = new ArrayList<>();
     protected String                 help;
     protected Character              keychar;
@@ -83,6 +90,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     protected boolean                requiredValue;
     protected boolean                systemGenerated;
     protected List<E>                values        = new ArrayList<>();
+
     protected String                 enumClassName;
 
     protected ICmdLineArgCriteria<?> criteria;
@@ -110,8 +118,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     @Override
     public void applyDefaults()
     {
-        if (getValues().isEmpty())
+        if (noValuesEntered() || valuesAreTheSameAsDefault())
+        {
+            reset();
             getValues().addAll(getDefaultValues());
+        }
     }
 
     @Override
@@ -563,6 +574,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return systemGenerated;
     }
 
+    boolean noValuesEntered()
+    {
+        return getValues().isEmpty();
+    }
+
     @Override
     public void reset()
     {
@@ -753,9 +769,9 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     @Override
     public ICmdLineArg<E> setMultiple(final boolean bool) throws ParseException
     {
-        return setMultiple(0, bool
-                ? Integer.MAX_VALUE
-                : 0);
+        if (bool)
+            return setMultiple(1, Integer.MAX_VALUE);
+        return setMultiple(0, 0);
     }
 
     @Override
@@ -831,8 +847,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     @Override
-    public void setValue(
-            final E value)
+    public void setValue(final E value)
     {
         setParsed(true);
         getValues().add(value);
@@ -845,22 +860,19 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         getValues().set(index, value);
     }
 
-    public void setValue(
-            final List<E> value)
+    public void setValue(final List<E> value)
     {
         setParsed(true);
         getValues().addAll(value);
     }
 
-    protected void setValues(
-            final List<E> _values)
+    protected void setValues(final List<E> _values)
     {
         this.values = _values;
     }
 
     @Override
-    public ICmdLineArg<E> setVariable(
-            final String _variable)
+    public ICmdLineArg<E> setVariable(final String _variable)
     {
         this.variable = _variable;
         return this;
@@ -992,38 +1004,29 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         }
     }
 
-    void uncompileQuoter(final StringBuilder sb, final String value)
-    {
-        sb.append("'");
-        if (value != null)
-            sb.append(value.replaceAll("'", "\\\\'").replaceAll("\"", "\\\\\""));
-        sb.append("'");
-    }
-
-    @Override
-    public void update(
-            final E value)
-    {
-        update(0, value);
-    }
-
-    @Override
-    public void update(
-            final int index,
-            final E value)
-    {
-        setParsed(true);
-        if (index >= size())
-            getValues().add(value);
-        else
-            getValues().set(index, value);
-    }
-
     @Override
     public void useDefaults()
     {
         setValues(getDefaultValues());
         setParsed(false);
+    }
+
+    /**
+     * All default values must be in the values list and they must be in the
+     * same order for them to be considered equal.
+     */
+    boolean valuesAreTheSameAsDefault()
+    {
+        if (getDefaultValues() == null || getDefaultValues().size() == 0)
+            return false;
+        if (getValues() == null || getValues().size() == 0)
+            return false;
+        if (getDefaultValues().size() != getValues().size())
+            return false;
+        for (int v = 0; v < getDefaultValues().size(); v++)
+            if (!getDefaultValues().get(v).equals(getValues().get(v)))
+                return false;
+        return true;
     }
 
     protected void xmlEncode(

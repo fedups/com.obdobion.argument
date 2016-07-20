@@ -44,9 +44,7 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).get(0).replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ).get(0));
     }
 
     @Override

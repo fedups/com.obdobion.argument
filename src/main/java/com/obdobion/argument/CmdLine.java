@@ -280,8 +280,7 @@ public class CmdLine implements ICmdLine, Cloneable
         if (!tokens[tokenIndex].isUsed())
         {
             // skip the dash
-            arg.setValue(arg.convert(tokens[tokenIndex]
-                    .remainderValue(), (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()), null));
+            arg.setValue(arg.convert(tokens[tokenIndex].remainderValue(), arg.isCaseSensitive(), null));
             tokens[tokenIndex].setUsed(true);
             aValueWasFound = true;
         }
@@ -302,8 +301,7 @@ public class CmdLine implements ICmdLine, Cloneable
                     continue;
                 if (!tokens[tokenIndex].isCommand())
                 {
-                    arg.setValue(arg.convert(tokens[tokenIndex]
-                            .getValue(), (tokens[tokenIndex].isLiteral() || arg.isCaseSensitive()), null));
+                    arg.setValue(arg.convert(tokens[tokenIndex].getValue(), (arg.isCaseSensitive()), null));
                     tokens[tokenIndex].setUsed(true);
                     if (!arg.isMultiple())
                         break;
@@ -776,6 +774,11 @@ public class CmdLine implements ICmdLine, Cloneable
     @Override
     public void exportCommandLine(final StringBuilder str)
     {
+        /*
+         * Making sure that anything the user may have changed still gets the
+         * default if necessary.
+         */
+        applyDefaults();
         CommandLineParser.unparseTokens(allPossibleArgs, str);
     }
 
@@ -793,6 +796,11 @@ public class CmdLine implements ICmdLine, Cloneable
     @Override
     public void exportNamespace(final String prefix, final StringBuilder out)
     {
+        /*
+         * Making sure that anything the user may have changed still gets the
+         * default if necessary.
+         */
+        applyDefaults();
         NamespaceParser.unparseTokens(prefix, allPossibleArgs, out);
     }
 
@@ -812,6 +820,11 @@ public class CmdLine implements ICmdLine, Cloneable
     @Override
     public void exportXml(final StringBuilder out)
     {
+        /*
+         * Making sure that anything the user may have changed still gets the
+         * default if necessary.
+         */
+        applyDefaults();
         XmlParser.unparseTokens(allPossibleArgs, out);
     }
 
@@ -2035,18 +2048,6 @@ public class CmdLine implements ICmdLine, Cloneable
     public void uncompile(final StringBuilder stringBuilder, final boolean showType)
     {
         stringBuilder.append("BEGIN/END something needs to be done in CmdLine#uncompile");
-    }
-
-    @Override
-    public void update(final ICmdLine value)
-    {
-        // intentionally left blank
-    }
-
-    @Override
-    public void update(final int index, final ICmdLine value)
-    {
-        // intentionally left blank
     }
 
     @Override

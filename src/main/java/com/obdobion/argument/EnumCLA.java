@@ -6,7 +6,7 @@ import java.text.ParseException;
  * @author Chris DeGreef
  *
  */
-public class EnumCLA extends AbstractCLA<String>
+public class EnumCLA extends StringCLA
 {
     public EnumCLA(final char _keychar)
     {
@@ -94,9 +94,7 @@ public class EnumCLA extends AbstractCLA<String>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ));
     }
 
     @Override
@@ -114,6 +112,7 @@ public class EnumCLA extends AbstractCLA<String>
         out.append(getValue(occ));
     }
 
+    @Override
     public String genericClassName()
     {
         return "java.lang.String";

@@ -54,9 +54,7 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).toString().replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ).toString());
     }
 
     @Override

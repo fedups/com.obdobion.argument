@@ -2,11 +2,12 @@ package com.obdobion.argument.input;
 
 import java.util.List;
 
+import com.obdobion.argument.AbstractCLA;
 import com.obdobion.argument.Token;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 abstract public class AbstractInputParser
 {
@@ -14,17 +15,17 @@ abstract public class AbstractInputParser
     protected static final String CLOSE_GROUP = "]";
     protected static final char   QUOTER      = '"';
 
-    static private String dashed (char commandPrefix, final String key)
+    static private String dashed(final char commandPrefix, final String key)
     {
         if (key.length() == 1)
             return commandPrefix + key;
         return "" + commandPrefix + commandPrefix + key;
     }
 
-    static protected String quote (final String value)
+    static protected String quote(final String value)
     {
         final StringBuilder out = new StringBuilder();
-        out.append("\"").append(value.replaceAll("\"", "\\\\\\\"")).append("\"");
+        AbstractCLA.uncompileQuoter(out, value);
         return out.toString();
     }
 
@@ -33,7 +34,7 @@ abstract public class AbstractInputParser
         super();
     }
 
-    protected void buildCommandLine (final StringBuilder out, final List<NodeOc> depth, final List<NodeOc> line,
+    protected void buildCommandLine(final StringBuilder out, final List<NodeOc> depth, final List<NodeOc> line,
             final String value)
     {
         for (int n = 0; n < line.size(); n++)
@@ -107,7 +108,7 @@ abstract public class AbstractInputParser
             out.append(quote(value));
     }
 
-    protected void buildTokens (char commandPrefix, final List<Token> tokens, final List<NodeOc> depth,
+    protected void buildTokens(final char commandPrefix, final List<Token> tokens, final List<NodeOc> depth,
             final List<NodeOc> line, final String value)
     {
         for (int n = 0; n < line.size(); n++)

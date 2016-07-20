@@ -46,10 +46,9 @@ public class FloatCLA extends AbstractCLA<Float>
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         if (getValue(occ) < 0.0)
-            out.append("'");
-        out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
-        if (getValue(occ) < 0.0)
-            out.append("'");
+            uncompileQuoter(out, FMTout.format(getValue(occ)).replaceAll(",", ""));
+        else
+            out.append(FMTout.format(getValue(occ)).replaceAll(",", ""));
     }
 
     @Override

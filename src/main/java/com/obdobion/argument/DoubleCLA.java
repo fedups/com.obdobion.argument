@@ -49,10 +49,9 @@ public class DoubleCLA extends AbstractCLA<Double>
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         if (getValue(occ) < 0.0)
-            out.append("'");
-        out.append(FMT.format(getValue(occ)).replaceAll(",", ""));
-        if (getValue(occ) < 0.0)
-            out.append("'");
+            uncompileQuoter(out, FMT.format(getValue(occ)).replaceAll(",", ""));
+        else
+            out.append(FMT.format(getValue(occ)).replaceAll(",", ""));
     }
 
     @Override

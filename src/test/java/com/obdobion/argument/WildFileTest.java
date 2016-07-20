@@ -21,7 +21,7 @@ public class WildFileTest
     }
 
     @Test
-    public void patternConversionsNix ()
+    public void patternConversionsNix()
     {
         Assert.assertEquals("^.*$", WildPath.convertFileWildCardToRegx("*").pattern());
         Assert.assertEquals("^.*\\..*$", WildPath.convertFileWildCardToRegx("*.*").pattern());
@@ -31,7 +31,7 @@ public class WildFileTest
     }
 
     @Test
-    public void patternConversionsNixMatching ()
+    public void patternConversionsNixMatching()
     {
         Assert.assertTrue(Pattern
                 .matches(WildPath.convertFileWildCardToRegx("*").pattern(), "any.file.name/With.path"));
@@ -47,7 +47,7 @@ public class WildFileTest
     }
 
     @Test
-    public void patternConversionsWin ()
+    public void patternConversionsWin()
     {
         Assert.assertEquals("^.*$", WildPath.convertFileWildCardToRegx("*").pattern());
         Assert.assertEquals("^.*\\..*$", WildPath.convertFileWildCardToRegx("*.*").pattern());
@@ -57,7 +57,7 @@ public class WildFileTest
     }
 
     @Test
-    public void recursiveDirSearchFileNotFound () throws Exception
+    public void recursiveDirSearchFileNotFound() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
@@ -66,7 +66,7 @@ public class WildFileTest
     }
 
     @Test
-    public void specificDirSearch () throws Exception
+    public void specificDirSearch() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
@@ -77,7 +77,7 @@ public class WildFileTest
     }
 
     @Test
-    public void validRegex () throws Exception
+    public void validRegex() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
@@ -91,20 +91,20 @@ public class WildFileTest
     }
 
     @Test
-    public void wildDirSearch1 () throws Exception
+    public void wildDirSearch1() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "src/*/java/**/*java"), this);
-        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
+        Assert.assertEquals("number of java classes", 93, wildFile.files().size());
     }
 
     @Test
-    public void wildDirSearch2 () throws Exception
+    public void wildDirSearch2() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "**/*java"), this);
-        Assert.assertEquals("number of java classes", 92, wildFile.files().size());
+        Assert.assertEquals("number of java classes", 93, wildFile.files().size());
     }
 }

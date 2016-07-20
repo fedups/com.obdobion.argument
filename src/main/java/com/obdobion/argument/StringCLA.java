@@ -77,4 +77,28 @@ public class StringCLA extends AbstractCLA<String>
 
         return result;
     }
+
+    /**
+     * All default values must be in the values list and they must be in the
+     * same order for them to be considered equal.
+     */
+    @Override
+    boolean valuesAreTheSameAsDefault()
+    {
+        if (getDefaultValues() == null || getDefaultValues().size() == 0)
+            return false;
+        if (getValues() == null || getValues().size() == 0)
+            return false;
+        if (getDefaultValues().size() != getValues().size())
+            return false;
+        for (int v = 0; v < getDefaultValues().size(); v++)
+        {
+            if (isCaseSensitive() && !getDefaultValues().get(v).equals(getValues().get(v)))
+                return false;
+            if (!isCaseSensitive() && !getDefaultValues().get(v).equalsIgnoreCase(getValues().get(v)))
+                return false;
+        }
+        return true;
+    }
+
 }

@@ -11,7 +11,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class QuotedLiteralsTest
 {
@@ -22,7 +22,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void dosFileNames () throws Exception
+    public void dosFileNames() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -34,7 +34,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void dosFileNames2 () throws Exception
+    public void dosFileNames2() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -46,7 +46,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void doubleQuotes () throws Exception
+    public void doubleQuotes() throws Exception
     {
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a item1 ", "-t boolean -k b item2 ");
@@ -57,11 +57,11 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void doubleQuotesFromStream () throws Exception
+    public void doubleQuotesFromStream() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
-        cl.compile("-t string -k cmd");
+        cl.compile("-t string -k cmd -c");
 
         final File test = new File("src/test/java/com/obdobion/argument/QuoteTestData");
         // System.out.println(test.getAbsolutePath());
@@ -87,7 +87,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void negative () throws Exception
+    public void negative() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -103,7 +103,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void newLine () throws Exception
+    public void newLine() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -115,20 +115,21 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void quotesInQuotes () throws Exception
+    public void quotesInQuotes() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -k a item1 ", "-t string -k b item2 ");
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-a '\"quoted literal\"' -b \"'quoted literal'\""));
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(),
+                "-a '\"quoted literal\"' -b \"'quoted literal'\""));
         Assert.assertEquals("1 cmd count", 2, cl.size());
         Assert.assertEquals("1a", "\"quoted literal\"", cl.arg("-a").getValue());
         Assert.assertEquals("1b", "'quoted literal'", cl.arg("-b").getValue());
     }
 
     @Test
-    public void singleQuotes () throws Exception
+    public void singleQuotes() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -140,7 +141,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void stringMultipleQuotes () throws Exception
+    public void stringMultipleQuotes() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -153,7 +154,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void unixFileNames () throws Exception
+    public void unixFileNames() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -165,7 +166,7 @@ public class QuotedLiteralsTest
     }
 
     @Test
-    public void urlFileNames () throws Exception
+    public void urlFileNames() throws Exception
     {
 
         final CmdLine cl = new CmdLine();

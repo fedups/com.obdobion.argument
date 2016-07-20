@@ -202,9 +202,5 @@ public interface ICmdLineArg<E>
 
     public void uncompile(StringBuilder stringBuilder, boolean showType);
 
-    public void update(E value);
-
-    public void update(int index, E value);
-
     void useDefaults();
 }

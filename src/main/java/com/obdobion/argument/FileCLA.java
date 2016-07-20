@@ -44,9 +44,7 @@ public class FileCLA extends AbstractCLA<File>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).getAbsolutePath().replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ).getAbsolutePath());
     }
 
     @Override

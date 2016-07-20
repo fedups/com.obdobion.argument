@@ -55,9 +55,7 @@ public class PatternCLA extends AbstractCLA<ComparablePattern>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        out.append('"');
-        out.append(getValue(occ).pattern().replaceAll("\"", "\\\\\""));
-        out.append('"');
+        uncompileQuoter(out, getValue(occ).pattern());
     }
 
     @Override
