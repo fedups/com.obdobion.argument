@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.obdobion</groupId>
 	<artifactId>argument</artifactId>
-	<version>3.0.3</version>
+	<version>4.0.1</version>
     <name>${project.groupId}:${project.artifactId}</name>
 	<description>A command line parser for Java</description>
 	<url>https://github.com/fedups/argument</url>
@@ -153,6 +153,12 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 </project>

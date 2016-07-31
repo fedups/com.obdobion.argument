@@ -13,7 +13,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class UsageTest
 {
@@ -25,7 +25,7 @@ public class UsageTest
 
     @Test
     @Ignore
-    public void cmdLineLevel ()
+    public void cmdLineLevel()
             throws Exception
     {
 
@@ -59,7 +59,7 @@ public class UsageTest
 
     @Test
     @Ignore
-    public void cmdLineLevelHelp ()
+    public void cmdLineLevelHelp()
             throws Exception
     {
 
@@ -96,8 +96,7 @@ public class UsageTest
     }
 
     @Test
-    // @Ignore
-    public void embedded ()
+    public void embedded()
             throws Exception
     {
 
@@ -119,7 +118,7 @@ public class UsageTest
 
         final CmdLine cl = new CmdLine("CmdLineLevel");
         cl.compile("--type begin --key e",
-                "--type Integer --key i integer --req --def 5 --ran 3,7 --help 'This is integer help'",
+                "--type Integer --key i integer --req --def 5 --ran 3,7 --helpMsg 'This is integer help'",
                 "--type end --key e");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-?"));
         System.err.println(sw.toString());
@@ -134,7 +133,7 @@ public class UsageTest
 
     @Test
     // @Ignore
-    public void minimal ()
+    public void minimal()
             throws Exception
     {
 
@@ -176,7 +175,7 @@ public class UsageTest
 
     @Test
     @Ignore
-    public void testInt ()
+    public void testInt()
             throws Exception
     {
         final ByteArrayOutputStream sw = new ByteArrayOutputStream();
@@ -200,7 +199,7 @@ public class UsageTest
 
     @Test
     // @Ignore
-    public void wrapping ()
+    public void wrapping()
             throws Exception
     {
 

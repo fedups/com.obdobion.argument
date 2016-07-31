@@ -78,6 +78,17 @@ public class LongCLA extends AbstractCLA<Long>
     }
 
     @Override
+    public long[] getValueAslongArray() throws ParseException
+    {
+        final long[] result = new long[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).longValue();
+
+        return result;
+    }
+
+    @Override
     public Long[] getValueAsLongArray() throws ParseException
     {
         final Long[] result = new Long[size()];

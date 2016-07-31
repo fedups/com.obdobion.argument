@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class UsageBuilderCondensed extends UsageBuilder
 {
@@ -14,24 +14,24 @@ public class UsageBuilderCondensed extends UsageBuilder
     }
 
     @Override
-    int getIndentSize ()
+    int getIndentSize()
     {
         return 10;
     }
 
     @Override
-    void prettyPrint (
+    void prettyPrint(
             final ICmdLine icmdLine)
     {
         prettyPrintNoHelp(icmdLine);
 
         newLine();
-        append("-? This help and exit.");
+        append("-" + CmdLine.MinHelpCommandName + " This help and exit.");
         newLine();
-        append("--help for more help.");
+        append("--" + CmdLine.MaxHelpCommandName + " for more help.");
     }
 
-    private void prettyPrintNoHelp (
+    private void prettyPrintNoHelp(
             final ICmdLine icmdLine)
     {
         final CmdLine cmdLine = (CmdLine) icmdLine;
@@ -49,7 +49,7 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param indentLevel
      * @return
      */
-    boolean showCondensedOwnedArgs (
+    boolean showCondensedOwnedArgs(
             final boolean isRequired,
             final String header,
             final List<ICmdLineArg<?>> aIter,
@@ -85,7 +85,7 @@ public class UsageBuilderCondensed extends UsageBuilder
         return anyShown;
     }
 
-    void showEachOwnedArg (
+    void showEachOwnedArg(
             final List<ICmdLineArg<?>> aIter,
             final char commandPrefix,
             final ICmdLineArg<?> cmdLine,
@@ -130,7 +130,7 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param cmdLine
      * @param indentLevel
      */
-    void showEmbeddedParsers (
+    void showEmbeddedParsers(
             final List<ICmdLineArg<?>> aIter,
             final char commandPrefix,
             final ICmdLineArg<?> cmdLine,
@@ -153,7 +153,7 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param indentLevel
      * @return
      */
-    boolean showVerboseOwnedArgs (
+    boolean showVerboseOwnedArgs(
             final boolean isRequired,
             final String header,
             final List<ICmdLineArg<?>> aIter,
@@ -209,7 +209,7 @@ public class UsageBuilderCondensed extends UsageBuilder
      * @param icmdLine
      * @param indentLevel
      */
-    void usageHeader (
+    void usageHeader(
             final char commandPrefix,
             final ICmdLine icmdLine,
             final int indentLevel)

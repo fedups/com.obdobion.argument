@@ -20,6 +20,8 @@ public interface ICmdLineArg<E>
 
     Object asEnum(String name, Object[] possibleConstants) throws ParseException;
 
+    Object[] asEnumArray(String name, Object[] possibleConstants) throws ParseException;
+
     ICmdLineArg<E> clone() throws CloneNotSupportedException;
 
     E convert(String valueStr) throws ParseException, IOException;
@@ -92,6 +94,10 @@ public interface ICmdLineArg<E>
 
     Date[] getValueAsDateArray() throws ParseException;
 
+    double[] getValueAsdoubleArray() throws ParseException;
+
+    Double[] getValueAsDoubleArray() throws ParseException;
+
     Equ getValueAsEquation() throws ParseException;
 
     Equ[] getValueAsEquationArray() throws ParseException;
@@ -105,6 +111,8 @@ public interface ICmdLineArg<E>
     int[] getValueAsintArray() throws ParseException;
 
     Integer[] getValueAsIntegerArray() throws ParseException;
+
+    long[] getValueAslongArray() throws ParseException;
 
     Long[] getValueAsLongArray() throws ParseException;
 

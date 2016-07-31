@@ -73,4 +73,27 @@ public class DoubleCLA extends AbstractCLA<Double>
     {
         return "java.lang.Double";
     }
+
+    @Override
+    public double[] getValueAsdoubleArray() throws ParseException
+    {
+        final double[] result = new double[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r).doubleValue();
+
+        return result;
+    }
+
+    @Override
+    public Double[] getValueAsDoubleArray() throws ParseException
+    {
+        final Double[] result = new Double[size()];
+
+        for (int r = 0; r < size(); r++)
+            result[r] = getValue(r);
+
+        return result;
+    }
+
 }

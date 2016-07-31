@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,6 +17,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.obdobion.algebrain.Equ;
+import com.obdobion.argument.annotation.Arg;
+import com.obdobion.argument.annotation.Args;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 import com.obdobion.argument.input.NamespaceParser;
@@ -28,7 +32,7 @@ public class CmdLine implements ICmdLine, Cloneable
 {
     final static Logger        logger              = LoggerFactory.getLogger(CmdLine.class);
     public static final String INCLUDE_FILE_PREFIX = "@";
-    public static final String MaxHelpCommandName  = "help";
+    public static final String MaxHelpCommandName  = "usage";
     public static final char   MinHelpCommandName  = '?';
     public static final char   NegateCommandName   = '!';
 
@@ -325,10 +329,9 @@ public class CmdLine implements ICmdLine, Cloneable
                  * lists even though it is implemented on all criteria.
                  */
                 arg.setValue(v, arg.getCriteria().normalizeValue(arg.getValue(v), arg.isCaseSensitive()));
-                if (!arg.getCriteria().isSelected((Comparable) arg.getValue(v), arg.isCaseSensitive()))
-                {
-                    throw new ParseException(arg.getValue(v) + " is not valid for " + arg, -1);
-                }
+                if (!arg.getCriteria().isSelected((Comparable) arg.getValue(v),
+                        arg.isCaseSensitive())) { throw new ParseException(arg.getValue(v) + " is not valid for " + arg,
+                                -1); }
             }
         }
         return tokenIndex;
@@ -378,8 +381,8 @@ public class CmdLine implements ICmdLine, Cloneable
     String               name;
 
     String               help;
-    final char           commandPrefix;
-    final char           notPrefix;
+    char                 commandPrefix;
+    char                 notPrefix;
     final List<File>     defaultIncludeDirectories = new ArrayList<>();
     IParserInput         originalInput;
     List<ICmdLineArg<?>> allPossibleArgs           = new ArrayList<>();
@@ -469,6 +472,28 @@ public class CmdLine implements ICmdLine, Cloneable
         return allPossibleArgs;
     }
 
+    private List<Field> allAvailableInstanceFields(final Class<?> targetClass)
+    {
+        final List<Field> fields = new ArrayList<>();
+        allAvailableInstanceFields(targetClass, fields);
+        return fields;
+    }
+
+    private void allAvailableInstanceFields(final Class<?> targetClass, final List<Field> fields)
+    {
+        for (final Field field : targetClass.getDeclaredFields())
+        {
+            if (field.isAnnotationPresent(Arg.class) || field.isAnnotationPresent(Args.class))
+                fields.add(field);
+        }
+        if (targetClass.getSuperclass() != Object.class)
+            /*
+             * Recursive from here, up the hierarchy of classes all the way to
+             * the top.
+             */
+            allAvailableInstanceFields(targetClass.getSuperclass(), fields);
+    }
+
     @Override
     public void applyDefaults()
     {
@@ -515,6 +540,13 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     @Override
+    public Object[] asEnumArray(final String _name, final Object[] _possibleConstants) throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in an Enum[]", 0);
+    }
+
+    @Override
     public void assignVariables(final Object target) throws ParseException
     {
         final Iterator<ICmdLineArg<?>> aIter = allPossibleArgs.iterator();
@@ -547,6 +579,43 @@ public class CmdLine implements ICmdLine, Cloneable
         }
     }
 
+    void attemptAnnotationCompile(
+            final Class<?> targetClass,
+            final boolean topLevel,
+            final List<Class<?>> alreadySeen,
+            final String[] excludeArgsByVariableName)
+                    throws ParseException, IOException
+    {
+        if (alreadySeen.contains(targetClass))
+            throw new ParseException("recursive argument definition at " + targetClass.toString(), 0);
+
+        alreadySeen.add(targetClass);
+
+        try
+        {
+            for (final Field oneField : allAvailableInstanceFields(targetClass))
+            {
+                if (isFieldExcluded(oneField, excludeArgsByVariableName))
+                    continue;
+                final Args args = oneField.getAnnotation(Args.class);
+                if (args == null)
+                {
+                    final Arg argAnnotation = oneField.getAnnotation(Arg.class);
+                    compileArgAnnotation(oneField, argAnnotation, alreadySeen, excludeArgsByVariableName);
+
+                } else
+                    for (final Arg argAnnotation : args.value())
+                    {
+                        compileArgAnnotation(oneField, argAnnotation, alreadySeen, excludeArgsByVariableName);
+                    }
+            }
+            createSystemGeneratedArguments(CLAFactory.getInstance(), this);
+        } finally
+        {
+            alreadySeen.remove(targetClass);
+        }
+    }
+
     private void checkRequired() throws ParseException
     {
         final StringBuilder bldr = new StringBuilder();
@@ -556,8 +625,9 @@ public class CmdLine implements ICmdLine, Cloneable
             final ICmdLineArg<?> arg = aIter.next();
             if (arg.isRequired() && !arg.isParsed())
             {
+                bldr.append("\"");
                 bldr.append(arg.toString());
-                bldr.append(' ');
+                bldr.append("\" ");
             }
         }
         if (bldr.length() != 0)
@@ -662,6 +732,44 @@ public class CmdLine implements ICmdLine, Cloneable
         return compile(newDef);
     }
 
+    private void compileArgAnnotation(
+            final Field oneField,
+            final Arg argAnnotation,
+            final List<Class<?>> alreadySeen,
+            final String[] excludeArgsByVariableName)
+                    throws ParseException, IOException
+    {
+        final ICmdLineArg<?> arg = CLAFactory.getInstance().instanceFor(
+                commandPrefix,
+                oneField,
+                argAnnotation);
+        add(arg);
+        if (arg instanceof CmdLineCLA)
+        {
+            final CmdLine embedded = new CmdLine(arg.getKeyword() == null
+                    ? ("" + arg.getKeychar())
+                    : ("" + arg.getKeychar() + "," + arg.getKeyword()), commandPrefix, notPrefix);
+            ((CmdLineCLA) arg).templateCmdLine = embedded;
+            Class<?> embeddedTarget;
+            try
+            {
+                if (((CmdLineCLA) arg).instanceClass != null)
+                    embeddedTarget = getClass().getClassLoader().loadClass(((CmdLineCLA) arg).instanceClass);
+                else if (oneField.getType().isArray())
+                    embeddedTarget = oneField.getType().getComponentType();
+                else if (oneField.getType() == List.class)
+                    embeddedTarget = (Class<?>) ((ParameterizedType) oneField.getGenericType())
+                            .getActualTypeArguments()[0];
+                else
+                    embeddedTarget = getClass().getClassLoader().loadClass(oneField.getType().getName());
+            } catch (final ClassNotFoundException e)
+            {
+                throw new ParseException(e.getMessage(), 0);
+            }
+            embedded.attemptAnnotationCompile(embeddedTarget, false, alreadySeen, argAnnotation.excludeArgs());
+        }
+    }
+
     @Override
     public ICmdLine convert(final String valueStr) throws ParseException, IOException
     {
@@ -703,15 +811,13 @@ public class CmdLine implements ICmdLine, Cloneable
                 + CLAFactory.TYPE_BOOLEAN
                 + " -k'"
                 + MinHelpCommandName
-                + "' -h'Show an abbreviated help message.'");
+                + "' -h'Show help message.'");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
 
         sysgen = factory.instanceFor(commandPrefix, "-t"
                 + CLAFactory.TYPE_BOOLEAN
-                + " -k "
-                + MaxHelpCommandName
-                + " -h'Show complete help.'");
+                + " -k'" + MaxHelpCommandName + "'-h'Show full help message.'");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
     }
@@ -1081,6 +1187,18 @@ public class CmdLine implements ICmdLine, Cloneable
         throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
     }
 
+    public double[] getValueAsdoubleArray() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a double[]", 0);
+    }
+
+    public Double[] getValueAsDoubleArray() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Double[]", 0);
+    }
+
     @Override
     public Equ getValueAsEquation() throws ParseException
     {
@@ -1128,6 +1246,12 @@ public class CmdLine implements ICmdLine, Cloneable
     {
         // should not be called.
         throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
+    }
+
+    public long[] getValueAslongArray() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a long[]", 0);
     }
 
     @Override
@@ -1234,6 +1358,21 @@ public class CmdLine implements ICmdLine, Cloneable
          * This is only here as a place-holder so that this class can be a sub
          * command line as well as a top level.
          */
+        return false;
+    }
+
+    public boolean isCompiled()
+    {
+        return !allPossibleArgs.isEmpty();
+    }
+
+    private boolean isFieldExcluded(final Field oneField, final String[] excludeArgsByVariableName)
+    {
+        for (int f = 0; f < excludeArgsByVariableName.length; f++)
+        {
+            if (oneField.getName().equalsIgnoreCase(excludeArgsByVariableName[f]))
+                return true;
+        }
         return false;
     }
 
@@ -1410,15 +1549,21 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     @Override
-    public Object parse(final IParserInput data, final Object target) throws IOException, ParseException
+    public Object parse(final IParserInput data, final Object target)
+            throws IOException, ParseException
     {
+        if (!isCompiled())
+            attemptAnnotationCompile(target.getClass(), true, new ArrayList<Class<?>>(), new String[] {});
         parseTokens(data, target);
         return target;
     }
 
     @Override
-    public Object parse(final Object target, final String... args) throws IOException, ParseException
+    public Object parse(final Object target, final String... args)
+            throws IOException, ParseException
     {
+        if (!isCompiled())
+            attemptAnnotationCompile(target.getClass(), true, new ArrayList<Class<?>>(), new String[] {});
         final IParserInput data = CommandLineParser.getInstance(getCommandPrefix(), args);
         parseTokens(data, target);
         return target;
@@ -1691,6 +1836,9 @@ public class CmdLine implements ICmdLine, Cloneable
     private List<ICmdLineArg<?>> parseTokens(final IParserInput data, final Object target)
             throws ParseException, IOException
     {
+        if (!isCompiled())
+            throw new ParseException("parser must be compiled", 0);
+
         originalInput = data;
 
         final Token[] tokens = data.parseTokens();
@@ -1810,7 +1958,7 @@ public class CmdLine implements ICmdLine, Cloneable
     @Override
     public void reset()
     {
-        // intentionally left blank
+        // n/a
     }
 
     private void resetArgs()

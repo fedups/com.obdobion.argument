@@ -32,49 +32,19 @@ public class EnumCLA extends StringCLA
     @Override
     public Object asEnum(final String enumClassFieldName, final Object[] possibleConstants) throws ParseException
     {
-        final String enumConstantName = getValue();
+        return stringToEnumConstant(enumClassFieldName, possibleConstants, getValue());
+    }
 
-        Object selectedConstant = null;
-
-        final StringBuilder possibleValues = new StringBuilder();
-        for (int c = 0; c < possibleConstants.length; c++)
+    @Override
+    public Enum<?>[] asEnumArray(final String enumClassFieldName, final Object[] possibleConstants)
+            throws ParseException
+    {
+        final Enum<?>[] enumArray = new Enum<?>[size()];
+        for (int v = 0; v < size(); v++)
         {
-            final String econst = possibleConstants[c].toString();
-            if (c > 0)
-                possibleValues.append(", ");
-            possibleValues.append(econst);
+            enumArray[v] = (Enum<?>) stringToEnumConstant(enumClassFieldName, possibleConstants, getValue(v));
         }
-
-        for (int c = 0; c < possibleConstants.length; c++)
-        {
-            String econst = possibleConstants[c].toString().toLowerCase();
-            if (econst.length() > enumConstantName.length())
-                econst = econst.substring(0, enumConstantName.length());
-            if (econst.equalsIgnoreCase(enumConstantName))
-            {
-                if (selectedConstant != null)
-                    throw new ParseException("\""
-                            + enumConstantName
-                            + "\" is not a unique enum constant for variable \""
-                            + enumClassFieldName
-                            + "\" ("
-                            + possibleValues.toString()
-                            + ")",
-                            0);
-                selectedConstant = possibleConstants[c];
-            }
-        }
-        if (selectedConstant != null)
-            return selectedConstant;
-
-        throw new ParseException("\""
-                + enumConstantName
-                + "\" is not a valid enum constant for variable \""
-                + enumClassFieldName
-                + "\" ("
-                + possibleValues.toString()
-                + ")",
-                0);
+        return enumArray;
     }
 
     @Override
@@ -116,5 +86,51 @@ public class EnumCLA extends StringCLA
     public String genericClassName()
     {
         return "java.lang.String";
+    }
+
+    private Object stringToEnumConstant(final String enumClassFieldName, final Object[] possibleConstants,
+            final String enumConstantName) throws ParseException
+    {
+        Object selectedConstant = null;
+
+        final StringBuilder possibleValues = new StringBuilder();
+        for (int c = 0; c < possibleConstants.length; c++)
+        {
+            final String econst = possibleConstants[c].toString();
+            if (c > 0)
+                possibleValues.append(", ");
+            possibleValues.append(econst);
+        }
+
+        for (int c = 0; c < possibleConstants.length; c++)
+        {
+            String econst = possibleConstants[c].toString().toLowerCase();
+            if (econst.length() > enumConstantName.length())
+                econst = econst.substring(0, enumConstantName.length());
+            if (econst.equalsIgnoreCase(enumConstantName))
+            {
+                if (selectedConstant != null)
+                    throw new ParseException("\""
+                            + enumConstantName
+                            + "\" is not a unique enum constant for variable \""
+                            + enumClassFieldName
+                            + "\" ("
+                            + possibleValues.toString()
+                            + ")",
+                            0);
+                selectedConstant = possibleConstants[c];
+            }
+        }
+        if (selectedConstant != null)
+            return selectedConstant;
+
+        throw new ParseException("\""
+                + enumConstantName
+                + "\" is not a valid enum constant for variable \""
+                + enumClassFieldName
+                + "\" ("
+                + possibleValues.toString()
+                + ")",
+                0);
     }
 }

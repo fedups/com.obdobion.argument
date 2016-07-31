@@ -25,6 +25,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     static Logger                logger          = LoggerFactory.getLogger("com.obdobion.argument.AbstractCLA");
 
     static private final Pattern CDATA_NOTNEEDED = Pattern.compile("^[\\p{Alnum}_-]*$");
+
     static private final Pattern CAMELCAPS       = Pattern.compile("([A-Z0-9])");
 
     public static String         newline         = System.getProperty("line.separator");
@@ -66,8 +67,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * Set when this argument is created in the factory.
      */
     protected int                    uniqueId;
+
     protected List<E>                defaultValues = new ArrayList<>();
+
     protected String                 help;
+
     protected Character              keychar;
     protected String                 keyword;
     protected String                 camelCaps;
@@ -90,9 +94,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     protected boolean                requiredValue;
     protected boolean                systemGenerated;
     protected List<E>                values        = new ArrayList<>();
-
     protected String                 enumClassName;
-
     protected ICmdLineArgCriteria<?> criteria;
 
     public AbstractCLA(final char _keychar)
@@ -132,6 +134,13 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public Object asEnum(final String name, final Object[] possibleConstants) throws ParseException
     {
         throw new ParseException("invalid to store " + this.toString() + " in an Enum", 0);
+    }
+
+    @Override
+    public Enum<?>[] asEnumArray(final String _name, final Object[] _possibleConstants) throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in an Enum[]", 0);
     }
 
     @Override
@@ -437,6 +446,16 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         throw new ParseException("invalid to store " + this.toString() + " in a Date[]", 0);
     }
 
+    public double[] getValueAsdoubleArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in an double[]", 0);
+    }
+
+    public Double[] getValueAsDoubleArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in an Double[]", 0);
+    }
+
     @Override
     public Equ getValueAsEquation() throws ParseException
     {
@@ -477,6 +496,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public Integer[] getValueAsIntegerArray() throws ParseException
     {
         throw new ParseException("invalid to store " + this.toString() + " in a Integer[]", 0);
+    }
+
+    public long[] getValueAslongArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in an long[]", 0);
     }
 
     @Override

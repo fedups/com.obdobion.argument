@@ -29,12 +29,12 @@ public class WildFiles
         files.add(aSingleKnownFile);
     }
 
-    void add (final String userPattern)
+    void add(final String userPattern)
     {
         userSuppliedPatterns.add(userPattern);
     }
 
-    public List<File> files () throws ParseException, IOException
+    public List<File> files() throws ParseException, IOException
     {
         if (files == null)
         {
@@ -47,19 +47,24 @@ public class WildFiles
         return files;
     }
 
-    String get (final int userSuppliedIndex)
+    String get(final int userSuppliedIndex)
     {
         return userSuppliedPatterns.get(userSuppliedIndex);
     }
 
     @Override
-    public String toString ()
+    public String toString()
     {
         final StringBuilder sb = new StringBuilder();
+        boolean firstTime = true;
         for (final String pattern : userSuppliedPatterns)
         {
+            if (!firstTime)
+            {
+                sb.append(" ");
+                firstTime = false;
+            }
             sb.append(pattern);
-            sb.append(" ");
         }
         return sb.toString();
     }

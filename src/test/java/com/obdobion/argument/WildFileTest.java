@@ -96,7 +96,7 @@ public class WildFileTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "src/*/java/**/*java"), this);
-        Assert.assertEquals("number of java classes", 93, wildFile.files().size());
+        Assert.assertTrue(0 < wildFile.files().size());
     }
 
     @Test
@@ -105,6 +105,6 @@ public class WildFileTest
         final CmdLine cl = new CmdLine();
         cl.compile("-t wildfile -k w -m1 -p --var wildFile");
         cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "**/*java"), this);
-        Assert.assertEquals("number of java classes", 93, wildFile.files().size());
+        Assert.assertTrue(0 < wildFile.files().size());
     }
 }

@@ -4,6 +4,16 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+import com.obdobion.argument.annotation.AnnotateAllTypesTest;
+import com.obdobion.argument.annotation.AnnotateDefaultsTest;
+import com.obdobion.argument.annotation.AnnotateFactoryCreationTests;
+import com.obdobion.argument.annotation.AnnotateFactoryCreationWithEnumArgTest;
+import com.obdobion.argument.annotation.AnnotateInListCriteriaTest;
+import com.obdobion.argument.annotation.AnnotateInstanceOverrideTest;
+import com.obdobion.argument.annotation.AnnotateRangeCriteriaTest;
+import com.obdobion.argument.annotation.AnnotateRegexCriteriaTest;
+import com.obdobion.argument.annotation.AnnotateSimpleModifiersTest;
+import com.obdobion.argument.annotation.AnnotateSubparserTest;
 import com.obdobion.argument.input.CommandLineParserTest;
 import com.obdobion.argument.input.NamespaceParserTest;
 import com.obdobion.argument.input.NamespaceTest;
@@ -12,6 +22,18 @@ import com.obdobion.argument.input.XmlTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
+
+        AnnotateAllTypesTest.class,
+        AnnotateDefaultsTest.class,
+        AnnotateSimpleModifiersTest.class,
+        AnnotateSubparserTest.class,
+        AnnotateFactoryCreationTests.class,
+        AnnotateFactoryCreationWithEnumArgTest.class,
+        AnnotateInstanceOverrideTest.class,
+        AnnotateRangeCriteriaTest.class,
+        AnnotateRegexCriteriaTest.class,
+        AnnotateInListCriteriaTest.class,
+
         CommandLineParserTest.class,
         NamespaceParserTest.class,
         XmlParserTest.class,

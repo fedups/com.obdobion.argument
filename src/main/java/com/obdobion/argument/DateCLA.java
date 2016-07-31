@@ -13,7 +13,6 @@ import java.util.regex.Pattern;
  */
 public class DateCLA extends AbstractCLA<Date>
 {
-
     static Matcher[]              predefinedMat;
     static SimpleDateFormat[]     predefinedFmt;
     static String[]               predefinedAlg;
@@ -33,19 +32,14 @@ public class DateCLA extends AbstractCLA<Date>
             predefinedAlg[fmtMakerIndex] = format.substring(1);
         } else
         {
-            predefinedFmt[fmtMakerIndex] = new SimpleDateFormat(
-                    format.trim());
+            predefinedFmt[fmtMakerIndex] = new SimpleDateFormat(format.trim());
             predefinedAlg[fmtMakerIndex] = null;
         }
     }
 
     static private Matcher createMatcher(final String format)
     {
-        // System.err.println(format);
-        return Pattern.compile(
-                format.trim(),
-                Pattern.CASE_INSENSITIVE).matcher(
-                        "");
+        return Pattern.compile(format.trim(), Pattern.CASE_INSENSITIVE).matcher("");
     }
 
     /**
@@ -60,12 +54,8 @@ public class DateCLA extends AbstractCLA<Date>
         final String mmFmt = "[0-9]{1,2}";
         final String ddFmt = "[0-9]{1,2}";
         final String yyFmt = "[0-9]{4}";
-        final char[] seps = {
-                '-', '/'
-        };
-        final char[] spaceSeps = {
-                ' ', '@'
-        };
+        final char[] seps = { '-', '/' };
+        final char[] spaceSeps = { ' ', '@' };
 
         predefinedMat = new Matcher[spaceSeps.length
                 * numberOfDateFormats

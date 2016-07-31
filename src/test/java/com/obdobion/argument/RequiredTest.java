@@ -20,7 +20,7 @@ public class RequiredTest
     }
 
     @Test
-    public void requireInteger () throws Exception
+    public void requireInteger() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -33,7 +33,7 @@ public class RequiredTest
         {
             Assert.assertEquals(
                     "requires int",
-                    "missing required parameters: integer --maxUpdates(-m) ",
+                    "missing required parameters: \"integer --maxUpdates(-m)\" ",
                     e.getMessage());
         }
 

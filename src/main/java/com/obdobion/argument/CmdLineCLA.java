@@ -43,12 +43,8 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
     }
 
     @Override
-    public ICmdLine convert(
-            final String valueStr,
-            final boolean _caseSensitive,
-            final Object target)
-                    throws ParseException,
-                    IOException
+    public ICmdLine convert(final String valueStr, final boolean _caseSensitive, final Object target)
+            throws ParseException, IOException
     {
         ICmdLine cmdline = null;
         final Object newtarget = null;

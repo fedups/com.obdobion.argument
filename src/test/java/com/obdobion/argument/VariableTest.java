@@ -9,7 +9,7 @@ import com.obdobion.argument.input.CommandLineParser;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class VariableTest
 {
@@ -45,23 +45,7 @@ public class VariableTest
     }
 
     @Test
-    public void nullAssigner () throws Exception
-    {
-        IVariableAssigner previousAssigner = VariableAssigner.setInstance(new NullAssigner());
-        try
-        {
-            final CmdLine cl = new CmdLine();
-            cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
-            cl.parse(this, "-g('1string')");
-            Assert.assertNull("nulls should always be assigned", testString);
-        } finally
-        {
-            VariableAssigner.setInstance(previousAssigner);
-        }
-    }
-
-    @Test
-    public void groupWithoutOwnVariable () throws Exception
+    public void groupWithoutOwnVariable() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -71,7 +55,25 @@ public class VariableTest
     }
 
     @Test
-    public void variablebooleanAssignment () throws Exception
+    public void nullAssigner() throws Exception
+    {
+        final IVariableAssigner previousAssigner = VariableAssigner.setInstance(new NullAssigner());
+        final IVariableAssigner nullAssigner = VariableAssigner.setInstance(previousAssigner);
+        try
+        {
+            final CmdLine cl = new CmdLine();
+            cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
+            VariableAssigner.setInstance(nullAssigner);
+            cl.parse(this, "-g('1string')");
+            Assert.assertNull("nulls should always be assigned", testString);
+        } finally
+        {
+            VariableAssigner.setInstance(previousAssigner);
+        }
+    }
+
+    @Test
+    public void variablebooleanAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -81,7 +83,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableBooleanAssignment () throws Exception
+    public void variableBooleanAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -91,7 +93,7 @@ public class VariableTest
     }
 
     @Test
-    public void variablefloatArrayAssignment () throws Exception
+    public void variablefloatArrayAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -102,7 +104,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableFloatArrayAssignment () throws Exception
+    public void variableFloatArrayAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -113,7 +115,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableFloatAssignment () throws Exception
+    public void variableFloatAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -123,7 +125,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableGroupArrayStringAssignment () throws Exception
+    public void variableGroupArrayStringAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -135,7 +137,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableGroupGroupStringAssignment () throws Exception
+    public void variableGroupGroupStringAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -150,7 +152,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableGroupListStringAssignment () throws Exception
+    public void variableGroupListStringAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -165,7 +167,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableGroupStringAssignment () throws Exception
+    public void variableGroupStringAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -176,7 +178,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableGroupStringAssignmentToObjectList () throws Exception
+    public void variableGroupStringAssignmentToObjectList() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -190,7 +192,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableIntArrayAssignment () throws Exception
+    public void variableIntArrayAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -201,7 +203,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableintAssignment () throws Exception
+    public void variableintAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -211,7 +213,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableIntegerArrayAssignment () throws Exception
+    public void variableIntegerArrayAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -222,7 +224,7 @@ public class VariableTest
     }
 
     @Test
-    public void variableIntegerAssignment () throws Exception
+    public void variableIntegerAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
@@ -232,18 +234,19 @@ public class VariableTest
     }
 
     @Test
-    public void variableStringArrayAssignment () throws Exception
+    public void variableStringArrayAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
         cl.compile("-t string -m1 -k i -v testStringArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 'this is a test string' anotheronetoo"), this);
+        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 'this is a test string' anotheronetoo"),
+                this);
         Assert.assertEquals("testStringArray 0", "this is a test string", testStringArray[0]);
         Assert.assertEquals("testStringArray 1", "anotheronetoo", testStringArray[1]);
     }
 
     @Test
-    public void variableStringAssignment () throws Exception
+    public void variableStringAssignment() throws Exception
     {
 
         final CmdLine cl = new CmdLine();
