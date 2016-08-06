@@ -16,35 +16,9 @@ public class BooleanCLA extends AbstractCLA<Boolean>
 
     String[]                     validWords = new String[] { "yes", "no" };
 
-    public BooleanCLA(final char _keychar)
+    public BooleanCLA()
     {
-        super(_keychar);
-        getDefaultValues().add(Boolean.FALSE);
-        try
-        {
-            setListCriteria(validWords);
-        } catch (final Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public BooleanCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-        getDefaultValues().add(Boolean.FALSE);
-        try
-        {
-            setListCriteria(validWords);
-        } catch (final Exception e)
-        {
-            e.printStackTrace();
-        }
-    }
-
-    public BooleanCLA(final String _keyword)
-    {
-        super(_keyword);
+        super();
         getDefaultValues().add(Boolean.FALSE);
         try
         {
@@ -62,12 +36,6 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         {
             reset();
         }
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_BOOLEAN);
     }
 
     /**

@@ -11,27 +11,22 @@ import com.obdobion.argument.type.WildPath;
  */
 public class WildPathTest
 {
-    public WildPathTest()
-    {
-
-    }
-
     @Test
-    public void startingPathAbsolute () throws Exception
+    public void startingPathAbsolute() throws Exception
     {
         final WildPath wp = new WildPath("/a/b/c/*.txt");
         Assert.assertEquals("/a/b/c/", wp.startingPath());
     }
 
     @Test
-    public void startingPathAbsoluteWildcards () throws Exception
+    public void startingPathAbsoluteWildcards() throws Exception
     {
         final WildPath wp = new WildPath("/**/b/c/*.txt");
         Assert.assertEquals("/", wp.startingPath());
     }
 
     @Test
-    public void startingPathQuestionmarkWildcards () throws Exception
+    public void startingPathQuestionmarkWildcards() throws Exception
     {
         WildPath wp;
 
@@ -46,21 +41,21 @@ public class WildPathTest
     }
 
     @Test
-    public void startingPathRelative () throws Exception
+    public void startingPathRelative() throws Exception
     {
         final WildPath wp = new WildPath("a/b/c/*.txt");
         Assert.assertEquals("a/b/c/", wp.startingPath());
     }
 
     @Test
-    public void startingPathRelativeWildcards () throws Exception
+    public void startingPathRelativeWildcards() throws Exception
     {
         final WildPath wp = new WildPath("**/b/c/*.txt");
         Assert.assertEquals(".", wp.startingPath());
     }
 
     @Test
-    public void startingPathStarWildcards () throws Exception
+    public void startingPathStarWildcards() throws Exception
     {
         WildPath wp;
 

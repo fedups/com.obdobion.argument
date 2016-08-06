@@ -11,27 +11,6 @@ public class DoubleCLA extends AbstractCLA<Double>
 {
     protected NumberFormat FMT = NumberFormat.getNumberInstance();
 
-    public DoubleCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public DoubleCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public DoubleCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_DOUBLE);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

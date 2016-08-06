@@ -12,27 +12,6 @@ public class IntegerCLA extends AbstractCLA<Integer>
 {
     protected NumberFormat FMT = new DecimalFormat("0");
 
-    public IntegerCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public IntegerCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public IntegerCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_INTEGER);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

@@ -8,27 +8,6 @@ public class FloatCLA extends AbstractCLA<Float>
     protected NumberFormat FMTin  = NumberFormat.getNumberInstance();
     protected NumberFormat FMTout = NumberFormat.getNumberInstance();
 
-    public FloatCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public FloatCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public FloatCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_FLOAT);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

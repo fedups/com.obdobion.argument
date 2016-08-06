@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import com.obdobion.argument.input.Token;
+import com.obdobion.argument.type.ClaType;
 import com.obdobion.argument.type.DateCLA;
 import com.obdobion.calendar.CalendarFactory;
 
@@ -15,9 +16,9 @@ import com.obdobion.calendar.CalendarFactory;
  * position as this directive.
  * <p>
  * See the CalendarFactory for details on how to specify a date modification.
- * 
+ *
  * @author Chris DeGreef
- * 
+ *
  */
 public class DateDirective extends DirectiveCommand
 {
@@ -29,7 +30,7 @@ public class DateDirective extends DirectiveCommand
         super(_data);
     }
 
-    private Calendar acquireStartDate ()
+    private Calendar acquireStartDate()
             throws ParseException,
             IOException
     {
@@ -46,7 +47,7 @@ public class DateDirective extends DirectiveCommand
          * Stop before the adjustments, if any, otherwise take the whole data
          * area.
          */
-        final DateCLA dateHelper = new DateCLA("HELPER");
+        final DateCLA dateHelper = (DateCLA) ClaType.DATE.argumentInstance('-', '-', "HELPER");
         if (datePivot > 0)
             cal.setTime(dateHelper.convert(data.substring(0, datePivot)));
         else
@@ -55,7 +56,7 @@ public class DateDirective extends DirectiveCommand
     }
 
     @Override
-    public Token replaceToken (Token[] tokens, int replacingFromTokenIndex, int replaceToTokenIndex)
+    public Token replaceToken(final Token[] tokens, final int replacingFromTokenIndex, final int replaceToTokenIndex)
             throws ParseException,
             IOException
     {
@@ -72,7 +73,7 @@ public class DateDirective extends DirectiveCommand
                 true);
     }
 
-    protected SimpleDateFormat replaceTokenDateFormat ()
+    protected SimpleDateFormat replaceTokenDateFormat()
     {
         return new SimpleDateFormat("yyyy/MM/dd");
     }

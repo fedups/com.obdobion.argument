@@ -29,12 +29,6 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
     @Override
     ICmdLine clone() throws CloneNotSupportedException;
 
-    @Deprecated
-    ICmdLine compile(List<String> definition) throws ParseException, IOException;
-
-    @Deprecated
-    ICmdLine compile(String... definition) throws ParseException, IOException;
-
     public char getCommandPrefix();
 
     String getName();

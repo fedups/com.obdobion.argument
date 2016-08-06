@@ -168,27 +168,6 @@ public class DateCLA extends AbstractCLA<Date>
 
     SimpleDateFormat sdf;
 
-    public DateCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public DateCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public DateCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_DATE);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

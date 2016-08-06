@@ -10,27 +10,6 @@ import java.util.regex.PatternSyntaxException;
  */
 public class PatternCLA extends AbstractCLA<ComparablePattern>
 {
-    public PatternCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public PatternCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public PatternCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_PATTERN);
-    }
-
     /**
      * @param target
      */

@@ -6,27 +6,6 @@ package com.obdobion.argument.type;
  */
 public class StringCLA extends AbstractCLA<String>
 {
-    public StringCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public StringCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public StringCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_STRING);
-    }
-
     /**
      * @param target
      */

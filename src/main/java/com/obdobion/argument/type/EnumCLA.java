@@ -8,27 +8,6 @@ import java.text.ParseException;
  */
 public class EnumCLA extends StringCLA
 {
-    public EnumCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public EnumCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public EnumCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_ENUM);
-    }
-
     @Override
     public Object asEnum(final String enumClassFieldName, final Object[] possibleConstants) throws ParseException
     {

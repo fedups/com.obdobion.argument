@@ -62,27 +62,6 @@ public class ByteCLA extends AbstractCLA<Byte>
         return "" + (int) aByte;
     }
 
-    public ByteCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public ByteCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public ByteCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_BYTE);
-    }
-
     /**
      * @param target
      */

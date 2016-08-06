@@ -5,27 +5,6 @@ import java.text.ParseException;
 
 public class FileCLA extends AbstractCLA<File>
 {
-    public FileCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public FileCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public FileCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_FILE);
-    }
-
     /**
      * @param target
      */

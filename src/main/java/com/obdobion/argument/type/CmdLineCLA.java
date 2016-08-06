@@ -13,27 +13,6 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
 {
     public ICmdLine templateCmdLine;
 
-    public CmdLineCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public CmdLineCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public CmdLineCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append("begin");
-    }
-
     @Override
     public ICmdLineArg<ICmdLine> clone()
             throws CloneNotSupportedException

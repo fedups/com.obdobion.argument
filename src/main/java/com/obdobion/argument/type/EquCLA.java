@@ -10,27 +10,6 @@ import com.obdobion.algebrain.Equ;
  */
 public class EquCLA extends AbstractCLA<ComparableEqu>
 {
-    public EquCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public EquCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public EquCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_EQU);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

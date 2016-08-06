@@ -8,28 +8,6 @@ import java.text.ParseException;
  */
 public class CharacterCLA extends AbstractCLA<Character>
 {
-
-    public CharacterCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public CharacterCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public CharacterCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_CHAR);
-    }
-
     /**
      * @param target
      */

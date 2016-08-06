@@ -13,27 +13,6 @@ public class LongCLA extends AbstractCLA<Long>
     protected NumberFormat FMTin  = NumberFormat.getNumberInstance();
     protected NumberFormat FMTout = new DecimalFormat("0");
 
-    public LongCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public LongCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public LongCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_LONG);
-    }
-
     /**
      * @param _caseSensitive
      * @param target

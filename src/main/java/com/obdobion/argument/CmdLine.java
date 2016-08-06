@@ -29,6 +29,7 @@ import com.obdobion.argument.input.Token;
 import com.obdobion.argument.input.XmlParser;
 import com.obdobion.argument.type.BooleanCLA;
 import com.obdobion.argument.type.CLAFactory;
+import com.obdobion.argument.type.ClaType;
 import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.DefaultCLA;
 import com.obdobion.argument.type.ICmdLineArg;
@@ -61,24 +62,6 @@ public class CmdLine implements ICmdLine, Cloneable
             }
             throw new ParseException("extraneous input is not valid: " + extraInput.toString(), 0);
         }
-    }
-
-    /**
-     * @deprecated use annotations.
-     */
-    @Deprecated
-    static public ICmdLine create(final List<String> definition) throws ParseException, IOException
-    {
-        return new CmdLine().compile(definition);
-    }
-
-    /**
-     * @deprecated use annotations.
-     */
-    @Deprecated
-    static public ICmdLine create(final String... definition) throws ParseException, IOException
-    {
-        return new CmdLine().compile(definition);
     }
 
     static public String format(final String format, final Object... args)
@@ -738,89 +721,6 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     /**
-     * @deprecated use annotations.
-     */
-    @Deprecated
-    @Override
-    public ICmdLine compile(final List<String> definition) throws ParseException, IOException
-    {
-        final String[] args = definition.toArray(new String[definition.size()]);
-        return compile(args);
-    }
-
-    /**
-     * @deprecated use annotations.
-     */
-    @Deprecated
-    @Override
-    public ICmdLine compile(final String... definition) throws ParseException, IOException
-    {
-        final CLAFactory factory = CLAFactory.getInstance();
-
-        final ICmdLine cmdline = this;
-        final List<String> groupdef = new ArrayList<>();
-
-        CmdLineCLA group = null;
-
-        for (final String element : definition)
-            if (group != null)
-            {
-                if (factory.atEnd(commandPrefix, group, element))
-                {
-                    group.templateCmdLine = new CmdLine(group.getKeyword() == null
-                            ? ("" + group.getKeychar())
-                            : ("" + group.getKeychar() + "," + group.getKeyword()), commandPrefix, notPrefix);
-                    group.templateCmdLine.compile(groupdef.toArray(new String[groupdef.size()]));
-                    groupdef.clear();
-                    group = null;
-                } else
-                    groupdef.add(element);
-            } else
-            {
-                final ICmdLineArg<?> arg = (factory.instanceFor(commandPrefix, element));
-                cmdline.add(arg);
-                if (arg instanceof CmdLineCLA)
-                    group = (CmdLineCLA) arg;
-            }
-        if (group != null)
-            throw new ParseException("unended group: " + group.toString(), -1);
-
-        createSystemGeneratedArguments(factory, cmdline);
-
-        parseExceptions = postCompileAnalysis();
-        if (!parseExceptions.isEmpty())
-        {
-            for (final ParseException pe : parseExceptions)
-                logger.warn(pe.getMessage());
-            if (parseExceptions.size() == 1)
-                throw parseExceptions.get(0);
-            throw new ParseException("multiple parse exceptions", 0);
-        }
-        return this;
-    }
-
-    /**
-     * Allows for handling multiple parser definitions that need to be
-     * concatinated together.
-     *
-     * @deprecated use annotations.
-     * @throws IOException
-     */
-    @Deprecated
-    public ICmdLine compile(final String[][] definition) throws ParseException, IOException
-    {
-        int maxSize = 0;
-        for (final String[] x : definition)
-            maxSize += x.length;
-        final String[] newDef = new String[maxSize];
-        int n = 0;
-        for (final String[] x : definition)
-            for (final String y : x)
-                newDef[n++] = y;
-        return compile(newDef);
-    }
-
-    /**
      * @param excludeArgsByVariableName
      */
     private void compileArgAnnotation(
@@ -906,18 +806,18 @@ public class CmdLine implements ICmdLine, Cloneable
     {
         ICmdLineArg<?> sysgen;
 
-        sysgen = new DefaultCLA(notPrefix);
+        sysgen = ClaType.DEFAULT.argumentInstance(commandPrefix, notPrefix, null);
         sysgen.setMultiple(1);
         sysgen.setHelp("Return one or more arguments to their initial states.");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
 
-        sysgen = new BooleanCLA(MinHelpCommandName);
+        sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, MinHelpCommandName, null);
         sysgen.setHelp("Show help message.");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
 
-        sysgen = new BooleanCLA(MaxHelpCommandName);
+        sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, commandPrefix, MaxHelpCommandName);
         sysgen.setHelp("Show full help message.");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
@@ -2364,6 +2264,11 @@ public class CmdLine implements ICmdLine, Cloneable
         return this;
     }
 
+    public void setType(final ClaType claType)
+    {
+        // n/a
+    }
+
     @Override
     public void setUniqueId(final int uId)
     {
@@ -2526,15 +2431,6 @@ public class CmdLine implements ICmdLine, Cloneable
     public boolean supportsShortName()
     {
         return false;
-    }
-
-    /**
-     * @param showType
-     */
-    @Override
-    public void uncompile(final StringBuilder stringBuilder, final boolean showType)
-    {
-        stringBuilder.append("BEGIN/END something needs to be done in CmdLine#uncompile");
     }
 
     @Override

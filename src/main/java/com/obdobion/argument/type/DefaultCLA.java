@@ -12,21 +12,6 @@ import com.obdobion.argument.input.Token;
  */
 public class DefaultCLA extends AbstractCLA<String>
 {
-    public DefaultCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public DefaultCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public DefaultCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
     /**
      * not called. A special case in the caller will redirect this call to the
      * one with the args as a parameter.
@@ -58,12 +43,6 @@ public class DefaultCLA extends AbstractCLA<String>
             final ICmdLineArg<?> target = bestArgs.get(0);
             target.useDefaults();
         }
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_DEFAULT);
     }
 
     /**

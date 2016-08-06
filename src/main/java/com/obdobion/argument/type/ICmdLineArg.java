@@ -202,7 +202,9 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;
 
-    void setUniqueId(int i);;
+    void setType(ClaType claType);;
+
+    void setUniqueId(int i);
 
     void setValue(E value);
 
@@ -249,8 +251,6 @@ public interface ICmdLineArg<E>
     boolean supportsRequired();
 
     boolean supportsShortName();
-
-    public void uncompile(StringBuilder stringBuilder, boolean showType);
 
     void useDefaults();
 }

@@ -71,6 +71,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * Set when this argument is created in the factory.
      */
     protected int                    uniqueId;
+    protected ClaType                type;
 
     protected List<E>                defaultValues = new ArrayList<>();
 
@@ -100,26 +101,6 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     protected String                 enumClassName;
     protected ICmdLineArgCriteria<?> criteria;
 
-    public AbstractCLA(final char _keychar)
-    {
-        this.keychar = _keychar;
-        this.keyword = null;
-        camelCaps = null;
-    }
-
-    public AbstractCLA(final char _keychar, final String _keyword)
-    {
-        setKeychar(_keychar);
-        setKeyword(_keyword);
-    }
-
-    public AbstractCLA(final String _keyword)
-    {
-        this.keyword = _keyword;
-        setKeychar(null);
-        setKeyword(_keyword);
-    }
-
     @Override
     public void applyDefaults()
     {
@@ -131,7 +112,10 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     }
 
     @Override
-    abstract public void asDefinedType(StringBuilder sb);
+    final public void asDefinedType(final StringBuilder sb)
+    {
+        sb.append(getType().getTypeName());
+    }
 
     /**
      * @param name
@@ -394,6 +378,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public int getMultipleMin()
     {
         return multipleMin;
+    }
+
+    public ClaType getType()
+    {
+        return type;
     }
 
     @Override
@@ -890,6 +879,11 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return this;
     }
 
+    public void setType(final ClaType claType)
+    {
+        type = claType;
+    }
+
     @Override
     public void setUniqueId(final int uniqueId)
     {
@@ -1066,101 +1060,6 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
             sb.append("undefined");
 
         return sb.toString();
-    }
-
-    @Override
-    public void uncompile(final StringBuilder sb, final boolean showType)
-    {
-        sb.append("--uid ").append(getUniqueId());
-        if (showType)
-        {
-            sb.append(" -t ");
-            asDefinedType(sb);
-        }
-        sb.append(" -k ");
-        if (getKeychar() != null && getKeychar() != ' ')
-            sb.append(getKeychar());
-        if (getKeyword() != null && getKeyword().trim().length() > 0)
-        {
-            if (getKeychar() != null && getKeychar() != ' ')
-                sb.append(" ");
-
-            uncompileQuoter(sb, getKeyword());
-        }
-        if (isPositional())
-            sb.append(" -p");
-        if (isRequired())
-            sb.append(" -r");
-        if (isCaseSensitive())
-            sb.append(" -c");
-        if (isCamelCapsAllowed())
-            sb.append(" --camelcaps");
-        if (isMetaphoneAllowed())
-            sb.append(" --metaphone");
-        if (getHelp() != null && getHelp().trim().length() != 0)
-        {
-            sb.append(" -h ");
-            uncompileQuoter(sb, getHelp());
-        }
-        final List<?> defaults = getDefaultValues();
-        if (defaults.size() > 0 && !(this instanceof BooleanCLA))
-        {
-            sb.append(" -d");
-            for (final Object oneDefault : defaults)
-            {
-                sb.append(" ");
-                if (this instanceof ByteCLA)
-                    sb.append(ByteCLA.byteToLit(oneDefault.toString()));
-                else
-                    uncompileQuoter(sb, oneDefault.toString());
-            }
-        }
-        if (getInstanceClass() != null)
-        {
-            sb.append(" --class ");
-            uncompileQuoter(sb, getInstanceClass());
-        }
-        if (getFactoryMethodName() != null)
-        {
-            sb.append(" --factoryMethod ");
-            uncompileQuoter(sb, getFactoryMethodName());
-        }
-        if (getFactoryArgName() != null)
-        {
-            sb.append(" --factoryArgName ");
-            uncompileQuoter(sb, getFactoryArgName());
-        }
-        if (getVariable() != null)
-        {
-            sb.append(" -v ");
-            uncompileQuoter(sb, getVariable());
-        }
-        if (getFormat() != null)
-        {
-            sb.append(" -f ");
-            uncompileQuoter(sb, getFormat());
-        }
-        if (isMultiple())
-        {
-            sb.append(" -m ");
-            uncompileQuoter(sb, "" + getMultipleMin());
-            if (getMultipleMax() != Integer.MAX_VALUE)
-            {
-                sb.append(" ");
-                uncompileQuoter(sb, "" + getMultipleMax());
-            }
-        }
-        /*
-         * The enumList argument sets a --list criteria that should be ignored
-         * for uncompiling.
-         */
-        if (getEnumClassName() != null)
-        {
-            sb.append(" --enumlist ");
-            uncompileQuoter(sb, getEnumClassName());
-
-        } else if (!(this instanceof BooleanCLA) && getCriteria() != null)
-            getCriteria().asDefinitionText(sb);
     }
 
     @Override

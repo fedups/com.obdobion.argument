@@ -6,27 +6,6 @@ public class WildFilesCLA extends AbstractCLA<WildFiles>
 {
     WildFiles wildFile = new WildFiles();
 
-    public WildFilesCLA(final char _keychar)
-    {
-        super(_keychar);
-    }
-
-    public WildFilesCLA(final char _keychar, final String _keyword)
-    {
-        super(_keychar, _keyword);
-    }
-
-    public WildFilesCLA(final String _keyword)
-    {
-        super(_keyword);
-    }
-
-    @Override
-    public void asDefinedType(final StringBuilder sb)
-    {
-        sb.append(CLAFactory.TYPE_WILDFILE);
-    }
-
     /**
      * @param _caseSensitive
      * @param target
