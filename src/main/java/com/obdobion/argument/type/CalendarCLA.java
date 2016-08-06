@@ -9,7 +9,7 @@ import java.util.Date;
  * @author Chris DeGreef
  *
  */
-public class DateCLA extends AbstractCLA<Date>
+public class CalendarCLA extends AbstractCLA<Calendar>
 {
     SimpleDateFormat sdf;
 
@@ -18,7 +18,7 @@ public class DateCLA extends AbstractCLA<Date>
      * @param target
      */
     @Override
-    public Date convert(final String valueStr, final boolean _caseSensitive, final Object target)
+    public Calendar convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
     {
         if (sdf == null)
@@ -37,7 +37,9 @@ public class DateCLA extends AbstractCLA<Date>
             return parseWithPredefinedParsers(valueStr);
         try
         {
-            return sdf.parse(valueStr);
+            final Calendar cal = Calendar.getInstance();
+            cal.setTime(sdf.parse(valueStr));
+            return cal;
         } catch (final Exception e)
         {
             throw new ParseException(toString() + " " + getFormat() + ": " + e.getMessage(), 0);
@@ -47,7 +49,7 @@ public class DateCLA extends AbstractCLA<Date>
     @Override
     public String defaultInstanceClass()
     {
-        return "java.util.Date";
+        return "java.util.Calendar";
     }
 
     @Override
@@ -85,13 +87,13 @@ public class DateCLA extends AbstractCLA<Date>
     @Override
     public String genericClassName()
     {
-        return "java.util.Date";
+        return "java.util.Calendar";
     }
 
     @Override
-    public Date[] getValueAsDateArray() throws ParseException
+    public Calendar[] getValueAsCalendarArray() throws ParseException
     {
-        final Date[] result = new Date[size()];
+        final Calendar[] result = new Calendar[size()];
 
         for (int r = 0; r < size(); r++)
             result[r] = getValue(r);
@@ -99,7 +101,7 @@ public class DateCLA extends AbstractCLA<Date>
         return result;
     }
 
-    protected Date parseSpecialDate(final String pattern)
+    protected Calendar parseSpecialDate(final String pattern)
     {
         if (TemporalHelper.specialAlgoTODAY.equalsIgnoreCase(pattern))
         {
@@ -108,14 +110,14 @@ public class DateCLA extends AbstractCLA<Date>
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MILLISECOND, 0);
-            return cal.getTime();
+            return cal;
         }
         if (TemporalHelper.specialAlgoNOW.equalsIgnoreCase(pattern))
-            return new Date();
-        return new Date();
+            return Calendar.getInstance();
+        return Calendar.getInstance();
     }
 
-    Date parseWithPredefinedParsers(final String valueStr) throws ParseException
+    Calendar parseWithPredefinedParsers(final String valueStr) throws ParseException
     {
         for (int f = 0; f < TemporalHelper.predefinedMat.length; f++)
         {
@@ -126,7 +128,10 @@ public class DateCLA extends AbstractCLA<Date>
             {
                 if (TemporalHelper.predefinedFmt[f] == null)
                     return parseSpecialDate(TemporalHelper.predefinedAlg[f]);
-                return TemporalHelper.predefinedFmt[f].parse(valueStr);
+                final Date date = TemporalHelper.predefinedFmt[f].parse(valueStr);
+                final Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                return cal;
             }
         }
         throw new ParseException(

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -1181,6 +1182,13 @@ public class CmdLine implements ICmdLine, Cloneable
     {
         // should not be called.
         throw new ParseException("invalid to store " + toString() + " in a Byte[]", 0);
+    }
+
+    @Override
+    public Calendar[] getValueAsCalendarArray() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + this.toString() + " in a Calendar[]", 0);
     }
 
     @Override

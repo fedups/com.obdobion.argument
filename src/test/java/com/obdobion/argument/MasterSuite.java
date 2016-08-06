@@ -44,6 +44,7 @@ import com.obdobion.argument.annotation.AnnotateSubparserTest;
         CriteriaTest.class,
         DashingTest.class,
         DateTest.class,
+        CalendarTest.class,
         EnumTest.class,
         EquTest.class,
         ExceptionTest.class,

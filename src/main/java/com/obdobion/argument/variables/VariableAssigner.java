@@ -105,6 +105,8 @@ public class VariableAssigner implements IVariableAssigner
                 field.set(target, arg.getValueAsEquation());
             else if (isDateArray(field))
                 field.set(target, arg.getValueAsDateArray());
+            else if (isCalendarArray(field))
+                field.set(target, arg.getValueAsCalendarArray());
             else if (isByteArray(field))
                 field.set(target, arg.getValueAsByteArray());
             else if (isCharacterArray(field))
@@ -298,6 +300,11 @@ public class VariableAssigner implements IVariableAssigner
     private static boolean isByteArray(final Field field)
     {
         return "[Ljava.lang.Byte;".equals(field.getType().getName());
+    }
+
+    private static boolean isCalendarArray(final Field field)
+    {
+        return "[Ljava.util.Calendar;".equals(field.getType().getName());
     }
 
     private static boolean isCharacterArray(final Field field)

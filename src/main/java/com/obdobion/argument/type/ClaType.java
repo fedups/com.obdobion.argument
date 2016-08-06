@@ -20,6 +20,7 @@ public enum ClaType
     FLOAT("float", FloatCLA.class),
     PATTERN("pattern", PatternCLA.class),
     DATE("date", DateCLA.class),
+    CALENDAR("calendar", CalendarCLA.class),
     LONG("long", LongCLA.class),
     ENUM("enum", EnumCLA.class),
     INTEGER("integer", IntegerCLA.class),
@@ -75,11 +76,13 @@ public enum ClaType
                 || field.getGenericType().getTypeName().equals("java.util.List<java.util.regex.Pattern>"))
             return PATTERN;
         if (fieldType == Date.class
-                || fieldType == Calendar.class
                 || fieldType == Date[].class
-                || fieldType == Calendar[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<java.util.Date>"))
             return DATE;
+        if (fieldType == Calendar.class
+                || fieldType == Calendar[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.util.Calendar>"))
+            return CALENDAR;
         if (fieldType.isEnum()
         // || (fieldType.isArray() && fieldType.getComponentType().isEnum())
         )
@@ -111,11 +114,11 @@ public enum ClaType
                 || field.getGenericType().getTypeName().equals("java.util.List<com.obdobion.algebrain.Equ>"))
             return EQU;
         /*
-         * This point is arrived at for two somewhat different reasons. The
-         * most common is when a subparser is being defined. A lesser reason
-         * is when a complex object is being produced that is not a
-         * subparser. This would require a factoryMethod and a
-         * factoryArgName of SELF_REFERENCING_ARGNAME.
+         * This point is arrived at for two somewhat different reasons. The most
+         * common is when a subparser is being defined. A lesser reason is when
+         * a complex object is being produced that is not a subparser. This
+         * would require a factoryMethod and a factoryArgName of
+         * SELF_REFERENCING_ARGNAME.
          */
         if (!argAnnotation.factoryMethod().equals("")
                 && argAnnotation.factoryArgName().equalsIgnoreCase(CLAFactory.SELF_REFERENCING_ARGNAME))

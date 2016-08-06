@@ -3,6 +3,7 @@ package com.obdobion.argument.type;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -89,6 +90,8 @@ public interface ICmdLineArg<E>
     byte[] getValueAsbyteArray() throws ParseException;
 
     Byte[] getValueAsByteArray() throws ParseException;
+
+    Calendar[] getValueAsCalendarArray() throws ParseException;
 
     Character[] getValueAsCharacterArray() throws ParseException;
 
@@ -194,15 +197,15 @@ public interface ICmdLineArg<E>
 
     ICmdLineArg<E> setRangeCriteria(String min, String max) throws ParseException, IOException;
 
-    ICmdLineArg<E> setRegxCriteria(String pattern) throws ParseException;
+    ICmdLineArg<E> setRegxCriteria(String pattern) throws ParseException;;
 
-    ICmdLineArg<E> setRequired(boolean bool);;
+    ICmdLineArg<E> setRequired(boolean bool);
 
     ICmdLineArg<E> setRequiredValue(boolean bool) throws ParseException;
 
-    ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;
+    ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;;
 
-    void setType(ClaType claType);;
+    void setType(ClaType claType);
 
     void setUniqueId(int i);
 
