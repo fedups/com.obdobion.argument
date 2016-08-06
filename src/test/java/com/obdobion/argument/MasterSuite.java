@@ -13,12 +13,8 @@ import com.obdobion.argument.annotation.AnnotateInstanceOverrideTest;
 import com.obdobion.argument.annotation.AnnotateRangeCriteriaTest;
 import com.obdobion.argument.annotation.AnnotateRegexCriteriaTest;
 import com.obdobion.argument.annotation.AnnotateSimpleModifiersTest;
+import com.obdobion.argument.annotation.AnnotateStandardClassesTest;
 import com.obdobion.argument.annotation.AnnotateSubparserTest;
-import com.obdobion.argument.input.CommandLineParserTest;
-import com.obdobion.argument.input.NamespaceParserTest;
-import com.obdobion.argument.input.NamespaceTest;
-import com.obdobion.argument.input.XmlParserTest;
-import com.obdobion.argument.input.XmlTest;
 
 @RunWith(Suite.class)
 @SuiteClasses({
@@ -27,6 +23,7 @@ import com.obdobion.argument.input.XmlTest;
         AnnotateDefaultsTest.class,
         AnnotateSimpleModifiersTest.class,
         AnnotateSubparserTest.class,
+        AnnotateStandardClassesTest.class,
         AnnotateFactoryCreationTests.class,
         AnnotateFactoryCreationWithEnumArgTest.class,
         AnnotateInstanceOverrideTest.class,
@@ -34,11 +31,10 @@ import com.obdobion.argument.input.XmlTest;
         AnnotateRegexCriteriaTest.class,
         AnnotateInListCriteriaTest.class,
 
-        CommandLineParserTest.class,
-        NamespaceParserTest.class,
-        XmlParserTest.class,
-        NamespaceTest.class,
-        XmlTest.class,
+        PullTest.class,
+
+        ExportImportTest.class,
+
         AbbreviationTest.class,
         BooleanTest.class,
         BracketTest.class,
@@ -50,14 +46,9 @@ import com.obdobion.argument.input.XmlTest;
         DateTest.class,
         EnumTest.class,
         EquTest.class,
-        EscapeTest.class,
         ExceptionTest.class,
-        ExportTest.class,
-        ExportWithVarianceTest.class,
-        GroupTest.class,
         IncludeTest.class,
         InstantiatorTest.class,
-        LinuxSortTest.class,
         ListTest.class,
         MultipleTest.class,
         NumbersTest.class,
@@ -67,8 +58,6 @@ import com.obdobion.argument.input.XmlTest;
         RegexTest.class,
         RepeatParmTest.class,
         RequiredTest.class,
-        SimpleTest.class,
-        UsageTest.class,
         VariableTest.class,
         WildFileTest.class,
         WildPathTest.class,

@@ -5,7 +5,7 @@ import java.text.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
@@ -13,123 +13,186 @@ import com.obdobion.argument.input.CommandLineParser;
  */
 public class DashingTest
 {
-
-    public DashingTest()
+    static public class CamelCaps
     {
+        @Arg(allowCamelCaps = true)
+        boolean camelCaps;
+    }
 
+    static public class CamelCapsError
+    {
+        @Arg(allowCamelCaps = true)
+        boolean camelCaps;
+
+        @Arg
+        String  cc;
+    }
+
+    static public class CamelCapsPartial
+    {
+        @Arg(allowCamelCaps = true)
+        boolean camelCaps;
+
+        @Arg
+        String  ccx;
+    }
+
+    static public class EmbeddedDash
+    {
+        @Arg(shortName = 'a')
+        boolean noDash;
+
+        @Arg(shortName = 'n')
+        boolean name;
+
+        @Arg(shortName = 'b', longName = "bee-name")
+        boolean withDoubleDash;
+    }
+
+    static public class MPhoneIssues
+    {
+        @Arg(shortName = 'a', allowMetaphone = true)
+        boolean inputFileName;
+
+        @Arg(shortName = 'a', allowMetaphone = true)
+        boolean inputFileNum;
+    }
+
+    static public class MPhoneVersion
+    {
+        @Arg(allowMetaphone = true)
+        boolean version;
     }
 
     @Test
     public void camelCaps() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a camelCaps --camelCaps");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--cc"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
+        final CamelCaps target = new CamelCaps();
+        CmdLine.load(target, "--cc");
+        Assert.assertTrue(target.camelCaps);
     }
 
     @Test
     public void camelCapsCompetesWithExactKeyword() throws Exception
     {
+        try
+        {
+            final CamelCapsError target = new CamelCapsError();
+            CmdLine.load(target, "--usage");
+            Assert.fail("expected exception");
 
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a camelCap", "-t String -k c cc");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--cc WHAT"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
+        } catch (final ParseException e)
+        {
+            Assert.assertEquals("camelcaps equals long name, found \"boolean --camelCaps\"' and \"string --cc\"",
+                    e.getMessage());
+        }
     }
 
     @Test
     public void camelCapsCompetesWithPartialKeyword() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a camelCap", "-t String -k c ccx");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--cc WHAT"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
+        final CamelCapsPartial target = new CamelCapsPartial();
+        CmdLine.load(target, "--cc");
+        Assert.assertTrue(target.camelCaps);
     }
 
     @Test
-    public void dashDoubleDash() throws Exception
+    public void embeddedDash1() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a", "-t Boolean -k b bee");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a -b"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee"));
-        Assert.assertEquals("2 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--bee -a"));
-        Assert.assertEquals("3 cmd count", 2, cl.size());
-
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a-b");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.withDoubleDash);
     }
 
     @Test
-    public void dashDoubleDash2() throws Exception
+    public void embeddedDash2() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t string -k a", "-t String -k b bee");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a'what'-b'what'"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a'what'--bee'what'"));
-        Assert.assertEquals("2 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--b'what'-a'what'"));
-        Assert.assertEquals("3 cmd count", 2, cl.size());
-
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a --bee-name");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.withDoubleDash);
     }
 
     @Test
-    public void embeddedDash() throws Exception
+    public void embeddedDash3() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a", "-t Boolean -k b 'bee-name'");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a -b"));
-        Assert.assertEquals("1 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee-name"));
-        Assert.assertEquals("2 cmd count", 2, cl.size());
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--bee-name -a"));
-        Assert.assertEquals("3 cmd count", 2, cl.size());
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "--bee-name -a");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.withDoubleDash);
     }
 
     @Test
-    public void embeddedDashNameCollision() throws Exception
+    public void embeddedDash4() throws Exception
     {
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a--bee-name");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.withDoubleDash);
+    }
 
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k a", "-t Boolean -k b 'bee-name'", "-t boolean -k n 'name'");
+    @Test
+    public void embeddedDash5() throws Exception
+    {
+        try
+        {
+            final EmbeddedDash target = new EmbeddedDash();
+            CmdLine.load(target, "--bee-name-a");
+            Assert.fail("expected exception");
+        } catch (final ParseException e)
+        {
+            Assert.assertEquals("unexpected input: --bee-name-a ", e.getMessage());
+        }
+    }
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --b -n"));
-        Assert.assertEquals("1 cmd count", 3, cl.size());
+    @Test
+    public void embeddedDash6() throws Exception
+    {
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "--bee-name--noDash");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.withDoubleDash);
+    }
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee-n -n"));
-        Assert.assertEquals("2 cmd count", 3, cl.size());
+    @Test
+    public void embeddedDash7() throws Exception
+    {
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a --b -n");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.name);
+        Assert.assertTrue(target.withDoubleDash);
+    }
 
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-a --bee-n"));
-        Assert.assertEquals("3 cmd count", 2, cl.size());
+    @Test
+    public void embeddedDash8() throws Exception
+    {
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a --bee-n -n");
+        Assert.assertTrue(target.noDash);
+        Assert.assertTrue(target.name);
+        Assert.assertTrue(target.withDoubleDash);
+    }
+
+    @Test
+    public void embeddedDash9() throws Exception
+    {
+        final EmbeddedDash target = new EmbeddedDash();
+        CmdLine.load(target, "-a --bee-n");
+        Assert.assertTrue(target.noDash);
+        Assert.assertFalse(target.name);
+        Assert.assertTrue(target.withDoubleDash);
     }
 
     @Test
     public void metaphoneIssues() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
+        final ICmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t Boolean -k a inputFileName --metaphone", "-t Boolean -k a inputFileNum --metaphone");
+            final MPhoneIssues target = new MPhoneIssues();
+            CmdLine.load(cl, target, "--help");
             Assert.fail("expected an exception");
         } catch (final ParseException e)
         {
@@ -147,31 +210,8 @@ public class DashingTest
     @Test
     public void metaphoneVersion() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k version --metaphone");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--vrshn"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-    }
-
-    @Test
-    public void requiredFirst() throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-tboolean -ka --req", "-tboolean -kb");
-
-        StringBuilder str = null;
-
-        str = new StringBuilder();
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-ba"));
-        cl.exportCommandLine(str);
-        Assert.assertEquals("1 b first", "-a -b", str.toString());
-
-        str = new StringBuilder();
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "-ab"));
-        cl.exportCommandLine(str);
-        Assert.assertEquals("1 a first", "-a -b", str.toString());
+        final MPhoneVersion target = new MPhoneVersion();
+        CmdLine.load(target, "--vrshn");
+        Assert.assertTrue(target.version);
     }
 }

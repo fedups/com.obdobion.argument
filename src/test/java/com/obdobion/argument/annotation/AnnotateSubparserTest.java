@@ -58,7 +58,7 @@ public class AnnotateSubparserTest
     public void testUsage() throws Exception
     {
         final ICmdLine cmdParser = new CmdLine("testUsage", "", '-', '!');
-        final IParserInput userInput = CommandLineParser.getInstance('-', new String[] { "--usage" });
+        final IParserInput userInput = CommandLineParser.getInstance('-', new String[] { "--help" });
         cmdParser.parse(userInput, cfg);
     }
 

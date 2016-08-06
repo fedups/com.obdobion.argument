@@ -1,7 +1,11 @@
 package com.obdobion.argument;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
@@ -9,71 +13,56 @@ import org.junit.Test;
  */
 public class ListTest
 {
-
-    public ListTest()
-    {
-
-    }
+    @Arg(shortName = 's', longName = "s", inList = { "abc", "abcd1", "abcde2" })
+    @Arg(shortName = 't', longName = "t", inList = { "abc", "abcd1", "aBCde2" })
+    @Arg(shortName = 'u', longName = "u", inList = { "abc", "abcd1", "aBCde2" }, caseSensitive = true)
+    @Arg(shortName = 'v', longName = "v", inList = { "abc", "abc1", "abc2" })
+    List<String> list;
 
     @Test
-    public void ambiguous () throws Exception
+    public void ambiguousCase0() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-ts -ks --li abc abcd1 abcde2");
-            cl.parse("-s abcd");
+            CmdLine.load(this, "-s abcd");
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("list value", "abcd is not valid for string -s", e.getMessage());
+            Assert.assertEquals("abcd is not valid for string --s(-s)", e.getMessage());
         }
     }
 
     @Test
-    public void ambiguousCase () throws Exception
+    public void ambiguousCase1() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-ts -ks --li abc abcd1 aBCde2");
-        cl.parse("-s Abcde");
-        Assert.assertEquals("list value", "abcde2", cl.arg("-s").getValue());
+        CmdLine.load(this, "-t Abcde2");
+        Assert.assertEquals("abcde2", list.get(0));
     }
 
     @Test
-    public void ambiguousCase2 () throws Exception
+    public void ambiguousCase2() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-ts -ks --li abc abcd1 aBCde2 --case");
-        cl.parse("-s Abcde");
-        Assert.assertEquals("list value", "aBCde2", cl.arg("-s").getValue());
+        CmdLine.load(this, "-u Abcde");
+        Assert.assertEquals("aBCde2", list.get(0));
     }
 
     @Test
-    public void ambiguousCase3 () throws Exception
+    public void ambiguousCase3() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-ts -ks --li abc abcd1 aBCde2 --case");
-            cl.parse("-s aB");
+            CmdLine.load(this, "-u aB");
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("list value", "aB is not valid for string -s", e.getMessage());
+            Assert.assertEquals("aB is not valid for string --u(-u)", e.getMessage());
         }
     }
 
     @Test
-    public void exact () throws Exception
+    public void exact() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-ts -ks --li abc abc1 abc2");
-        cl.parse("-s abc");
-        Assert.assertEquals("list value", "abc", cl.arg("-s").getValue());
+        CmdLine.load(this, "-v abc");
+        Assert.assertEquals("list value", "abc", list.get(0));
     }
 }

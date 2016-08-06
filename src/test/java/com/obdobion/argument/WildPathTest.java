@@ -3,6 +3,8 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.type.WildPath;
+
 /**
  * @author Chris DeGreef
  *

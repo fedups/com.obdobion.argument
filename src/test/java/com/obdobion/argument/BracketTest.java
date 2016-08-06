@@ -3,36 +3,34 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.annotation.Arg;
+
 /**
  * @author Chris DeGreef
- * 
+ *
  */
-public class BracketTest {
+public class BracketTest
+{
 
-	public BracketTest() {
+    static public class Group
+    {
+        @Arg(shortName = 'a')
+        boolean b1;
 
-	}
+        @Arg(shortName = 'b')
+        boolean b2;
+    }
 
-	@Test
-	public void testMultiGroup() throws Exception {
+    @Arg(shortName = 'g')
+    Group[] group;
 
-		final ICmdLine cl = new CmdLine();
-		cl.compile("-tbegin-kg-m1", "-tboolean-ka", "-tboolean-kb", "-tend-kg");
-		cl.parse("-g[-a][-b]");
-
-		final CmdLineCLA parmG = (CmdLineCLA) cl.arg("-g");
-
-		Assert.assertEquals("1 cmd count", 1, cl.size());
-		Assert.assertEquals("1g cmd count", 2, cl.arg("-g").size());
-		Assert.assertEquals("1g0a", Boolean.TRUE, parmG.getValue(0).arg("-a")
-				.getValue());
-		Assert.assertEquals("1g0b", Boolean.FALSE, parmG.getValue(0).arg("-b")
-				.getValue());
-		Assert.assertEquals("1g1a", Boolean.FALSE, parmG.getValue(1).arg("-a")
-				.getValue());
-		Assert.assertEquals("1g1b", Boolean.TRUE, parmG.getValue(1).arg("-b")
-				.getValue());
-
-	}
-
+    @Test
+    public void testMultiGroup() throws Exception
+    {
+        CmdLine.load(this, "-g[-a][-b]");
+        Assert.assertTrue(group[0].b1);
+        Assert.assertFalse(group[0].b2);
+        Assert.assertFalse(group[1].b1);
+        Assert.assertTrue(group[1].b2);
+    }
 }

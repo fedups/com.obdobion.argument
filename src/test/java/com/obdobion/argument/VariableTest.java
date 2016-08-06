@@ -5,7 +5,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
+import com.obdobion.argument.variables.IVariableAssigner;
+import com.obdobion.argument.variables.NullAssigner;
+import com.obdobion.argument.variables.VariableAssigner;
 
 /**
  * @author Chris DeGreef
@@ -13,30 +16,58 @@ import com.obdobion.argument.input.CommandLineParser;
  */
 public class VariableTest
 {
-
     static public class MyGroup
     {
-
+        @Arg(shortName = 's', positional = true)
         public String  testString;
+
+        @Arg(excludeArgs = "innerGroup")
         public MyGroup innerGroup;
     }
 
+    @Arg(shortName = 'i')
     public boolean       testboolean;
+
+    @Arg(longName = "BClass")
     public Boolean       testBoolean;
+
+    @Arg
     public int           testInt;
+
+    @Arg
     public Integer       testInteger;
+
+    @Arg
     public Integer[]     testIntegerArray;
+
+    @Arg
     public int[]         testIntArray;
+
+    @Arg
     public Float         testFloat;
+
+    @Arg(longName = "ClassFloatArray")
     public Float[]       testFloatArray;
+
+    @Arg(longName = "PrimitiveFloatArray")
     public float[]       testfloatArray;
+
+    @Arg
     public String        testString;
 
+    @Arg
     public String[]      testStringArray;
 
+    @Arg(shortName = 'g')
     public MyGroup       testGroup;
+
+    @Arg(instanceClass = "com.obdobion.argument.VariableTest$MyGroup")
     public Object        testObjectGroup;
+
+    @Arg
     public MyGroup       testGroupArray[];
+
+    @Arg
     public List<MyGroup> testGroupList;
 
     public VariableTest()
@@ -47,11 +78,8 @@ public class VariableTest
     @Test
     public void groupWithoutOwnVariable() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
-        cl.parse(this, "-g('1string')");
-        Assert.assertEquals("string", "1string", testString);
+        CmdLine.load(this, "-g('1string')");
+        Assert.assertEquals("1string", testGroup.testString);
     }
 
     @Test
@@ -61,10 +89,8 @@ public class VariableTest
         final IVariableAssigner nullAssigner = VariableAssigner.setInstance(previousAssigner);
         try
         {
-            final CmdLine cl = new CmdLine();
-            cl.compile("-t begin -k g", "   -t String -k s -v testString -p", "-t end -k g");
             VariableAssigner.setInstance(nullAssigner);
-            cl.parse(this, "-g('1string')");
+            CmdLine.load(this, "-g('1string')");
             Assert.assertNull("nulls should always be assigned", testString);
         } finally
         {
@@ -75,62 +101,44 @@ public class VariableTest
     @Test
     public void variablebooleanAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k i -v testboolean");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i"), this);
-        Assert.assertEquals("testboolean", true, testboolean);
+        CmdLine.load(this, "-i");
+        Assert.assertTrue(testboolean);
     }
 
     @Test
     public void variableBooleanAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Boolean -k i -v testBoolean");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i"), this);
-        Assert.assertEquals("testBoolean", Boolean.TRUE, testBoolean);
+        CmdLine.load(this, "--bclass");
+        Assert.assertTrue(testBoolean);
     }
 
     @Test
     public void variablefloatArrayAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Float -m1 -k i -v testfloatArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2.1 1.2"), this);
-        Assert.assertEquals("testfloatArray 0", 2.1F, testfloatArray[0], 0);
-        Assert.assertEquals("testfloatArray 1", 1.2F, testfloatArray[1], 0);
+        CmdLine.load(this, "--primitiveFloatArray 2.1 1.2");
+        Assert.assertEquals(2.1F, testfloatArray[0], 0);
+        Assert.assertEquals(1.2F, testfloatArray[1], 0);
     }
 
     @Test
     public void variableFloatArrayAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Float -m1 -k i -v testFloatArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2.1 1.2"), this);
-        Assert.assertEquals("testFloatArray 0", 2.1F, testFloatArray[0].floatValue(), 0);
-        Assert.assertEquals("testFloatArray 1", 1.2F, testFloatArray[1].floatValue(), 0);
+        CmdLine.load(this, "--ClassFloatArray 2.1 1.2");
+        Assert.assertEquals(2.1F, testFloatArray[0].floatValue(), 0);
+        Assert.assertEquals(1.2F, testFloatArray[1].floatValue(), 0);
     }
 
     @Test
     public void variableFloatAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Float -k i -v testFloat");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 12.3"), this);
-        Assert.assertEquals("testFloat", 12.3F, testFloat.floatValue(), 0);
+        CmdLine.load(this, "--testFloat 12.3");
+        Assert.assertEquals(12.3F, testFloat.floatValue(), 0);
     }
 
     @Test
     public void variableGroupArrayStringAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -k g -v testGroupArray -m1", "-t String -k s -v testString -p", "-t end -k g");
-        cl.parse(this, "-g('1string')('2string')('-s3')");
+        CmdLine.load(this, "--testGroupArray('1string')('2string')('-s3')");
         Assert.assertEquals("group1.string", "1string", testGroupArray[0].testString);
         Assert.assertEquals("group2.string", "2string", testGroupArray[1].testString);
         Assert.assertEquals("group3.string", "-s3", testGroupArray[2].testString);
@@ -139,28 +147,14 @@ public class VariableTest
     @Test
     public void variableGroupGroupStringAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile(
-                "-t begin -k g -v testGroup",
-                "-t begin -k h -v innerGroup",
-                "-t String -k s -v testString",
-                "-t end -k h",
-                "-t end -k g");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-g(-h(-s 'a group string'))"), this);
-        Assert.assertEquals("group.string", "a group string", testGroup.innerGroup.testString);
+        CmdLine.load(this, "--testGroup(--innerGroup('a group string'))");
+        Assert.assertEquals("a group string", testGroup.innerGroup.testString);
     }
 
     @Test
     public void variableGroupListStringAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile(
-                "-t begin -k g -v testGroupList --class com.obdobion.argument.VariableTest$MyGroup -m1",
-                "-t String -k s -v testString -p",
-                "-t end -k g");
-        cl.parse(this, "-g('1string')('2string')('-s3')");
+        CmdLine.load(this, "--testGroupList('1string')('2string')('-s3')");
         Assert.assertEquals("group1.string", "1string", testGroupList.get(0).testString);
         Assert.assertEquals("group2.string", "2string", testGroupList.get(1).testString);
         Assert.assertEquals("group3.string", "-s3", testGroupList.get(2).testString);
@@ -169,24 +163,14 @@ public class VariableTest
     @Test
     public void variableGroupStringAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t begin -k g -v testGroup", "-t String -k s -v testString", "-t end -k g");
-        cl.parse(this, "-g(-s 'a group string')");
-        Assert.assertNotNull("testGroup should not be null", testGroup);
+        CmdLine.load(this, "--testGroup('a group string')");
         Assert.assertEquals("group.string", "a group string", testGroup.testString);
     }
 
     @Test
     public void variableGroupStringAssignmentToObjectList() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile(
-                "-t begin -k g -v testObjectGroup --class " + MyGroup.class.getName(),
-                "-t String -k s -v testString",
-                "-t end -k g");
-        cl.parse(this, "-g(-s 'a group string')");
+        CmdLine.load(this, "--testObjectGroup('a group string')");
         Assert.assertNotNull("testObjectGroup should not be null", testObjectGroup);
         Assert.assertEquals("group.string", "a group string", ((MyGroup) testObjectGroup).testString);
     }
@@ -194,10 +178,7 @@ public class VariableTest
     @Test
     public void variableIntArrayAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Integer -m1 -k i -v testIntArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2 1"), this);
+        CmdLine.load(this, "--testIntArray 2 1");
         Assert.assertEquals("testIntArray 0", 2, testIntArray[0]);
         Assert.assertEquals("testIntArray 1", 1, testIntArray[1]);
     }
@@ -205,20 +186,14 @@ public class VariableTest
     @Test
     public void variableintAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Integer -k i -v testInt");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 123"), this);
+        CmdLine.load(this, "--testInt 123");
         Assert.assertEquals("testInt", 123, testInt);
     }
 
     @Test
     public void variableIntegerArrayAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Integer -m1 -k i -v testIntegerArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 2 1"), this);
+        CmdLine.load(this, "--testIntegerArray 2 1");
         Assert.assertEquals("testIntegerArray 0", 2, testIntegerArray[0].intValue());
         Assert.assertEquals("testIntegerArray 1", 1, testIntegerArray[1].intValue());
     }
@@ -226,21 +201,14 @@ public class VariableTest
     @Test
     public void variableIntegerAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t Integer -k i -v testInteger");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 123"), this);
+        CmdLine.load(this, "--testInteger 123");
         Assert.assertEquals("testInteger", 123, testInteger.intValue());
     }
 
     @Test
     public void variableStringArrayAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t string -m1 -k i -v testStringArray");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 'this is a test string' anotheronetoo"),
-                this);
+        CmdLine.load(this, "--testStringArray 'this is a test string' anotheronetoo");
         Assert.assertEquals("testStringArray 0", "this is a test string", testStringArray[0]);
         Assert.assertEquals("testStringArray 1", "anotheronetoo", testStringArray[1]);
     }
@@ -248,10 +216,7 @@ public class VariableTest
     @Test
     public void variableStringAssignment() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t string -k i -v testString");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i 'this is a test string'"), this);
+        CmdLine.load(this, "--testString 'this is a test string'");
         Assert.assertEquals("testString", "this is a test string", testString);
     }
 }

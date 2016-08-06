@@ -3,97 +3,100 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.annotation.Arg;
+
 /**
  * @author Chris DeGreef
- * 
+ *
  */
-public class BooleanTest {
+public class BooleanTest
+{
+    static public final class ResetMoreThanOne
+    {
+        @Arg(shortName = 't')
+        boolean tx;
+        @Arg(shortName = 's', defaultValues = "true")
+        boolean sx;
+    }
 
-	public BooleanTest() throws Exception {
+    static public final class ResetOnlyOneOfTwo
+    {
+        @Arg(shortName = 'a')
+        boolean ax;
+        @Arg(shortName = 's')
+        boolean sx;
+    }
 
-	}
+    static public final class SetToDefaultChar
+    {
+        @Arg(shortName = 'a')
+        boolean ax;
+    }
 
-	@Test
-	public void resetMoreThanOne() throws Exception {
+    static public final class SimpleSetFalse
+    {
+        @Arg(defaultValues = "true")
+        boolean ax;
+    }
 
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test ", "-t Boolean -kt stest --def true ");
+    static public final class SimpleSetTrue
+    {
+        @Arg
+        boolean ax;
+    }
 
-		cl.parse("-ts -!test,stest");
-		Assert.assertEquals("arg count", 0, cl.size());
-		Assert.assertFalse("value", (Boolean) cl.arg("-s").getValue());
-		Assert.assertTrue("value", (Boolean) cl.arg("-t").getValue());
-	}
+    public BooleanTest() throws Exception
+    {
+    }
 
-	@Test
-	public void setToDefaultChar() throws Exception {
+    @Test
+    public void resetMoreThanOne() throws Exception
+    {
+        final ResetMoreThanOne resetMoreThanOne = new ResetMoreThanOne();
+        CmdLine.load(resetMoreThanOne, "-ts -!t,s");
+        Assert.assertTrue("s should be true", resetMoreThanOne.sx);
+        Assert.assertFalse("t should be false", resetMoreThanOne.tx);
+    }
 
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test ");
-		cl.parse("-s -!s");
-		Assert.assertEquals("arg count", 0, cl.size());
-		Assert.assertFalse("value", (Boolean) cl.arg("-s").getValue());
-	}
+    @Test
+    public void resetOnlyOneOfTwo() throws Exception
+    {
+        final ResetOnlyOneOfTwo resetOnlyOneOfTwo = new ResetOnlyOneOfTwo();
+        CmdLine.load(resetOnlyOneOfTwo, "-as -!a");
+        Assert.assertTrue("s should be true", resetOnlyOneOfTwo.sx);
+        Assert.assertFalse("t should be false", resetOnlyOneOfTwo.ax);
+    }
 
-	@Test
-	public void setToDefaultWord() throws Exception {
+    @Test
+    public void setToDefaultChar() throws Exception
+    {
+        final SetToDefaultChar setToDefaultChar = new SetToDefaultChar();
+        CmdLine.load(setToDefaultChar, "-a -!a");
+        Assert.assertFalse("a should be false", setToDefaultChar.ax);
+    }
 
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test ");
-		cl.parse("-s -!te");
-		Assert.assertEquals("arg count", 0, cl.size());
-		Assert.assertFalse("value", (Boolean) cl.arg("-s").getValue());
-	}
+    @Test
+    public void setToDefaultWord() throws Exception
+    {
+        final SetToDefaultChar setToDefaultChar = new SetToDefaultChar();
+        CmdLine.load(setToDefaultChar, "--ax -!ax");
+        Assert.assertFalse("ax should be false", setToDefaultChar.ax);
+    }
 
-	@Test
-	public void resetOnlyOneOfTwo() throws Exception {
+    @Test
+    public void simpleSetFalse() throws Exception
+    {
+        final SimpleSetFalse simpleSetFalse = new SimpleSetFalse();
+        CmdLine.load(simpleSetFalse, "--ax");
+        Assert.assertFalse("ax should be false", simpleSetFalse.ax);
+    }
 
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks", "-t Boolean -ka");
-		cl.parse("-as -!a");
-		Assert.assertEquals("arg count", 1, cl.size());
-		Assert.assertTrue("value", (Boolean) cl.arg("-s").getValue());
-		Assert.assertFalse("value", (Boolean) cl.arg("-a").getValue());
-	}
-
-	@Test
-	public void simpleDefaultFalse() throws Exception {
-
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test ");
-		cl.parse("");
-		Assert.assertEquals("arg count", 0, cl.size());
-		Assert.assertFalse("value", (Boolean) cl.arg("-s").getValue());
-	}
-
-	@Test
-	public void simpleDefaultTrue() throws Exception {
-
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test --def true ");
-		cl.parse("");
-		Assert.assertEquals("arg count", 0, cl.size());
-		Assert.assertTrue("value", (Boolean) cl.arg("-s").getValue());
-	}
-
-	@Test
-	public void simpleSetFalse() throws Exception {
-
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test --default true ");
-		cl.parse("-s");
-		Assert.assertEquals("arg count", 1, cl.size());
-		Assert.assertFalse("value", (Boolean) cl.arg("-s").getValue());
-	}
-
-	@Test
-	public void simpleSetTrue() throws Exception {
-
-		final CmdLine cl = new CmdLine();
-		cl.compile("-t Boolean -ks test ");
-		cl.parse("-s");
-		Assert.assertEquals("arg count", 1, cl.size());
-		Assert.assertTrue("value", (Boolean) cl.arg("-s").getValue());
-	}
+    @Test
+    public void simpleSetTrue() throws Exception
+    {
+        final SimpleSetTrue simpleSetTrue = new SimpleSetTrue();
+        CmdLine.load(simpleSetTrue, "--ax");
+        Assert.assertTrue("ax should be true", simpleSetTrue.ax);
+    }
 
 }

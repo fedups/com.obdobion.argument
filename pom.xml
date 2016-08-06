@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.obdobion</groupId>
 	<artifactId>argument</artifactId>
-	<version>4.0.1</version>
+	<version>4.0.4</version>
     <name>${project.groupId}:${project.artifactId}</name>
 	<description>A command line parser for Java</description>
 	<url>https://github.com/fedups/argument</url>
@@ -33,7 +33,7 @@
 	
 	<properties>
 		<calendar.version>1.0.0</calendar.version>
-		<algebrain.version>1.3.8</algebrain.version>
+		<algebrain.version>1.3.9</algebrain.version>
 
 		<java.target.version>1.8</java.target.version>
 		<java.source.version>1.8</java.source.version>

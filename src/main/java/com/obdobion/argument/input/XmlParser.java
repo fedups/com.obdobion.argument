@@ -17,12 +17,11 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import com.obdobion.argument.ICmdLineArg;
-import com.obdobion.argument.Token;
+import com.obdobion.argument.type.ICmdLineArg;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class XmlParser extends AbstractInputParser implements IParserInput
 {
@@ -30,21 +29,21 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     final static private String nonameTag = "noname";
     final static private String delimAttr = "delim";
 
-    static public IParserInput getInstance (final File file) throws IOException
+    static public IParserInput getInstance(final File file) throws IOException
     {
         final XmlParser parser = new XmlParser();
         parser.input = new FileInputStream(file);
         return parser;
     }
 
-    static public IParserInput getInstance (final InputStream input)
+    static public IParserInput getInstance(final InputStream input)
     {
         final XmlParser parser = new XmlParser();
         parser.input = input;
         return parser;
     }
 
-    static public IParserInput getInstance (final String input)
+    static public IParserInput getInstance(final String input)
     {
         final InputStream is = new ByteArrayInputStream(input.getBytes());
         final XmlParser parser = new XmlParser();
@@ -52,14 +51,25 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
-    static protected String quote (final String value)
+    static public IParserInput getInstance(final String... input)
+    {
+        final StringBuilder sb = new StringBuilder();
+        for (final String aLine : input)
+            sb.append(aLine);
+        final InputStream is = new ByteArrayInputStream(sb.toString().getBytes());
+        final XmlParser parser = new XmlParser();
+        parser.input = is;
+        return parser;
+    }
+
+    static protected String quote(final String value)
     {
         final StringBuilder out = new StringBuilder();
         out.append(value.replaceAll("<", "&lt;").replaceAll(">", "&gt;"));
         return out.toString();
     }
 
-    static public String unparseTokens (final List<ICmdLineArg<?>> args)
+    static public String unparseTokens(final List<ICmdLineArg<?>> args)
     {
         final StringBuilder out = new StringBuilder();
         out.append("<").append(rootTag).append(">");
@@ -68,16 +78,14 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return out.toString();
     }
 
-    static public void unparseTokens (final List<ICmdLineArg<?>> args, final StringBuilder out)
+    static public void unparseTokens(final List<ICmdLineArg<?>> args, final StringBuilder out)
     {
         final Iterator<ICmdLineArg<?>> aIter = args.iterator();
         while (aIter.hasNext())
         {
             final ICmdLineArg<?> arg = aIter.next();
             if (arg.isParsed())
-            {
                 arg.exportXml(out);
-            }
         }
     }
 
@@ -89,12 +97,8 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         super();
     }
 
-    public String substring (int inclusiveStart, int exclusiveEnd)
-    {
-        return "";
-    }
-
-    public Token[] parseTokens ()
+    @Override
+    public Token[] parseTokens()
     {
         final List<Token> out = new ArrayList<>();
         final List<NodeOc> depth = new ArrayList<>();
@@ -114,10 +118,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
                 String        delim       = null;
 
                 @Override
-                public void characters (final char[] ch, final int start, final int length) throws SAXException
+                public void characters(final char[] ch, final int start, final int length) throws SAXException
                 {
                     for (int c = start; c < start + length; c++)
-                    {
                         /*
                          * Extra spaces between tags end up here. I guess this
                          * could be comments too. Who cares, ignore it. The
@@ -125,20 +128,21 @@ public class XmlParser extends AbstractInputParser implements IParserInput
                          */
                         if (value != null)
                             value.append(ch[c]);
-                    }
                 }
 
                 @Override
-                public void endDocument () throws SAXException
+                public void endDocument() throws SAXException
                 {
                     for (int d = 1; d < depth.size(); d++)
-                    {
                         line.add(closeGroup);
-                    }
                 }
 
+                /**
+                 * @param uri
+                 * @param localName
+                 */
                 @Override
-                public void endElement (final String uri, final String localName, final String name)
+                public void endElement(final String uri, final String localName, final String name)
                         throws SAXException
                 {
                     if (rootTag.equals(name))
@@ -159,13 +163,17 @@ public class XmlParser extends AbstractInputParser implements IParserInput
                 }
 
                 @Override
-                public void startDocument () throws SAXException
+                public void startDocument() throws SAXException
                 {
                     super.startDocument();
                 }
 
+                /**
+                 * @param uri
+                 * @param localName
+                 */
                 @Override
-                public void startElement (final String uri, final String localName, final String name,
+                public void startElement(final String uri, final String localName, final String name,
                         final Attributes attributes) throws SAXException
                 {
                     if (rootTag.equals(name))
@@ -221,5 +229,15 @@ public class XmlParser extends AbstractInputParser implements IParserInput
             e.printStackTrace();
             return null;
         }
+    }
+
+    /**
+     * @param inclusiveStart
+     * @param exclusiveEnd
+     */
+    @Override
+    public String substring(final int inclusiveStart, final int exclusiveEnd)
+    {
+        return "";
     }
 }

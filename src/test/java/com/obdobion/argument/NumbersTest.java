@@ -1,136 +1,85 @@
 package com.obdobion.argument;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
- * 
+ *
  */
 public class NumbersTest
 {
-    CmdLine sharedCL;
+    @Arg(shortName = 'a')
+    int anInt;
 
-    public NumbersTest()
+    @Arg
+    int i100;
+
+    @Arg(longName = "i100-23")
+    int i10023;
+
+    @Arg(shortName = 'c', longName = "bee-name")
+    int beeName;
+
+    @Test
+    public void negativeIntegers() throws Exception
     {
-    }
-
-    @Before
-    public void createParser ()
-    {
-        sharedCL = new CmdLine();
-        try
-        {
-            sharedCL.compile("-t Integer -k a", "-t Integer -k c 'bee-name'");
-
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+        CmdLine.load(this, "-a -1 --bee-name -2");
+        Assert.assertEquals(-1, anInt);
+        Assert.assertEquals(-2, beeName);
     }
 
     @Test
-    public void positiveIntegers () throws Exception
+    public void negativeIntegersViaKeyCharEqualSign() throws Exception
     {
-        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a 1 --bee-name 2"));
-        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
-
-        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
-        Assert.assertEquals("a", 1, a.getValue().intValue());
-        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
-        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
+        CmdLine.load(this, "-a=-100");
+        Assert.assertEquals(-100, anInt);
     }
 
     @Test
-    public void positiveIntegersNoSpace () throws Exception
+    public void negativeIntegersViaKeyCharNoDelim() throws Exception
     {
-        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a1 --bee-name 2"));
-        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
-
-        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
-        Assert.assertEquals("a", 1, a.getValue().intValue());
-        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
-        Assert.assertEquals("bee-name", 2, b.getValue().intValue());
+        CmdLine.load(this, "-a-100");
+        Assert.assertEquals(-100, anInt);
     }
 
     @Test
-    public void negativeIntegers () throws Exception
+    public void negativeIntegersViaKeyWord() throws Exception
     {
-        sharedCL.parse(CommandLineParser.getInstance(sharedCL.getCommandPrefix(), true, "-a -1 --bee-name -2"));
-        Assert.assertEquals("1 cmd count", 2, sharedCL.size());
-
-        IntegerCLA a = (IntegerCLA) sharedCL.arg("-a");
-        Assert.assertEquals("a", -1, a.getValue().intValue());
-        IntegerCLA b = (IntegerCLA) sharedCL.arg("-c");
-        Assert.assertEquals("bee-name", -2, b.getValue().intValue());
+        CmdLine.load(this, "--i100 -23");
+        Assert.assertEquals(-23, i100);
     }
 
     @Test
-    public void negativeIntegersViaKeyCharNoDelim () throws Exception
+    public void negativeIntegersViaKeyWordWithEmbeddedDash() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i-100"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("1i", -100, sarg.getValue().intValue());
+        CmdLine.load(this, "--i100-23 -45");
+        Assert.assertEquals(-45, i10023);
     }
 
     @Test
-    public void negativeIntegersViaKeyCharEqualSign () throws Exception
+    public void negativeIntegersViaKeyWordWithEmbeddedDashShortened() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-i=-100"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("1i", -100, sarg.getValue().intValue());
+        CmdLine.load(this, "--i100- -45");
+        Assert.assertEquals(-45, i10023);
     }
 
     @Test
-    public void negativeIntegersViaKeyWord () throws Exception
+    public void positiveIntegers() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki i100");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "--i100-23"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("1i", -23, sarg.getValue().intValue());
+        CmdLine.load(this, "-a 1 --bee-name 2");
+        Assert.assertEquals(1, anInt);
+        Assert.assertEquals(2, beeName);
     }
 
     @Test
-    public void negativeIntegersViaKeyWordWithEmbeddedDash () throws Exception
+    public void positiveIntegersNoSpace() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki 'i100-123'");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--i100-123 -45"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("i", -45, sarg.getValue().intValue());
-    }
-
-    @Test
-    public void negativeIntegersViaKeyWordWithEmbeddedDashShortened () throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t integer -ki 'i100-123'");
-
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), true, "--i1 -45"));
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        IntegerCLA sarg = (IntegerCLA) cl.arg("-i");
-        Assert.assertEquals("i", -45, sarg.getValue().intValue());
+        CmdLine.load(this, "-a1 --bee-name 2");
+        Assert.assertEquals(1, anInt);
+        Assert.assertEquals(2, beeName);
     }
 
 }

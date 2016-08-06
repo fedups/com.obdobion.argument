@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
@@ -15,8 +15,11 @@ import com.obdobion.argument.input.CommandLineParser;
 public class RegexTest
 {
 
-    public Pattern   regex;
+    @Arg
+    Pattern          regex;
 
+    @Arg(longName = "regexB", caseSensitive = true)
+    @Arg
     public Pattern[] regexA;
 
     public RegexTest()
@@ -25,28 +28,22 @@ public class RegexTest
     }
 
     @Test
-    public void invalidRegex () throws Exception
+    public void invalidRegex() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t regex -k r --var regex");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'[+'"), this);
+            CmdLine.load(this, "--regex'[+'");
             Assert.fail("should have been an Exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("regex is not valid for string --type(-t)", e.getMessage());
+            Assert.assertEquals("Unclosed character class", e.getMessage().substring(0, 24));
         }
     }
 
     @Test
-    public void validRegex () throws Exception
+    public void validRegex() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t pattern -k r --var regex");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'[0-9]+'"), this);
+        CmdLine.load(this, "--regex '[0-9]+'");
 
         Assert.assertFalse(regex.matcher("grabNoNumbers").find());
         final Matcher matcher = regex.matcher("grab54numbers61Only");
@@ -55,13 +52,9 @@ public class RegexTest
     }
 
     @Test
-    public void validRegexArrayCaseDoesNotMatter () throws Exception
+    public void validRegexArrayCaseDoesNotMatter() throws Exception
     {
-
-        regexA = null;
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t pattern -k r --var regexA -m1");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r '[0-9]+' '[a-zA-Z]+' "), this);
+        CmdLine.load(this, "--regexa '[0-9]+' '[a-zA-Z]+'");
 
         Assert.assertFalse(regexA[1].matcher("123").find());
         final Matcher matcher = regexA[1].matcher("54Alpha61Only");
@@ -70,13 +63,9 @@ public class RegexTest
     }
 
     @Test
-    public void validRegexArrayCaseMatters () throws Exception
+    public void validRegexArrayCaseMatters() throws Exception
     {
-
-        regexA = null;
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t pattern -k r --var regexA -m1 --case");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'[0-9]+''[a-z]+'"), this);
+        CmdLine.load(this, "--regexb '[0-9]+''[a-z]+'");
 
         Assert.assertFalse(regexA[1].matcher("123").find());
         final Matcher matcher = regexA[1].matcher("54Alpha61Only");
@@ -85,13 +74,9 @@ public class RegexTest
     }
 
     @Test
-    public void validRegexArrayCaseMattersA () throws Exception
+    public void validRegexArrayCaseMattersA() throws Exception
     {
-
-        regexA = null;
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t pattern -k r --var regexA -m1 --case");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'[0-9]+''[a-zA-Z]+'"), this);
+        CmdLine.load(this, "--regexb '[0-9]+''[a-zA-Z]+'");
 
         Assert.assertFalse(regexA[1].matcher("123").find());
         final Matcher matcher = regexA[1].matcher("54Alpha61Only");

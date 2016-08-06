@@ -3,7 +3,7 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
@@ -11,31 +11,21 @@ import com.obdobion.argument.input.CommandLineParser;
  */
 public class RequiredTest
 {
-
-    public int maxUpdates = 0;
-
-    public RequiredTest()
-    {
-
-    }
+    @Arg(required = true)
+    int maxUpdates = 0;
 
     @Test
     public void requireInteger() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t Integer --key m maxUpdates --req --var maxUpdates");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), ""));
+            CmdLine.load(this, "");
             Assert.fail("should have failed");
         } catch (final Exception e)
         {
             Assert.assertEquals(
-                    "requires int",
-                    "missing required parameters: \"integer --maxUpdates(-m)\" ",
+                    "missing required parameters: \"integer --maxUpdates\" ",
                     e.getMessage());
         }
-
     }
 }

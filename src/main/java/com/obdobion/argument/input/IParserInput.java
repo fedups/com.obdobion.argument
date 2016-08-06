@@ -1,7 +1,5 @@
 package com.obdobion.argument.input;
 
-import com.obdobion.argument.Token;
-
 /**
  * @author Chris DeGreef
  * 

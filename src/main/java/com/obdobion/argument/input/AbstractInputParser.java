@@ -2,8 +2,7 @@ package com.obdobion.argument.input;
 
 import java.util.List;
 
-import com.obdobion.argument.AbstractCLA;
-import com.obdobion.argument.Token;
+import com.obdobion.argument.type.AbstractCLA;
 
 /**
  * @author Chris DeGreef

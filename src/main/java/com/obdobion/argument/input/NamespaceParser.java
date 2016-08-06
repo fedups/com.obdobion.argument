@@ -9,8 +9,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-import com.obdobion.argument.ICmdLineArg;
-import com.obdobion.argument.Token;
+import com.obdobion.argument.type.ICmdLineArg;
 
 /**
  * Properties can be used to represent command line args using a modified
@@ -21,22 +20,20 @@ import com.obdobion.argument.Token;
  * Each of the nodes in the arg name can be suffixed with an index in order to
  * handle multi valued args. These are specified with brackets. [0] for
  * instance.
- * 
+ *
  * @author Chris DeGreef
- * 
+ *
  */
 public class NamespaceParser extends AbstractInputParser implements IParserInput
 {
-    static public IParserInput getInstance (final File file) throws IOException
+    static public IParserInput getInstance(final File file) throws IOException
     {
-        List<String> args = new ArrayList<>();
+        final List<String> args = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file)))
         {
             String aConfigLine = null;
             while ((aConfigLine = reader.readLine()) != null)
-            {
                 args.add(aConfigLine);
-            }
         }
 
         final NamespaceParser parser = new NamespaceParser();
@@ -44,55 +41,28 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
-    static public IParserInput getInstance (final String... args)
+    static public IParserInput getInstance(final String... args)
     {
         final NamespaceParser parser = new NamespaceParser();
         parser.args = args;
         return parser;
     }
 
-    static protected String quote (final String value)
-    {
-        return value;
-    }
-
-    static public String unparseTokens (final List<ICmdLineArg<?>> args)
-    {
-        final StringBuilder out = new StringBuilder();
-        unparseTokens("", args, out);
-        return out.toString();
-    }
-
-    static public void unparseTokens (final String prefix, final List<ICmdLineArg<?>> args, final StringBuilder out)
-    {
-        final Iterator<ICmdLineArg<?>> aIter = args.iterator();
-        while (aIter.hasNext())
-        {
-            final ICmdLineArg<?> arg = aIter.next();
-            if (arg.isParsed())
-            {
-                arg.exportNamespace(prefix, out);
-            }
-        }
-    }
-
-    protected String[] args;
-    final char         commandPrefix = '-';
-
-    NamespaceParser()
-    {
-        super();
-    }
-
-    public String substring (int inclusiveStart, int exclusiveEnd)
-    {
-        return "";
-    }
-
-    static private String parseNamespaceLine (final String arg, final List<NodeOc> line)
+    static private String parseNamespaceLine(final String arg, final List<NodeOc> line)
     {
         final String[] keyValue = arg.split("=");
-        final String[] nodes = keyValue[0].split("\\.");
+
+        /*
+         * "a.b.c." represents a positional (unnamed) final level. If the split
+         * does not see a space after the last node then it will only count 3.
+         * It needs to count 4. The [0] seems to indicate a multiple item But
+         * the 0 element is the same as a direct reference in argument.
+         */
+        String value = keyValue[0];
+        if (value.length() > 0)
+            if (value.charAt(value.length() - 1) == '.')
+                value = keyValue[0] + "[0]";
+        final String[] nodes = value.split("\\.");
 
         line.clear();
         for (int n = 0; n < nodes.length; n++)
@@ -116,7 +86,40 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return "";
     }
 
-    public Token[] parseTokens ()
+    static protected String quote(final String value)
+    {
+        return value;
+    }
+
+    static public String unparseTokens(final List<ICmdLineArg<?>> args)
+    {
+        final StringBuilder out = new StringBuilder();
+        unparseTokens("", args, out);
+        return out.toString();
+    }
+
+    static public void unparseTokens(final String prefix, final List<ICmdLineArg<?>> args, final StringBuilder out)
+    {
+        final Iterator<ICmdLineArg<?>> aIter = args.iterator();
+        while (aIter.hasNext())
+        {
+            final ICmdLineArg<?> arg = aIter.next();
+            if (arg.isParsed())
+                arg.exportNamespace(prefix, out);
+        }
+    }
+
+    protected String[] args;
+
+    final char         commandPrefix = '-';
+
+    NamespaceParser()
+    {
+        super();
+    }
+
+    @Override
+    public Token[] parseTokens()
     {
         final List<Token> out = new ArrayList<>();
         final List<NodeOc> depth = new ArrayList<>();
@@ -132,5 +135,15 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
             out.add(new Token(commandPrefix, CLOSE_GROUP, 0, 0, false));
 
         return out.toArray(new Token[out.size()]);
+    }
+
+    /**
+     * @param inclusiveStart
+     * @param exclusiveEnd
+     */
+    @Override
+    public String substring(final int inclusiveStart, final int exclusiveEnd)
+    {
+        return "";
     }
 }

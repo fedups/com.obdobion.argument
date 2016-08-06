@@ -3,68 +3,84 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.annotation.Arg;
+
 /**
  * @author Chris DeGreef
  *
  */
 public class CaseSensitiveTest
 {
-
-    public CaseSensitiveTest()
+    static public class Cfg
     {
+        @Arg(inList = { "lower", "UPPER" })
+        String lowerCaseResult;
 
+        @Arg(inList = { "lower", "UPPER" }, caseSensitive = true)
+        String caseMattersResult;
     }
 
     @Test
-    public void caseDoesNotMatter() throws Exception
+    public void caseDoesNotMatter1() throws Exception
     {
-        final ICmdLine cl = new CmdLine();
-        cl.compile("-t String -k a item1 --list lower UPPER");
-        cl.parse("-a LOWER");
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a", "lower", cl.arg("-a").getValue());
-        cl.parse("-a UPPER");
-        Assert.assertEquals("2 cmd count", 1, cl.size());
-        Assert.assertEquals("2a", "upper", cl.arg("-a").getValue());
-        cl.parse("-a Lower");
-        Assert.assertEquals("3 cmd count", 1, cl.size());
-        Assert.assertEquals("3a", "lower", cl.arg("-a").getValue());
-        cl.parse("-a upper");
-        Assert.assertEquals("4 cmd count", 1, cl.size());
-        Assert.assertEquals("4a", "upper", cl.arg("-a").getValue());
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--lowerCaseResult LOWER");
+        Assert.assertEquals("lower", target.lowerCaseResult);
     }
 
     @Test
-    public void caseMattersErrorLower() throws Exception
+    public void caseDoesNotMatter2() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ka item1 --list lowerx UPPER");
-        cl.parse("-a LOWER");
-        Assert.assertEquals("1a", "lowerx", cl.arg("-a").getValue());
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--lowerCaseResult Lower");
+        Assert.assertEquals("lower", target.lowerCaseResult);
     }
 
     @Test
-    public void caseMattersErrorUpper() throws Exception
+    public void caseDoesNotMatter3() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ka item1 --list lower UPPER -c");
-        cl.parse("-a upper");
-        Assert.assertEquals("1a", "UPPER", cl.arg("-a").getValue());
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--lowerCaseResult UPPER");
+        Assert.assertEquals("upper", target.lowerCaseResult);
     }
 
     @Test
-    public void caseMattersValid() throws Exception
+    public void caseDoesNotMatter4() throws Exception
     {
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--lowerCaseResult upper");
+        Assert.assertEquals("upper", target.lowerCaseResult);
+    }
 
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t String -ka item1 --list lower UPPER -c");
-        cl.parse("-a lower");
-        Assert.assertEquals("1 cmd count", 1, cl.size());
-        Assert.assertEquals("1a", "lower", cl.arg("-a").getValue());
-        cl.parse("-a UPPER");
-        Assert.assertEquals("2 cmd count", 1, cl.size());
-        Assert.assertEquals("2a", "UPPER", cl.arg("-a").getValue());
+    @Test
+    public void caseMattersValid1() throws Exception
+    {
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--caseMattersResult lower");
+        Assert.assertEquals("lower", target.caseMattersResult);
+    }
+
+    @Test
+    public void caseMattersValid2() throws Exception
+    {
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--caseMattersResult UPPER");
+        Assert.assertEquals("UPPER", target.caseMattersResult);
+    }
+
+    @Test
+    public void extendingPartialSelectionWhenCaseDoesNotMatter() throws Exception
+    {
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--lowerCaseResult LOW");
+        Assert.assertEquals("lower", target.lowerCaseResult);
+    }
+
+    @Test
+    public void extendingPartialSelectionWhenCaseMatters() throws Exception
+    {
+        final Cfg target = new Cfg();
+        CmdLine.load(target, "--caseMattersResult up");
+        Assert.assertEquals("UPPER", target.caseMattersResult);
     }
 }

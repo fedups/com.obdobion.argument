@@ -14,13 +14,13 @@ import org.junit.Test;
 import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.ICmdLine;
-import com.obdobion.argument.WildFiles;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
+import com.obdobion.argument.type.WildFiles;
 
 public class AnnotateAllTypesTest
 {
-    @Arg()
+    @Arg
     public boolean         pBooleanVar;
     @Arg()
     public int             pIntVar;
@@ -391,7 +391,7 @@ public class AnnotateAllTypesTest
     {
         final ICmdLine cmdParser = new CmdLine("testAllSpecifiedValues", "", '-', '!');
         final IParserInput userInput = CommandLineParser.getInstance('-', new String[] {
-                "--usage"
+                "--help"
         });
         try
         {

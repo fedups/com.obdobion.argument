@@ -29,6 +29,7 @@ public class AnnotateFactoryCreationTests
         {
             final MyClass thisOne = new MyClass();
             thisOne.nameOverride = true;
+            thisOne.name = aName;
             return thisOne;
         }
 

@@ -5,26 +5,35 @@ import java.text.ParseException;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.CmdLineTest.DoubleParm;
+import com.obdobion.argument.annotation.Arg;
+
 /**
  * @author Chris DeGreef
  *
  */
 public class CriteriaTest
 {
-
-    public CriteriaTest()
+    static public class CritError
     {
+        @Arg(range = { "4" }, inList = { "1", "2" })
+        float var;
+    }
 
+    static public class CritError2
+    {
+        @Arg(range = { "4" }, matches = "abc")
+        float var;
     }
 
     @Test
-    public void rangeAndList () throws Exception
+    public void rangeAndList() throws Exception
     {
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t Float -k i --ra 4 -m1 --list 1 2");
-            Assert.fail("should have Assert.failed");
+            final DoubleParm target = new DoubleParm();
+            CmdLine.load(target, "--help");
+
         } catch (final ParseException e)
         {
             Assert.assertEquals(
@@ -34,13 +43,13 @@ public class CriteriaTest
     }
 
     @Test
-    public void rangeAndMatches () throws Exception
+    public void rangeAndMatches() throws Exception
     {
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t Float -k i --ra 4 -m1 --matches abc");
-            Assert.fail("should have Assert.failed");
+            final DoubleParm target = new DoubleParm();
+            CmdLine.load(target, "--help");
+
         } catch (final ParseException e)
         {
             Assert.assertEquals(

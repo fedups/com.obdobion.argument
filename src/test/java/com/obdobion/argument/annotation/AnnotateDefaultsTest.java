@@ -16,9 +16,13 @@ public class AnnotateDefaultsTest
     @Test
     public void allowDefaults() throws Exception
     {
+        /*-
         final ICmdLine cmdParser = new CmdLine("allowDefaults", "", '-', '!');
         final IParserInput userInput = CommandLineParser.getInstance('-', new String[] {});
         cmdParser.parse(userInput, this);
+        */
+
+        new CmdLine().parse(this, new String[] {});
         Assert.assertEquals(2, stringDefaults.length);
         Assert.assertEquals("abc", stringDefaults[0]);
         Assert.assertEquals("def", stringDefaults[1]);

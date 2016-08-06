@@ -32,6 +32,7 @@ public class AnnotateInstanceOverrideTest
         @Arg(positional = true, caseSensitive = true, required = true)
         private String name;
 
+        @Override
         public String getName()
         {
             return name;
@@ -44,8 +45,14 @@ public class AnnotateInstanceOverrideTest
         private String lastName;
     }
 
-    @Arg(shortName = 'p', longName = "pPoly", instanceClass = "com.obdobion.argument.annotation.AnnotateInstanceOverrideTest$WithLastName", multimin = 1)
-    @Arg(shortName = 'q', longName = "qPoly", instanceClass = "com.obdobion.argument.annotation.AnnotateInstanceOverrideTest$FirstNameOnly", multimin = 2)
+    @Arg(shortName = 'p',
+            longName = "pPoly",
+            instanceClass = "com.obdobion.argument.annotation.AnnotateInstanceOverrideTest$WithLastName",
+            multimin = 1)
+    @Arg(shortName = 'q',
+            longName = "qPoly",
+            instanceClass = "com.obdobion.argument.annotation.AnnotateInstanceOverrideTest$FirstNameOnly",
+            multimin = 2)
     private INamed[] polymorphic;
 
     @Test

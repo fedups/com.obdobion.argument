@@ -6,7 +6,7 @@ import java.util.Date;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.obdobion.argument.input.CommandLineParser;
+import com.obdobion.argument.annotation.Arg;
 
 /**
  * @author Chris DeGreef
@@ -15,8 +15,13 @@ import com.obdobion.argument.input.CommandLineParser;
 public class DateTest
 {
 
-    static private void assertValidReturnDate (
-            final Calendar returnCal,
+    @Arg(shortName = 'r')
+    public Date date;
+
+    @Arg(shortName = 'd', format = "yyyy-MM-dd")
+    Date        date2;
+
+    private void assertValidReturnDate(
             final int year,
             final int month,
             final int _date,
@@ -25,705 +30,317 @@ public class DateTest
             final int second,
             final int millisecond)
     {
-        Assert.assertEquals(year, returnCal.get(Calendar.YEAR));
-        Assert.assertEquals(month, returnCal.get(Calendar.MONTH));
-        Assert.assertEquals(_date, returnCal.get(Calendar.DATE));
-        Assert.assertEquals(hour, returnCal.get(Calendar.HOUR_OF_DAY));
-        Assert.assertEquals(minute, returnCal.get(Calendar.MINUTE));
-        Assert.assertEquals(second, returnCal.get(Calendar.SECOND));
-        Assert.assertEquals(millisecond, returnCal.get(Calendar.MILLISECOND));
-    }
-
-    public Date date;
-
-    public DateTest()
-    {
-
-    }
-
-    @Test
-    public void dateDirectiveAbsDay ()
-            throws Exception
-    {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016 =3day)"), this);
-
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 3, 0, 0, 0, 0);
-
+        Assert.assertEquals(year, cal.get(Calendar.YEAR));
+        Assert.assertEquals(month, cal.get(Calendar.MONTH));
+        Assert.assertEquals(_date, cal.get(Calendar.DATE));
+        Assert.assertEquals(hour, cal.get(Calendar.HOUR_OF_DAY));
+        Assert.assertEquals(minute, cal.get(Calendar.MINUTE));
+        Assert.assertEquals(second, cal.get(Calendar.SECOND));
+        Assert.assertEquals(millisecond, cal.get(Calendar.MILLISECOND));
     }
 
     @Test
-    public void dateDirectiveAbsMin ()
-            throws Exception
+    public void dateDirectiveAbsDay() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5min)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 5, 15, 16);
-
+        CmdLine.load(this, "-r _date(04/09/2008@13:14:15.016 =3day)");
+        assertValidReturnDate(2008, Calendar.APRIL, 3, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateDirectiveAbsMonth ()
-            throws Exception
+    public void dateDirectiveAbsMin() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5MONTH)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.MAY, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =5min)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 5, 15, 16);
     }
 
     @Test
-    public void dateDirectiveAbsMs ()
-            throws Exception
+    public void dateDirectiveAbsMonth() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5ms)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 5);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =5MONTH)");
+        assertValidReturnDate(2008, Calendar.MAY, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectiveAbsSec ()
-            throws Exception
+    public void dateDirectiveAbsMs() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =5sec)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 5, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =5ms)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 5);
     }
 
     @Test
-    public void dateDirectiveAbsYear ()
-            throws Exception
+    public void dateDirectiveAbsSec() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =2011YEAR)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2011, Calendar.APRIL, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =5sec)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 5, 16);
     }
 
     @Test
-    public void dateDirectiveBeginOfYesterday ()
-            throws Exception
+    public void dateDirectiveAbsYear() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =bd)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 8, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =2011YEAR)");
+        assertValidReturnDate(2011, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectiveEndOfYesterday ()
-            throws Exception
+    public void dateDirectiveBeginOfYesterday() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -1d =ed)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 8, 23, 59, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -1d =bd)");
+        assertValidReturnDate(2008, Calendar.APRIL, 8, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateDirectiveMinusDay ()
-            throws Exception
+    public void dateDirectiveEndOfYesterday() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016 -1day -1day)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 7, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -1d =ed)");
+        assertValidReturnDate(2008, Calendar.APRIL, 8, 23, 59, 59, 999);
     }
 
     @Test
-    public void dateDirectiveMinusMin ()
-            throws Exception
+    public void dateDirectiveMinusDay() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5minutes)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 9, 15, 16);
-
+        CmdLine.load(this, "-r _date(04/09/2008@13:14:15.016 -1day -1day)");
+        assertValidReturnDate(2008, Calendar.APRIL, 7, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateDirectiveMinusMonth ()
-            throws Exception
+    public void dateDirectiveMinusMin() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5Months)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2007, Calendar.NOVEMBER, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -5minutes)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 9, 15, 16);
     }
 
     @Test
-    public void dateDirectiveMinusMs ()
-            throws Exception
+    public void dateDirectiveMinusMonth() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5ms)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 11);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -5Months)");
+        assertValidReturnDate(2007, Calendar.NOVEMBER, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectiveMinusSec ()
-            throws Exception
+    public void dateDirectiveMinusMs() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5seconds)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 10, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -5ms)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 11);
     }
 
     @Test
-    public void dateDirectiveMinusWeekOfYear ()
-            throws Exception
+    public void dateDirectiveMinusSec() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(12/30/2010@13:14:15.016 -5w)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2010, Calendar.NOVEMBER, 25, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -5seconds)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 10, 16);
     }
 
     @Test
-    public void dateDirectiveMinusYear ()
-            throws Exception
+    public void dateDirectiveMinusWeekOfYear() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 -5YEARS)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2003, Calendar.APRIL, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(12/30/2010@13:14:15.016 -5w)");
+        assertValidReturnDate(2010, Calendar.NOVEMBER, 25, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectiveNowMinus5Min ()
-            throws Exception
+    public void dateDirectiveMinusYear() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(now -5min)"), this);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 -5YEARS)");
+        assertValidReturnDate(2003, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectivePlusDay ()
-            throws Exception
+    public void dateDirectiveNowMinus5Min() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016 +2day)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 11, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(now -5min)");
     }
 
     @Test
-    public void dateDirectivePlusMin ()
-            throws Exception
+    public void dateDirectivePlusDay() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5minutes)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 19, 15, 16);
-
+        CmdLine.load(this, "-r _date(04/09/2008@13:14:15.016 +2day)");
+        assertValidReturnDate(2008, Calendar.APRIL, 11, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateDirectivePlusMonth ()
-            throws Exception
+    public void dateDirectivePlusMin() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5mon)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.SEPTEMBER, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 +5minutes)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 19, 15, 16);
     }
 
     @Test
-    public void dateDirectivePlusMs ()
-            throws Exception
+    public void dateDirectivePlusMonth() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +34l)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 50);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 +5mon)");
+        assertValidReturnDate(2008, Calendar.SEPTEMBER, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateDirectivePlusSec ()
-            throws Exception
+    public void dateDirectivePlusMs() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5seconds)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 20, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 +34l)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 50);
     }
 
     @Test
-    public void dateDirectivePlusYear ()
-            throws Exception
+    public void dateDirectivePlusSec() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 +5y)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2013, Calendar.APRIL, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 +5seconds)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 20, 16);
     }
 
     @Test
-    public void dateDirectiveWithoutAdj ()
-            throws Exception
+    public void dateDirectivePlusYear() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(04/09/2008@13:14:15.016)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 +5y)");
+        assertValidReturnDate(2013, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void dateTimeDirectiveBMin ()
-            throws Exception
+    public void dateDirectiveWithoutAdj() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMin)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 0, 0);
-
+        CmdLine.load(this, "-r _date(04/09/2008@13:14:15.016)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateTimeDirectiveBOD ()
-            throws Exception
+    public void dateTimeDirectiveBMin() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BDay)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =BMin)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 0, 0);
     }
 
     @Test
-    public void dateTimeDirectiveBOM ()
-            throws Exception
+    public void dateTimeDirectiveBOD() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =BMON)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 1, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =BDay)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateTimeDirectiveBOY ()
-            throws Exception
+    public void dateTimeDirectiveBOM() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =By)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.JANUARY, 1, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =BMON)");
+        assertValidReturnDate(2008, Calendar.APRIL, 1, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateTimeDirectiveEHour ()
-            throws Exception
+    public void dateTimeDirectiveBOY() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EHour)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 59, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =By)");
+        assertValidReturnDate(2008, Calendar.JANUARY, 1, 0, 0, 0, 0);
     }
 
     @Test
-    public void dateTimeDirectiveEMin ()
-            throws Exception
+    public void dateTimeDirectiveEHour() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMin)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =EHour)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 59, 59, 999);
     }
 
     @Test
-    public void dateTimeDirectiveEOD ()
-            throws Exception
+    public void dateTimeDirectiveEMin() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EDay)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 23, 59, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =EMin)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 59, 999);
     }
 
     @Test
-    public void dateTimeDirectiveEOM ()
-            throws Exception
+    public void dateTimeDirectiveEOD() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EMon)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 30, 23, 59, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =EDay)");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 23, 59, 59, 999);
     }
 
     @Test
-    public void dateTimeDirectiveEOY ()
-            throws Exception
+    public void dateTimeDirectiveEOM() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(
-                CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _dateTime(04/09/2008@13:14:15.016 =EY)"),
-                this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.DECEMBER, 31, 23, 59, 59, 999);
-
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =EMon)");
+        assertValidReturnDate(2008, Calendar.APRIL, 30, 23, 59, 59, 999);
     }
 
     @Test
-    public void error ()
+    public void dateTimeDirectiveEOY() throws Exception
     {
+        CmdLine.load(this, "-r _dateTime(04/09/2008@13:14:15.016 =EY)");
+        assertValidReturnDate(2008, Calendar.DECEMBER, 31, 23, 59, 59, 999);
+    }
 
-        final CmdLine cl = new CmdLine();
+    @Test
+    public void error()
+    {
         try
         {
-            cl.compile("-t date -k r --var date --format 'yyyy-MM-dd'");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'2008/04/09'"), this);
-
+            CmdLine.load(this, "-d'2008/04/09'");
             Assert.fail("should have Assert.failed");
 
         } catch (final Exception e)
         {
-            Assert.assertEquals("date -r yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
+            Assert.assertEquals("date --date2(-d) yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
         }
     }
 
     @Test
-    public void lastWeekSat ()
-            throws Exception
+    public void lastWeekSat() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(2010/12/31 -1week =7dayofweek)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2010, Calendar.DECEMBER, 25, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _date(2010/12/31 -1week =7dayofweek)");
+        assertValidReturnDate(2010, Calendar.DECEMBER, 25, 0, 0, 0, 0);
     }
 
     @Test
-    public void nextWeekSat ()
-            throws Exception
+    public void nextWeekSat() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(2010/12/31 +1week =7dayofweek)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2011, Calendar.JANUARY, 8, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _date(2010/12/31 +1week =7dayofweek)");
+        assertValidReturnDate(2011, Calendar.JANUARY, 8, 0, 0, 0, 0);
     }
 
     @Test
-    public void predefined_fullTime ()
-            throws Exception
+    public void predefined_fullTime() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04/09/2008 13:14:15.016'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r'04/09/2008 13:14:15.016'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void predefined_fullTime_underbar ()
-            throws Exception
+    public void predefined_fullTime_underbar() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r04/09/2008@13:14:15.016"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 16);
-
+        CmdLine.load(this, "-r04/09/2008@13:14:15.016");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
     @Test
-    public void predefined_hh ()
-            throws Exception
+    public void predefined_hh() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'4/9/2008 13'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 0, 0, 0);
-
+        CmdLine.load(this, "-r'4/9/2008 13'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 0, 0, 0);
     }
 
     @Test
-    public void predefined_hhmm ()
-            throws Exception
+    public void predefined_hhmm() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04/09/2008 13:14'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 0, 0);
-
+        CmdLine.load(this, "-r'04/09/2008 13:14'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 0, 0);
     }
 
     @Test
-    public void predefined_hhmmss ()
-            throws Exception
+    public void predefined_hhmmss() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04/09/2008 13:14:15'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 13, 14, 15, 0);
-
+        CmdLine.load(this, "-r'04/09/2008 13:14:15'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 0);
     }
 
     @Test
-    public void predefined_hhmmss_1digit ()
-            throws Exception
+    public void predefined_hhmmss_1digit() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04/09/2008 1:4:5'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 1, 4, 5, 0);
-
+        CmdLine.load(this, "-r'04/09/2008 1:4:5'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 1, 4, 5, 0);
     }
 
     @Test
-    public void predefined_HourOnly ()
-            throws Exception
+    public void predefined_HourOnly() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'17'"), this);
-
+        CmdLine.load(this, "-r'17'");
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         assertValidReturnDate(
-                cal,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DATE),
@@ -731,52 +348,29 @@ public class DateTest
                 0,
                 0,
                 0);
-
     }
 
     @Test
-    public void predefined_mdy ()
-            throws Exception
+    public void predefined_mdy() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04-09-2008'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r'04-09-2008'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void predefined_mdy2 ()
-            throws Exception
+    public void predefined_mdy2() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'04/09/2008'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r'04/09/2008'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void predefined_now ()
-            throws Exception
+    public void predefined_now() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'now'"), this);
-
+        CmdLine.load(this, "-r'now'");
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         assertValidReturnDate(
-                cal,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DATE),
@@ -784,22 +378,15 @@ public class DateTest
                 cal.get(Calendar.MINUTE),
                 cal.get(Calendar.SECOND),
                 cal.get(Calendar.MILLISECOND));
-
     }
 
     @Test
-    public void predefined_TimeOnly ()
-            throws Exception
+    public void predefined_TimeOnly() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'23:59:59.999'"), this);
-
+        CmdLine.load(this, "-r'23:59:59.999'");
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         assertValidReturnDate(
-                cal,
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DATE),
@@ -807,131 +394,70 @@ public class DateTest
                 59,
                 59,
                 999);
-
     }
 
     @Test
-    public void predefined_today ()
-            throws Exception
+    public void predefined_today() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'today'"), this);
-
+        CmdLine.load(this, "-r'today'");
         final Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        assertValidReturnDate(cal, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 0, 0, 0, 0);
-
+        assertValidReturnDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 0, 0, 0, 0);
     }
 
     @Test
-    public void predefined_ymd ()
-            throws Exception
+    public void predefined_ymd() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'2008-04-09'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r'2008-04-09'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void predefined_ymd2 ()
-            throws Exception
+    public void predefined_ymd2() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'2008/04/09'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r'2008/04/09'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void predefinedNOT ()
+    public void predefinedNOT()
     {
-
-        final CmdLine cl = new CmdLine();
         try
         {
-            cl.compile("-t date -k r --var date");
-            cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'208-04-09'"), this);
-
+            CmdLine.load(this, "-r'208-04-09'");
             Assert.fail("should have Assert.failed");
-
         } catch (final Exception e)
         {
-            Assert.assertEquals("date -r is not in a predefined date / time format (208-04-09)", e.getMessage());
+            Assert.assertEquals("date --date(-r) is not in a predefined date / time format (208-04-09)",
+                    e.getMessage());
         }
-
     }
 
     @Test
-    public void thisWeekMon ()
-            throws Exception
+    public void thisWeekMon() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(2010/12/31 =2a)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2010, Calendar.DECEMBER, 27, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _date(2010/12/31 =2a)");
+        assertValidReturnDate(2010, Calendar.DECEMBER, 27, 0, 0, 0, 0);
     }
 
     @Test
-    public void thisWeekSat ()
-            throws Exception
+    public void thisWeekSat() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r _date(2010/12/31 =7a)"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-        assertValidReturnDate(cal, 2011, Calendar.JANUARY, 1, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r _date(2010/12/31 =7a)");
+        assertValidReturnDate(2011, Calendar.JANUARY, 1, 0, 0, 0, 0);
     }
 
     @Test
-    public void valid ()
-            throws Exception
+    public void valid() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date --format 'yyyy-MM-dd'");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'2008-04-09'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 0, 0, 0, 0);
-
+        CmdLine.load(this, "-r'2008-04-09'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
     @Test
-    public void validWithTime ()
-            throws Exception
+    public void validWithTime() throws Exception
     {
-
-        final CmdLine cl = new CmdLine();
-        cl.compile("-t date -k r --var date --format 'yyyy-MM-dd_HH:mm:ss'");
-        cl.parse(CommandLineParser.getInstance(cl.getCommandPrefix(), "-r'2008-04-09_06:31:32'"), this);
-
-        final Calendar cal = Calendar.getInstance();
-        cal.setTime(date);
-
-        assertValidReturnDate(cal, 2008, Calendar.APRIL, 9, 6, 31, 32, 0);
+        CmdLine.load(this, "-r'2008-04-09_06:31:32'");
+        assertValidReturnDate(2008, Calendar.APRIL, 9, 6, 31, 32, 0);
     }
 }

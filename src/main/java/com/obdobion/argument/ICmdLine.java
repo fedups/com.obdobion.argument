@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import com.obdobion.argument.input.IParserInput;
+import com.obdobion.argument.type.ICmdLineArg;
 
 /**
  * @author Chris DeGreef
@@ -25,10 +26,13 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
 
     void assignVariables(Object target) throws ParseException;
 
+    @Override
     ICmdLine clone() throws CloneNotSupportedException;
 
+    @Deprecated
     ICmdLine compile(List<String> definition) throws ParseException, IOException;
 
+    @Deprecated
     ICmdLine compile(String... definition) throws ParseException, IOException;
 
     public char getCommandPrefix();
@@ -47,9 +51,12 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
 
     Object parse(String... args) throws IOException, ParseException;
 
+    void pull(Object variableSource) throws ParseException;
+
     void remove(ICmdLineArg<?> arg);
 
     void remove(int argIndex);
 
+    @Override
     int size();
 }
