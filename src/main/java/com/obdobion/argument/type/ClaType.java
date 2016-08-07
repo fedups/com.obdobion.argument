@@ -15,7 +15,6 @@ public enum ClaType
     DEFAULT("default", DefaultCLA.class),
     FILE("file", FileCLA.class),
     WILDFILE("wildfile", WildFilesCLA.class),
-    END("end", null),
     DOUBLE("double", DoubleCLA.class),
     FLOAT("float", FloatCLA.class),
     PATTERN("pattern", PatternCLA.class),
@@ -28,8 +27,9 @@ public enum ClaType
     BYTE("byte", ByteCLA.class),
     CHAR("character", CharacterCLA.class),
     BOOLEAN("boolean", BooleanCLA.class),
-    BEGIN("begin", CmdLineCLA.class),
-    EQU("equation", EquCLA.class);
+    SUBPARSER("begin", CmdLineCLA.class),
+    EQU("equation", EquCLA.class),
+    POJO("pojo", PojoCLA.class);
 
     static public ClaType forField(final Field field, final Arg argAnnotation)
     {
@@ -108,7 +108,7 @@ public enum ClaType
         if (fieldType == CmdLineCLA.class
                 || fieldType == CmdLineCLA[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<com.obdobion.argument.CmdLineCLA>"))
-            return BEGIN;
+            return SUBPARSER;
         if (fieldType == Equ.class
                 || fieldType == Equ[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<com.obdobion.algebrain.Equ>"))
@@ -122,9 +122,9 @@ public enum ClaType
          */
         if (!argAnnotation.factoryMethod().equals("")
                 && argAnnotation.factoryArgName().equalsIgnoreCase(CLAFactory.SELF_REFERENCING_ARGNAME))
-            return STRING;
+            return POJO;
 
-        return BEGIN;
+        return SUBPARSER;
     }
 
     private String                typeName;

@@ -68,25 +68,7 @@ public class StringCLA extends AbstractCLA<String>
     }
 
     @Override
-    public boolean supportsFactoryArgName()
-    {
-        return getFactoryArgName().equalsIgnoreCase(CLAFactory.SELF_REFERENCING_ARGNAME);
-    }
-
-    @Override
-    public boolean supportsFactoryMethod()
-    {
-        return true;
-    }
-
-    @Override
     public boolean supportsInList()
-    {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInstanceClass()
     {
         return true;
     }

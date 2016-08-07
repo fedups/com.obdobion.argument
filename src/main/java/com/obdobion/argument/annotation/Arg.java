@@ -17,33 +17,21 @@ import java.lang.annotation.Target;
  * and that it will need to do something special if the user also enters the
  * <code>--tail</code> argument. "argument" is a library that makes handling
  * this type of command line interaction very easy to implement. All parsers are
- * equipped with a few basic arguments; <code>--usage</code>, <code>-?</code>,
+ * equipped with a few basic arguments; <code>--help</code>, <code>-?</code>,
  * <code>-!</code>, and <code>@(filename)</code>.
  * <p>
  * In the <code>main</code> method in your program, or somewhere similar,
  *
  * <pre>
  public static void main (final String[] args) {
+     MyProgram instance = new MyProgram();
  * </pre>
  *
- * you would need to create an instance of the argument processor
+ * and process the command line arguments into the instance variables of your
+ * program.
  *
  * <pre>
- * ICmdLine cmdline = new CmdLine();
- * </pre>
- *
- * and an instance of the specific parser (in this case CommandLineParser)
- *
- * <pre>
- * IParserInput userInput = CommandLineParser.getInstance(commandLineParser.getCommandPrefix(), args);
- * </pre>
- *
- * and then process the command line arguments into the instance variables of
- * your program.
- *
- * <pre>
- * MyProgram instance = new MyProgram();
- * cmdline.parse(userInput, instance));
+ * CmdLine.load(instance, args);
  * </pre>
  *
  * Decorate your instance variables with this &#64;Arg annotation to tell the
@@ -83,6 +71,7 @@ import java.lang.annotation.Target;
  * @see Double
  * @see java.io.File File
  * @see java.util.Date Date
+ * @see java.util.Calendar Calendar
  * @see java.util.regex.Pattern Pattern
  * @see com.obdobion.argument.type.WildFiles WildFiles
  * @see com.obdobion.algebrain.Equ Equ
@@ -91,7 +80,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Repeatable(Args.class)
-public @interface Arg {
+public @interface Arg
+{
 
     /**
      * Indicates that the user can specify the argument on the command-line
