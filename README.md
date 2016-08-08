@@ -14,12 +14,12 @@ Ask yourself the question: What if I had the ability to run my program with a co
 
 What if that can be added with an few lines of code.  Would you do it?  Would you be willing to add this to your class?  
 
-@Arg(required=true) 
-boolean confirm;
+    @Arg(required=true) 
+    boolean confirm;
 
-static final public void main(String[] args) {
-    CmdLine.load(this, args);
-}
+    static final public void main(String[] args) {
+        CmdLine.load(this, args);
+    }
 
 Then the user of your program would be required to run it with "--confirm" on the command line or else get an exception.
 
