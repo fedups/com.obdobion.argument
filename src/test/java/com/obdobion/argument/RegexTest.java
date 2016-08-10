@@ -9,8 +9,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>RegexTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class RegexTest
 {
@@ -22,11 +24,19 @@ public class RegexTest
     @Arg
     public Pattern[] regexA;
 
+    /**
+     * <p>Constructor for RegexTest.</p>
+     */
     public RegexTest()
     {
 
     }
 
+    /**
+     * <p>invalidRegex.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void invalidRegex() throws Exception
     {
@@ -40,6 +50,11 @@ public class RegexTest
         }
     }
 
+    /**
+     * <p>validRegex.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validRegex() throws Exception
     {
@@ -51,6 +66,11 @@ public class RegexTest
         Assert.assertEquals("54", matcher.group(0));
     }
 
+    /**
+     * <p>validRegexArrayCaseDoesNotMatter.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validRegexArrayCaseDoesNotMatter() throws Exception
     {
@@ -62,6 +82,11 @@ public class RegexTest
         Assert.assertEquals("Alpha", matcher.group(0));
     }
 
+    /**
+     * <p>validRegexArrayCaseMatters.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validRegexArrayCaseMatters() throws Exception
     {
@@ -73,6 +98,11 @@ public class RegexTest
         Assert.assertEquals("lpha", matcher.group(0));
     }
 
+    /**
+     * <p>validRegexArrayCaseMattersA.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validRegexArrayCaseMattersA() throws Exception
     {

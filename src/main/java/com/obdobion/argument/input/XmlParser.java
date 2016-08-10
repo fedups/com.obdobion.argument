@@ -20,8 +20,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * @author Chris DeGreef
+ * <p>XmlParser class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class XmlParser extends AbstractInputParser implements IParserInput
 {
@@ -29,6 +30,13 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     final static private String nonameTag = "noname";
     final static private String delimAttr = "delim";
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     * @throws java.io.IOException if any.
+     */
     static public IParserInput getInstance(final File file) throws IOException
     {
         final XmlParser parser = new XmlParser();
@@ -36,6 +44,12 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param input a {@link java.io.InputStream} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(final InputStream input)
     {
         final XmlParser parser = new XmlParser();
@@ -43,6 +57,12 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param input a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(final String input)
     {
         final InputStream is = new ByteArrayInputStream(input.getBytes());
@@ -51,6 +71,12 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param input a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(final String... input)
     {
         final StringBuilder sb = new StringBuilder();
@@ -62,6 +88,7 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    /** {@inheritDoc} */
     static protected String quote(final String value)
     {
         final StringBuilder out = new StringBuilder();
@@ -69,6 +96,12 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return out.toString();
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param args a {@link java.util.List} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String unparseTokens(final List<ICmdLineArg<?>> args)
     {
         final StringBuilder out = new StringBuilder();
@@ -78,6 +111,12 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         return out.toString();
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param args a {@link java.util.List} object.
+     * @param out a {@link java.lang.StringBuilder} object.
+     */
     static public void unparseTokens(final List<ICmdLineArg<?>> args, final StringBuilder out)
     {
         final Iterator<ICmdLineArg<?>> aIter = args.iterator();
@@ -97,6 +136,7 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Token[] parseTokens()
     {
@@ -231,10 +271,7 @@ public class XmlParser extends AbstractInputParser implements IParserInput
         }
     }
 
-    /**
-     * @param inclusiveStart
-     * @param exclusiveEnd
-     */
+    /** {@inheritDoc} */
     @Override
     public String substring(final int inclusiveStart, final int exclusiveEnd)
     {

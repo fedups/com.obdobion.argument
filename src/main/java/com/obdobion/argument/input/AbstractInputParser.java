@@ -5,13 +5,17 @@ import java.util.List;
 import com.obdobion.argument.type.AbstractCLA;
 
 /**
- * @author Chris DeGreef
+ * <p>Abstract AbstractInputParser class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 abstract public class AbstractInputParser
 {
+    /** Constant <code>OPEN_GROUP="["</code> */
     protected static final String OPEN_GROUP  = "[";
+    /** Constant <code>CLOSE_GROUP="]"</code> */
     protected static final String CLOSE_GROUP = "]";
+    /** Constant <code>QUOTER='"'</code> */
     protected static final char   QUOTER      = '"';
 
     static private String dashed(final char commandPrefix, final String key)
@@ -21,6 +25,12 @@ abstract public class AbstractInputParser
         return "" + commandPrefix + commandPrefix + key;
     }
 
+    /**
+     * <p>quote.</p>
+     *
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     static protected String quote(final String value)
     {
         final StringBuilder out = new StringBuilder();
@@ -28,11 +38,22 @@ abstract public class AbstractInputParser
         return out.toString();
     }
 
+    /**
+     * <p>Constructor for AbstractInputParser.</p>
+     */
     public AbstractInputParser()
     {
         super();
     }
 
+    /**
+     * <p>buildCommandLine.</p>
+     *
+     * @param out a {@link java.lang.StringBuilder} object.
+     * @param depth a {@link java.util.List} object.
+     * @param line a {@link java.util.List} object.
+     * @param value a {@link java.lang.String} object.
+     */
     protected void buildCommandLine(final StringBuilder out, final List<NodeOc> depth, final List<NodeOc> line,
             final String value)
     {
@@ -107,6 +128,15 @@ abstract public class AbstractInputParser
             out.append(quote(value));
     }
 
+    /**
+     * <p>buildTokens.</p>
+     *
+     * @param commandPrefix a char.
+     * @param tokens a {@link java.util.List} object.
+     * @param depth a {@link java.util.List} object.
+     * @param line a {@link java.util.List} object.
+     * @param value a {@link java.lang.String} object.
+     */
     protected void buildTokens(final char commandPrefix, final List<Token> tokens, final List<NodeOc> depth,
             final List<NodeOc> line, final String value)
     {

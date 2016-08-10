@@ -7,12 +7,15 @@ import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.input.Token;
 
 /**
- * @author Chris DeGreef
+ * <p>DefaultCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class DefaultCLA extends AbstractCLA<String>
 {
     /**
+     * {@inheritDoc}
+     *
      * not called. A special case in the caller will redirect this call to the
      * one with the args as a parameter.
      */
@@ -22,6 +25,12 @@ public class DefaultCLA extends AbstractCLA<String>
         // intentionally left blank
     }
 
+    /**
+     * <p>applyDefaults.</p>
+     *
+     * @param commandPrefix a char.
+     * @param allKnownArgs a {@link java.util.List} object.
+     */
     public void applyDefaults(final char commandPrefix, final List<ICmdLineArg<?>> allKnownArgs)
     {
         for (final String argNameToReset : getValues())
@@ -45,9 +54,7 @@ public class DefaultCLA extends AbstractCLA<String>
         }
     }
 
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
@@ -56,18 +63,21 @@ public class DefaultCLA extends AbstractCLA<String>
         return valueStr.toLowerCase();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "Object";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         uncompileQuoter(out, getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -77,12 +87,14 @@ public class DefaultCLA extends AbstractCLA<String>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ), out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {

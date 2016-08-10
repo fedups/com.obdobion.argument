@@ -17,13 +17,17 @@ import com.obdobion.calendar.CalendarFactory;
  * <p>
  * See the CalendarFactory for details on how to specify a date modification.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class DateDirective extends DirectiveCommand
 {
     int datePivot;
 
+    /**
+     * <p>Constructor for DateDirective.</p>
+     *
+     * @param _data a {@link java.lang.String} object.
+     */
     public DateDirective(
             final String _data)
     {
@@ -55,6 +59,7 @@ public class DateDirective extends DirectiveCommand
         return cal;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Token replaceToken(final Token[] tokens, final int replacingFromTokenIndex, final int replaceToTokenIndex)
             throws ParseException,
@@ -73,6 +78,11 @@ public class DateDirective extends DirectiveCommand
                 true);
     }
 
+    /**
+     * <p>replaceTokenDateFormat.</p>
+     *
+     * @return a {@link java.text.SimpleDateFormat} object.
+     */
     protected SimpleDateFormat replaceTokenDateFormat()
     {
         return new SimpleDateFormat("yyyy/MM/dd");

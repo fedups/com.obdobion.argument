@@ -11,8 +11,10 @@ import com.obdobion.argument.variables.NullAssigner;
 import com.obdobion.argument.variables.VariableAssigner;
 
 /**
- * @author Chris DeGreef
+ * <p>VariableTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class VariableTest
 {
@@ -70,11 +72,19 @@ public class VariableTest
     @Arg
     public List<MyGroup> testGroupList;
 
+    /**
+     * <p>Constructor for VariableTest.</p>
+     */
     public VariableTest()
     {
 
     }
 
+    /**
+     * <p>groupWithoutOwnVariable.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupWithoutOwnVariable() throws Exception
     {
@@ -82,6 +92,11 @@ public class VariableTest
         Assert.assertEquals("1string", testGroup.testString);
     }
 
+    /**
+     * <p>nullAssigner.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void nullAssigner() throws Exception
     {
@@ -98,6 +113,11 @@ public class VariableTest
         }
     }
 
+    /**
+     * <p>variablebooleanAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variablebooleanAssignment() throws Exception
     {
@@ -105,6 +125,11 @@ public class VariableTest
         Assert.assertTrue(testboolean);
     }
 
+    /**
+     * <p>variableBooleanAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableBooleanAssignment() throws Exception
     {
@@ -112,6 +137,11 @@ public class VariableTest
         Assert.assertTrue(testBoolean);
     }
 
+    /**
+     * <p>variablefloatArrayAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variablefloatArrayAssignment() throws Exception
     {
@@ -120,6 +150,11 @@ public class VariableTest
         Assert.assertEquals(1.2F, testfloatArray[1], 0);
     }
 
+    /**
+     * <p>variableFloatArrayAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableFloatArrayAssignment() throws Exception
     {
@@ -128,6 +163,11 @@ public class VariableTest
         Assert.assertEquals(1.2F, testFloatArray[1].floatValue(), 0);
     }
 
+    /**
+     * <p>variableFloatAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableFloatAssignment() throws Exception
     {
@@ -135,6 +175,11 @@ public class VariableTest
         Assert.assertEquals(12.3F, testFloat.floatValue(), 0);
     }
 
+    /**
+     * <p>variableGroupArrayStringAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableGroupArrayStringAssignment() throws Exception
     {
@@ -144,6 +189,11 @@ public class VariableTest
         Assert.assertEquals("group3.string", "-s3", testGroupArray[2].testString);
     }
 
+    /**
+     * <p>variableGroupGroupStringAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableGroupGroupStringAssignment() throws Exception
     {
@@ -151,6 +201,11 @@ public class VariableTest
         Assert.assertEquals("a group string", testGroup.innerGroup.testString);
     }
 
+    /**
+     * <p>variableGroupListStringAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableGroupListStringAssignment() throws Exception
     {
@@ -160,6 +215,11 @@ public class VariableTest
         Assert.assertEquals("group3.string", "-s3", testGroupList.get(2).testString);
     }
 
+    /**
+     * <p>variableGroupStringAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableGroupStringAssignment() throws Exception
     {
@@ -167,6 +227,11 @@ public class VariableTest
         Assert.assertEquals("group.string", "a group string", testGroup.testString);
     }
 
+    /**
+     * <p>variableGroupStringAssignmentToObjectList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableGroupStringAssignmentToObjectList() throws Exception
     {
@@ -175,6 +240,11 @@ public class VariableTest
         Assert.assertEquals("group.string", "a group string", ((MyGroup) testObjectGroup).testString);
     }
 
+    /**
+     * <p>variableIntArrayAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableIntArrayAssignment() throws Exception
     {
@@ -183,6 +253,11 @@ public class VariableTest
         Assert.assertEquals("testIntArray 1", 1, testIntArray[1]);
     }
 
+    /**
+     * <p>variableintAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableintAssignment() throws Exception
     {
@@ -190,6 +265,11 @@ public class VariableTest
         Assert.assertEquals("testInt", 123, testInt);
     }
 
+    /**
+     * <p>variableIntegerArrayAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableIntegerArrayAssignment() throws Exception
     {
@@ -198,6 +278,11 @@ public class VariableTest
         Assert.assertEquals("testIntegerArray 1", 1, testIntegerArray[1].intValue());
     }
 
+    /**
+     * <p>variableIntegerAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableIntegerAssignment() throws Exception
     {
@@ -205,6 +290,11 @@ public class VariableTest
         Assert.assertEquals("testInteger", 123, testInteger.intValue());
     }
 
+    /**
+     * <p>variableStringArrayAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableStringArrayAssignment() throws Exception
     {
@@ -213,6 +303,11 @@ public class VariableTest
         Assert.assertEquals("testStringArray 1", "anotheronetoo", testStringArray[1]);
     }
 
+    /**
+     * <p>variableStringAssignment.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void variableStringAssignment() throws Exception
     {

@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>NumbersTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class NumbersTest
 {
@@ -23,6 +25,11 @@ public class NumbersTest
     @Arg(shortName = 'c', longName = "bee-name")
     int beeName;
 
+    /**
+     * <p>negativeIntegers.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegers() throws Exception
     {
@@ -31,6 +38,11 @@ public class NumbersTest
         Assert.assertEquals(-2, beeName);
     }
 
+    /**
+     * <p>negativeIntegersViaKeyCharEqualSign.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegersViaKeyCharEqualSign() throws Exception
     {
@@ -38,6 +50,11 @@ public class NumbersTest
         Assert.assertEquals(-100, anInt);
     }
 
+    /**
+     * <p>negativeIntegersViaKeyCharNoDelim.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegersViaKeyCharNoDelim() throws Exception
     {
@@ -45,6 +62,11 @@ public class NumbersTest
         Assert.assertEquals(-100, anInt);
     }
 
+    /**
+     * <p>negativeIntegersViaKeyWord.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegersViaKeyWord() throws Exception
     {
@@ -52,6 +74,11 @@ public class NumbersTest
         Assert.assertEquals(-23, i100);
     }
 
+    /**
+     * <p>negativeIntegersViaKeyWordWithEmbeddedDash.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegersViaKeyWordWithEmbeddedDash() throws Exception
     {
@@ -59,6 +86,11 @@ public class NumbersTest
         Assert.assertEquals(-45, i10023);
     }
 
+    /**
+     * <p>negativeIntegersViaKeyWordWithEmbeddedDashShortened.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negativeIntegersViaKeyWordWithEmbeddedDashShortened() throws Exception
     {
@@ -66,6 +98,11 @@ public class NumbersTest
         Assert.assertEquals(-45, i10023);
     }
 
+    /**
+     * <p>positiveIntegers.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void positiveIntegers() throws Exception
     {
@@ -74,6 +111,11 @@ public class NumbersTest
         Assert.assertEquals(2, beeName);
     }
 
+    /**
+     * <p>positiveIntegersNoSpace.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void positiveIntegersNoSpace() throws Exception
     {

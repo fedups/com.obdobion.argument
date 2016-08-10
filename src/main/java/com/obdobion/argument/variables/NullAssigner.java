@@ -11,26 +11,18 @@ import com.obdobion.argument.type.ICmdLineArg;
  * to variables. Nothing gets assigned. When the user pays for the app, the jar
  * with the real variable assigned will be in it.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class NullAssigner implements IVariableAssigner
 {
-    /**
-     * @param arg
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public void assign(final ICmdLineArg<?> arg, final Object target) throws ParseException
     {
         // intentionally left blank
     }
 
-    /**
-     * @param group
-     * @param target
-     * @param factoryValueArg
-     */
+    /** {@inheritDoc} */
     @Override
     public Object newGroupVariable(final CmdLineCLA group, final Object target, final ICmdLineArg<?> factoryValueArg)
             throws ParseException

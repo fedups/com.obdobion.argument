@@ -3,11 +3,19 @@ package com.obdobion.argument.type;
 import com.obdobion.algebrain.Equ;
 
 /**
- * @author Chris DeGreef
+ * <p>ComparableEqu class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class ComparableEqu implements Comparable<Equ>
 {
+    /**
+     * <p>compile.</p>
+     *
+     * @param valueStr a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.type.ComparableEqu} object.
+     * @throws java.lang.Exception if any.
+     */
     public static ComparableEqu compile(final String valueStr) throws Exception
     {
         final ComparableEqu cp = new ComparableEqu();
@@ -18,12 +26,14 @@ public class ComparableEqu implements Comparable<Equ>
 
     Equ delegate;
 
+    /** {@inheritDoc} */
     @Override
     public int compareTo(final Equ o)
     {
         return delegate.toString().compareTo(o.toString());
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean equals(final Object obj)
     {
@@ -43,6 +53,7 @@ public class ComparableEqu implements Comparable<Equ>
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int hashCode()
     {
@@ -54,6 +65,7 @@ public class ComparableEqu implements Comparable<Equ>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString()
     {

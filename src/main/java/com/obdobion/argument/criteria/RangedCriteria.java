@@ -3,9 +3,10 @@ package com.obdobion.argument.criteria;
 import com.obdobion.argument.usage.UsageBuilder;
 
 /**
- * @author Chris DeGreef
+ * <p>RangedCriteria class.</p>
  *
  * @param <E>
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
 {
@@ -13,12 +14,19 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
     E min;
     E max;
 
+    /**
+     * <p>Constructor for RangedCriteria.</p>
+     *
+     * @param inclusiveMin a E object.
+     * @param inclusiveMax a E object.
+     */
     public RangedCriteria(final E inclusiveMin, final E inclusiveMax)
     {
         min = inclusiveMin;
         max = inclusiveMax;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void asDefinitionText(final StringBuilder sb)
     {
@@ -29,6 +37,7 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
                 sb.append(" --range '" + min.toString() + "'");
     }
 
+    /** {@inheritDoc} */
     @Override
     public void asSetter(final StringBuilder sb)
     {
@@ -43,6 +52,7 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
         sb.append("})");
     }
 
+    /** {@inheritDoc} */
     @Override
     public RangedCriteria<E> clone() throws CloneNotSupportedException
     {
@@ -51,20 +61,27 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
         return clone;
     }
 
+    /**
+     * <p>Getter for the field <code>max</code>.</p>
+     *
+     * @return a E object.
+     */
     public E getMax()
     {
         return max;
     }
 
+    /**
+     * <p>Getter for the field <code>min</code>.</p>
+     *
+     * @return a E object.
+     */
     public E getMin()
     {
         return min;
     }
 
-    /**
-     * @param caseSensitive
-     *            Not used in this method
-     */
+    /** {@inheritDoc} */
     @Override
     public boolean isSelected(final Comparable<E> value, final boolean caseSensitive)
     {
@@ -89,9 +106,9 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     /**
-     * Normalization is not possible for ranges.
+     * {@inheritDoc}
      *
-     * @param caseSensitive
+     * Normalization is not possible for ranges.
      */
     @Override
     public E normalizeValue(final E value, final boolean caseSensitive)
@@ -99,9 +116,7 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
         return value;
     }
 
-    /**
-     * @param indentLevel
-     */
+    /** {@inheritDoc} */
     @Override
     public void usage(final UsageBuilder str, final int indentLevel)
     {

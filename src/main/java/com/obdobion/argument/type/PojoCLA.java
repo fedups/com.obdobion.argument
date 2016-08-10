@@ -22,17 +22,18 @@ package com.obdobion.argument.type;
  *
  * </pre>
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class PojoCLA extends StringCLA
 {
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFactoryArgName()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFactoryMethod()
     {

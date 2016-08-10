@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>CaseSensitiveTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class CaseSensitiveTest
 {
@@ -20,6 +22,11 @@ public class CaseSensitiveTest
         String caseMattersResult;
     }
 
+    /**
+     * <p>caseDoesNotMatter1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseDoesNotMatter1() throws Exception
     {
@@ -28,6 +35,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("lower", target.lowerCaseResult);
     }
 
+    /**
+     * <p>caseDoesNotMatter2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseDoesNotMatter2() throws Exception
     {
@@ -36,6 +48,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("lower", target.lowerCaseResult);
     }
 
+    /**
+     * <p>caseDoesNotMatter3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseDoesNotMatter3() throws Exception
     {
@@ -44,6 +61,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("upper", target.lowerCaseResult);
     }
 
+    /**
+     * <p>caseDoesNotMatter4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseDoesNotMatter4() throws Exception
     {
@@ -52,6 +74,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("upper", target.lowerCaseResult);
     }
 
+    /**
+     * <p>caseMattersValid1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseMattersValid1() throws Exception
     {
@@ -60,6 +87,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("lower", target.caseMattersResult);
     }
 
+    /**
+     * <p>caseMattersValid2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseMattersValid2() throws Exception
     {
@@ -68,6 +100,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("UPPER", target.caseMattersResult);
     }
 
+    /**
+     * <p>extendingPartialSelectionWhenCaseDoesNotMatter.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void extendingPartialSelectionWhenCaseDoesNotMatter() throws Exception
     {
@@ -76,6 +113,11 @@ public class CaseSensitiveTest
         Assert.assertEquals("lower", target.lowerCaseResult);
     }
 
+    /**
+     * <p>extendingPartialSelectionWhenCaseMatters.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void extendingPartialSelectionWhenCaseMatters() throws Exception
     {

@@ -8,8 +8,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>PositionalTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class PositionalTest
 {
@@ -107,6 +109,11 @@ public class PositionalTest
     @Arg(positional = true)
     Master07[] master07;
 
+    /**
+     * <p>groupingGroupsPositionalBooleans.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupingGroupsPositionalBooleans() throws Exception
     {
@@ -115,6 +122,11 @@ public class PositionalTest
         Assert.assertTrue(master01.master02.item2);
     }
 
+    /**
+     * <p>groupingGroupsPositionalGroups.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupingGroupsPositionalGroups() throws Exception
     {
@@ -123,6 +135,11 @@ public class PositionalTest
         Assert.assertTrue(master03.master04.item2);
     }
 
+    /**
+     * <p>groupingGroupsPositionalGroupsAndBooleans.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupingGroupsPositionalGroupsAndBooleans() throws Exception
     {
@@ -131,6 +148,11 @@ public class PositionalTest
         Assert.assertTrue(master05.master06.item2);
     }
 
+    /**
+     * <p>groupMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupMultiple() throws Exception
     {
@@ -140,6 +162,11 @@ public class PositionalTest
         Assert.assertEquals("input2", master07[1].str[0]);
     }
 
+    /**
+     * <p>multipleValuesWithMultiplePositionals.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void multipleValuesWithMultiplePositionals() throws Exception
     {
@@ -155,6 +182,11 @@ public class PositionalTest
         }
     }
 
+    /**
+     * <p>stringMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringMultiple() throws Exception
     {
@@ -164,6 +196,11 @@ public class PositionalTest
         Assert.assertEquals("input2", target.str[1]);
     }
 
+    /**
+     * <p>testString.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testString() throws Exception
     {
@@ -172,6 +209,11 @@ public class PositionalTest
         Assert.assertEquals("input1", target.str);
     }
 
+    /**
+     * <p>twoStrings.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void twoStrings() throws Exception
     {
@@ -181,6 +223,11 @@ public class PositionalTest
         Assert.assertEquals("input2", target.str2);
     }
 
+    /**
+     * <p>twoStringsOnlyUsed1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void twoStringsOnlyUsed1() throws Exception
     {

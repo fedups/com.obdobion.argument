@@ -10,6 +10,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateRangeCriteriaTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateRangeCriteriaTest
 {
     @Arg(range = { "5", "15" })
@@ -21,6 +27,11 @@ public class AnnotateRangeCriteriaTest
     @Arg(range = { "5" })
     private int     minOnly;
 
+    /**
+     * <p>minOnly.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void minOnly() throws Exception
     {
@@ -30,6 +41,11 @@ public class AnnotateRangeCriteriaTest
         Assert.assertEquals(5, minOnly);
     }
 
+    /**
+     * <p>minOnlyError.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void minOnlyError() throws Exception
     {
@@ -45,6 +61,11 @@ public class AnnotateRangeCriteriaTest
         }
     }
 
+    /**
+     * <p>unitializeInstance.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void unitializeInstance() throws Exception
     {
@@ -54,6 +75,11 @@ public class AnnotateRangeCriteriaTest
         Assert.assertNull(rangedInstance);
     }
 
+    /**
+     * <p>unitializePrimative.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void unitializePrimative() throws Exception
     {

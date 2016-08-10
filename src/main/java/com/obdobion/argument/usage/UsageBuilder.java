@@ -3,14 +3,23 @@ package com.obdobion.argument.usage;
 import com.obdobion.argument.ICmdLine;
 
 /**
- * @author Chris DeGreef
+ * <p>Abstract UsageBuilder class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 abstract public class UsageBuilder
 {
     static final private int MaxLineLength = 80;
+    /** Constant <code>newline="System.getProperty(line.separator)"</code> */
     public static String     newline       = System.getProperty("line.separator");
 
+    /**
+     * <p>getWriter.</p>
+     *
+     * @param arg a {@link com.obdobion.argument.ICmdLine} object.
+     * @param verbose a boolean.
+     * @return a {@link java.lang.Object} object.
+     */
     public static Object getWriter(
             final ICmdLine arg,
             final boolean verbose)
@@ -37,8 +46,8 @@ abstract public class UsageBuilder
      * Send values to this method with embedded new lines (\n) if that is
      * desired.
      *
-     * @param value
-     * @return
+     * @param value a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.usage.UsageBuilder} object.
      */
     public UsageBuilder append(
             final String value)
@@ -117,6 +126,11 @@ abstract public class UsageBuilder
     abstract void prettyPrint(
             final ICmdLine arg);
 
+    /**
+     * <p>setIndentLevel.</p>
+     *
+     * @param indentLevel a int.
+     */
     public void setIndentLevel(
             final int indentLevel)
     {
@@ -142,6 +156,7 @@ abstract public class UsageBuilder
         };
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString()
     {

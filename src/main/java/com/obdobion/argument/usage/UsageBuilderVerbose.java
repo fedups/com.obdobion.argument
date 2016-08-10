@@ -12,11 +12,15 @@ import com.obdobion.argument.type.EnumCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * @author Chris DeGreef
+ * <p>UsageBuilderVerbose class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class UsageBuilderVerbose extends UsageBuilder
 {
+    /**
+     * <p>Constructor for UsageBuilderVerbose.</p>
+     */
     public UsageBuilderVerbose()
     {
         super();
@@ -90,6 +94,13 @@ public class UsageBuilderVerbose extends UsageBuilder
         showEachOwnedArg((cmdLine.templateCmdLine).allArgs().iterator(), commandPrefix, cmdLine, indentLevel);
     }
 
+    /**
+     * <p>usageDetail.</p>
+     *
+     * @param commandPrefix a char.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param _indentLevel a int.
+     */
     public void usageDetail(
             final char commandPrefix,
             final ICmdLineArg<?> arg,

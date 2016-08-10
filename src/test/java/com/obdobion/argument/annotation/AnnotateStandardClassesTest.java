@@ -11,6 +11,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateStandardClassesTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateStandardClassesTest
 {
     @Arg
@@ -28,6 +34,11 @@ public class AnnotateStandardClassesTest
     @Arg(variable = "height", positional = true, help = "The height of the dimension")
     private List<Dimension> dimList;
 
+    /**
+     * <p>dim.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dim() throws Exception
     {
@@ -39,6 +50,11 @@ public class AnnotateStandardClassesTest
         Assert.assertEquals(2, dim.getHeight(), 0.1D);
     }
 
+    /**
+     * <p>dimArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dimArray() throws Exception
     {
@@ -52,6 +68,11 @@ public class AnnotateStandardClassesTest
         Assert.assertEquals(4, dimArray[1].getHeight(), 0.1D);
     }
 
+    /**
+     * <p>dimList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dimList() throws Exception
     {

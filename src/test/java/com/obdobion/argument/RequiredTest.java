@@ -6,14 +6,21 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>RequiredTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class RequiredTest
 {
     @Arg(required = true)
     int maxUpdates = 0;
 
+    /**
+     * <p>requireInteger.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void requireInteger() throws Exception
     {

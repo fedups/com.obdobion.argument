@@ -4,11 +4,18 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * @author Chris DeGreef
+ * <p>ExceptionTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class ExceptionTest
 {
+    /**
+     * <p>badCharCommand.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void badCharCommand() throws Exception
     {
@@ -22,6 +29,11 @@ public class ExceptionTest
         }
     }
 
+    /**
+     * <p>badWordCommand.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void badWordCommand() throws Exception
     {
@@ -35,6 +47,11 @@ public class ExceptionTest
         }
     }
 
+    /**
+     * <p>missingRightBracket.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void missingRightBracket() throws Exception
     {
@@ -48,6 +65,11 @@ public class ExceptionTest
         }
     }
 
+    /**
+     * <p>tooManyRightBracket.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void tooManyRightBracket() throws Exception
     {

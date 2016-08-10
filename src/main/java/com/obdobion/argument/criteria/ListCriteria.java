@@ -5,19 +5,26 @@ import java.util.List;
 import com.obdobion.argument.usage.UsageBuilder;
 
 /**
- * @author Chris DeGreef
+ * <p>ListCriteria class.</p>
  *
  * @param <E>
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class ListCriteria<E> implements ICmdLineArgCriteria<E>
 {
     List<E> list;
 
+    /**
+     * <p>Constructor for ListCriteria.</p>
+     *
+     * @param listOfValidValues a {@link java.util.List} object.
+     */
     public ListCriteria(final List<E> listOfValidValues)
     {
         list = listOfValidValues;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void asDefinitionText(final StringBuilder sb)
     {
@@ -30,6 +37,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void asSetter(final StringBuilder sb)
     {
@@ -47,6 +55,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         sb.append("})");
     }
 
+    /** {@inheritDoc} */
     @Override
     public ListCriteria<E> clone() throws CloneNotSupportedException
     {
@@ -55,11 +64,17 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return clone;
     }
 
+    /**
+     * <p>Getter for the field <code>list</code>.</p>
+     *
+     * @return a {@link java.util.List} object.
+     */
     public List<E> getList()
     {
         return list;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isSelected(final Comparable<E> value, final boolean caseSensitive)
     {
@@ -70,6 +85,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return list.contains(value);
     }
 
+    /** {@inheritDoc} */
     @Override
     public E normalizeValue(final E value, final boolean caseSensitive)
     {
@@ -129,6 +145,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return value;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString()
     {
@@ -137,9 +154,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         return list.toString();
     }
 
-    /**
-     * @param indentLevel
-     */
+    /** {@inheritDoc} */
     @Override
     public void usage(final UsageBuilder str, final int indentLevel)
     {

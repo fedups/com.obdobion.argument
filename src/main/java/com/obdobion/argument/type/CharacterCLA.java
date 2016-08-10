@@ -3,14 +3,13 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 
 /**
- * @author Chris DeGreef
+ * <p>CharacterCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class CharacterCLA extends AbstractCLA<Character>
 {
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Character convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -24,12 +23,14 @@ public class CharacterCLA extends AbstractCLA<Character>
         throw new ParseException("invalid value for character argument: " + valueStr, 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "char";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -37,6 +38,7 @@ public class CharacterCLA extends AbstractCLA<Character>
         out.append(getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -46,18 +48,21 @@ public class CharacterCLA extends AbstractCLA<Character>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Character";
     }
 
+    /** {@inheritDoc} */
     @Override
     public Character[] getValueAsCharacterArray() throws ParseException
     {
@@ -69,6 +74,7 @@ public class CharacterCLA extends AbstractCLA<Character>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public char[] getValueAscharArray() throws ParseException
     {

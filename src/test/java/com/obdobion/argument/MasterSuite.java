@@ -16,6 +16,12 @@ import com.obdobion.argument.annotation.AnnotateSimpleModifiersTest;
 import com.obdobion.argument.annotation.AnnotateStandardClassesTest;
 import com.obdobion.argument.annotation.AnnotateSubparserTest;
 
+/**
+ * <p>MasterSuite class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 @RunWith(Suite.class)
 @SuiteClasses({
 

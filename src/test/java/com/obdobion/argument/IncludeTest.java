@@ -11,13 +11,22 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>IncludeTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class IncludeTest
 {
     static final File workDir = new File("\\tmp");
 
+    /**
+     * <p>createSpecFile.</p>
+     *
+     * @param specs a {@link java.lang.String} object.
+     * @return a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
+     */
     static public File createSpecFile(final String specs) throws IOException
     {
         final File file = File.createTempFile("IncludeTest.", ".fun", workDir);
@@ -38,6 +47,11 @@ public class IncludeTest
     @Arg(caseSensitive = true)
     String  workDirectory;
 
+    /**
+     * <p>includeExactPath.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void includeExactPath() throws Exception
     {
@@ -55,6 +69,11 @@ public class IncludeTest
         }
     }
 
+    /**
+     * <p>includeNotFoundNotQuoted.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void includeNotFoundNotQuoted() throws Exception
     {
@@ -68,6 +87,11 @@ public class IncludeTest
         }
     }
 
+    /**
+     * <p>includeNotFoundQuoted.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void includeNotFoundQuoted() throws Exception
     {
@@ -81,6 +105,11 @@ public class IncludeTest
         }
     }
 
+    /**
+     * <p>includeNotFoundWithSpace.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void includeNotFoundWithSpace()
             throws Exception
@@ -95,6 +124,11 @@ public class IncludeTest
         }
     }
 
+    /**
+     * <p>includeUsingDefaultPath.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void includeUsingDefaultPath() throws Exception
     {

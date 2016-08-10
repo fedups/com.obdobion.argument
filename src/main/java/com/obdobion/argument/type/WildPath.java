@@ -16,8 +16,7 @@ import org.slf4j.LoggerFactory;
  * A path pattern can contain three types of wild cards; ?, *, and **. This is
  * not a regex.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class WildPath
 {
@@ -52,8 +51,13 @@ public class WildPath
     }
 
     /**
+     * <p>
+     * convertFileWildCardToRegx.
+     * </p>
+     *
      * @param wildcard
-     * @return
+     *            a {@link java.lang.String} object.
+     * @return a {@link java.util.regex.Pattern} object.
      */
     public static Pattern convertFileWildCardToRegx(final String wildcard)
     {
@@ -75,6 +79,14 @@ public class WildPath
     int          scanDirCount;
     int          scanFileCount;
 
+    /**
+     * <p>
+     * Constructor for WildPath.
+     * </p>
+     *
+     * @param pattern
+     *            a {@link java.lang.String} object.
+     */
     public WildPath(final String pattern)
     {
         userSuppliedPattern = pattern;
@@ -96,10 +108,22 @@ public class WildPath
         fileMatcher = filePattern.matcher("");
     }
 
+    /**
+     * <p>
+     * files.
+     * </p>
+     *
+     * @return a {@link java.util.List} object.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
+     */
     public List<File> files() throws ParseException, IOException
     {
         final List<File> files1 = files(new File(startingPath));
-        logger.debug("wildfile counts: dir({}) files({})", scanDirCount, scanFileCount);
+        logger.trace("wildfile counts: dir({}) files({}) matched({})",
+                scanDirCount, scanFileCount, files1.size());
         return files1;
     }
 
@@ -114,9 +138,7 @@ public class WildPath
                     public boolean accept(final File pathname)
                     {
                         if (pathname.isDirectory())
-                        {
                             return true;
-                        }
                         return false;
                     }
                 });
@@ -129,9 +151,7 @@ public class WildPath
                         public boolean accept(final File pathname)
                         {
                             if (pathname.isDirectory())
-                            {
                                 return false;
-                            }
 
                             scanFileCount++;
 
@@ -163,25 +183,19 @@ public class WildPath
                             } finally
                             {
                                 if (DEBUG)
-                                {
                                     System.out.println();
-                                }
                             }
                         }
                     });
         }
 
         if (isDirectorySearchRequired() && foundDirectories != null)
-        {
             for (final File oneDir : foundDirectories)
                 files(oneDir);
-        }
 
         if (foundFiles != null)
-        {
             for (final File oneFile : foundFiles)
                 files.add(oneFile);
-        }
         return files;
     }
 
@@ -194,9 +208,7 @@ public class WildPath
     {
         pathSegmentMatcher.reset(pattern);
         while (pathSegmentMatcher.find())
-        {
             pathSegments.add(pathSegmentMatcher.group());
-        }
         /*
          * The last "segment" must always be the file specification.
          */
@@ -225,6 +237,13 @@ public class WildPath
             startingPath = ".";
     }
 
+    /**
+     * <p>
+     * startingPath.
+     * </p>
+     *
+     * @return a {@link java.lang.String} object.
+     */
     public String startingPath()
     {
         return startingPath;

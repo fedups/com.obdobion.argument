@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>BooleanTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class BooleanTest
 {
@@ -45,10 +47,20 @@ public class BooleanTest
         boolean ax;
     }
 
+    /**
+     * <p>Constructor for BooleanTest.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     public BooleanTest() throws Exception
     {
     }
 
+    /**
+     * <p>resetMoreThanOne.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void resetMoreThanOne() throws Exception
     {
@@ -58,6 +70,11 @@ public class BooleanTest
         Assert.assertFalse("t should be false", resetMoreThanOne.tx);
     }
 
+    /**
+     * <p>resetOnlyOneOfTwo.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void resetOnlyOneOfTwo() throws Exception
     {
@@ -67,6 +84,11 @@ public class BooleanTest
         Assert.assertFalse("t should be false", resetOnlyOneOfTwo.ax);
     }
 
+    /**
+     * <p>setToDefaultChar.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void setToDefaultChar() throws Exception
     {
@@ -75,6 +97,11 @@ public class BooleanTest
         Assert.assertFalse("a should be false", setToDefaultChar.ax);
     }
 
+    /**
+     * <p>setToDefaultWord.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void setToDefaultWord() throws Exception
     {
@@ -83,6 +110,11 @@ public class BooleanTest
         Assert.assertFalse("ax should be false", setToDefaultChar.ax);
     }
 
+    /**
+     * <p>simpleSetFalse.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void simpleSetFalse() throws Exception
     {
@@ -91,6 +123,11 @@ public class BooleanTest
         Assert.assertFalse("ax should be false", simpleSetFalse.ax);
     }
 
+    /**
+     * <p>simpleSetTrue.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void simpleSetTrue() throws Exception
     {

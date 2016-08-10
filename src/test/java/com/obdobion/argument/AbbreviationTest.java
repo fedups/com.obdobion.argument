@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>AbbreviationTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class AbbreviationTest
 {
@@ -17,6 +19,11 @@ public class AbbreviationTest
     @Arg(shortName = 'b', longName = "Items")
     String items;
 
+    /**
+     * <p>exactMatchOnShorterOtherwiseAmbiguous1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exactMatchOnShorterOtherwiseAmbiguous1() throws Exception
     {
@@ -24,6 +31,11 @@ public class AbbreviationTest
         Assert.assertEquals("longer", items);
     }
 
+    /**
+     * <p>exactMatchOnShorterOtherwiseAmbiguous2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exactMatchOnShorterOtherwiseAmbiguous2() throws Exception
     {

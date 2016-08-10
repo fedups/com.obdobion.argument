@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>RangeTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class RangeTest
 {
@@ -20,12 +22,22 @@ public class RangeTest
     @Arg(range = { "b", "famish" })
     String[] string;
 
+    /**
+     * <p>floatRange1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void floatRange1() throws Exception
     {
         CmdLine.load(this, "--f1 0 1 9 0.1 999.999999");
     }
 
+    /**
+     * <p>floatRange2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void floatRange2() throws Exception
     {
@@ -39,6 +51,11 @@ public class RangeTest
         }
     }
 
+    /**
+     * <p>floatRange3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void floatRange3() throws Exception
     {
@@ -53,12 +70,22 @@ public class RangeTest
 
     }
 
+    /**
+     * <p>integerRange1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerRange1() throws Exception
     {
         CmdLine.load(this, "--i1 0 1 9");
     }
 
+    /**
+     * <p>integerRange2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerRange2() throws Exception
     {
@@ -73,12 +100,22 @@ public class RangeTest
 
     }
 
+    /**
+     * <p>integerRange3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerRange3() throws Exception
     {
         CmdLine.load(this, "--i1 0 1 999");
     }
 
+    /**
+     * <p>integerRange4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerRange4() throws Exception
     {
@@ -92,6 +129,11 @@ public class RangeTest
         }
     }
 
+    /**
+     * <p>integerRange5.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerRange5() throws Exception
     {
@@ -106,18 +148,33 @@ public class RangeTest
 
     }
 
+    /**
+     * <p>stringRange1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange1() throws Exception
     {
         CmdLine.load(this, "--string b c");
     }
 
+    /**
+     * <p>stringRange2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange2() throws Exception
     {
         CmdLine.load(this, "--string binary c");
     }
 
+    /**
+     * <p>stringRange3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange3() throws Exception
     {
@@ -131,12 +188,22 @@ public class RangeTest
         }
     }
 
+    /**
+     * <p>stringRange4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange4() throws Exception
     {
         CmdLine.load(this, "--string  b c");
     }
 
+    /**
+     * <p>stringRange5.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange5() throws Exception
     {
@@ -150,6 +217,11 @@ public class RangeTest
         }
     }
 
+    /**
+     * <p>stringRange6.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange6() throws Exception
     {
@@ -163,12 +235,22 @@ public class RangeTest
         }
     }
 
+    /**
+     * <p>stringRange7.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange7() throws Exception
     {
         CmdLine.load(this, "--string famish");
     }
 
+    /**
+     * <p>stringRange8.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringRange8() throws Exception
     {

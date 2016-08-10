@@ -18,6 +18,12 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 import com.obdobion.argument.type.WildFiles;
 
+/**
+ * <p>AnnotateAllTypesTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateAllTypesTest
 {
     @Arg
@@ -144,6 +150,9 @@ public class AnnotateAllTypesTest
     public List<MemoryType> enumVarList;
     */
 
+    /**
+     * <p>testAllDefaultValues.</p>
+     */
     @Test
     public void testAllDefaultValues()
     {
@@ -210,6 +219,9 @@ public class AnnotateAllTypesTest
         }
     }
 
+    /**
+     * <p>testAllSpecifiedValues.</p>
+     */
     @Test
     public void testAllSpecifiedValues()
     {
@@ -386,6 +398,9 @@ public class AnnotateAllTypesTest
         }
     }
 
+    /**
+     * <p>testUsage.</p>
+     */
     @Test
     public void testUsage()
     {

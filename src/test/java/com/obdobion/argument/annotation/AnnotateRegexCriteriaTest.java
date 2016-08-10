@@ -10,11 +10,22 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateRegexCriteriaTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateRegexCriteriaTest
 {
     @Arg(matches = "^[A-Z]+$", caseSensitive = true)
     private String stringForRegex;
 
+    /**
+     * <p>regex.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void regex() throws Exception
     {
@@ -24,6 +35,11 @@ public class AnnotateRegexCriteriaTest
         Assert.assertEquals("ABC", stringForRegex);
     }
 
+    /**
+     * <p>regexNot.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void regexNot() throws Exception
     {

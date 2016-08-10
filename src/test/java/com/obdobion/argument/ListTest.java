@@ -8,8 +8,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>ListTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class ListTest
 {
@@ -19,6 +21,11 @@ public class ListTest
     @Arg(shortName = 'v', longName = "v", inList = { "abc", "abc1", "abc2" })
     List<String> list;
 
+    /**
+     * <p>ambiguousCase0.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void ambiguousCase0() throws Exception
     {
@@ -32,6 +39,11 @@ public class ListTest
         }
     }
 
+    /**
+     * <p>ambiguousCase1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void ambiguousCase1() throws Exception
     {
@@ -39,6 +51,11 @@ public class ListTest
         Assert.assertEquals("abcde2", list.get(0));
     }
 
+    /**
+     * <p>ambiguousCase2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void ambiguousCase2() throws Exception
     {
@@ -46,6 +63,11 @@ public class ListTest
         Assert.assertEquals("aBCde2", list.get(0));
     }
 
+    /**
+     * <p>ambiguousCase3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void ambiguousCase3() throws Exception
     {
@@ -59,6 +81,11 @@ public class ListTest
         }
     }
 
+    /**
+     * <p>exact.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exact() throws Exception
     {

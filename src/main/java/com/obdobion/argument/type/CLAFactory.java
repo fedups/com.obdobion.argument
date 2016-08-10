@@ -11,14 +11,21 @@ import com.obdobion.argument.criteria.ListCriteria;
 import com.obdobion.argument.criteria.RegxCriteria;
 
 /**
- * @author Chris DeGreef
+ * <p>CLAFactory class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class CLAFactory
 {
+    /** Constant <code>SELF_REFERENCING_ARGNAME="this"</code> */
     static final public String SELF_REFERENCING_ARGNAME = "this";
     static CLAFactory          instance;
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link com.obdobion.argument.type.CLAFactory} object.
+     */
     static public CLAFactory getInstance()
     {
         if (instance == null)
@@ -26,6 +33,12 @@ public class CLAFactory
         return instance;
     }
 
+    /**
+     * <p>instanceType.</p>
+     *
+     * @param oneField a {@link java.lang.reflect.Field} object.
+     * @return a {@link java.lang.Class} object.
+     */
     static final public Class<?> instanceType(final Field oneField)
     {
         if (oneField.getType().isEnum())
@@ -37,6 +50,9 @@ public class CLAFactory
         return oneField.getType();
     }
 
+    /**
+     * <p>reset.</p>
+     */
     static public void reset()
     {
         instance = null;
@@ -122,6 +138,13 @@ public class CLAFactory
     /**
      * Set all of the instance variables as if the parser had done it instead of
      * how we are doing it here with annotations.
+     *
+     * @param commandPrefix a char.
+     * @param p_oneField a {@link java.lang.reflect.Field} object.
+     * @param argAnnotation a {@link com.obdobion.argument.annotation.Arg} object.
+     * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     public ICmdLineArg<?> instanceFor(final char commandPrefix, final Field p_oneField, final Arg argAnnotation)
             throws ParseException, IOException

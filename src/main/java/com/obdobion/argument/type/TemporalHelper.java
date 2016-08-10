@@ -5,8 +5,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Chris DeGreef
+ * <p>TemporalHelper class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class TemporalHelper
 {
@@ -19,6 +20,7 @@ public class TemporalHelper
     static final int                     numberOfAlgos       = 2;
     static final String                  specialAlgoTODAY    = "today";
     static final String                  specialAlgoNOW      = "now";
+    /** Constant <code>outputSDF</code> */
     static public final SimpleDateFormat outputSDF           = new SimpleDateFormat("yyyy-MM-dd@HH:mm:ss.SSS");
 
     static private void createFormat(final String format)

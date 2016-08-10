@@ -10,8 +10,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>QuotedLiteralsTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class QuotedLiteralsTest
 {
@@ -24,6 +26,11 @@ public class QuotedLiteralsTest
     @Arg(shortName = 'f', range = { "-100", "-50" })
     float    floatA;
 
+    /**
+     * <p>dosFileNames.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dosFileNames() throws Exception
     {
@@ -31,6 +38,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("c:\\temp\\somefile.txt", string[0]);
     }
 
+    /**
+     * <p>dosFileNames2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dosFileNames2() throws Exception
     {
@@ -38,6 +50,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("c:\\temp\\somefile.txt", string[0]);
     }
 
+    /**
+     * <p>doubleQuotes.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void doubleQuotes() throws Exception
     {
@@ -45,6 +62,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("quoted literal", string[0]);
     }
 
+    /**
+     * <p>doubleQuotesFromStream.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void doubleQuotesFromStream() throws Exception
     {
@@ -62,6 +84,11 @@ public class QuotedLiteralsTest
         }
     }
 
+    /**
+     * <p>negative1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negative1() throws Exception
     {
@@ -70,6 +97,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals(-50, floatA, 0);
     }
 
+    /**
+     * <p>newLine.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void newLine() throws Exception
     {
@@ -77,6 +109,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("quoted\nliteral", string[0]);
     }
 
+    /**
+     * <p>quotesInQuotes.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void quotesInQuotes() throws Exception
     {
@@ -85,6 +122,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("1b", "'quoted literal'", string[1]);
     }
 
+    /**
+     * <p>singleQuotes.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleQuotes() throws Exception
     {
@@ -92,6 +134,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("quoted literal", string[0]);
     }
 
+    /**
+     * <p>stringMultipleQuotes.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringMultipleQuotes() throws Exception
     {
@@ -100,6 +147,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("1a1", "when", string[1]);
     }
 
+    /**
+     * <p>unixFileNames.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void unixFileNames() throws Exception
     {
@@ -107,6 +159,11 @@ public class QuotedLiteralsTest
         Assert.assertEquals("unix", "/etc/apache2/conf/httpd.conf", string[0]);
     }
 
+    /**
+     * <p>urlFileNames.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void urlFileNames() throws Exception
     {

@@ -8,8 +8,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>DashingTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class DashingTest
 {
@@ -64,6 +66,11 @@ public class DashingTest
         boolean version;
     }
 
+    /**
+     * <p>camelCaps.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void camelCaps() throws Exception
     {
@@ -72,6 +79,11 @@ public class DashingTest
         Assert.assertTrue(target.camelCaps);
     }
 
+    /**
+     * <p>camelCapsCompetesWithExactKeyword.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void camelCapsCompetesWithExactKeyword() throws Exception
     {
@@ -88,6 +100,11 @@ public class DashingTest
         }
     }
 
+    /**
+     * <p>camelCapsCompetesWithPartialKeyword.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void camelCapsCompetesWithPartialKeyword() throws Exception
     {
@@ -96,6 +113,11 @@ public class DashingTest
         Assert.assertTrue(target.camelCaps);
     }
 
+    /**
+     * <p>embeddedDash1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash1() throws Exception
     {
@@ -105,6 +127,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash2() throws Exception
     {
@@ -114,6 +141,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash3() throws Exception
     {
@@ -123,6 +155,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash4() throws Exception
     {
@@ -132,6 +169,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash5.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash5() throws Exception
     {
@@ -146,6 +188,11 @@ public class DashingTest
         }
     }
 
+    /**
+     * <p>embeddedDash6.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash6() throws Exception
     {
@@ -155,6 +202,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash7.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash7() throws Exception
     {
@@ -165,6 +217,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash8.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash8() throws Exception
     {
@@ -175,6 +232,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>embeddedDash9.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void embeddedDash9() throws Exception
     {
@@ -185,6 +247,11 @@ public class DashingTest
         Assert.assertTrue(target.withDoubleDash);
     }
 
+    /**
+     * <p>metaphoneIssues.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void metaphoneIssues() throws Exception
     {
@@ -207,6 +274,11 @@ public class DashingTest
         }
     }
 
+    /**
+     * <p>metaphoneVersion.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void metaphoneVersion() throws Exception
     {

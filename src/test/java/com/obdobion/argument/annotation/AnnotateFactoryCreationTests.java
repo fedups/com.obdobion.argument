@@ -10,6 +10,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateFactoryCreationTests class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateFactoryCreationTests
 {
     public static abstract class AbstractMyClass
@@ -58,6 +64,11 @@ public class AnnotateFactoryCreationTests
             excludeArgs = { "csvFieldNumber", "direction" })
     public List<AbstractMyClass> headerInDefs;
 
+    /**
+     * <p>listWithFactory.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void listWithFactory() throws Exception
     {
@@ -69,6 +80,11 @@ public class AnnotateFactoryCreationTests
 
     }
 
+    /**
+     * <p>testNoParmOnFactory.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNoParmOnFactory() throws Exception
     {
@@ -80,6 +96,11 @@ public class AnnotateFactoryCreationTests
 
     }
 
+    /**
+     * <p>testParmOnFactory.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testParmOnFactory() throws Exception
     {

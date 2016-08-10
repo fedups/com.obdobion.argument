@@ -8,11 +8,22 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateDefaultsTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateDefaultsTest
 {
     @Arg(shortName = 's', defaultValues = { "abc", "def" })
     private String[] stringDefaults;
 
+    /**
+     * <p>allowDefaults.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void allowDefaults() throws Exception
     {
@@ -28,6 +39,11 @@ public class AnnotateDefaultsTest
         Assert.assertEquals("def", stringDefaults[1]);
     }
 
+    /**
+     * <p>overrideDefaults.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void overrideDefaults() throws Exception
     {

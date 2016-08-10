@@ -6,11 +6,18 @@ import org.junit.Test;
 import com.obdobion.argument.type.WildPath;
 
 /**
- * @author Chris DeGreef
+ * <p>WildPathTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class WildPathTest
 {
+    /**
+     * <p>startingPathAbsolute.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathAbsolute() throws Exception
     {
@@ -18,6 +25,11 @@ public class WildPathTest
         Assert.assertEquals("/a/b/c/", wp.startingPath());
     }
 
+    /**
+     * <p>startingPathAbsoluteWildcards.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathAbsoluteWildcards() throws Exception
     {
@@ -25,6 +37,11 @@ public class WildPathTest
         Assert.assertEquals("/", wp.startingPath());
     }
 
+    /**
+     * <p>startingPathQuestionmarkWildcards.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathQuestionmarkWildcards() throws Exception
     {
@@ -40,6 +57,11 @@ public class WildPathTest
         Assert.assertEquals(".", wp.startingPath());
     }
 
+    /**
+     * <p>startingPathRelative.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathRelative() throws Exception
     {
@@ -47,6 +69,11 @@ public class WildPathTest
         Assert.assertEquals("a/b/c/", wp.startingPath());
     }
 
+    /**
+     * <p>startingPathRelativeWildcards.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathRelativeWildcards() throws Exception
     {
@@ -54,6 +81,11 @@ public class WildPathTest
         Assert.assertEquals(".", wp.startingPath());
     }
 
+    /**
+     * <p>startingPathStarWildcards.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void startingPathStarWildcards() throws Exception
     {

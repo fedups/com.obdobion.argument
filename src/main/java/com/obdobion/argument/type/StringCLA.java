@@ -1,14 +1,13 @@
 package com.obdobion.argument.type;
 
 /**
- * @author Chris DeGreef
+ * <p>StringCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class StringCLA extends AbstractCLA<String>
 {
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
@@ -17,18 +16,21 @@ public class StringCLA extends AbstractCLA<String>
         return valueStr.toLowerCase();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "String";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         uncompileQuoter(out, getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -38,18 +40,21 @@ public class StringCLA extends AbstractCLA<String>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ), out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.String";
     }
 
+    /** {@inheritDoc} */
     @Override
     public String[] getValueAsStringArray()
     {
@@ -61,18 +66,21 @@ public class StringCLA extends AbstractCLA<String>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsCaseSensitive()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInList()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsMatches()
     {

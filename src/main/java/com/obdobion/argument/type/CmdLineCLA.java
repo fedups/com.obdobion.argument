@@ -6,13 +6,15 @@ import java.text.ParseException;
 import com.obdobion.argument.ICmdLine;
 
 /**
- * @author Chris DeGreef
+ * <p>CmdLineCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class CmdLineCLA extends AbstractCLA<ICmdLine>
 {
     public ICmdLine templateCmdLine;
 
+    /** {@inheritDoc} */
     @Override
     public ICmdLineArg<ICmdLine> clone()
             throws CloneNotSupportedException
@@ -23,10 +25,7 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
         return clone;
     }
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public ICmdLine convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException, IOException
@@ -46,12 +45,14 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
         return cmdline;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "com.obdobion.argument.CmdLine";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder str, final int occ)
     {
@@ -60,12 +61,14 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
         str.append("]");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         getValue(occ).exportNamespace(prefix + ".", out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public void exportXml(final StringBuilder out)
     {
@@ -105,48 +108,56 @@ public class CmdLineCLA extends AbstractCLA<ICmdLine>
         out.append(">");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder str, final int occ)
     {
         getValue(occ).exportXml(str);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "com.obdobion.argument.ICmdLine";
     }
 
+    /** {@inheritDoc} */
     @Override
     public void reset()
     {
         values.clear();
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsDefaultValues()
     {
         return false;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsExcludeArgs()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFactoryArgName()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFactoryMethod()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInstanceClass()
     {

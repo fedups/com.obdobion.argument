@@ -13,8 +13,9 @@ import com.obdobion.argument.type.EnumCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * @author Chris DeGreef
+ * <p>VariableAssigner class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class VariableAssigner implements IVariableAssigner
 {
@@ -260,6 +261,15 @@ public class VariableAssigner implements IVariableAssigner
         }
     }
 
+    /**
+     * <p>findFieldInAnyParentOrMyself.</p>
+     *
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param targetClass a {@link java.lang.Class} object.
+     * @param errMsg a {@link java.lang.String} object.
+     * @return a {@link java.lang.reflect.Field} object.
+     * @throws java.text.ParseException if any.
+     */
     static public Field findFieldInAnyParentOrMyself(
             final ICmdLineArg<?> arg,
             final Class<?> targetClass,
@@ -285,6 +295,11 @@ public class VariableAssigner implements IVariableAssigner
         return field;
     }
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link com.obdobion.argument.variables.IVariableAssigner} object.
+     */
     static public IVariableAssigner getInstance()
     {
         if (instance == null)
@@ -551,6 +566,12 @@ public class VariableAssigner implements IVariableAssigner
         return oldinstance;
     }
 
+    /**
+     * <p>Setter for the field <code>instance</code>.</p>
+     *
+     * @param newInstance a {@link com.obdobion.argument.variables.IVariableAssigner} object.
+     * @return a {@link com.obdobion.argument.variables.IVariableAssigner} object.
+     */
     static public IVariableAssigner setInstance(final IVariableAssigner newInstance)
     {
         final IVariableAssigner previousAssigner = instance;
@@ -558,6 +579,7 @@ public class VariableAssigner implements IVariableAssigner
         return previousAssigner;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void assign(final ICmdLineArg<?> arg, final Object target) throws ParseException
     {
@@ -577,6 +599,7 @@ public class VariableAssigner implements IVariableAssigner
         assign(field, arg, target);
     }
 
+    /** {@inheritDoc} */
     @Override
     public Object newGroupVariable(final CmdLineCLA group, final Object target, final ICmdLineArg<?> factoryValueArg)
             throws ParseException

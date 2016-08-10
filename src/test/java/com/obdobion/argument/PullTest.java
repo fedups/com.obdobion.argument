@@ -9,8 +9,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>PullTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class PullTest
 {
@@ -37,10 +39,18 @@ public class PullTest
     @Arg
     private List<InnerParm> innerParmList;
 
+    /**
+     * <p>Constructor for PullTest.</p>
+     */
     public PullTest()
     {
     }
 
+    /**
+     * <p>updateArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateArray() throws Exception
     {
@@ -57,6 +67,11 @@ public class PullTest
         Assert.assertEquals("zzz", cl.arg("--updatedStrArray").getValue(2));
     }
 
+    /**
+     * <p>updateInnerParm.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateInnerParm() throws Exception
     {
@@ -71,6 +86,11 @@ public class PullTest
         Assert.assertEquals("ddd", ((CmdLine) cl.arg("--innerParm").getValue()).arg("--innerParmString").getValue());
     }
 
+    /**
+     * <p>updateInnerParmArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateInnerParmArray() throws Exception
     {
@@ -96,6 +116,11 @@ public class PullTest
                 ((CmdLine) cl.arg("--innerParmArray").getValue(2)).arg("--innerParmString").getValue());
     }
 
+    /**
+     * <p>updateInnerParmList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateInnerParmList() throws Exception
     {
@@ -122,6 +147,11 @@ public class PullTest
                 ((CmdLine) cl.arg("--innerParmList").getValue(2)).arg("--innerParmString").getValue());
     }
 
+    /**
+     * <p>updateList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateList() throws Exception
     {
@@ -141,6 +171,11 @@ public class PullTest
         Assert.assertEquals("zzz", cl.arg("--updatedStrList").getValue(2));
     }
 
+    /**
+     * <p>updateSimple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void updateSimple() throws Exception
     {

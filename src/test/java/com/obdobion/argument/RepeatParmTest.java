@@ -8,8 +8,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>RepeatParmTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class RepeatParmTest
 {
@@ -32,6 +34,11 @@ public class RepeatParmTest
     @Arg(shortName = 'm')
     public boolean  bool;
 
+    /**
+     * <p>repeatedBoolean.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void repeatedBoolean() throws Exception
     {
@@ -39,6 +46,11 @@ public class RepeatParmTest
         Assert.assertTrue(bool);
     }
 
+    /**
+     * <p>repeatedMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void repeatedMultiple() throws Exception
     {
@@ -47,6 +59,11 @@ public class RepeatParmTest
         Assert.assertEquals("someStrings 1", "second", someStrings[1]);
     }
 
+    /**
+     * <p>repeatedNonMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void repeatedNonMultiple() throws Exception
     {
@@ -63,6 +80,11 @@ public class RepeatParmTest
         }
     }
 
+    /**
+     * <p>repeatedPositional.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void repeatedPositional() throws Exception
     {
@@ -71,12 +93,22 @@ public class RepeatParmTest
         Assert.assertEquals("someStrings 1", "second", someStrings[1]);
     }
 
+    /**
+     * <p>testTurnOffIntegerListOnly.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     public void testTurnOffIntegerListOnly() throws Exception
     {
         CmdLine.load(this, "-!o");
         Assert.assertNull("intArray", intArray);
     }
 
+    /**
+     * <p>turnOffFirst.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffFirst() throws Exception
     {
@@ -84,6 +116,11 @@ public class RepeatParmTest
         Assert.assertFalse("bool", bool);
     }
 
+    /**
+     * <p>turnOffInteger.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffInteger() throws Exception
     {
@@ -91,6 +128,11 @@ public class RepeatParmTest
         Assert.assertEquals(-999, maxUpdatesWithDefault);
     }
 
+    /**
+     * <p>turnOffIntegerList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffIntegerList() throws Exception
     {
@@ -98,6 +140,11 @@ public class RepeatParmTest
         Assert.assertNull("intArray", intArray);
     }
 
+    /**
+     * <p>turnOffIntegerListWithDef.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffIntegerListWithDef() throws Exception
     {
@@ -105,6 +152,11 @@ public class RepeatParmTest
         Assert.assertEquals(4, intArrayWithDefault.length);
     }
 
+    /**
+     * <p>turnOffIntegerOnly.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffIntegerOnly() throws Exception
     {
@@ -112,6 +164,11 @@ public class RepeatParmTest
         Assert.assertEquals(-999, maxUpdatesWithDefault);
     }
 
+    /**
+     * <p>turnOffLast.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void turnOffLast() throws Exception
     {

@@ -3,17 +3,20 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 
 /**
- * @author Chris DeGreef
+ * <p>EnumCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class EnumCLA extends StringCLA
 {
+    /** {@inheritDoc} */
     @Override
     public Object asEnum(final String enumClassFieldName, final Object[] possibleConstants) throws ParseException
     {
         return stringToEnumConstant(enumClassFieldName, possibleConstants, getValue());
     }
 
+    /** {@inheritDoc} */
     @Override
     public Enum<?>[] asEnumArray(final String enumClassFieldName, final Object[] possibleConstants)
             throws ParseException
@@ -26,9 +29,7 @@ public class EnumCLA extends StringCLA
         return enumArray;
     }
 
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public String convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
@@ -37,18 +38,21 @@ public class EnumCLA extends StringCLA
         return valueStr.toLowerCase();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return enumClassName;
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         uncompileQuoter(out, getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -58,12 +62,14 @@ public class EnumCLA extends StringCLA
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {

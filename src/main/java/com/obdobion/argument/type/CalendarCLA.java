@@ -6,17 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Chris DeGreef
+ * <p>CalendarCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class CalendarCLA extends AbstractCLA<Calendar>
 {
     SimpleDateFormat sdf;
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Calendar convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -46,12 +44,14 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "java.util.Calendar";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -63,6 +63,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -75,6 +76,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
@@ -84,12 +86,14 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.util.Calendar";
     }
 
+    /** {@inheritDoc} */
     @Override
     public Calendar[] getValueAsCalendarArray() throws ParseException
     {
@@ -101,6 +105,12 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         return result;
     }
 
+    /**
+     * <p>parseSpecialDate.</p>
+     *
+     * @param pattern a {@link java.lang.String} object.
+     * @return a {@link java.util.Calendar} object.
+     */
     protected Calendar parseSpecialDate(final String pattern)
     {
         if (TemporalHelper.specialAlgoTODAY.equalsIgnoreCase(pattern))
@@ -139,12 +149,14 @@ public class CalendarCLA extends AbstractCLA<Calendar>
                 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFormat()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInList()
     {

@@ -13,8 +13,8 @@ import com.obdobion.argument.input.IParserInput;
  * instanceClass is specified, there can be multiple args contributing to the
  * array, each implementation class can have distinct or inherited args.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class AnnotateInstanceOverrideTest
 {
@@ -55,6 +55,11 @@ public class AnnotateInstanceOverrideTest
             multimin = 2)
     private INamed[] polymorphic;
 
+    /**
+     * <p>instanceOverride.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void instanceOverride() throws Exception
     {

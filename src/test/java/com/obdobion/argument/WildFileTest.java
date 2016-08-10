@@ -10,14 +10,19 @@ import com.obdobion.argument.type.WildFiles;
 import com.obdobion.argument.type.WildPath;
 
 /**
- * @author Chris DeGreef
+ * <p>WildFileTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class WildFileTest
 {
     @Arg(positional = true, multimin = 1)
     public WildFiles wildFile;
 
+    /**
+     * <p>patternConversionsNix.</p>
+     */
     @Test
     public void patternConversionsNix()
     {
@@ -28,6 +33,9 @@ public class WildFileTest
         Assert.assertEquals("^.*.*/.*\\.java$", WildPath.convertFileWildCardToRegx("**/*.java").pattern());
     }
 
+    /**
+     * <p>patternConversionsNixMatching.</p>
+     */
     @Test
     public void patternConversionsNixMatching()
     {
@@ -44,6 +52,9 @@ public class WildFileTest
                 .pattern(), "any path as long as it is a single char file name/a"));
     }
 
+    /**
+     * <p>patternConversionsWin.</p>
+     */
     @Test
     public void patternConversionsWin()
     {
@@ -54,6 +65,11 @@ public class WildFileTest
         Assert.assertEquals("^.*.*\\\\.*\\.java$", WildPath.convertFileWildCardToRegx("**\\\\*.java").pattern());
     }
 
+    /**
+     * <p>recursiveDirSearchFileNotFound.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void recursiveDirSearchFileNotFound() throws Exception
     {
@@ -61,6 +77,11 @@ public class WildFileTest
         Assert.assertEquals(0, wildFile.files().size());
     }
 
+    /**
+     * <p>specificDirSearch.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void specificDirSearch() throws Exception
     {
@@ -68,6 +89,11 @@ public class WildFileTest
         Assert.assertTrue(0 < wildFile.files().size());
     }
 
+    /**
+     * <p>validRegex.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validRegex() throws Exception
     {
@@ -75,6 +101,11 @@ public class WildFileTest
         Assert.assertEquals(2, wildFile.files().size());
     }
 
+    /**
+     * <p>wildDirSearch1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void wildDirSearch1() throws Exception
     {
@@ -82,6 +113,11 @@ public class WildFileTest
         Assert.assertTrue(0 < wildFile.files().size());
     }
 
+    /**
+     * <p>wildDirSearch2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void wildDirSearch2() throws Exception
     {

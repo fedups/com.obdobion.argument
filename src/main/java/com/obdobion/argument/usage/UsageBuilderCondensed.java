@@ -8,8 +8,9 @@ import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * @author Chris DeGreef
+ * <p>UsageBuilderCondensed class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class UsageBuilderCondensed extends UsageBuilder
 {

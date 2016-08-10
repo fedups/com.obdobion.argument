@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>ByteCLATest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class ByteCLATest
 {
@@ -23,10 +25,18 @@ public class ByteCLATest
         public byte[] byteArray;
     }
 
+    /**
+     * <p>Constructor for ByteCLATest.</p>
+     */
     public ByteCLATest()
     {
     }
 
+    /**
+     * <p>byteArrayObject.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void byteArrayObject() throws Exception
     {
@@ -39,6 +49,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) '1', target.byteArrayObject[3].byteValue());
     }
 
+    /**
+     * <p>byteArrayPrimitive.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void byteArrayPrimitive() throws Exception
     {
@@ -52,6 +67,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 255, target.byteArray[4]);
     }
 
+    /**
+     * <p>hexLiteral.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void hexLiteral() throws Exception
     {
@@ -64,6 +84,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 10, target.byteArray[3]);
     }
 
+    /**
+     * <p>singleByteAlpha.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteAlpha() throws Exception
     {
@@ -72,6 +97,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 97, target.byteValue);
     }
 
+    /**
+     * <p>singleByteBadData.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteBadData() throws Exception
     {
@@ -88,6 +118,11 @@ public class ByteCLATest
         }
     }
 
+    /**
+     * <p>singleByteNegative.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteNegative() throws Exception
     {
@@ -96,6 +131,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) -52, target.byteValue);
     }
 
+    /**
+     * <p>singleByteNumericMax.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteNumericMax() throws Exception
     {
@@ -104,6 +144,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 255, target.byteValue);
     }
 
+    /**
+     * <p>singleByteNumericMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteNumericMin() throws Exception
     {
@@ -112,6 +157,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 0, target.byteValue);
     }
 
+    /**
+     * <p>singleByteObject.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteObject() throws Exception
     {
@@ -120,6 +170,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 97, target.byteValueObject.byteValue());
     }
 
+    /**
+     * <p>singleByteSingleDigit.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteSingleDigit() throws Exception
     {
@@ -128,6 +183,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) 1, target.byteValue);
     }
 
+    /**
+     * <p>singleByteSingleDigitAlpha.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteSingleDigitAlpha() throws Exception
     {
@@ -136,6 +196,11 @@ public class ByteCLATest
         Assert.assertEquals((byte) '1', target.byteValue);
     }
 
+    /**
+     * <p>singleByteTooBig.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void singleByteTooBig() throws Exception
     {

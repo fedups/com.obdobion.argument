@@ -6,6 +6,11 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * <p>WildFiles class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ */
 public class WildFiles
 {
     final List<String> userSuppliedPatterns;
@@ -20,7 +25,7 @@ public class WildFiles
      * This is used in FunnelSort to override the provided list of files with
      * one of them for each run.
      *
-     * @param aSingleKnownFile
+     * @param aSingleKnownFile a {@link java.io.File} object.
      */
     public WildFiles(final File aSingleKnownFile)
     {
@@ -34,6 +39,13 @@ public class WildFiles
         userSuppliedPatterns.add(userPattern);
     }
 
+    /**
+     * <p>files.</p>
+     *
+     * @return a {@link java.util.List} object.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
+     */
     public List<File> files() throws ParseException, IOException
     {
         if (files == null)
@@ -52,6 +64,7 @@ public class WildFiles
         return userSuppliedPatterns.get(userSuppliedIndex);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString()
     {

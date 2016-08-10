@@ -9,8 +9,10 @@ import com.obdobion.argument.CmdLineTest.DoubleParm;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>CriteriaTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class CriteriaTest
 {
@@ -26,6 +28,11 @@ public class CriteriaTest
         float var;
     }
 
+    /**
+     * <p>rangeAndList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void rangeAndList() throws Exception
     {
@@ -42,6 +49,11 @@ public class CriteriaTest
         }
     }
 
+    /**
+     * <p>rangeAndMatches.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void rangeAndMatches() throws Exception
     {

@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>EnumTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class EnumTest
 {
@@ -19,6 +21,11 @@ public class EnumTest
     @Arg(shortName = 'i')
     public TestEnum enum1;
 
+    /**
+     * <p>caseSensitivity.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void caseSensitivity() throws Exception
     {
@@ -26,6 +33,11 @@ public class EnumTest
         Assert.assertEquals(TestEnum.KEY2, enum1);
     }
 
+    /**
+     * <p>enumListValidation.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void enumListValidation() throws Exception
     {
@@ -33,6 +45,11 @@ public class EnumTest
         Assert.assertEquals(TestEnum.KEY2, enum1);
     }
 
+    /**
+     * <p>invalidEnum.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void invalidEnum() throws Exception
     {
@@ -46,6 +63,11 @@ public class EnumTest
         }
     }
 
+    /**
+     * <p>validEnum.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validEnum() throws Exception
     {

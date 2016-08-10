@@ -5,17 +5,15 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * @author Chris DeGreef
+ * <p>IntegerCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class IntegerCLA extends AbstractCLA<Integer>
 {
     protected NumberFormat FMT = new DecimalFormat("0");
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Integer convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -23,12 +21,14 @@ public class IntegerCLA extends AbstractCLA<Integer>
         return FMT.parse(valueStr).intValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "int";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -39,6 +39,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
             out.append("'");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -48,18 +49,21 @@ public class IntegerCLA extends AbstractCLA<Integer>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(FMT.format(getValue(occ)));
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Integer";
     }
 
+    /** {@inheritDoc} */
     @Override
     public float[] getValueAsfloatArray() throws ParseException
     {
@@ -71,6 +75,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Float[] getValueAsFloatArray() throws ParseException
     {
@@ -82,6 +87,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public int[] getValueAsintArray() throws ParseException
     {
@@ -93,6 +99,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Integer[] getValueAsIntegerArray() throws ParseException
     {
@@ -104,6 +111,7 @@ public class IntegerCLA extends AbstractCLA<Integer>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Long[] getValueAsLongArray() throws ParseException
     {

@@ -10,6 +10,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateInListCriteriaTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateInListCriteriaTest
 {
     @Arg(inList = { "abc", "def" })
@@ -18,6 +24,11 @@ public class AnnotateInListCriteriaTest
     @Arg(inList = { "1", "3", "5" })
     private int    intForInList;
 
+    /**
+     * <p>inList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void inList() throws Exception
     {
@@ -27,6 +38,11 @@ public class AnnotateInListCriteriaTest
         Assert.assertEquals("abc", stringForInList);
     }
 
+    /**
+     * <p>inListInt.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void inListInt() throws Exception
     {
@@ -36,6 +52,11 @@ public class AnnotateInListCriteriaTest
         Assert.assertEquals(3, intForInList);
     }
 
+    /**
+     * <p>notInList.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void notInList() throws Exception
     {
@@ -52,6 +73,11 @@ public class AnnotateInListCriteriaTest
         }
     }
 
+    /**
+     * <p>notInListInt.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void notInListInt() throws Exception
     {

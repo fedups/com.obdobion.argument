@@ -1,8 +1,9 @@
 package com.obdobion.argument.type;
 
 /**
- * @author Chris DeGreef
+ * <p>ByteCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class ByteCLA extends AbstractCLA<Byte>
 {
@@ -10,6 +11,7 @@ public class ByteCLA extends AbstractCLA<Byte>
      * These literals represent the number that happens to be the same as its
      * index.
      */
+    /** Constant <code>ByteLiteral="{null,soh,stx,etx,eot,enq,ack,bel,bs,ht"{trunked}</code> */
     static public final String[] ByteLiteral = {
             "null",
             "soh",
@@ -46,6 +48,12 @@ public class ByteCLA extends AbstractCLA<Byte>
             "sp"
     };
 
+    /**
+     * <p>asLiteral.</p>
+     *
+     * @param aByte a byte.
+     * @return a {@link java.lang.String} object.
+     */
     static public String asLiteral(final byte aByte)
     {
         if (aByte < ByteLiteral.length)
@@ -53,6 +61,12 @@ public class ByteCLA extends AbstractCLA<Byte>
         return (char) aByte + "(" + (int) aByte + ")";
     }
 
+    /**
+     * <p>byteToLit.</p>
+     *
+     * @param number a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String byteToLit(final String number)
     {
         final byte aByte = (byte) Integer.parseInt(number);
@@ -62,9 +76,7 @@ public class ByteCLA extends AbstractCLA<Byte>
         return "" + (int) aByte;
     }
 
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Byte convert(final String valueStr, final boolean _caseSensitive, final Object target)
     {
@@ -102,12 +114,14 @@ public class ByteCLA extends AbstractCLA<Byte>
         return new Byte((byte) intValue);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "byte";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -115,6 +129,7 @@ public class ByteCLA extends AbstractCLA<Byte>
         out.append(getValue(occ));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -124,18 +139,21 @@ public class ByteCLA extends AbstractCLA<Byte>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).toString(), out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Byte";
     }
 
+    /** {@inheritDoc} */
     @Override
     public byte[] getValueAsbyteArray()
     {
@@ -147,6 +165,7 @@ public class ByteCLA extends AbstractCLA<Byte>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Byte[] getValueAsByteArray()
     {

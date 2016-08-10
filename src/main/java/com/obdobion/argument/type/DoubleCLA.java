@@ -4,17 +4,15 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * @author Chris DeGreef
+ * <p>DoubleCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class DoubleCLA extends AbstractCLA<Double>
 {
     protected NumberFormat FMT = NumberFormat.getNumberInstance();
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Double convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -22,12 +20,14 @@ public class DoubleCLA extends AbstractCLA<Double>
         return FMT.parse(valueStr).doubleValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "double";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -37,6 +37,7 @@ public class DoubleCLA extends AbstractCLA<Double>
             out.append(FMT.format(getValue(occ)).replaceAll(",", ""));
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -46,18 +47,21 @@ public class DoubleCLA extends AbstractCLA<Double>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(FMT.format(getValue(occ)).replaceAll(",", ""));
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Double";
     }
 
+    /** {@inheritDoc} */
     @Override
     public double[] getValueAsdoubleArray() throws ParseException
     {
@@ -69,6 +73,7 @@ public class DoubleCLA extends AbstractCLA<Double>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Double[] getValueAsDoubleArray() throws ParseException
     {

@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>WindowsTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class WindowsTest
 {
@@ -17,6 +19,11 @@ public class WindowsTest
     @Arg(shortName = 'b')
     boolean bBool;
 
+    /**
+     * <p>compact.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void compact() throws Exception
     {
@@ -25,6 +32,11 @@ public class WindowsTest
         Assert.assertTrue(bBool);
     }
 
+    /**
+     * <p>negate.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void negate() throws Exception
     {
@@ -33,6 +45,11 @@ public class WindowsTest
         Assert.assertFalse(bBool);
     }
 
+    /**
+     * <p>simple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void simple() throws Exception
     {

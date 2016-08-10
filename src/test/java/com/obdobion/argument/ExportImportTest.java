@@ -12,8 +12,10 @@ import com.obdobion.argument.input.NamespaceParser;
 import com.obdobion.argument.input.XmlParser;
 
 /**
- * @author Chris DeGreef
+ * <p>ExportImportTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class ExportImportTest
 {
@@ -390,6 +392,11 @@ public class ExportImportTest
             }
     }
 
+    /**
+     * <p>exportBoolean1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportBoolean1() throws Exception
     {
@@ -401,6 +408,11 @@ public class ExportImportTest
                 "-a");
     }
 
+    /**
+     * <p>exportBoolean2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportBoolean2() throws Exception
     {
@@ -412,6 +424,11 @@ public class ExportImportTest
                 "-a");
     }
 
+    /**
+     * <p>exportBoolean3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportBoolean3() throws Exception
     {
@@ -423,6 +440,11 @@ public class ExportImportTest
                 "-a -b");
     }
 
+    /**
+     * <p>exportBoolean4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportBoolean4() throws Exception
     {
@@ -434,6 +456,11 @@ public class ExportImportTest
                 "-a -b");
     }
 
+    /**
+     * <p>exportBoolean5.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportBoolean5() throws Exception
     {
@@ -445,6 +472,11 @@ public class ExportImportTest
                 "-b");
     }
 
+    /**
+     * <p>exportEnumDefault1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportEnumDefault1() throws Exception
     {
@@ -456,6 +488,11 @@ public class ExportImportTest
                 "");
     }
 
+    /**
+     * <p>exportEnumDefault2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportEnumDefault2() throws Exception
     {
@@ -467,6 +504,11 @@ public class ExportImportTest
                 "");
     }
 
+    /**
+     * <p>exportEnumDefault3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportEnumDefault3() throws Exception
     {
@@ -478,6 +520,11 @@ public class ExportImportTest
                 "");
     }
 
+    /**
+     * <p>exportEnumDefaultWithCaseMattering1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportEnumDefaultWithCaseMattering1() throws Exception
     {
@@ -489,6 +536,11 @@ public class ExportImportTest
                 "");
     }
 
+    /**
+     * <p>exportFloat1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportFloat1() throws Exception
     {
@@ -500,6 +552,11 @@ public class ExportImportTest
                 "-f1500.25");
     }
 
+    /**
+     * <p>exportFloat2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportFloat2() throws Exception
     {
@@ -511,6 +568,11 @@ public class ExportImportTest
                 "-f1 2.001");
     }
 
+    /**
+     * <p>exportFloat3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportFloat3() throws Exception
     {
@@ -522,6 +584,11 @@ public class ExportImportTest
                 "-f'-1500.25'");
     }
 
+    /**
+     * <p>exportInt1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportInt1() throws Exception
     {
@@ -533,6 +600,11 @@ public class ExportImportTest
                 "-i1500");
     }
 
+    /**
+     * <p>exportInt2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void exportInt2() throws Exception
     {
@@ -544,6 +616,11 @@ public class ExportImportTest
                 "-i1 2");
     }
 
+    /**
+     * <p>testArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testArray() throws Exception
     {
@@ -555,6 +632,11 @@ public class ExportImportTest
                 "--hello 0 1");
     }
 
+    /**
+     * <p>testboolean.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testboolean() throws Exception
     {
@@ -566,6 +648,11 @@ public class ExportImportTest
                 "--boolean");
     }
 
+    /**
+     * <p>testEmbeddedLevelArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testEmbeddedLevelArray() throws Exception
     {
@@ -577,6 +664,11 @@ public class ExportImportTest
                 "--my [--hello [--moon 1 --world 0] [--moon 2]]");
     }
 
+    /**
+     * <p>testNamespace.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespace() throws Exception
     {
@@ -588,6 +680,11 @@ public class ExportImportTest
                 "-a[-b[-c[-d'alpha']]]");
     }
 
+    /**
+     * <p>testNamespacePos2b.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos2b() throws Exception
     {
@@ -599,6 +696,11 @@ public class ExportImportTest
                 "-a[ [-c'alpha']]");
     }
 
+    /**
+     * <p>testNamespacePos2Changes.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos2Changes() throws Exception
     {
@@ -610,6 +712,11 @@ public class ExportImportTest
                 "-a[-b[-c'alpha'] -d[-z'omega']]");
     }
 
+    /**
+     * <p>testNamespacePos2twicea.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos2twicea() throws Exception
     {
@@ -621,6 +728,11 @@ public class ExportImportTest
                 "-a[ [-c'alpha' 'omega']]");
     }
 
+    /**
+     * <p>testNamespacePos2twiceaWithOrder.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos2twiceaWithOrder() throws Exception
     {
@@ -632,6 +744,11 @@ public class ExportImportTest
                 "-a[ [-c'omega'] [-c'alpha']]");
     }
 
+    /**
+     * <p>testNamespacePos2twiceb.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos2twiceb() throws Exception
     {
@@ -643,6 +760,11 @@ public class ExportImportTest
                 "-a[ [-c[ 'alpha' 'omega']]]");
     }
 
+    /**
+     * <p>testNamespacePos4a.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos4a() throws Exception
     {
@@ -654,6 +776,11 @@ public class ExportImportTest
                 "-a[-b[-c'alpha']]");
     }
 
+    /**
+     * <p>testNamespacePos4b.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos4b() throws Exception
     {
@@ -665,6 +792,11 @@ public class ExportImportTest
                 "-a[-b[-c[ 'alpha']]]");
     }
 
+    /**
+     * <p>testNamespacePos4twicea.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos4twicea() throws Exception
     {
@@ -676,6 +808,11 @@ public class ExportImportTest
                 "-a[-b[-c'alpha' 'omega']]");
     }
 
+    /**
+     * <p>testNamespacePos4twiceaWithOrder.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos4twiceaWithOrder() throws Exception
     {
@@ -687,6 +824,11 @@ public class ExportImportTest
                 "-a[-b[-c'omega' 'alpha']]");
     }
 
+    /**
+     * <p>testNamespacePos4twiceb.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePos4twiceb() throws Exception
     {
@@ -698,6 +840,11 @@ public class ExportImportTest
                 "-a[-b[-c[ 'alpha' 'omega']]]");
     }
 
+    /**
+     * <p>testNamespacePosGroupNotMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testNamespacePosGroupNotMultiple() throws Exception
     {
@@ -709,6 +856,11 @@ public class ExportImportTest
                 "-a[ [-c'alpha']]");
     }
 
+    /**
+     * <p>testPositionalArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testPositionalArray() throws Exception
     {
@@ -720,6 +872,11 @@ public class ExportImportTest
                 " 'world' 'for now'");
     }
 
+    /**
+     * <p>testPositionalNotMultiple.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testPositionalNotMultiple() throws Exception
     {
@@ -731,6 +888,11 @@ public class ExportImportTest
                 " 'world'");
     }
 
+    /**
+     * <p>testQuoted.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testQuoted() throws Exception
     {
@@ -746,6 +908,11 @@ public class ExportImportTest
          */
     }
 
+    /**
+     * <p>testString.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testString() throws Exception
     {
@@ -757,6 +924,11 @@ public class ExportImportTest
                 "--Hello 'world' --goodbye 'for now'");
     }
 
+    /**
+     * <p>testTopLevelArray1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testTopLevelArray1() throws Exception
     {
@@ -768,6 +940,11 @@ public class ExportImportTest
                 "--hello [--moon 1 --world 0]");
     }
 
+    /**
+     * <p>testTopLevelArray2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testTopLevelArray2() throws Exception
     {
@@ -779,6 +956,11 @@ public class ExportImportTest
                 "--hello [--moon 1 --world 0] [--moon 2]");
     }
 
+    /**
+     * <p>testTwoLevelArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testTwoLevelArray() throws Exception
     {
@@ -790,6 +972,11 @@ public class ExportImportTest
                 "--my [--hello [--moon 1 --world 0]] [--hello [--moon 2]]");
     }
 
+    /**
+     * <p>testTwoNamespaces.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testTwoNamespaces() throws Exception
     {
@@ -801,6 +988,11 @@ public class ExportImportTest
                 "-a[-b[-c[-d'alpha']]] --hello [--moon 2 --world 1]");
     }
 
+    /**
+     * <p>testTwoTwoLevelArray.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testTwoTwoLevelArray() throws Exception
     {

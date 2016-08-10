@@ -3,11 +3,14 @@ package com.obdobion.argument.type;
 import java.io.File;
 import java.text.ParseException;
 
+/**
+ * <p>FileCLA class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ */
 public class FileCLA extends AbstractCLA<File>
 {
-    /**
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public File convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -17,18 +20,21 @@ public class FileCLA extends AbstractCLA<File>
         return new File(valueStr.toLowerCase());
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "java.io.File";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         uncompileQuoter(out, getValue(occ).getAbsolutePath());
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -38,18 +44,21 @@ public class FileCLA extends AbstractCLA<File>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         xmlEncode(getValue(occ).getAbsolutePath(), out);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.io.File";
     }
 
+    /** {@inheritDoc} */
     @Override
     public File[] getValueAsFileArray() throws ParseException
     {
@@ -61,12 +70,14 @@ public class FileCLA extends AbstractCLA<File>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsCaseSensitive()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInList()
     {

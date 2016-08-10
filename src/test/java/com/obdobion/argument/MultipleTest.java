@@ -8,8 +8,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>MultipleTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class MultipleTest
 {
@@ -28,6 +30,11 @@ public class MultipleTest
     @Arg
     StringGroup   stringGroup;
 
+    /**
+     * <p>minOnlyFail.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void minOnlyFail() throws Exception
     {
@@ -42,6 +49,11 @@ public class MultipleTest
         }
     }
 
+    /**
+     * <p>minOnlyFailGroup.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void minOnlyFailGroup() throws Exception
     {
@@ -56,6 +68,11 @@ public class MultipleTest
         }
     }
 
+    /**
+     * <p>oneOnlyFailGroup.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void oneOnlyFailGroup() throws Exception
     {

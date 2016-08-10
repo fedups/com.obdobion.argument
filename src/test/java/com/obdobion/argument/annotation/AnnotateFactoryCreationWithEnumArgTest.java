@@ -8,6 +8,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateFactoryCreationWithEnumArgTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateFactoryCreationWithEnumArgTest
 {
     public static class Config
@@ -29,9 +35,14 @@ public class AnnotateFactoryCreationWithEnumArgTest
         INT, STR, CHR, FLT
     }
 
-    @Arg(factoryMethod = "create", factoryArgName = "--type")
+    @Arg(factoryMethod = "create", factoryArgName = "type")
     private Config cfg;
 
+    /**
+     * <p>enumArg.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void enumArg() throws Exception
     {

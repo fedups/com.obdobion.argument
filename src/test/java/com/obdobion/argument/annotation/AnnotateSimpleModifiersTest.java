@@ -11,6 +11,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateSimpleModifiersTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateSimpleModifiersTest
 {
     @Arg(longName = "name", shortName = 'n', help = "Some help for the wayward user")
@@ -37,6 +43,11 @@ public class AnnotateSimpleModifiersTest
     @Arg(format = "mm/DD/yyyy")
     private Date     formatted;
 
+    /**
+     * <p>testAlternateNaming.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testAlternateNaming() throws Exception
     {
@@ -54,6 +65,11 @@ public class AnnotateSimpleModifiersTest
         cmdParser.parse(userInput, this);
     }
 
+    /**
+     * <p>testAtLeast2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testAtLeast2() throws Exception
     {
@@ -74,6 +90,11 @@ public class AnnotateSimpleModifiersTest
         }
     }
 
+    /**
+     * <p>testAtMost2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testAtMost2() throws Exception
     {
@@ -90,6 +111,11 @@ public class AnnotateSimpleModifiersTest
         Assert.assertEquals("three", positional);
     }
 
+    /**
+     * <p>testCaseSensitive.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testCaseSensitive() throws Exception
     {
@@ -100,6 +126,11 @@ public class AnnotateSimpleModifiersTest
         Assert.assertEquals("AbCdE", caseSensitive);
     }
 
+    /**
+     * <p>testDateFormatting.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testDateFormatting() throws Exception
     {
@@ -120,6 +151,11 @@ public class AnnotateSimpleModifiersTest
         }
     }
 
+    /**
+     * <p>testLongName.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testLongName() throws Exception
     {
@@ -130,6 +166,11 @@ public class AnnotateSimpleModifiersTest
         Assert.assertEquals("abc", nameOverride);
     }
 
+    /**
+     * <p>testPostional.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testPostional() throws Exception
     {
@@ -151,6 +192,11 @@ public class AnnotateSimpleModifiersTest
         }
     }
 
+    /**
+     * <p>testShortName.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testShortName() throws Exception
     {

@@ -9,8 +9,10 @@ import com.obdobion.argument.annotation.Arg;
 import com.obdobion.argument.type.CLAFactory;
 
 /**
- * @author Chris DeGreef
+ * <p>InstantiatorTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class InstantiatorTest
 {
@@ -113,7 +115,7 @@ public class InstantiatorTest
             factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
     public List<Finder>  listFinder;
 
-    @Arg(shortName = 'g', factoryMethod = "find", factoryArgName = "--value")
+    @Arg(shortName = 'g', factoryMethod = "find", factoryArgName = "value")
     public List<Finder>  listGroupFinder;
 
     @Arg(shortName = 'n',
@@ -131,6 +133,11 @@ public class InstantiatorTest
     @Arg
     public List<Integer> integerList;
 
+    /**
+     * <p>arrayVariableExactClassName.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void arrayVariableExactClassName() throws Exception
     {
@@ -142,6 +149,11 @@ public class InstantiatorTest
         Assert.assertTrue("arrayFinder 2", arrayFinder[2] instanceof WhereFinder);
     }
 
+    /**
+     * <p>arrayVariableShortClassName.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void arrayVariableShortClassName() throws Exception
     {
@@ -153,6 +165,11 @@ public class InstantiatorTest
         Assert.assertTrue("arrayFinder 2", arrayFinder[2] instanceof WhereFinder);
     }
 
+    /**
+     * <p>badMethod.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void badMethod() throws Exception
     {
@@ -168,6 +185,11 @@ public class InstantiatorTest
         }
     }
 
+    /**
+     * <p>classFromVariable.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void classFromVariable() throws Exception
     {
@@ -177,6 +199,11 @@ public class InstantiatorTest
         Assert.assertEquals("WHAT", finder.value);
     }
 
+    /**
+     * <p>colorExample1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void colorExample1() throws Exception
     {
@@ -185,6 +212,11 @@ public class InstantiatorTest
         Assert.assertTrue("red", color instanceof RedColor);
     }
 
+    /**
+     * <p>enumKey.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void enumKey() throws Exception
     {
@@ -197,6 +229,11 @@ public class InstantiatorTest
         Assert.assertEquals("finder value", "CLUBS", suits.get(1).value);
     }
 
+    /**
+     * <p>integerListByDefault.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integerListByDefault() throws Exception
     {
@@ -208,6 +245,11 @@ public class InstantiatorTest
         Assert.assertEquals("integer 3", new Integer(3), integerList.get(2));
     }
 
+    /**
+     * <p>listGroupVariable.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void listGroupVariable() throws Exception
     {
@@ -222,6 +264,11 @@ public class InstantiatorTest
         Assert.assertEquals("test 2", "WHERE", listGroupFinder.get(2).testValue());
     }
 
+    /**
+     * <p>listStringVariable.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void listStringVariable() throws Exception
     {
@@ -233,6 +280,11 @@ public class InstantiatorTest
         Assert.assertEquals("stringList 2", "WHERE", stringList.get(2));
     }
 
+    /**
+     * <p>listVariable.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void listVariable() throws Exception
     {
@@ -244,6 +296,11 @@ public class InstantiatorTest
         Assert.assertEquals("listFinder 2", "WHERE", listFinder.get(2).value);
     }
 
+    /**
+     * <p>listVariableDefaultClassDefaultMethodClass.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void listVariableDefaultClassDefaultMethodClass() throws Exception
     {
@@ -255,6 +312,11 @@ public class InstantiatorTest
         Assert.assertTrue(listFinder.get(2) instanceof WhereFinder);
     }
 
+    /**
+     * <p>stringKey.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void stringKey() throws Exception
     {

@@ -9,8 +9,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>DateTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class DateTest
 {
@@ -41,6 +43,11 @@ public class DateTest
         Assert.assertEquals(millisecond, cal.get(Calendar.MILLISECOND));
     }
 
+    /**
+     * <p>dateDirectiveAbsDay.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsDay() throws Exception
     {
@@ -48,6 +55,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 3, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateDirectiveAbsMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsMin() throws Exception
     {
@@ -55,6 +67,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 5, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveAbsMonth.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsMonth() throws Exception
     {
@@ -62,6 +79,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.MAY, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveAbsMs.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsMs() throws Exception
     {
@@ -69,6 +91,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 5);
     }
 
+    /**
+     * <p>dateDirectiveAbsSec.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsSec() throws Exception
     {
@@ -76,6 +103,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 5, 16);
     }
 
+    /**
+     * <p>dateDirectiveAbsYear.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveAbsYear() throws Exception
     {
@@ -83,6 +115,11 @@ public class DateTest
         assertValidReturnDate(2011, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveBeginOfYesterday.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveBeginOfYesterday() throws Exception
     {
@@ -90,6 +127,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 8, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateDirectiveEndOfYesterday.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveEndOfYesterday() throws Exception
     {
@@ -97,6 +139,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 8, 23, 59, 59, 999);
     }
 
+    /**
+     * <p>dateDirectiveMinusDay.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusDay() throws Exception
     {
@@ -104,6 +151,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 7, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateDirectiveMinusMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusMin() throws Exception
     {
@@ -111,6 +163,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 9, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveMinusMonth.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusMonth() throws Exception
     {
@@ -118,6 +175,11 @@ public class DateTest
         assertValidReturnDate(2007, Calendar.NOVEMBER, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveMinusMs.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusMs() throws Exception
     {
@@ -125,6 +187,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 11);
     }
 
+    /**
+     * <p>dateDirectiveMinusSec.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusSec() throws Exception
     {
@@ -132,6 +199,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 10, 16);
     }
 
+    /**
+     * <p>dateDirectiveMinusWeekOfYear.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusWeekOfYear() throws Exception
     {
@@ -139,6 +211,11 @@ public class DateTest
         assertValidReturnDate(2010, Calendar.NOVEMBER, 25, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveMinusYear.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveMinusYear() throws Exception
     {
@@ -146,12 +223,22 @@ public class DateTest
         assertValidReturnDate(2003, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveNowMinus5Min.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveNowMinus5Min() throws Exception
     {
         CmdLine.load(this, "-r _dateTime(now -5min)");
     }
 
+    /**
+     * <p>dateDirectivePlusDay.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusDay() throws Exception
     {
@@ -159,6 +246,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 11, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateDirectivePlusMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusMin() throws Exception
     {
@@ -166,6 +258,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 19, 15, 16);
     }
 
+    /**
+     * <p>dateDirectivePlusMonth.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusMonth() throws Exception
     {
@@ -173,6 +270,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.SEPTEMBER, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectivePlusMs.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusMs() throws Exception
     {
@@ -180,6 +282,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 50);
     }
 
+    /**
+     * <p>dateDirectivePlusSec.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusSec() throws Exception
     {
@@ -187,6 +294,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 20, 16);
     }
 
+    /**
+     * <p>dateDirectivePlusYear.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectivePlusYear() throws Exception
     {
@@ -194,6 +306,11 @@ public class DateTest
         assertValidReturnDate(2013, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>dateDirectiveWithoutAdj.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateDirectiveWithoutAdj() throws Exception
     {
@@ -201,6 +318,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateTimeDirectiveBMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveBMin() throws Exception
     {
@@ -208,6 +330,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 0, 0);
     }
 
+    /**
+     * <p>dateTimeDirectiveBOD.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveBOD() throws Exception
     {
@@ -215,6 +342,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateTimeDirectiveBOM.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveBOM() throws Exception
     {
@@ -222,6 +354,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 1, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateTimeDirectiveBOY.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveBOY() throws Exception
     {
@@ -229,6 +366,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.JANUARY, 1, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>dateTimeDirectiveEHour.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveEHour() throws Exception
     {
@@ -236,6 +378,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 59, 59, 999);
     }
 
+    /**
+     * <p>dateTimeDirectiveEMin.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveEMin() throws Exception
     {
@@ -243,6 +390,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 59, 999);
     }
 
+    /**
+     * <p>dateTimeDirectiveEOD.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveEOD() throws Exception
     {
@@ -250,6 +402,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 23, 59, 59, 999);
     }
 
+    /**
+     * <p>dateTimeDirectiveEOM.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveEOM() throws Exception
     {
@@ -257,6 +414,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 30, 23, 59, 59, 999);
     }
 
+    /**
+     * <p>dateTimeDirectiveEOY.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dateTimeDirectiveEOY() throws Exception
     {
@@ -264,6 +426,9 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.DECEMBER, 31, 23, 59, 59, 999);
     }
 
+    /**
+     * <p>error.</p>
+     */
     @Test
     public void error()
     {
@@ -278,6 +443,11 @@ public class DateTest
         }
     }
 
+    /**
+     * <p>lastWeekSat.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void lastWeekSat() throws Exception
     {
@@ -285,6 +455,11 @@ public class DateTest
         assertValidReturnDate(2010, Calendar.DECEMBER, 25, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>nextWeekSat.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void nextWeekSat() throws Exception
     {
@@ -292,6 +467,11 @@ public class DateTest
         assertValidReturnDate(2011, Calendar.JANUARY, 8, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_fullTime.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_fullTime() throws Exception
     {
@@ -299,6 +479,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>predefined_fullTime_underbar.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_fullTime_underbar() throws Exception
     {
@@ -306,6 +491,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 16);
     }
 
+    /**
+     * <p>predefined_hh.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_hh() throws Exception
     {
@@ -313,6 +503,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_hhmm.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_hhmm() throws Exception
     {
@@ -320,6 +515,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 0, 0);
     }
 
+    /**
+     * <p>predefined_hhmmss.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_hhmmss() throws Exception
     {
@@ -327,6 +527,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 13, 14, 15, 0);
     }
 
+    /**
+     * <p>predefined_hhmmss_1digit.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_hhmmss_1digit() throws Exception
     {
@@ -334,6 +539,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 1, 4, 5, 0);
     }
 
+    /**
+     * <p>predefined_HourOnly.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_HourOnly() throws Exception
     {
@@ -350,6 +560,11 @@ public class DateTest
                 0);
     }
 
+    /**
+     * <p>predefined_mdy.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_mdy() throws Exception
     {
@@ -357,6 +572,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_mdy2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_mdy2() throws Exception
     {
@@ -364,6 +584,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_now.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_now() throws Exception
     {
@@ -380,6 +605,11 @@ public class DateTest
                 cal.get(Calendar.MILLISECOND));
     }
 
+    /**
+     * <p>predefined_TimeOnly.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_TimeOnly() throws Exception
     {
@@ -396,6 +626,11 @@ public class DateTest
                 999);
     }
 
+    /**
+     * <p>predefined_today.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_today() throws Exception
     {
@@ -405,6 +640,11 @@ public class DateTest
         assertValidReturnDate(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE), 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_ymd.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_ymd() throws Exception
     {
@@ -412,6 +652,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefined_ymd2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void predefined_ymd2() throws Exception
     {
@@ -419,6 +664,9 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>predefinedNOT.</p>
+     */
     @Test
     public void predefinedNOT()
     {
@@ -433,6 +681,11 @@ public class DateTest
         }
     }
 
+    /**
+     * <p>thisWeekMon.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void thisWeekMon() throws Exception
     {
@@ -440,6 +693,11 @@ public class DateTest
         assertValidReturnDate(2010, Calendar.DECEMBER, 27, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>thisWeekSat.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void thisWeekSat() throws Exception
     {
@@ -447,6 +705,11 @@ public class DateTest
         assertValidReturnDate(2011, Calendar.JANUARY, 1, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>valid.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void valid() throws Exception
     {
@@ -454,6 +717,11 @@ public class DateTest
         assertValidReturnDate(2008, Calendar.APRIL, 9, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>validWithTime.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void validWithTime() throws Exception
     {

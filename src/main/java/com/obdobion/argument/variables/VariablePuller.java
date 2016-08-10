@@ -11,12 +11,22 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
+/**
+ * <p>VariablePuller class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ */
 public class VariablePuller
 {
     private final static Logger   logger = LoggerFactory.getLogger(VariablePuller.class.getName());
 
     static private VariablePuller instance;
 
+    /**
+     * <p>Getter for the field <code>instance</code>.</p>
+     *
+     * @return a {@link com.obdobion.argument.variables.VariablePuller} object.
+     */
     public static VariablePuller getInstance()
     {
         if (instance == null)
@@ -24,6 +34,15 @@ public class VariablePuller
         return instance;
     }
 
+    /**
+     * <p>pull.</p>
+     *
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param variableSource a {@link java.lang.Object} object.
+     * @throws java.text.ParseException if any.
+     * @throws java.lang.IllegalArgumentException if any.
+     * @throws java.lang.IllegalAccessException if any.
+     */
     @SuppressWarnings("unchecked")
     public void pull(final ICmdLineArg<?> arg, final Object variableSource)
             throws ParseException, IllegalArgumentException, IllegalAccessException

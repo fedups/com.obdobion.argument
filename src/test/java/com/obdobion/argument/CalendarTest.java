@@ -11,6 +11,9 @@ import com.obdobion.argument.annotation.Arg;
 /**
  * This only verifies what is different than the Date tests. And that is just
  * variable assignment.
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class CalendarTest
 {
@@ -42,6 +45,11 @@ public class CalendarTest
     @Arg
     List<Calendar> calList;
 
+    /**
+     * <p>arrays.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void arrays() throws Exception
     {
@@ -50,6 +58,11 @@ public class CalendarTest
         assertValidReturnDate(calArray[1], 2016, Calendar.AUGUST, 6, 14, 18, 0, 0);
     }
 
+    /**
+     * <p>lists.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void lists() throws Exception
     {
@@ -58,6 +71,11 @@ public class CalendarTest
         assertValidReturnDate(calList.get(1), 2016, Calendar.AUGUST, 6, 14, 18, 0, 0);
     }
 
+    /**
+     * <p>simpleUse.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void simpleUse() throws Exception
     {

@@ -6,17 +6,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * @author Chris DeGreef
+ * <p>DateCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class DateCLA extends AbstractCLA<Date>
 {
     SimpleDateFormat sdf;
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Date convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -44,12 +42,14 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "java.util.Date";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -61,6 +61,7 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -73,6 +74,7 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
@@ -82,12 +84,14 @@ public class DateCLA extends AbstractCLA<Date>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.util.Date";
     }
 
+    /** {@inheritDoc} */
     @Override
     public Date[] getValueAsDateArray() throws ParseException
     {
@@ -99,6 +103,12 @@ public class DateCLA extends AbstractCLA<Date>
         return result;
     }
 
+    /**
+     * <p>parseSpecialDate.</p>
+     *
+     * @param pattern a {@link java.lang.String} object.
+     * @return a {@link java.util.Date} object.
+     */
     protected Date parseSpecialDate(final String pattern)
     {
         if (TemporalHelper.specialAlgoTODAY.equalsIgnoreCase(pattern))
@@ -134,12 +144,14 @@ public class DateCLA extends AbstractCLA<Date>
                 0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsFormat()
     {
         return true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInList()
     {

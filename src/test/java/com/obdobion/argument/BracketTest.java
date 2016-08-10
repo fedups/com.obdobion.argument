@@ -6,8 +6,10 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>BracketTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class BracketTest
 {
@@ -24,6 +26,11 @@ public class BracketTest
     @Arg(shortName = 'g')
     Group[] group;
 
+    /**
+     * <p>testMultiGroup.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testMultiGroup() throws Exception
     {

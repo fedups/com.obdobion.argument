@@ -10,6 +10,11 @@ import java.util.regex.Pattern;
 import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.annotation.Arg;
 
+/**
+ * <p>ClaType class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ */
 public enum ClaType
 {
     DEFAULT("default", DefaultCLA.class),
@@ -31,6 +36,13 @@ public enum ClaType
     EQU("equation", EquCLA.class),
     POJO("pojo", PojoCLA.class);
 
+    /**
+     * <p>forField.</p>
+     *
+     * @param field a {@link java.lang.reflect.Field} object.
+     * @param argAnnotation a {@link com.obdobion.argument.annotation.Arg} object.
+     * @return a {@link com.obdobion.argument.type.ClaType} object.
+     */
     static public ClaType forField(final Field field, final Arg argAnnotation)
     {
         final Class<?> fieldType = field.getType();
@@ -138,6 +150,15 @@ public enum ClaType
         argumentClass = (Class<ICmdLineArg<?>>) argClass;
     }
 
+    /**
+     * <p>argumentInstance.</p>
+     *
+     * @param commandPrefix a char.
+     * @param keychar a char.
+     * @param keyword a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @throws java.text.ParseException if any.
+     */
     public ICmdLineArg<?> argumentInstance(final char commandPrefix, final char keychar, final String keyword)
             throws ParseException
     {
@@ -159,6 +180,11 @@ public enum ClaType
         }
     }
 
+    /**
+     * <p>Getter for the field <code>typeName</code>.</p>
+     *
+     * @return a {@link java.lang.Object} object.
+     */
     public Object getTypeName()
     {
         return typeName;

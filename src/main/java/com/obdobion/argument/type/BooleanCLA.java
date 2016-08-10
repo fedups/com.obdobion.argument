@@ -7,8 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author Chris DeGreef
+ * <p>BooleanCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class BooleanCLA extends AbstractCLA<Boolean>
 {
@@ -16,6 +17,9 @@ public class BooleanCLA extends AbstractCLA<Boolean>
 
     String[]                     validWords = new String[] { "yes", "no" };
 
+    /**
+     * <p>Constructor for BooleanCLA.</p>
+     */
     public BooleanCLA()
     {
         super();
@@ -29,6 +33,7 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         }
     }
 
+    /** {@inheritDoc} */
     @Override
     public void applyDefaults()
     {
@@ -38,10 +43,7 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         }
     }
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Boolean convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -53,12 +55,14 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         return Boolean.FALSE;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "boolean";
     }
 
+    /** {@inheritDoc} */
     @Override
     public void exportCommandLine(final StringBuilder out)
     {
@@ -74,16 +78,14 @@ public class BooleanCLA extends AbstractCLA<Boolean>
             }
     }
 
-    /**
-     * @param out
-     * @param occ
-     */
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
         // intentionally left blank
     }
 
+    /** {@inheritDoc} */
     @Override
     public void exportNamespace(final String prefix, final StringBuilder out)
     {
@@ -103,17 +105,14 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         }
     }
 
-    /**
-     * @param prefix
-     * @param out
-     * @param occ
-     */
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
         // not called for booleans
     }
 
+    /** {@inheritDoc} */
     @Override
     public void exportXml(final StringBuilder out)
     {
@@ -128,22 +127,21 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         }
     }
 
-    /**
-     * @param out
-     * @param occ
-     */
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         // intentionally left blank
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Boolean";
     }
 
+    /** {@inheritDoc} */
     @Override
     public Boolean getValue()
     {
@@ -156,6 +154,7 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         return getDefaultValues().get(0);
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean isRequiredValue()
     {
@@ -168,6 +167,7 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         return !isParsed();
     }
 
+    /** {@inheritDoc} */
     @Override
     public ICmdLineArg<Boolean> setDefaultValue(final String defaultValue) throws ParseException, IOException
     {
@@ -176,15 +176,14 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         return this;
     }
 
-    /**
-     * @param bool
-     */
+    /** {@inheritDoc} */
     @Override
     public ICmdLineArg<Boolean> setMultiple(final boolean bool) throws ParseException
     {
         throw new ParseException("setMultiple is not valid for boolean types", -1);
     }
 
+    /** {@inheritDoc} */
     @Override
     public ICmdLineArg<Boolean> setRequiredValue(final boolean bool) throws ParseException
     {
@@ -192,6 +191,7 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         return this;
     }
 
+    /** {@inheritDoc} */
     @Override
     public void setValue(final Boolean value)
     {
@@ -204,25 +204,21 @@ public class BooleanCLA extends AbstractCLA<Boolean>
         setParsed(!getDefaultValues().get(0).equals(value));
     }
 
-    /**
-     * @param index
-     * @param value
-     */
+    /** {@inheritDoc} */
     @Override
     public void setValue(final int index, final Boolean value)
     {
         // multiple values for a boolean are not value
     }
 
-    /**
-     * @param value
-     */
+    /** {@inheritDoc} */
     @Override
     public void setValue(final List<Boolean> value)
     {
         // multiple values for a boolean are not value
     }
 
+    /** {@inheritDoc} */
     @Override
     public boolean supportsInList()
     {

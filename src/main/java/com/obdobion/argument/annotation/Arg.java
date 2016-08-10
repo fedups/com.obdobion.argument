@@ -23,8 +23,8 @@ import java.lang.annotation.Target;
  * In the <code>main</code> method in your program, or somewhere similar,
  *
  * <pre>
- public static void main (final String[] args) {
-     MyProgram instance = new MyProgram();
+ * public static void main (final String[] args) {
+ *     MyProgram instance = new MyProgram();
  * </pre>
  *
  * and process the command line arguments into the instance variables of your
@@ -75,13 +75,12 @@ import java.lang.annotation.Target;
  * @see java.util.regex.Pattern Pattern
  * @see com.obdobion.argument.type.WildFiles WildFiles
  * @see com.obdobion.algebrain.Equ Equ
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Repeatable(Args.class)
-public @interface Arg
-{
+public @interface Arg {
 
     /**
      * Indicates that the user can specify the argument on the command-line
@@ -123,8 +122,8 @@ public @interface Arg
     /**
      * Indicates the argument from an embedded parser that is to be used as a
      * String parameter to the factory method. If this is not specified then the
-     * factory method will be called without an argument. Use the argument name
-     * (like <code>"--type"</code>) for this value.
+     * factory method will be called without an argument. Use the argument
+     * variable name (like <code>"type"</code>) for this value.
      */
     String factoryArgName() default "";
 
@@ -165,8 +164,15 @@ public @interface Arg
 
     /**
      * Indicates the class that will be used to create an object for this
-     * argument. This is only needed when Argument can not figure it out by
-     * itself. That means, hardly ever.
+     * argument. This is needed when an abstract class, maybe even Object is
+     * used as the variable type. This parameter allows the specification of the
+     * actual instance class that should be used to create the instance. An
+     * example:
+     *
+     * <pre>
+     * &#64;Arg(instanceClass = "com.obdobion.argument.VariableTest$MyGroup")
+     * private Object testObjectGroup;
+     * </pre>
      */
     String instanceClass() default "";
 

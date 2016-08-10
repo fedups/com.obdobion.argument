@@ -5,18 +5,16 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * @author Chris DeGreef
+ * <p>LongCLA class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class LongCLA extends AbstractCLA<Long>
 {
     protected NumberFormat FMTin  = NumberFormat.getNumberInstance();
     protected NumberFormat FMTout = new DecimalFormat("0");
 
-    /**
-     * @param _caseSensitive
-     * @param target
-     */
+    /** {@inheritDoc} */
     @Override
     public Long convert(final String valueStr, final boolean _caseSensitive, final Object target)
             throws ParseException
@@ -24,12 +22,14 @@ public class LongCLA extends AbstractCLA<Long>
         return FMTin.parse(valueStr).longValue();
     }
 
+    /** {@inheritDoc} */
     @Override
     public String defaultInstanceClass()
     {
         return "long";
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
@@ -40,6 +40,7 @@ public class LongCLA extends AbstractCLA<Long>
             out.append("'");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
@@ -49,18 +50,21 @@ public class LongCLA extends AbstractCLA<Long>
         out.append("\n");
     }
 
+    /** {@inheritDoc} */
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
         out.append(FMTout.format(getValue(occ)));
     }
 
+    /** {@inheritDoc} */
     @Override
     public String genericClassName()
     {
         return "java.lang.Long";
     }
 
+    /** {@inheritDoc} */
     @Override
     public long[] getValueAslongArray() throws ParseException
     {
@@ -72,6 +76,7 @@ public class LongCLA extends AbstractCLA<Long>
         return result;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Long[] getValueAsLongArray() throws ParseException
     {

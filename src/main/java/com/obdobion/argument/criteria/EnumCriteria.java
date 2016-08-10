@@ -10,15 +10,23 @@ import java.util.List;
  * variable type of the instanceClass argument. In this case, neither of these
  * can be used to know that an enum is involved and the enumlist provide a set
  * of values that the input will be normalized, verified too.
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class EnumCriteria<E> extends ListCriteria<E>
 {
 
+    /**
+     * <p>Constructor for EnumCriteria.</p>
+     *
+     * @param listOfValidValues a {@link java.util.List} object.
+     */
     public EnumCriteria(final List<E> listOfValidValues)
     {
         super(listOfValidValues);
     }
 
+    /** {@inheritDoc} */
     @Override
     public EnumCriteria<E> clone() throws CloneNotSupportedException
     {

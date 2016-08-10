@@ -9,8 +9,10 @@ import com.obdobion.argument.CmdLineTest.GroupMaster.Grouping;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>CmdLineTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class CmdLineTest
 {
@@ -167,6 +169,11 @@ public class CmdLineTest
         boolean varForCPlusPlus;
     }
 
+    /**
+     * <p>booleanConcats1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void booleanConcats1() throws Exception
     {
@@ -178,6 +185,11 @@ public class CmdLineTest
         Assert.assertFalse(target.dup2);
     }
 
+    /**
+     * <p>booleanConcats2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void booleanConcats2() throws Exception
     {
@@ -189,6 +201,11 @@ public class CmdLineTest
         Assert.assertFalse(target.dup2);
     }
 
+    /**
+     * <p>booleanConcats3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void booleanConcats3() throws Exception
     {
@@ -200,6 +217,11 @@ public class CmdLineTest
         Assert.assertFalse(target.dup2);
     }
 
+    /**
+     * <p>booleanConcats4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void booleanConcats4() throws Exception
     {
@@ -211,6 +233,11 @@ public class CmdLineTest
         Assert.assertTrue(target.dup2);
     }
 
+    /**
+     * <p>booleanConcats5.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void booleanConcats5() throws Exception
     {
@@ -222,6 +249,11 @@ public class CmdLineTest
         Assert.assertTrue(target.dup2);
     }
 
+    /**
+     * <p>cPlusPlusName.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void cPlusPlusName() throws Exception
     {
@@ -230,6 +262,11 @@ public class CmdLineTest
         Assert.assertTrue(target.varForCPlusPlus);
     }
 
+    /**
+     * <p>dashDoubleDash1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dashDoubleDash1() throws Exception
     {
@@ -239,6 +276,11 @@ public class CmdLineTest
         Assert.assertTrue(target.bee);
     }
 
+    /**
+     * <p>dashDoubleDash2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dashDoubleDash2() throws Exception
     {
@@ -248,6 +290,11 @@ public class CmdLineTest
         Assert.assertTrue(target.bee);
     }
 
+    /**
+     * <p>dashDoubleDash3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void dashDoubleDash3() throws Exception
     {
@@ -257,6 +304,11 @@ public class CmdLineTest
         Assert.assertTrue(target.bee);
     }
 
+    /**
+     * <p>equalsOnCharCommand.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void equalsOnCharCommand() throws Exception
     {
@@ -267,6 +319,11 @@ public class CmdLineTest
         Assert.assertEquals("xyz", target.stringArray[1]);
     }
 
+    /**
+     * <p>equalsOnWordCommands1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void equalsOnWordCommands1() throws Exception
     {
@@ -275,6 +332,11 @@ public class CmdLineTest
         Assert.assertEquals("abc", target.stringVar);
     }
 
+    /**
+     * <p>equalsOnWordCommands2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void equalsOnWordCommands2() throws Exception
     {
@@ -285,6 +347,11 @@ public class CmdLineTest
         Assert.assertEquals("xyz", target.stringArray[1]);
     }
 
+    /**
+     * <p>grouping.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void grouping() throws Exception
     {
@@ -294,6 +361,11 @@ public class CmdLineTest
         Assert.assertTrue(target.groupa.item2);
     }
 
+    /**
+     * <p>groupingGroups.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void groupingGroups() throws Exception
     {
@@ -304,6 +376,11 @@ public class CmdLineTest
         Assert.assertTrue(target.master.groupa.item2);
     }
 
+    /**
+     * <p>integers.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void integers() throws Exception
     {
@@ -315,6 +392,11 @@ public class CmdLineTest
         Assert.assertEquals(2026, target.int2[1]);
     }
 
+    /**
+     * <p>longs.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void longs() throws Exception
     {
@@ -326,6 +408,11 @@ public class CmdLineTest
         Assert.assertEquals(2026, target.long2[1]);
     }
 
+    /**
+     * <p>multiValuedString1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void multiValuedString1() throws Exception
     {
@@ -334,6 +421,11 @@ public class CmdLineTest
         Assert.assertEquals("i1", target.stringArray[0]);
     }
 
+    /**
+     * <p>multiValuedString2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void multiValuedString2() throws Exception
     {
@@ -343,6 +435,11 @@ public class CmdLineTest
         Assert.assertEquals("i2", target.stringArray[1]);
     }
 
+    /**
+     * <p>multiValuedString3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void multiValuedString3() throws Exception
     {
@@ -353,6 +450,11 @@ public class CmdLineTest
         Assert.assertEquals("x1", target.stringVar);
     }
 
+    /**
+     * <p>numberInAKeyWordIsOK.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void numberInAKeyWordIsOK() throws Exception
     {
@@ -366,6 +468,11 @@ public class CmdLineTest
         }
     }
 
+    /**
+     * <p>numericKeyCharIsBad.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void numericKeyCharIsBad() throws Exception
     {
@@ -380,6 +487,11 @@ public class CmdLineTest
         }
     }
 
+    /**
+     * <p>numericKeyCharIsBad2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void numericKeyCharIsBad2() throws Exception
     {
@@ -394,6 +506,11 @@ public class CmdLineTest
         }
     }
 
+    /**
+     * <p>parmed1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parmed1() throws Exception
     {
@@ -405,6 +522,11 @@ public class CmdLineTest
         Assert.assertNull(target.dup2);
     }
 
+    /**
+     * <p>parmed2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parmed2() throws Exception
     {
@@ -416,6 +538,11 @@ public class CmdLineTest
         Assert.assertNull(target.dup2);
     }
 
+    /**
+     * <p>parmed3.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parmed3() throws Exception
     {
@@ -427,6 +554,11 @@ public class CmdLineTest
         Assert.assertNull(target.dup2);
     }
 
+    /**
+     * <p>parmed4.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parmed4() throws Exception
     {
@@ -438,6 +570,11 @@ public class CmdLineTest
         Assert.assertNull(target.dup2);
     }
 
+    /**
+     * <p>patternMatching1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void patternMatching1() throws Exception
     {
@@ -447,6 +584,11 @@ public class CmdLineTest
         Assert.assertNull(target.stringArray);
     }
 
+    /**
+     * <p>patternMatching2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void patternMatching2() throws Exception
     {
@@ -457,6 +599,11 @@ public class CmdLineTest
         Assert.assertEquals("one", target.stringArray[1]);
     }
 
+    /**
+     * <p>positionalBooleans.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void positionalBooleans() throws Exception
     {
@@ -469,6 +616,11 @@ public class CmdLineTest
         Assert.assertEquals("when", target.infile);
     }
 
+    /**
+     * <p>testBoolean1.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testBoolean1() throws Exception
     {
@@ -481,6 +633,11 @@ public class CmdLineTest
         Assert.assertTrue(target.dup3);
     }
 
+    /**
+     * <p>testBoolean2.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testBoolean2() throws Exception
     {
@@ -493,6 +650,11 @@ public class CmdLineTest
         Assert.assertFalse(target.dup3);
     }
 
+    /**
+     * <p>testDouble.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testDouble() throws Exception
     {
@@ -504,6 +666,11 @@ public class CmdLineTest
         Assert.assertEquals(-14.355, target.var2[2], 0.01);
     }
 
+    /**
+     * <p>testFloat.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testFloat() throws Exception
     {

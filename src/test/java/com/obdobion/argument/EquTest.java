@@ -7,14 +7,21 @@ import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * @author Chris DeGreef
+ * <p>EquTest class.</p>
  *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
  */
 public class EquTest
 {
     @Arg(shortName = 'e')
     public Equ equ;
 
+    /**
+     * <p>parensEquationsWithDot.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parensEquationsWithDot() throws Exception
     {
@@ -22,6 +29,11 @@ public class EquTest
         Assert.assertEquals("123", equ.evaluate());
     }
 
+    /**
+     * <p>parensEquationsWithEscape.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parensEquationsWithEscape() throws Exception
     {
@@ -29,6 +41,11 @@ public class EquTest
         Assert.assertEquals("123", equ.evaluate());
     }
 
+    /**
+     * <p>parensEquationsWithSet.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void parensEquationsWithSet() throws Exception
     {
@@ -36,6 +53,11 @@ public class EquTest
         Assert.assertEquals("123", equ.evaluate());
     }
 
+    /**
+     * <p>quotedEquation.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void quotedEquation() throws Exception
     {
@@ -43,6 +65,11 @@ public class EquTest
         Assert.assertEquals("123", equ.evaluate());
     }
 
+    /**
+     * <p>simpleEquation.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void simpleEquation() throws Exception
     {

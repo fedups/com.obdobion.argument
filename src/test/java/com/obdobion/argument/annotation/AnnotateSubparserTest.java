@@ -8,6 +8,12 @@ import com.obdobion.argument.ICmdLine;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
+/**
+ * <p>AnnotateSubparserTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.1.2
+ */
 public class AnnotateSubparserTest
 {
     static final public class EmbeddedA
@@ -45,6 +51,11 @@ public class AnnotateSubparserTest
 
     private final RootConfig cfg = new RootConfig();
 
+    /**
+     * <p>testDefaults.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testDefaults() throws Exception
     {
@@ -54,6 +65,11 @@ public class AnnotateSubparserTest
         Assert.assertNull(cfg.embeddedA);
     }
 
+    /**
+     * <p>testUsage.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testUsage() throws Exception
     {
@@ -62,6 +78,11 @@ public class AnnotateSubparserTest
         cmdParser.parse(userInput, cfg);
     }
 
+    /**
+     * <p>testValues.</p>
+     *
+     * @throws java.lang.Exception if any.
+     */
     @Test
     public void testValues() throws Exception
     {

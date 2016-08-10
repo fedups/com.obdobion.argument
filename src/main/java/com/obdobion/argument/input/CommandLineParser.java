@@ -16,8 +16,7 @@ import com.obdobion.argument.type.ICmdLineArg;
  * line is made up of key words and values. A key word is prefixed by a - or
  * two. Brackets or parenthesis may be used to create subparsers.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class CommandLineParser extends AbstractInputParser implements IParserInput
 {
@@ -48,6 +47,15 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         }
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param commandPrefix a char.
+     * @param allowEmbeddedCommandPrefix a boolean.
+     * @param args a {@link java.io.File} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     * @throws java.io.IOException if any.
+     */
     static public IParserInput getInstance(
             final char commandPrefix,
             final boolean allowEmbeddedCommandPrefix,
@@ -61,6 +69,14 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param commandPrefix a char.
+     * @param allowEmbeddedCommandPrefix a boolean.
+     * @param args a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(
             final char commandPrefix,
             final boolean allowEmbeddedCommandPrefix,
@@ -79,6 +95,14 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param commandPrefix a char.
+     * @param args a {@link java.io.File} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     * @throws java.io.IOException if any.
+     */
     static public IParserInput getInstance(
             final char commandPrefix,
             final File args)
@@ -87,6 +111,13 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return getInstance(commandPrefix, false, args);
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param commandPrefix a char.
+     * @param args a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(
             final char commandPrefix,
             final String... args)
@@ -94,6 +125,12 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return getInstance(commandPrefix, false, args);
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param args a {@link java.util.List} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String unparseTokens(
             final List<ICmdLineArg<?>> args)
     {
@@ -102,6 +139,12 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return out.toString();
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param args a {@link java.util.List} object.
+     * @param out a {@link java.lang.StringBuilder} object.
+     */
     static public void unparseTokens(
             final List<ICmdLineArg<?>> args,
             final StringBuilder out)
@@ -132,6 +175,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         allowEmbeddedCommandPrefix = true;
     }
 
+    /** {@inheritDoc} */
     @Override
     public Token[] parseTokens()
     {
@@ -281,6 +325,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         return tokens.toArray(new Token[tokens.size()]);
     }
 
+    /** {@inheritDoc} */
     @Override
     public String substring(final int inclusiveStart, final int exclusiveEnd)
     {

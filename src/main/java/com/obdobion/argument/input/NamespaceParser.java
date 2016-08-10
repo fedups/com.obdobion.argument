@@ -21,11 +21,17 @@ import com.obdobion.argument.type.ICmdLineArg;
  * handle multi valued args. These are specified with brackets. [0] for
  * instance.
  *
- * @author Chris DeGreef
- *
+ * @author Chris DeGreef fedupforone@gmail.com
  */
 public class NamespaceParser extends AbstractInputParser implements IParserInput
 {
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param file a {@link java.io.File} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     * @throws java.io.IOException if any.
+     */
     static public IParserInput getInstance(final File file) throws IOException
     {
         final List<String> args = new ArrayList<>();
@@ -41,6 +47,12 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return parser;
     }
 
+    /**
+     * <p>getInstance.</p>
+     *
+     * @param args a {@link java.lang.String} object.
+     * @return a {@link com.obdobion.argument.input.IParserInput} object.
+     */
     static public IParserInput getInstance(final String... args)
     {
         final NamespaceParser parser = new NamespaceParser();
@@ -86,11 +98,18 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return "";
     }
 
+    /** {@inheritDoc} */
     static protected String quote(final String value)
     {
         return value;
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param args a {@link java.util.List} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String unparseTokens(final List<ICmdLineArg<?>> args)
     {
         final StringBuilder out = new StringBuilder();
@@ -98,6 +117,13 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return out.toString();
     }
 
+    /**
+     * <p>unparseTokens.</p>
+     *
+     * @param prefix a {@link java.lang.String} object.
+     * @param args a {@link java.util.List} object.
+     * @param out a {@link java.lang.StringBuilder} object.
+     */
     static public void unparseTokens(final String prefix, final List<ICmdLineArg<?>> args, final StringBuilder out)
     {
         final Iterator<ICmdLineArg<?>> aIter = args.iterator();
@@ -118,6 +144,7 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         super();
     }
 
+    /** {@inheritDoc} */
     @Override
     public Token[] parseTokens()
     {
@@ -137,10 +164,7 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         return out.toArray(new Token[out.size()]);
     }
 
-    /**
-     * @param inclusiveStart
-     * @param exclusiveEnd
-     */
+    /** {@inheritDoc} */
     @Override
     public String substring(final int inclusiveStart, final int exclusiveEnd)
     {
