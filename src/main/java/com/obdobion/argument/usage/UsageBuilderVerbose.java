@@ -12,14 +12,18 @@ import com.obdobion.argument.type.EnumCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * <p>UsageBuilderVerbose class.</p>
+ * <p>
+ * UsageBuilderVerbose class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
 public class UsageBuilderVerbose extends UsageBuilder
 {
     /**
-     * <p>Constructor for UsageBuilderVerbose.</p>
+     * <p>
+     * Constructor for UsageBuilderVerbose.
+     * </p>
      */
     public UsageBuilderVerbose()
     {
@@ -68,11 +72,10 @@ public class UsageBuilderVerbose extends UsageBuilder
     private void showEnumCriteria(final String instanceClass)
     {
         if (instanceClass != null)
-        {
             try
             {
                 append("Allowable values: ");
-                final Object[] constants = getClass().getClassLoader().loadClass(instanceClass).getEnumConstants();
+                final Object[] constants = CmdLine.ClassLoader.loadClass(instanceClass).getEnumConstants();
                 for (final Object constant : constants)
                 {
                     append(constant.toString());
@@ -82,7 +85,6 @@ public class UsageBuilderVerbose extends UsageBuilder
             {
                 append("ENUM CLASS NOT FOUND: " + instanceClass);
             }
-        }
     }
 
     void usageDetail(
@@ -95,11 +97,16 @@ public class UsageBuilderVerbose extends UsageBuilder
     }
 
     /**
-     * <p>usageDetail.</p>
+     * <p>
+     * usageDetail.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @param _indentLevel a int.
+     * @param commandPrefix
+     *            a char.
+     * @param arg
+     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param _indentLevel
+     *            a int.
      */
     public void usageDetail(
             final char commandPrefix,
@@ -133,9 +140,7 @@ public class UsageBuilderVerbose extends UsageBuilder
             else
                 append("unnamed");
         } else
-        {
             append("positional");
-        }
 
         final String n = arg.getClass().getSimpleName();
         // ClassnameCLA is how the arguments must be named
@@ -188,7 +193,6 @@ public class UsageBuilderVerbose extends UsageBuilder
             return;
 
         if (arg.isMultiple())
-        {
             if (arg.getMultipleMax() == Integer.MAX_VALUE)
                 if (arg.isRequired())
                     newLine(indentLevel).append("Although multiple values are allowed, you must specify at least "
@@ -199,28 +203,22 @@ public class UsageBuilderVerbose extends UsageBuilder
                             .append("Although no value is required, if you specify one you must specify at least "
                                     + arg.getMultipleMin()
                                     + ".");
+            else if (arg.isRequired())
+                newLine(indentLevel).append("It is required that you specify at least "
+                        + arg.getMultipleMin()
+                        + " and at most "
+                        + arg.getMultipleMax()
+                        + " values.");
             else
-            {
-                if (arg.isRequired())
-                    newLine(indentLevel).append("It is required that you specify at least "
-                            + arg.getMultipleMin()
-                            + " and at most "
-                            + arg.getMultipleMax()
-                            + " values.");
-                else
-                    newLine(indentLevel)
-                            .append("Although no value is required, if you specify one you must specify at least "
-                                    + arg.getMultipleMin()
-                                    + " and at most "
-                                    + arg.getMultipleMax()
-                                    + " values.");
-            }
-        }
+                newLine(indentLevel)
+                        .append("Although no value is required, if you specify one you must specify at least "
+                                + arg.getMultipleMin()
+                                + " and at most "
+                                + arg.getMultipleMax()
+                                + " values.");
 
         if (arg.isCaseSensitive())
-        {
             newLine(indentLevel).append("Upper vs lower case matters.");
-        }
 
         if (arg.getCriteria() != null)
         {

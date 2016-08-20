@@ -8,12 +8,15 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.EnumCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * <p>VariableAssigner class.</p>
+ * <p>
+ * VariableAssigner class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -179,7 +182,7 @@ public class VariableAssigner implements IVariableAssigner
                         + parmClass.getName()
                         + ") on "
                         + baseClassName;
-                clazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
+                clazz = CmdLine.ClassLoader.loadClass(baseClassName);
                 method = clazz.getDeclaredMethod(arg.getFactoryMethodName(), parmClass);
             } else
             {
@@ -191,8 +194,7 @@ public class VariableAssigner implements IVariableAssigner
                         + parmClass.getName()
                         + ") on "
                         + arg.getFactoryMethodName().substring(0, methodPvt);
-                clazz = ClassLoader.getSystemClassLoader()
-                        .loadClass(arg.getFactoryMethodName().substring(0, methodPvt));
+                clazz = CmdLine.ClassLoader.loadClass(arg.getFactoryMethodName().substring(0, methodPvt));
                 method = clazz.getDeclaredMethod(arg.getFactoryMethodName().substring(methodPvt + 1), parmClass);
             }
 
@@ -249,7 +251,7 @@ public class VariableAssigner implements IVariableAssigner
                 return null;
             if (arg instanceof EnumCLA)
             {
-                final Class<?> clazz = ClassLoader.getSystemClassLoader().loadClass(arg.getInstanceClass());
+                final Class<?> clazz = CmdLine.ClassLoader.loadClass(arg.getInstanceClass());
                 final Object[] possibleConstants = clazz.getEnumConstants();
                 return ((EnumCLA) arg).asEnum((String) arg.getValue(), possibleConstants).toString();
             }
@@ -262,13 +264,19 @@ public class VariableAssigner implements IVariableAssigner
     }
 
     /**
-     * <p>findFieldInAnyParentOrMyself.</p>
+     * <p>
+     * findFieldInAnyParentOrMyself.
+     * </p>
      *
-     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @param targetClass a {@link java.lang.Class} object.
-     * @param errMsg a {@link java.lang.String} object.
+     * @param arg
+     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param targetClass
+     *            a {@link java.lang.Class} object.
+     * @param errMsg
+     *            a {@link java.lang.String} object.
      * @return a {@link java.lang.reflect.Field} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     static public Field findFieldInAnyParentOrMyself(
             final ICmdLineArg<?> arg,
@@ -296,9 +304,12 @@ public class VariableAssigner implements IVariableAssigner
     }
 
     /**
-     * <p>Getter for the field <code>instance</code>.</p>
+     * <p>
+     * Getter for the field <code>instance</code>.
+     * </p>
      *
-     * @return a {@link com.obdobion.argument.variables.IVariableAssigner} object.
+     * @return a {@link com.obdobion.argument.variables.IVariableAssigner}
+     *         object.
      */
     static public IVariableAssigner getInstance()
     {
@@ -514,15 +525,14 @@ public class VariableAssigner implements IVariableAssigner
             final String factoryValue = factoryArgValue(factoryValueArg);
             if (methodPvt < 0)
             {
-                clazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
+                clazz = CmdLine.ClassLoader.loadClass(baseClassName);
                 if (factoryValue == null)
                     method = clazz.getDeclaredMethod(group.getFactoryMethodName());
                 else
                     method = clazz.getDeclaredMethod(group.getFactoryMethodName(), String.class);
             } else
             {
-                clazz = ClassLoader.getSystemClassLoader()
-                        .loadClass(group.getFactoryMethodName().substring(0, methodPvt));
+                clazz = CmdLine.ClassLoader.loadClass(group.getFactoryMethodName().substring(0, methodPvt));
                 if (factoryValue == null)
                     method = clazz.getDeclaredMethod(group.getFactoryMethodName().substring(methodPvt + 1));
                 else
@@ -538,7 +548,7 @@ public class VariableAssigner implements IVariableAssigner
 
         } else
         {
-            clazz = ClassLoader.getSystemClassLoader().loadClass(baseClassName);
+            clazz = CmdLine.ClassLoader.loadClass(baseClassName);
             groupInstance = clazz.newInstance();
         }
         return groupInstance;
@@ -567,10 +577,15 @@ public class VariableAssigner implements IVariableAssigner
     }
 
     /**
-     * <p>Setter for the field <code>instance</code>.</p>
+     * <p>
+     * Setter for the field <code>instance</code>.
+     * </p>
      *
-     * @param newInstance a {@link com.obdobion.argument.variables.IVariableAssigner} object.
-     * @return a {@link com.obdobion.argument.variables.IVariableAssigner} object.
+     * @param newInstance
+     *            a {@link com.obdobion.argument.variables.IVariableAssigner}
+     *            object.
+     * @return a {@link com.obdobion.argument.variables.IVariableAssigner}
+     *         object.
      */
     static public IVariableAssigner setInstance(final IVariableAssigner newInstance)
     {

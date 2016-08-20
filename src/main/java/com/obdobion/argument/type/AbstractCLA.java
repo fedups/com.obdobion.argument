@@ -15,6 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.obdobion.algebrain.Equ;
+import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.criteria.EnumCriteria;
 import com.obdobion.argument.criteria.ICmdLineArgCriteria;
 import com.obdobion.argument.criteria.ListCriteria;
@@ -41,7 +42,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     /** Constant <code>newline="System.getProperty(line.separator)"</code> */
     public static String         newline         = System.getProperty("line.separator");
 
-    static String createCamelCapVersionOfKeyword(final String _keyword)
+    static public String createCamelCapVersionOfKeyword(final String _keyword)
     {
         if (_keyword == null || _keyword.trim().length() == 0)
             return null;
@@ -52,12 +53,10 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         final Matcher matcher = CAMELCAPS.matcher(_keyword);
         while (matcher.find())
             sb.append(matcher.group());
-        if (sb.length() < 2)
-            return null;
         return sb.toString();
     }
 
-    static String createMetaphoneVersionOfKeyword(final String _keyword)
+    static public String createMetaphoneVersionOfKeyword(final String _keyword)
     {
         if (_keyword == null || _keyword.trim().length() == 0)
             return null;
@@ -843,7 +842,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         Class<?> enumClass;
         try
         {
-            enumClass = getClass().getClassLoader().loadClass(_enumClassName);
+            enumClass = CmdLine.ClassLoader.loadClass(_enumClassName);
         } catch (final ClassNotFoundException e)
         {
             throw new ParseException("Enum class not found: " + e.getMessage(), 0);

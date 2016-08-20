@@ -3,10 +3,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.obdobion</groupId>
 	<artifactId>argument</artifactId>
-	<version>4.1.2</version>
+	<version>4.2.0</version>
     <name>${project.groupId}.${project.artifactId}</name>
 	<description>A command line parser for Java</description>
-	<url>https://github.com/fedups/argument</url>
+	<url>https://github.com/fedups/com.obdobion.argument</url>
 	<organization>
 		<name>Obdobion</name>
 		<url>https://github.com/fedups</url>
@@ -26,9 +26,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:fedups/argument.git</connection>
-        <developerConnection>scm:git:git@github.com:fedups/argument.git</developerConnection>
-        <url>git@github.com:fedups/argument.git</url>
+        <connection>scm:git:git@github.com:fedups/com.obdobion.argument.git</connection>
+        <developerConnection>scm:git:git@github.com:fedups/com.obdobion.argument.git</developerConnection>
+        <url>git@github.com:fedups/com.obdobion.argument.git</url>
     </scm>
 	
 	<properties>
@@ -46,7 +46,7 @@
 		<repository>
 			<id>bintray-fedups-obdobion</id>
 			<name>fedups-obdobion</name>
-			<url>https://api.bintray.com/maven/fedups/obdobion/argument/;publish=1</url>
+			<url>https://api.bintray.com/maven/fedups/obdobion/com.obdobion.argument/;publish=1</url>
 		</repository>
 	</distributionManagement>
 

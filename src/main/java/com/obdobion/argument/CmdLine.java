@@ -47,6 +47,8 @@ import com.obdobion.argument.variables.VariablePuller;
  */
 public class CmdLine implements ICmdLine, Cloneable
 {
+    static public ClassLoader  ClassLoader         = CmdLine.class.getClassLoader();
+
     final static Logger        logger              = LoggerFactory.getLogger(CmdLine.class);
     /** Constant <code>INCLUDE_FILE_PREFIX="@"</code> */
     public static final String INCLUDE_FILE_PREFIX = "@";
@@ -111,6 +113,7 @@ public class CmdLine implements ICmdLine, Cloneable
     static public ICmdLine load(final ICmdLine cmdLine, final Object target, final String... args)
             throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final IParserInput data = CommandLineParser.getInstance(cmdLine.getCommandPrefix(), true, args);
         cmdLine.parse(data, target);
         return cmdLine;
@@ -154,6 +157,7 @@ public class CmdLine implements ICmdLine, Cloneable
     static public ICmdLine loadProperties(final Object target, final File propertyFile)
             throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final ICmdLine cmdLine = new CmdLine();
         final IParserInput data = NamespaceParser.getInstance(propertyFile);
         cmdLine.parse(data, target);
@@ -178,6 +182,7 @@ public class CmdLine implements ICmdLine, Cloneable
     static public ICmdLine loadProperties(final Object target, final String... args)
             throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final ICmdLine cmdLine = new CmdLine();
         final IParserInput data = NamespaceParser.getInstance(args);
         cmdLine.parse(data, target);
@@ -200,6 +205,7 @@ public class CmdLine implements ICmdLine, Cloneable
      */
     static public void loadWin(final Object target, final String... args) throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final CmdLine cmdLine = new CmdLine(null, '/', '-');
         final IParserInput data = CommandLineParser.getInstance(cmdLine.commandPrefix, true, args);
         cmdLine.parse(data, target);
@@ -223,6 +229,7 @@ public class CmdLine implements ICmdLine, Cloneable
     static public ICmdLine loadXml(final Object target, final File propertyFile)
             throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final ICmdLine cmdLine = new CmdLine();
         final IParserInput data = XmlParser.getInstance(propertyFile);
         cmdLine.parse(data, target);
@@ -247,6 +254,7 @@ public class CmdLine implements ICmdLine, Cloneable
     static public ICmdLine loadXml(final Object target, final String... args)
             throws IOException, ParseException
     {
+        CmdLine.ClassLoader = target.getClass().getClassLoader();
         final ICmdLine cmdLine = new CmdLine();
         final IParserInput data = XmlParser.getInstance(args);
         cmdLine.parse(data, target);
@@ -968,7 +976,7 @@ public class CmdLine implements ICmdLine, Cloneable
             try
             {
                 if (((CmdLineCLA) arg).getInstanceClass() != null)
-                    embeddedTarget = getClass().getClassLoader().loadClass(((CmdLineCLA) arg).getInstanceClass());
+                    embeddedTarget = CmdLine.ClassLoader.loadClass(((CmdLineCLA) arg).getInstanceClass());
                 else
                     embeddedTarget = CLAFactory.instanceType(oneField);
             } catch (final ClassNotFoundException e)
@@ -1867,7 +1875,10 @@ public class CmdLine implements ICmdLine, Cloneable
             if (target == null)
                 attemptAnnotationCompile(data.getClass(), true, new ArrayList<Class<?>>(), new String[] {});
             else
+            {
+                CmdLine.ClassLoader = target.getClass().getClassLoader();
                 attemptAnnotationCompile(target.getClass(), true, new ArrayList<Class<?>>(), new String[] {});
+            }
         parseTokens(data, target);
         return target;
     }
@@ -1877,6 +1888,9 @@ public class CmdLine implements ICmdLine, Cloneable
     public Object parse(final Object target, final String... args)
             throws IOException, ParseException
     {
+        if (target != null)
+            CmdLine.ClassLoader = target.getClass().getClassLoader();
+
         final IParserInput data = CommandLineParser.getInstance(getCommandPrefix(), args);
         if (!isCompiled())
             if (target == null)
@@ -2191,6 +2205,10 @@ public class CmdLine implements ICmdLine, Cloneable
         boolean scanforward = false;
         for (final ICmdLineArg<?> arg1 : allPossibleArgs)
         {
+            if (arg1.isCamelCapsAllowed() && arg1.getCamelCaps() == null)
+                localExceptions
+                        .add(new ParseException(format("camelCaps not allowed for \"{}\"", arg1.getKeyword()), 0));
+
             scanforward = false;
             for (final ICmdLineArg<?> arg2 : allPossibleArgs)
             {
@@ -2209,22 +2227,22 @@ public class CmdLine implements ICmdLine, Cloneable
                     localExceptions.add(new ParseException(
                             format("duplicate long name, found \"{}\"' and \"{}\"", arg1, arg2),
                             0));
-                if (arg1.isCamelCapsAllowed() && arg2.isCamelCapsAllowed()
+                if (arg1.isCamelCapsAllowed() && arg2.isCamelCapsAllowed() && arg1.getCamelCaps() != null
                         && arg1.getCamelCaps().equalsIgnoreCase(arg2.getCamelCaps()))
                     localExceptions.add(new ParseException(
                             format("duplicate values for camelcap, found \"{}\"' and \"{}\"", arg1, arg2),
                             0));
-                if (arg1.isCamelCapsAllowed()
+                if (arg1.isCamelCapsAllowed() && arg1.getCamelCaps() != null
                         && arg1.getCamelCaps().equalsIgnoreCase(arg2.getKeyword()))
                     localExceptions.add(new ParseException(
                             format("camelcaps equals long name, found \"{}\"' and \"{}\"", arg1, arg2),
                             0));
-                if (arg1.isMetaphoneAllowed() && arg2.isMetaphoneAllowed()
+                if (arg1.isMetaphoneAllowed() && arg2.isMetaphoneAllowed() && arg1.getMetaphone() != null
                         && arg1.getMetaphone().equals(arg2.getMetaphone()))
                     localExceptions.add(new ParseException(
                             format("duplicate values for metaphone, found \"{}\"' and \"{}\"", arg1, arg2),
                             0));
-                if (arg1.isMetaphoneAllowed()
+                if (arg1.isMetaphoneAllowed() && arg1.getMetaphone() != null
                         && arg1.getMetaphone().toString().equals(arg2.getKeyword()))
                     localExceptions.add(new ParseException(
                             format("metaphone equals long name, found \"{}\"' and \"{}\"", arg1, arg2),

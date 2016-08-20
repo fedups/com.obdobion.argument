@@ -3,7 +3,9 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 
 /**
- * <p>EnumCLA class.</p>
+ * <p>
+ * EnumCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -23,9 +25,7 @@ public class EnumCLA extends StringCLA
     {
         final Enum<?>[] enumArray = new Enum<?>[size()];
         for (int v = 0; v < size(); v++)
-        {
             enumArray[v] = (Enum<?>) stringToEnumConstant(enumClassFieldName, possibleConstants, getValue(v));
-        }
         return enumArray;
     }
 
@@ -90,9 +90,39 @@ public class EnumCLA extends StringCLA
             possibleValues.append(econst);
         }
 
+        /*
+         * Try an exact match up to the user entered token's length
+         */
         for (int c = 0; c < possibleConstants.length; c++)
         {
             String econst = possibleConstants[c].toString().toLowerCase();
+            if (econst.length() > enumConstantName.length())
+                econst = econst.substring(0, enumConstantName.length());
+            if (econst.equalsIgnoreCase(enumConstantName))
+            {
+                if (selectedConstant != null)
+                    throw new ParseException("\""
+                            + enumConstantName
+                            + "\" is not a unique enum constant for variable \""
+                            + enumClassFieldName
+                            + "\" ("
+                            + possibleValues.toString()
+                            + ")",
+                            0);
+                selectedConstant = possibleConstants[c];
+            }
+        }
+        if (selectedConstant != null)
+            return selectedConstant;
+
+        /*
+         * Try camel caps
+         */
+        for (int c = 0; c < possibleConstants.length; c++)
+        {
+            String econst = AbstractCLA.createCamelCapVersionOfKeyword(possibleConstants[c].toString());
+            if (econst == null)
+                continue;
             if (econst.length() > enumConstantName.length())
                 econst = econst.substring(0, enumConstantName.length());
             if (econst.equalsIgnoreCase(enumConstantName))

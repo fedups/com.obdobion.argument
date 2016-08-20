@@ -3,18 +3,31 @@ package com.obdobion.argument;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.obdobion.argument.annotation.Arg;
+
 /**
- * <p>ExceptionTest class.</p>
+ * <p>
+ * ExceptionTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
  */
 public class ExceptionTest
 {
+    static public class BadCamelCaps
+    {
+        @Arg(allowCamelCaps = true)
+        boolean thickness;
+    }
+
     /**
-     * <p>badCharCommand.</p>
+     * <p>
+     * badCharCommand.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void badCharCommand() throws Exception
@@ -30,9 +43,12 @@ public class ExceptionTest
     }
 
     /**
-     * <p>badWordCommand.</p>
+     * <p>
+     * badWordCommand.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void badWordCommand() throws Exception
@@ -48,9 +64,12 @@ public class ExceptionTest
     }
 
     /**
-     * <p>missingRightBracket.</p>
+     * <p>
+     * missingRightBracket.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void missingRightBracket() throws Exception
@@ -66,9 +85,12 @@ public class ExceptionTest
     }
 
     /**
-     * <p>tooManyRightBracket.</p>
+     * <p>
+     * tooManyRightBracket.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void tooManyRightBracket() throws Exception
