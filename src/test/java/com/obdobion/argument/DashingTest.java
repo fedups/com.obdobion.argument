@@ -8,7 +8,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>DashingTest class.</p>
+ * <p>
+ * DashingTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -67,9 +69,12 @@ public class DashingTest
     }
 
     /**
-     * <p>camelCaps.</p>
+     * <p>
+     * camelCaps.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void camelCaps() throws Exception
@@ -80,9 +85,12 @@ public class DashingTest
     }
 
     /**
-     * <p>camelCapsCompetesWithExactKeyword.</p>
+     * <p>
+     * camelCapsCompetesWithExactKeyword.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void camelCapsCompetesWithExactKeyword() throws Exception
@@ -95,15 +103,18 @@ public class DashingTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("camelcaps equals long name, found \"boolean --camelCaps\"' and \"string --cc\"",
+            Assert.assertEquals("camelcaps equals long name, found \"--camelCaps\"' and \"--cc\"",
                     e.getMessage());
         }
     }
 
     /**
-     * <p>camelCapsCompetesWithPartialKeyword.</p>
+     * <p>
+     * camelCapsCompetesWithPartialKeyword.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void camelCapsCompetesWithPartialKeyword() throws Exception
@@ -114,9 +125,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash1.</p>
+     * <p>
+     * embeddedDash1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash1() throws Exception
@@ -128,9 +142,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash2.</p>
+     * <p>
+     * embeddedDash2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash2() throws Exception
@@ -142,9 +159,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash3.</p>
+     * <p>
+     * embeddedDash3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash3() throws Exception
@@ -156,9 +176,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash4.</p>
+     * <p>
+     * embeddedDash4.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash4() throws Exception
@@ -170,9 +193,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash5.</p>
+     * <p>
+     * embeddedDash5.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash5() throws Exception
@@ -189,9 +215,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash6.</p>
+     * <p>
+     * embeddedDash6.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash6() throws Exception
@@ -203,9 +232,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash7.</p>
+     * <p>
+     * embeddedDash7.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash7() throws Exception
@@ -218,9 +250,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash8.</p>
+     * <p>
+     * embeddedDash8.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash8() throws Exception
@@ -233,9 +268,12 @@ public class DashingTest
     }
 
     /**
-     * <p>embeddedDash9.</p>
+     * <p>
+     * embeddedDash9.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void embeddedDash9() throws Exception
@@ -248,9 +286,12 @@ public class DashingTest
     }
 
     /**
-     * <p>metaphoneIssues.</p>
+     * <p>
+     * metaphoneIssues.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void metaphoneIssues() throws Exception
@@ -266,18 +307,21 @@ public class DashingTest
             Assert.assertEquals("multiple parse exceptions", e.getMessage());
             Assert.assertEquals(2, cl.getParseExceptions().size());
             Assert.assertEquals(
-                    "duplicate short name, found \"boolean --inputFileName(-a)\"' and \"boolean --inputFileNum(-a)\"",
+                    "duplicate short name, found \"--inputFileName(-a)\"' and \"--inputFileNum(-a)\"",
                     cl.getParseExceptions().get(0).getMessage());
             Assert.assertEquals(
-                    "duplicate values for metaphone, found \"boolean --inputFileName(-a)\"' and \"boolean --inputFileNum(-a)\"",
+                    "duplicate values for metaphone, found \"--inputFileName(-a)\"' and \"--inputFileNum(-a)\"",
                     cl.getParseExceptions().get(1).getMessage());
         }
     }
 
     /**
-     * <p>metaphoneVersion.</p>
+     * <p>
+     * metaphoneVersion.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void metaphoneVersion() throws Exception

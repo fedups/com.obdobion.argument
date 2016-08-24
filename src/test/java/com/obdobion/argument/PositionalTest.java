@@ -8,7 +8,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>PositionalTest class.</p>
+ * <p>
+ * PositionalTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -110,9 +112,12 @@ public class PositionalTest
     Master07[] master07;
 
     /**
-     * <p>groupingGroupsPositionalBooleans.</p>
+     * <p>
+     * groupingGroupsPositionalBooleans.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void groupingGroupsPositionalBooleans() throws Exception
@@ -123,9 +128,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>groupingGroupsPositionalGroups.</p>
+     * <p>
+     * groupingGroupsPositionalGroups.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void groupingGroupsPositionalGroups() throws Exception
@@ -136,9 +144,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>groupingGroupsPositionalGroupsAndBooleans.</p>
+     * <p>
+     * groupingGroupsPositionalGroupsAndBooleans.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void groupingGroupsPositionalGroupsAndBooleans() throws Exception
@@ -149,9 +160,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>groupMultiple.</p>
+     * <p>
+     * groupMultiple.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void groupMultiple() throws Exception
@@ -163,9 +177,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>multipleValuesWithMultiplePositionals.</p>
+     * <p>
+     * multipleValuesWithMultiplePositionals.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void multipleValuesWithMultiplePositionals() throws Exception
@@ -177,15 +194,18 @@ public class PositionalTest
         } catch (final ParseException e)
         {
             Assert.assertEquals(
-                    "a multi-value positional argument must be the only positional argument, found \"string --str1\"' and \"string --str2\"",
+                    "a multi-value positional argument must be the only positional argument, found \"--str1\"' and \"--str2\"",
                     e.getMessage());
         }
     }
 
     /**
-     * <p>stringMultiple.</p>
+     * <p>
+     * stringMultiple.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringMultiple() throws Exception
@@ -197,9 +217,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>testString.</p>
+     * <p>
+     * testString.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testString() throws Exception
@@ -210,9 +233,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>twoStrings.</p>
+     * <p>
+     * twoStrings.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void twoStrings() throws Exception
@@ -224,9 +250,12 @@ public class PositionalTest
     }
 
     /**
-     * <p>twoStringsOnlyUsed1.</p>
+     * <p>
+     * twoStringsOnlyUsed1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void twoStringsOnlyUsed1() throws Exception

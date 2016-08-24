@@ -909,9 +909,8 @@ public class CmdLine implements ICmdLine, Cloneable
             final ICmdLineArg<?> arg = aIter.next();
             if (arg.isRequired() && !arg.isParsed())
             {
-                bldr.append("\"");
                 bldr.append(arg.toString());
-                bldr.append("\" ");
+                bldr.append(" ");
             }
         }
         if (bldr.length() != 0)

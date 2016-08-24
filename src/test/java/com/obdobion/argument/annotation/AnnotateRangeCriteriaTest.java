@@ -11,7 +11,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateRangeCriteriaTest class.</p>
+ * <p>
+ * AnnotateRangeCriteriaTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -28,9 +30,12 @@ public class AnnotateRangeCriteriaTest
     private int     minOnly;
 
     /**
-     * <p>minOnly.</p>
+     * <p>
+     * minOnly.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void minOnly() throws Exception
@@ -42,9 +47,12 @@ public class AnnotateRangeCriteriaTest
     }
 
     /**
-     * <p>minOnlyError.</p>
+     * <p>
+     * minOnlyError.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void minOnlyError() throws Exception
@@ -57,14 +65,17 @@ public class AnnotateRangeCriteriaTest
             Assert.fail("expected exception");
         } catch (final ParseException e)
         {
-            Assert.assertEquals("3 is not valid for integer --minOnly", e.getMessage());
+            Assert.assertEquals("3 is not valid for --minOnly", e.getMessage());
         }
     }
 
     /**
-     * <p>unitializeInstance.</p>
+     * <p>
+     * unitializeInstance.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void unitializeInstance() throws Exception
@@ -76,9 +87,12 @@ public class AnnotateRangeCriteriaTest
     }
 
     /**
-     * <p>unitializePrimative.</p>
+     * <p>
+     * unitializePrimative.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void unitializePrimative() throws Exception

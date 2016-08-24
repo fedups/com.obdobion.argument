@@ -1257,8 +1257,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public String toString()
     {
         final StringBuilder sb = new StringBuilder();
-        asDefinedType(sb);
-        sb.append(" ");
+        // asDefinedType(sb);
+        // sb.append(" ");
         if (keyword != null)
         {
             if (keychar != null)

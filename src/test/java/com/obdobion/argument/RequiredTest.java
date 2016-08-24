@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>RequiredTest class.</p>
+ * <p>
+ * RequiredTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -17,9 +19,12 @@ public class RequiredTest
     int maxUpdates = 0;
 
     /**
-     * <p>requireInteger.</p>
+     * <p>
+     * requireInteger.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void requireInteger() throws Exception
@@ -31,7 +36,7 @@ public class RequiredTest
         } catch (final Exception e)
         {
             Assert.assertEquals(
-                    "missing required parameters: \"integer --maxUpdates\" ",
+                    "missing required parameters: --maxUpdates ",
                     e.getMessage());
         }
     }

@@ -12,7 +12,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateSimpleModifiersTest class.</p>
+ * <p>
+ * AnnotateSimpleModifiersTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -44,9 +46,12 @@ public class AnnotateSimpleModifiersTest
     private Date     formatted;
 
     /**
-     * <p>testAlternateNaming.</p>
+     * <p>
+     * testAlternateNaming.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testAlternateNaming() throws Exception
@@ -66,9 +71,12 @@ public class AnnotateSimpleModifiersTest
     }
 
     /**
-     * <p>testAtLeast2.</p>
+     * <p>
+     * testAtLeast2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testAtLeast2() throws Exception
@@ -86,14 +94,17 @@ public class AnnotateSimpleModifiersTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("insufficient required values for string --atLeastTwo", e.getMessage());
+            Assert.assertEquals("insufficient required values for --atLeastTwo", e.getMessage());
         }
     }
 
     /**
-     * <p>testAtMost2.</p>
+     * <p>
+     * testAtMost2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testAtMost2() throws Exception
@@ -112,9 +123,12 @@ public class AnnotateSimpleModifiersTest
     }
 
     /**
-     * <p>testCaseSensitive.</p>
+     * <p>
+     * testCaseSensitive.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testCaseSensitive() throws Exception
@@ -127,9 +141,12 @@ public class AnnotateSimpleModifiersTest
     }
 
     /**
-     * <p>testDateFormatting.</p>
+     * <p>
+     * testDateFormatting.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testDateFormatting() throws Exception
@@ -147,14 +164,17 @@ public class AnnotateSimpleModifiersTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("date --formatted mm/DD/yyyy: Unparseable date: \"2016\"", e.getMessage());
+            Assert.assertEquals("--formatted mm/DD/yyyy: Unparseable date: \"2016\"", e.getMessage());
         }
     }
 
     /**
-     * <p>testLongName.</p>
+     * <p>
+     * testLongName.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testLongName() throws Exception
@@ -167,9 +187,12 @@ public class AnnotateSimpleModifiersTest
     }
 
     /**
-     * <p>testPostional.</p>
+     * <p>
+     * testPostional.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testPostional() throws Exception
@@ -193,9 +216,12 @@ public class AnnotateSimpleModifiersTest
     }
 
     /**
-     * <p>testShortName.</p>
+     * <p>
+     * testShortName.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void testShortName() throws Exception

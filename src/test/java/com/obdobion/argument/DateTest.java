@@ -9,7 +9,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>DateTest class.</p>
+ * <p>
+ * DateTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -44,9 +46,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsDay.</p>
+     * <p>
+     * dateDirectiveAbsDay.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsDay() throws Exception
@@ -56,9 +61,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsMin.</p>
+     * <p>
+     * dateDirectiveAbsMin.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsMin() throws Exception
@@ -68,9 +76,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsMonth.</p>
+     * <p>
+     * dateDirectiveAbsMonth.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsMonth() throws Exception
@@ -80,9 +91,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsMs.</p>
+     * <p>
+     * dateDirectiveAbsMs.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsMs() throws Exception
@@ -92,9 +106,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsSec.</p>
+     * <p>
+     * dateDirectiveAbsSec.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsSec() throws Exception
@@ -104,9 +121,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveAbsYear.</p>
+     * <p>
+     * dateDirectiveAbsYear.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveAbsYear() throws Exception
@@ -116,9 +136,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveBeginOfYesterday.</p>
+     * <p>
+     * dateDirectiveBeginOfYesterday.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveBeginOfYesterday() throws Exception
@@ -128,9 +151,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveEndOfYesterday.</p>
+     * <p>
+     * dateDirectiveEndOfYesterday.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveEndOfYesterday() throws Exception
@@ -140,9 +166,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusDay.</p>
+     * <p>
+     * dateDirectiveMinusDay.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusDay() throws Exception
@@ -152,9 +181,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusMin.</p>
+     * <p>
+     * dateDirectiveMinusMin.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusMin() throws Exception
@@ -164,9 +196,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusMonth.</p>
+     * <p>
+     * dateDirectiveMinusMonth.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusMonth() throws Exception
@@ -176,9 +211,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusMs.</p>
+     * <p>
+     * dateDirectiveMinusMs.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusMs() throws Exception
@@ -188,9 +226,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusSec.</p>
+     * <p>
+     * dateDirectiveMinusSec.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusSec() throws Exception
@@ -200,9 +241,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusWeekOfYear.</p>
+     * <p>
+     * dateDirectiveMinusWeekOfYear.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusWeekOfYear() throws Exception
@@ -212,9 +256,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveMinusYear.</p>
+     * <p>
+     * dateDirectiveMinusYear.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveMinusYear() throws Exception
@@ -224,9 +271,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveNowMinus5Min.</p>
+     * <p>
+     * dateDirectiveNowMinus5Min.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveNowMinus5Min() throws Exception
@@ -235,9 +285,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusDay.</p>
+     * <p>
+     * dateDirectivePlusDay.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusDay() throws Exception
@@ -247,9 +300,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusMin.</p>
+     * <p>
+     * dateDirectivePlusMin.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusMin() throws Exception
@@ -259,9 +315,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusMonth.</p>
+     * <p>
+     * dateDirectivePlusMonth.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusMonth() throws Exception
@@ -271,9 +330,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusMs.</p>
+     * <p>
+     * dateDirectivePlusMs.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusMs() throws Exception
@@ -283,9 +345,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusSec.</p>
+     * <p>
+     * dateDirectivePlusSec.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusSec() throws Exception
@@ -295,9 +360,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectivePlusYear.</p>
+     * <p>
+     * dateDirectivePlusYear.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectivePlusYear() throws Exception
@@ -307,9 +375,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateDirectiveWithoutAdj.</p>
+     * <p>
+     * dateDirectiveWithoutAdj.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateDirectiveWithoutAdj() throws Exception
@@ -319,9 +390,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveBMin.</p>
+     * <p>
+     * dateTimeDirectiveBMin.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveBMin() throws Exception
@@ -331,9 +405,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveBOD.</p>
+     * <p>
+     * dateTimeDirectiveBOD.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveBOD() throws Exception
@@ -343,9 +420,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveBOM.</p>
+     * <p>
+     * dateTimeDirectiveBOM.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveBOM() throws Exception
@@ -355,9 +435,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveBOY.</p>
+     * <p>
+     * dateTimeDirectiveBOY.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveBOY() throws Exception
@@ -367,9 +450,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveEHour.</p>
+     * <p>
+     * dateTimeDirectiveEHour.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveEHour() throws Exception
@@ -379,9 +465,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveEMin.</p>
+     * <p>
+     * dateTimeDirectiveEMin.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveEMin() throws Exception
@@ -391,9 +480,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveEOD.</p>
+     * <p>
+     * dateTimeDirectiveEOD.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveEOD() throws Exception
@@ -403,9 +495,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveEOM.</p>
+     * <p>
+     * dateTimeDirectiveEOM.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveEOM() throws Exception
@@ -415,9 +510,12 @@ public class DateTest
     }
 
     /**
-     * <p>dateTimeDirectiveEOY.</p>
+     * <p>
+     * dateTimeDirectiveEOY.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void dateTimeDirectiveEOY() throws Exception
@@ -427,7 +525,9 @@ public class DateTest
     }
 
     /**
-     * <p>error.</p>
+     * <p>
+     * error.
+     * </p>
      */
     @Test
     public void error()
@@ -439,14 +539,17 @@ public class DateTest
 
         } catch (final Exception e)
         {
-            Assert.assertEquals("date --date2(-d) yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
+            Assert.assertEquals("--date2(-d) yyyy-MM-dd: Unparseable date: \"2008/04/09\"", e.getMessage());
         }
     }
 
     /**
-     * <p>lastWeekSat.</p>
+     * <p>
+     * lastWeekSat.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void lastWeekSat() throws Exception
@@ -456,9 +559,12 @@ public class DateTest
     }
 
     /**
-     * <p>nextWeekSat.</p>
+     * <p>
+     * nextWeekSat.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void nextWeekSat() throws Exception
@@ -468,9 +574,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_fullTime.</p>
+     * <p>
+     * predefined_fullTime.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_fullTime() throws Exception
@@ -480,9 +589,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_fullTime_underbar.</p>
+     * <p>
+     * predefined_fullTime_underbar.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_fullTime_underbar() throws Exception
@@ -492,9 +604,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_hh.</p>
+     * <p>
+     * predefined_hh.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_hh() throws Exception
@@ -504,9 +619,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_hhmm.</p>
+     * <p>
+     * predefined_hhmm.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_hhmm() throws Exception
@@ -516,9 +634,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_hhmmss.</p>
+     * <p>
+     * predefined_hhmmss.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_hhmmss() throws Exception
@@ -528,9 +649,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_hhmmss_1digit.</p>
+     * <p>
+     * predefined_hhmmss_1digit.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_hhmmss_1digit() throws Exception
@@ -540,9 +664,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_HourOnly.</p>
+     * <p>
+     * predefined_HourOnly.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_HourOnly() throws Exception
@@ -561,9 +688,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_mdy.</p>
+     * <p>
+     * predefined_mdy.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_mdy() throws Exception
@@ -573,9 +703,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_mdy2.</p>
+     * <p>
+     * predefined_mdy2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_mdy2() throws Exception
@@ -585,9 +718,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_now.</p>
+     * <p>
+     * predefined_now.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_now() throws Exception
@@ -606,9 +742,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_TimeOnly.</p>
+     * <p>
+     * predefined_TimeOnly.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_TimeOnly() throws Exception
@@ -627,9 +766,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_today.</p>
+     * <p>
+     * predefined_today.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_today() throws Exception
@@ -641,9 +783,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_ymd.</p>
+     * <p>
+     * predefined_ymd.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_ymd() throws Exception
@@ -653,9 +798,12 @@ public class DateTest
     }
 
     /**
-     * <p>predefined_ymd2.</p>
+     * <p>
+     * predefined_ymd2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void predefined_ymd2() throws Exception
@@ -665,7 +813,9 @@ public class DateTest
     }
 
     /**
-     * <p>predefinedNOT.</p>
+     * <p>
+     * predefinedNOT.
+     * </p>
      */
     @Test
     public void predefinedNOT()
@@ -676,15 +826,18 @@ public class DateTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("date --date(-r) is not in a predefined date / time format (208-04-09)",
+            Assert.assertEquals("--date(-r) is not in a predefined date / time format (208-04-09)",
                     e.getMessage());
         }
     }
 
     /**
-     * <p>thisWeekMon.</p>
+     * <p>
+     * thisWeekMon.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void thisWeekMon() throws Exception
@@ -694,9 +847,12 @@ public class DateTest
     }
 
     /**
-     * <p>thisWeekSat.</p>
+     * <p>
+     * thisWeekSat.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void thisWeekSat() throws Exception
@@ -706,9 +862,12 @@ public class DateTest
     }
 
     /**
-     * <p>valid.</p>
+     * <p>
+     * valid.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void valid() throws Exception
@@ -718,9 +877,12 @@ public class DateTest
     }
 
     /**
-     * <p>validWithTime.</p>
+     * <p>
+     * validWithTime.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void validWithTime() throws Exception

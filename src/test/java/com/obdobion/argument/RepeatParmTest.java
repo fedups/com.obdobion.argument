@@ -8,7 +8,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>RepeatParmTest class.</p>
+ * <p>
+ * RepeatParmTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -35,9 +37,12 @@ public class RepeatParmTest
     public boolean  bool;
 
     /**
-     * <p>repeatedBoolean.</p>
+     * <p>
+     * repeatedBoolean.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void repeatedBoolean() throws Exception
@@ -47,9 +52,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>repeatedMultiple.</p>
+     * <p>
+     * repeatedMultiple.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void repeatedMultiple() throws Exception
@@ -60,9 +68,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>repeatedNonMultiple.</p>
+     * <p>
+     * repeatedNonMultiple.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void repeatedNonMultiple() throws Exception
@@ -75,15 +86,18 @@ public class RepeatParmTest
         {
             Assert.assertEquals(
                     "maxUpdates",
-                    "multiple values not allowed for integer --maxUpdates(-u)",
+                    "multiple values not allowed for --maxUpdates(-u)",
                     e.getMessage());
         }
     }
 
     /**
-     * <p>repeatedPositional.</p>
+     * <p>
+     * repeatedPositional.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void repeatedPositional() throws Exception
@@ -94,9 +108,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>testTurnOffIntegerListOnly.</p>
+     * <p>
+     * testTurnOffIntegerListOnly.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     public void testTurnOffIntegerListOnly() throws Exception
     {
@@ -105,9 +122,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffFirst.</p>
+     * <p>
+     * turnOffFirst.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffFirst() throws Exception
@@ -117,9 +137,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffInteger.</p>
+     * <p>
+     * turnOffInteger.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffInteger() throws Exception
@@ -129,9 +152,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffIntegerList.</p>
+     * <p>
+     * turnOffIntegerList.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffIntegerList() throws Exception
@@ -141,9 +167,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffIntegerListWithDef.</p>
+     * <p>
+     * turnOffIntegerListWithDef.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffIntegerListWithDef() throws Exception
@@ -153,9 +182,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffIntegerOnly.</p>
+     * <p>
+     * turnOffIntegerOnly.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffIntegerOnly() throws Exception
@@ -165,9 +197,12 @@ public class RepeatParmTest
     }
 
     /**
-     * <p>turnOffLast.</p>
+     * <p>
+     * turnOffLast.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void turnOffLast() throws Exception

@@ -11,7 +11,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateRegexCriteriaTest class.</p>
+ * <p>
+ * AnnotateRegexCriteriaTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -22,9 +24,12 @@ public class AnnotateRegexCriteriaTest
     private String stringForRegex;
 
     /**
-     * <p>regex.</p>
+     * <p>
+     * regex.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void regex() throws Exception
@@ -36,9 +41,12 @@ public class AnnotateRegexCriteriaTest
     }
 
     /**
-     * <p>regexNot.</p>
+     * <p>
+     * regexNot.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void regexNot() throws Exception
@@ -52,7 +60,7 @@ public class AnnotateRegexCriteriaTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("AzC is not valid for string --stringForRegex", e.getMessage());
+            Assert.assertEquals("AzC is not valid for --stringForRegex", e.getMessage());
         }
     }
 }

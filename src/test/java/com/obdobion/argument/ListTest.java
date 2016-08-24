@@ -8,7 +8,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>ListTest class.</p>
+ * <p>
+ * ListTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -22,9 +24,12 @@ public class ListTest
     List<String> list;
 
     /**
-     * <p>ambiguousCase0.</p>
+     * <p>
+     * ambiguousCase0.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void ambiguousCase0() throws Exception
@@ -35,14 +40,17 @@ public class ListTest
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("abcd is not valid for string --s(-s)", e.getMessage());
+            Assert.assertEquals("abcd is not valid for --s(-s)", e.getMessage());
         }
     }
 
     /**
-     * <p>ambiguousCase1.</p>
+     * <p>
+     * ambiguousCase1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void ambiguousCase1() throws Exception
@@ -52,9 +60,12 @@ public class ListTest
     }
 
     /**
-     * <p>ambiguousCase2.</p>
+     * <p>
+     * ambiguousCase2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void ambiguousCase2() throws Exception
@@ -64,9 +75,12 @@ public class ListTest
     }
 
     /**
-     * <p>ambiguousCase3.</p>
+     * <p>
+     * ambiguousCase3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void ambiguousCase3() throws Exception
@@ -77,14 +91,17 @@ public class ListTest
             Assert.fail("expected exception");
         } catch (final Exception e)
         {
-            Assert.assertEquals("aB is not valid for string --u(-u)", e.getMessage());
+            Assert.assertEquals("aB is not valid for --u(-u)", e.getMessage());
         }
     }
 
     /**
-     * <p>exact.</p>
+     * <p>
+     * exact.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void exact() throws Exception

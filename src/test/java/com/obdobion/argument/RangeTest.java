@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>RangeTest class.</p>
+ * <p>
+ * RangeTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -23,9 +25,12 @@ public class RangeTest
     String[] string;
 
     /**
-     * <p>floatRange1.</p>
+     * <p>
+     * floatRange1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void floatRange1() throws Exception
@@ -34,9 +39,12 @@ public class RangeTest
     }
 
     /**
-     * <p>floatRange2.</p>
+     * <p>
+     * floatRange2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void floatRange2() throws Exception
@@ -47,14 +55,17 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1.0 is not valid for float --f1", e.getMessage());
+            Assert.assertEquals("-1.0 is not valid for --f1", e.getMessage());
         }
     }
 
     /**
-     * <p>floatRange3.</p>
+     * <p>
+     * floatRange3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void floatRange3() throws Exception
@@ -65,15 +76,18 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1.0E-5 is not valid for float --f1", e.getMessage());
+            Assert.assertEquals("-1.0E-5 is not valid for --f1", e.getMessage());
         }
 
     }
 
     /**
-     * <p>integerRange1.</p>
+     * <p>
+     * integerRange1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void integerRange1() throws Exception
@@ -82,9 +96,12 @@ public class RangeTest
     }
 
     /**
-     * <p>integerRange2.</p>
+     * <p>
+     * integerRange2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void integerRange2() throws Exception
@@ -95,15 +112,18 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1 is not valid for integer --i1", e.getMessage());
+            Assert.assertEquals("-1 is not valid for --i1", e.getMessage());
         }
 
     }
 
     /**
-     * <p>integerRange3.</p>
+     * <p>
+     * integerRange3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void integerRange3() throws Exception
@@ -112,9 +132,12 @@ public class RangeTest
     }
 
     /**
-     * <p>integerRange4.</p>
+     * <p>
+     * integerRange4.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void integerRange4() throws Exception
@@ -125,14 +148,17 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("-1 is not valid for integer --i1", e.getMessage());
+            Assert.assertEquals("-1 is not valid for --i1", e.getMessage());
         }
     }
 
     /**
-     * <p>integerRange5.</p>
+     * <p>
+     * integerRange5.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void integerRange5() throws Exception
@@ -143,15 +169,18 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("1001 is not valid for integer --i1", e.getMessage());
+            Assert.assertEquals("1001 is not valid for --i1", e.getMessage());
         }
 
     }
 
     /**
-     * <p>stringRange1.</p>
+     * <p>
+     * stringRange1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange1() throws Exception
@@ -160,9 +189,12 @@ public class RangeTest
     }
 
     /**
-     * <p>stringRange2.</p>
+     * <p>
+     * stringRange2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange2() throws Exception
@@ -171,9 +203,12 @@ public class RangeTest
     }
 
     /**
-     * <p>stringRange3.</p>
+     * <p>
+     * stringRange3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange3() throws Exception
@@ -184,14 +219,17 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("android is not valid for string --string", e.getMessage());
+            Assert.assertEquals("android is not valid for --string", e.getMessage());
         }
     }
 
     /**
-     * <p>stringRange4.</p>
+     * <p>
+     * stringRange4.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange4() throws Exception
@@ -200,9 +238,12 @@ public class RangeTest
     }
 
     /**
-     * <p>stringRange5.</p>
+     * <p>
+     * stringRange5.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange5() throws Exception
@@ -213,14 +254,17 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("g is not valid for string --string", e.getMessage());
+            Assert.assertEquals("g is not valid for --string", e.getMessage());
         }
     }
 
     /**
-     * <p>stringRange6.</p>
+     * <p>
+     * stringRange6.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange6() throws Exception
@@ -231,14 +275,17 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("a is not valid for string --string", e.getMessage());
+            Assert.assertEquals("a is not valid for --string", e.getMessage());
         }
     }
 
     /**
-     * <p>stringRange7.</p>
+     * <p>
+     * stringRange7.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange7() throws Exception
@@ -247,9 +294,12 @@ public class RangeTest
     }
 
     /**
-     * <p>stringRange8.</p>
+     * <p>
+     * stringRange8.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void stringRange8() throws Exception
@@ -260,7 +310,7 @@ public class RangeTest
             Assert.fail("should have Assert.failed");
         } catch (final Exception e)
         {
-            Assert.assertEquals("famished is not valid for string --string", e.getMessage());
+            Assert.assertEquals("famished is not valid for --string", e.getMessage());
         }
 
     }

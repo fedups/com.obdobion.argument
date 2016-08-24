@@ -8,7 +8,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>MultipleTest class.</p>
+ * <p>
+ * MultipleTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -31,9 +33,12 @@ public class MultipleTest
     StringGroup   stringGroup;
 
     /**
-     * <p>minOnlyFail.</p>
+     * <p>
+     * minOnlyFail.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void minOnlyFail() throws Exception
@@ -45,14 +50,17 @@ public class MultipleTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("insufficient required values for string --stringArray", e.getMessage());
+            Assert.assertEquals("insufficient required values for --stringArray", e.getMessage());
         }
     }
 
     /**
-     * <p>minOnlyFailGroup.</p>
+     * <p>
+     * minOnlyFailGroup.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void minOnlyFailGroup() throws Exception
@@ -64,14 +72,17 @@ public class MultipleTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("insufficient required values for begin --stringGroupMulti", e.getMessage());
+            Assert.assertEquals("insufficient required values for --stringGroupMulti", e.getMessage());
         }
     }
 
     /**
-     * <p>oneOnlyFailGroup.</p>
+     * <p>
+     * oneOnlyFailGroup.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void oneOnlyFailGroup() throws Exception
@@ -83,7 +94,7 @@ public class MultipleTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("multiple values not allowed for begin --stringGroup", e.getMessage());
+            Assert.assertEquals("multiple values not allowed for --stringGroup", e.getMessage());
         }
     }
 }

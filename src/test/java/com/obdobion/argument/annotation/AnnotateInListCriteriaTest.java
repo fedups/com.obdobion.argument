@@ -11,7 +11,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateInListCriteriaTest class.</p>
+ * <p>
+ * AnnotateInListCriteriaTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -25,9 +27,12 @@ public class AnnotateInListCriteriaTest
     private int    intForInList;
 
     /**
-     * <p>inList.</p>
+     * <p>
+     * inList.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void inList() throws Exception
@@ -39,9 +44,12 @@ public class AnnotateInListCriteriaTest
     }
 
     /**
-     * <p>inListInt.</p>
+     * <p>
+     * inListInt.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void inListInt() throws Exception
@@ -53,9 +61,12 @@ public class AnnotateInListCriteriaTest
     }
 
     /**
-     * <p>notInList.</p>
+     * <p>
+     * notInList.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void notInList() throws Exception
@@ -69,14 +80,17 @@ public class AnnotateInListCriteriaTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("azc is not valid for string --stringForInList", e.getMessage());
+            Assert.assertEquals("azc is not valid for --stringForInList", e.getMessage());
         }
     }
 
     /**
-     * <p>notInListInt.</p>
+     * <p>
+     * notInListInt.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void notInListInt() throws Exception
@@ -90,7 +104,7 @@ public class AnnotateInListCriteriaTest
 
         } catch (final ParseException e)
         {
-            Assert.assertEquals("2 is not valid for integer --intForInList", e.getMessage());
+            Assert.assertEquals("2 is not valid for --intForInList", e.getMessage());
         }
     }
 }
