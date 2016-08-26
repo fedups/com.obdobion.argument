@@ -5,7 +5,9 @@ import java.text.ParseException;
 import com.obdobion.algebrain.Equ;
 
 /**
- * <p>EquCLA class.</p>
+ * <p>
+ * EquCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -95,6 +97,13 @@ public class EquCLA extends AbstractCLA<ComparableEqu>
             result[r] = getValue(r).delegate;
 
         return result;
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public boolean supportsCaseSensitive()
+    {
+        return true;
     }
 
     /** {@inheritDoc} */

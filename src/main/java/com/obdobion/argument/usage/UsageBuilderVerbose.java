@@ -1,6 +1,8 @@
 package com.obdobion.argument.usage;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 
 import com.obdobion.argument.CmdLine;
@@ -10,6 +12,7 @@ import com.obdobion.argument.type.ByteCLA;
 import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.EnumCLA;
 import com.obdobion.argument.type.ICmdLineArg;
+import com.obdobion.calendar.TemporalHelper;
 
 /**
  * <p>
@@ -243,6 +246,10 @@ public class UsageBuilderVerbose extends UsageBuilder
                     append(" ");
                     if (dv instanceof Byte)
                         append(ByteCLA.asLiteral(((Byte) dv).byteValue()));
+                    else if (dv instanceof Calendar)
+                        append(TemporalHelper.outputSDF.format(((Calendar) dv).getTime()));
+                    else if (dv instanceof Date)
+                        append(TemporalHelper.outputSDF.format((Date) dv));
                     else
                         append(dv.toString());
                 }

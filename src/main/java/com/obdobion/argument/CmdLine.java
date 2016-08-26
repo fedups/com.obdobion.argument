@@ -20,9 +20,7 @@ import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.annotation.Arg;
 import com.obdobion.argument.annotation.Args;
 import com.obdobion.argument.criteria.ICmdLineArgCriteria;
-import com.obdobion.argument.directive.DateDirective;
-import com.obdobion.argument.directive.DateTimeDirective;
-import com.obdobion.argument.directive.TimeDirective;
+import com.obdobion.argument.directive.EquDirective;
 import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 import com.obdobion.argument.input.NamespaceParser;
@@ -1597,13 +1595,9 @@ public class CmdLine implements ICmdLine, Cloneable
         final String data = originalInput.substring(originalInputStart, originalInputEnd + 1);
 
         final String directiveName = tokens[directiveIdx].getValue().toLowerCase();
-        if ("_date".equals(directiveName))
-            return new DateDirective(data).replaceToken(tokens, parmStart, parmEnd);
-        if ("_datetime".equals(directiveName))
-            return new DateTimeDirective(data).replaceToken(tokens, parmStart, parmEnd);
-        if ("_time".equals(directiveName))
-            return new TimeDirective(data).replaceToken(tokens, parmStart, parmEnd);
-        throw new ParseException("Unknown Directive: " + tokens[directiveIdx], 0);
+        if ("_".equals(directiveName) || "=".equals(directiveName))
+            return new EquDirective(data).replaceToken(tokens, parmStart, parmEnd);
+        throw new ParseException("Unknown directive: " + tokens[directiveIdx], 0);
     }
 
     /** {@inheritDoc} */
@@ -1930,7 +1924,9 @@ public class CmdLine implements ICmdLine, Cloneable
                 {
                     /*
                      * A Parser directive always starts with an underscore. It
-                     * must be followed by ().
+                     * must be followed by (). It can also be a single '='
+                     * followed immediately by a '('. This indicates an
+                     * equation.
                      */
                     tokens[t].setUsed(true);
                     /*

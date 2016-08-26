@@ -3,10 +3,13 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+
+import com.obdobion.calendar.TemporalHelper;
 
 /**
- * <p>CalendarCLA class.</p>
+ * <p>
+ * CalendarCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -20,9 +23,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
             throws ParseException
     {
         if (sdf == null)
-            if (getFormat() == null)
-                TemporalHelper.createPredefinedDateFormats();
-            else
+            if (getFormat() != null)
                 try
                 {
                     sdf = new SimpleDateFormat(getFormat());
@@ -31,10 +32,14 @@ public class CalendarCLA extends AbstractCLA<Calendar>
                     throw new ParseException("date format: " + e.getMessage(), 0);
                 }
 
-        if (sdf == null)
-            return parseWithPredefinedParsers(valueStr);
         try
         {
+            if (sdf == null)
+            {
+                final Calendar cal = Calendar.getInstance();
+                cal.setTime(TemporalHelper.parseWithPredefinedParsers(valueStr));
+                return cal;
+            }
             final Calendar cal = Calendar.getInstance();
             cal.setTime(sdf.parse(valueStr));
             return cal;
@@ -58,7 +63,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         synchronized (TemporalHelper.outputSDF)
         {
             out.append('"');
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
             out.append('"');
         }
     }
@@ -71,7 +76,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         {
             out.append(prefix);
             out.append("=");
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
             out.append("\n");
         }
     }
@@ -82,7 +87,7 @@ public class CalendarCLA extends AbstractCLA<Calendar>
     {
         synchronized (TemporalHelper.outputSDF)
         {
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
         }
     }
 
@@ -105,48 +110,11 @@ public class CalendarCLA extends AbstractCLA<Calendar>
         return result;
     }
 
-    /**
-     * <p>parseSpecialDate.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     * @return a {@link java.util.Calendar} object.
-     */
-    protected Calendar parseSpecialDate(final String pattern)
+    /** {@inheritDoc} */
+    @Override
+    public boolean supportsCaseSensitive()
     {
-        if (TemporalHelper.specialAlgoTODAY.equalsIgnoreCase(pattern))
-        {
-            final Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-            return cal;
-        }
-        if (TemporalHelper.specialAlgoNOW.equalsIgnoreCase(pattern))
-            return Calendar.getInstance();
-        return Calendar.getInstance();
-    }
-
-    Calendar parseWithPredefinedParsers(final String valueStr) throws ParseException
-    {
-        for (int f = 0; f < TemporalHelper.predefinedMat.length; f++)
-        {
-            if (TemporalHelper.predefinedMat[f] == null)
-                continue;
-            TemporalHelper.predefinedMat[f].reset(valueStr);
-            if (TemporalHelper.predefinedMat[f].matches())
-            {
-                if (TemporalHelper.predefinedFmt[f] == null)
-                    return parseSpecialDate(TemporalHelper.predefinedAlg[f]);
-                final Date date = TemporalHelper.predefinedFmt[f].parse(valueStr);
-                final Calendar cal = Calendar.getInstance();
-                cal.setTime(date);
-                return cal;
-            }
-        }
-        throw new ParseException(
-                toString() + " is not in a predefined date / time format (" + valueStr + ")",
-                0);
+        return true;
     }
 
     /** {@inheritDoc} */

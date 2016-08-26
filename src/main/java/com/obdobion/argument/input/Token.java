@@ -6,7 +6,9 @@ import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * <p>Token class.</p>
+ * <p>
+ * Token class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -23,10 +25,14 @@ public class Token
     private String     cachedWordCommand;
 
     /**
-     * <p>Constructor for Token.</p>
+     * <p>
+     * Constructor for Token.
+     * </p>
      *
-     * @param _commandPrefix a char.
-     * @param _value a {@link java.lang.String} object.
+     * @param _commandPrefix
+     *            a char.
+     * @param _value
+     *            a {@link java.lang.String} object.
      */
     public Token(final char _commandPrefix, final String _value)
     {
@@ -34,13 +40,20 @@ public class Token
     }
 
     /**
-     * <p>Constructor for Token.</p>
+     * <p>
+     * Constructor for Token.
+     * </p>
      *
-     * @param _commandPrefix a char.
-     * @param _value a {@link java.lang.String} object.
-     * @param startIndex a int.
-     * @param endIndex a int.
-     * @param forceLiteral a boolean.
+     * @param _commandPrefix
+     *            a char.
+     * @param _value
+     *            a {@link java.lang.String} object.
+     * @param startIndex
+     *            a int.
+     * @param endIndex
+     *            a int.
+     * @param forceLiteral
+     *            a boolean.
      */
     public Token(
             final char _commandPrefix,
@@ -50,30 +63,32 @@ public class Token
             final boolean forceLiteral)
     {
         super();
-        this.commandPrefix = _commandPrefix;
-        this.value = _value;
-        this.used = false;
-        this.inputStartX = startIndex;
-        this.inputEndX = endIndex - 1;
+        commandPrefix = _commandPrefix;
+        value = _value;
+        used = false;
+        inputStartX = startIndex;
+        inputEndX = endIndex - 1;
 
         if (forceLiteral)
-            this.literal = true;
+            literal = true;
         else if (!isParserDirective())
             switch (dashes())
             {
             case 1:
-                this.charCommand = true;
+                charCommand = true;
                 break;
             case 2:
-                this.wordCommand = true;
+                wordCommand = true;
                 break;
             default:
-                this.literal = true;
+                literal = true;
             }
     }
 
     /**
-     * <p>charCommand.</p>
+     * <p>
+     * charCommand.
+     * </p>
      *
      * @return a char.
      */
@@ -99,7 +114,9 @@ public class Token
     }
 
     /**
-     * <p>Getter for the field <code>inputEndX</code>.</p>
+     * <p>
+     * Getter for the field <code>inputEndX</code>.
+     * </p>
      *
      * @return a int.
      */
@@ -109,7 +126,9 @@ public class Token
     }
 
     /**
-     * <p>Getter for the field <code>inputStartX</code>.</p>
+     * <p>
+     * Getter for the field <code>inputStartX</code>.
+     * </p>
      *
      * @return a int.
      */
@@ -119,7 +138,9 @@ public class Token
     }
 
     /**
-     * <p>Getter for the field <code>value</code>.</p>
+     * <p>
+     * Getter for the field <code>value</code>.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
@@ -129,7 +150,9 @@ public class Token
     }
 
     /**
-     * <p>Getter for the field <code>wordCommand</code>.</p>
+     * <p>
+     * Getter for the field <code>wordCommand</code>.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
@@ -145,7 +168,9 @@ public class Token
     }
 
     /**
-     * <p>isCharCommand.</p>
+     * <p>
+     * isCharCommand.
+     * </p>
      *
      * @return a boolean.
      */
@@ -155,9 +180,12 @@ public class Token
     }
 
     /**
-     * <p>isCharCommand.</p>
+     * <p>
+     * isCharCommand.
+     * </p>
      *
-     * @param argDef a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param argDef
+     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @return a boolean.
      */
     public boolean isCharCommand(final ICmdLineArg<?> argDef)
@@ -166,7 +194,9 @@ public class Token
     }
 
     /**
-     * <p>isCommand.</p>
+     * <p>
+     * isCommand.
+     * </p>
      *
      * @return a boolean.
      */
@@ -176,7 +206,9 @@ public class Token
     }
 
     /**
-     * <p>isGroupEnd.</p>
+     * <p>
+     * isGroupEnd.
+     * </p>
      *
      * @return a boolean.
      */
@@ -188,7 +220,9 @@ public class Token
     }
 
     /**
-     * <p>isGroupStart.</p>
+     * <p>
+     * isGroupStart.
+     * </p>
      *
      * @return a boolean.
      */
@@ -200,7 +234,9 @@ public class Token
     }
 
     /**
-     * <p>isIncludeFile.</p>
+     * <p>
+     * isIncludeFile.
+     * </p>
      *
      * @return a boolean.
      */
@@ -212,7 +248,9 @@ public class Token
     }
 
     /**
-     * <p>isLiteral.</p>
+     * <p>
+     * isLiteral.
+     * </p>
      *
      * @return a boolean.
      */
@@ -222,21 +260,27 @@ public class Token
     }
 
     /**
-     * <p>isParserDirective.</p>
+     * <p>
+     * isParserDirective.
+     * </p>
      *
      * @return a boolean.
      */
     public boolean isParserDirective()
     {
         if (getValue() == null || isCommand() || getValue().length() == 0)
-        {
             return false;
-        }
-        return getValue().charAt(0) == '_';
+        if (getValue().charAt(0) == '_')
+            return true;
+        if (getValue().length() == 1 && getValue().charAt(0) == '=')
+            return true;
+        return false;
     }
 
     /**
-     * <p>isUsed.</p>
+     * <p>
+     * isUsed.
+     * </p>
      *
      * @return a boolean.
      */
@@ -246,7 +290,9 @@ public class Token
     }
 
     /**
-     * <p>isWordCommand.</p>
+     * <p>
+     * isWordCommand.
+     * </p>
      *
      * @return a boolean.
      */
@@ -256,9 +302,12 @@ public class Token
     }
 
     /**
-     * <p>isWordCommand.</p>
+     * <p>
+     * isWordCommand.
+     * </p>
      *
-     * @param argDef a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param argDef
+     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @return a boolean.
      */
     public boolean isWordCommand(final ICmdLineArg<?> argDef)
@@ -292,7 +341,9 @@ public class Token
     }
 
     /**
-     * <p>remainderValue.</p>
+     * <p>
+     * remainderValue.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
@@ -310,7 +361,9 @@ public class Token
     }
 
     /**
-     * <p>removeCharCommand.</p>
+     * <p>
+     * removeCharCommand.
+     * </p>
      */
     public void removeCharCommand()
     {
@@ -330,33 +383,42 @@ public class Token
     }
 
     /**
-     * <p>Setter for the field <code>literal</code>.</p>
+     * <p>
+     * Setter for the field <code>literal</code>.
+     * </p>
      *
-     * @param _literal a boolean.
+     * @param _literal
+     *            a boolean.
      */
     protected void setLiteral(final boolean _literal)
     {
-        this.literal = _literal;
+        literal = _literal;
     }
 
     /**
-     * <p>Setter for the field <code>used</code>.</p>
+     * <p>
+     * Setter for the field <code>used</code>.
+     * </p>
      *
-     * @param _used a boolean.
+     * @param _used
+     *            a boolean.
      */
     public void setUsed(final boolean _used)
     {
-        this.used = _used;
+        used = _used;
     }
 
     /**
-     * <p>Setter for the field <code>value</code>.</p>
+     * <p>
+     * Setter for the field <code>value</code>.
+     * </p>
      *
-     * @param _value a {@link java.lang.String} object.
+     * @param _value
+     *            a {@link java.lang.String} object.
      */
     protected void setValue(final String _value)
     {
-        this.value = _value;
+        value = _value;
     }
 
     /** {@inheritDoc} */

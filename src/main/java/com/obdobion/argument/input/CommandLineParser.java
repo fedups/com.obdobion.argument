@@ -48,13 +48,19 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param allowEmbeddedCommandPrefix a boolean.
-     * @param args a {@link java.io.File} object.
+     * @param commandPrefix
+     *            a char.
+     * @param allowEmbeddedCommandPrefix
+     *            a boolean.
+     * @param args
+     *            a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
-     * @throws java.io.IOException if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     static public IParserInput getInstance(
             final char commandPrefix,
@@ -70,11 +76,16 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param allowEmbeddedCommandPrefix a boolean.
-     * @param args a {@link java.lang.String} object.
+     * @param commandPrefix
+     *            a char.
+     * @param allowEmbeddedCommandPrefix
+     *            a boolean.
+     * @param args
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
      */
     static public IParserInput getInstance(
@@ -96,12 +107,17 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param args a {@link java.io.File} object.
+     * @param commandPrefix
+     *            a char.
+     * @param args
+     *            a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
-     * @throws java.io.IOException if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     static public IParserInput getInstance(
             final char commandPrefix,
@@ -112,10 +128,14 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param args a {@link java.lang.String} object.
+     * @param commandPrefix
+     *            a char.
+     * @param args
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
      */
     static public IParserInput getInstance(
@@ -126,9 +146,12 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
-     * @param args a {@link java.util.List} object.
+     * @param args
+     *            a {@link java.util.List} object.
      * @return a {@link java.lang.String} object.
      */
     static public String unparseTokens(
@@ -140,10 +163,14 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
-     * @param args a {@link java.util.List} object.
-     * @param out a {@link java.lang.StringBuilder} object.
+     * @param args
+     *            a {@link java.util.List} object.
+     * @param out
+     *            a {@link java.lang.StringBuilder} object.
      */
     static public void unparseTokens(
             final List<ICmdLineArg<?>> args,
@@ -191,6 +218,13 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
         {
             prevChar = thisChar;
             thisChar = commandLine.charAt(scanX);
+            char nextChar = ' ';
+            /*
+             * Look ahead one char if possible
+             */
+            if (scanX < commandLine.length() - 2)
+                nextChar = commandLine.charAt(scanX + 1);
+
             if (inToken)
             {
                 if (delim != ' ' && thisChar == delim)
@@ -202,85 +236,81 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                             true));
                     part.delete(0, part.length());
                     inToken = false;
+                } else /*
+                        * As long as we are not in a quoted literal then we want
+                        * to split the token if any of these conditions are
+                        * true.
+                        */
+                if (delim == ' '
+                        && (Character.isWhitespace(thisChar)
+                                || thisChar == '('
+                                || thisChar == ')'
+                                || thisChar == '['
+                                || thisChar == ']'
+                                || thisChar == ';'
+                                || thisChar == ','
+                                || thisChar == '"'
+                                || thisChar == '\''
+                                /*
+                                 * = is whitespace unless it is followed by an
+                                 * open paren, then it is an equation directive
+                                 */
+                                || (thisChar == '=' && nextChar != '(')
+                                /*
+                                 * Make sure to allow double dashes at the
+                                 * beginning of a token, the second one is
+                                 * technically not an embedded dash.
+                                 */
+                                || (!allowEmbeddedCommandPrefix
+                                        && thisChar == commandPrefix
+                                        && prevChar != commandPrefix)
+                                        /*
+                                         * Even if we are allowing embedded
+                                         * tokens we don't want to allow double
+                                         * dashes within a token, only at the
+                                         * beginning. A double dash will
+                                         * indicate that a new token should be
+                                         * started instead.
+                                         */
+                                || (allowEmbeddedCommandPrefix
+                                        && thisChar == commandPrefix
+                                        && nextChar == commandPrefix)
+                                        /*
+                                         * An embedded dash will cause a new
+                                         * token if the current token started
+                                         * with a single dash
+                                         */
+                                || (thisChar == commandPrefix
+                                        && part.length() > 1
+                                        && part.charAt(0) == commandPrefix
+                                        && part.charAt(1) != commandPrefix)))
+                {
+                    boolean forceLiteral = false;
+                    /*
+                     * Single char commands can not be a number. This allows
+                     * negative numbers to be entered without escaping them or
+                     * surrounding them with delimiters.
+                     */
+                    if (part.length() > 1)
+                        if (part.charAt(0) == commandPrefix
+                                && Character.isDigit(part.charAt(1)))
+                            forceLiteral = true;
+                    tokens.add(new Token(commandPrefix,
+                            part.toString(),
+                            startX,
+                            scanX,
+                            forceLiteral));
+                    part.delete(0, part.length());
+                    /*
+                     * rescan char
+                     */
+                    --scanX;
+                    inToken = false;
                 } else
                 {
-                    char nextChar = ' ';
-                    /*
-                     * Look ahead one char if possible
-                     */
-                    if (scanX < commandLine.length() - 2)
-                        nextChar = commandLine.charAt(scanX + 1);
-                    /*
-                     * As long as we are not in a quoted literal then we want to
-                     * split the token if any of these conditions are true.
-                     */
-                    if (delim == ' '
-                            && (Character.isWhitespace(thisChar)
-                                    || thisChar == '('
-                                    || thisChar == ')'
-                                    || thisChar == '['
-                                    || thisChar == ']'
-                                    || thisChar == ';'
-                                    || thisChar == ','
-                                    || thisChar == '='
-                                    || thisChar == '"'
-                                    || thisChar == '\''
-                                    /*
-                                     * Make sure to allow double dashes at the
-                                     * beginning of a token, the second one is
-                                     * technically not an embedded dash.
-                                     */
-                                    || (!allowEmbeddedCommandPrefix
-                                            && thisChar == commandPrefix
-                                            && prevChar != commandPrefix)
-                                            /*
-                                             * Even if we are allowing embedded
-                                             * tokens we don't want to allow
-                                             * double dashes within a token,
-                                             * only at the beginning. A double
-                                             * dash will indicate that a new
-                                             * token should be started instead.
-                                             */
-                                    || (allowEmbeddedCommandPrefix
-                                            && thisChar == commandPrefix
-                                            && nextChar == commandPrefix)
-                                            /*
-                                             * An embedded dash will cause a new
-                                             * token if the current token
-                                             * started with a single dash
-                                             */
-                                    || (thisChar == commandPrefix
-                                            && part.length() > 1
-                                            && part.charAt(0) == commandPrefix
-                                            && part.charAt(1) != commandPrefix)))
-                    {
-                        boolean forceLiteral = false;
-                        /*
-                         * Single char commands can not be a number. This allows
-                         * negative numbers to be entered without escaping them
-                         * or surrounding them with delimiters.
-                         */
-                        if (part.length() > 1)
-                            if (part.charAt(0) == commandPrefix
-                                    && Character.isDigit(part.charAt(1)))
-                                forceLiteral = true;
-                        tokens.add(new Token(commandPrefix,
-                                part.toString(),
-                                startX,
-                                scanX,
-                                forceLiteral));
-                        part.delete(0, part.length());
-                        /*
-                         * rescan char
-                         */
-                        --scanX;
-                        inToken = false;
-                    } else
-                    {
-                        if (thisChar == '\\')
-                            thisChar = commandLine.charAt(++scanX);
-                        part.append(thisChar);
-                    }
+                    if (thisChar == '\\')
+                        thisChar = commandLine.charAt(++scanX);
+                    part.append(thisChar);
                 }
             } else
             {
@@ -293,7 +323,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
                         || thisChar == ':'
                         || thisChar == ';'
                         || thisChar == ','
-                        || thisChar == '=')
+                        || (thisChar == '=' && nextChar != '('))
                     continue;
                 if (thisChar == '(' || thisChar == ')' || thisChar == '[' || thisChar == ']')
                 {

@@ -17,7 +17,9 @@ import com.obdobion.argument.annotation.AnnotateStandardClassesTest;
 import com.obdobion.argument.annotation.AnnotateSubparserTest;
 
 /**
- * <p>MasterSuite class.</p>
+ * <p>
+ * MasterSuite class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -49,7 +51,7 @@ import com.obdobion.argument.annotation.AnnotateSubparserTest;
         CmdLineTest.class,
         CriteriaTest.class,
         DashingTest.class,
-        DateTest.class,
+        DirectiveTest.class,
         CalendarTest.class,
         EnumTest.class,
         EquTest.class,

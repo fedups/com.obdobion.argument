@@ -39,6 +39,9 @@ public class CalendarTest
     @Arg
     Calendar       calArg;
 
+    @Arg(caseSensitive = true, defaultValues = "now")
+    Calendar       calForHelp;
+
     @Arg
     Calendar[]     calArray;
 
@@ -46,9 +49,12 @@ public class CalendarTest
     List<Calendar> calList;
 
     /**
-     * <p>arrays.</p>
+     * <p>
+     * arrays.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void arrays() throws Exception
@@ -59,9 +65,33 @@ public class CalendarTest
     }
 
     /**
-     * <p>lists.</p>
+     * <p>
+     * helpDefaultNow.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     */
+    @Test
+    public void helpDefaultNow() throws Exception
+    {
+        CmdLine.load(this, "--help");
+    }
+
+    @Test
+    public void json() throws Exception
+    {
+        CmdLine.load(this, "--calarg '2016-03-24T11:19:52.000-05'");
+        assertValidReturnDate(calArg, 2016, Calendar.MARCH, 24, 11, 19, 52, 0);
+    }
+
+    /**
+     * <p>
+     * lists.
+     * </p>
+     *
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void lists() throws Exception
@@ -72,9 +102,12 @@ public class CalendarTest
     }
 
     /**
-     * <p>simpleUse.</p>
+     * <p>
+     * simpleUse.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
      */
     @Test
     public void simpleUse() throws Exception

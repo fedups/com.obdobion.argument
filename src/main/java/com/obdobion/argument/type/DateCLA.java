@@ -2,11 +2,14 @@ package com.obdobion.argument.type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
+import com.obdobion.calendar.TemporalHelper;
+
 /**
- * <p>DateCLA class.</p>
+ * <p>
+ * DateCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -20,9 +23,7 @@ public class DateCLA extends AbstractCLA<Date>
             throws ParseException
     {
         if (sdf == null)
-            if (getFormat() == null)
-                TemporalHelper.createPredefinedDateFormats();
-            else
+            if (getFormat() != null)
                 try
                 {
                     sdf = new SimpleDateFormat(getFormat());
@@ -31,10 +32,10 @@ public class DateCLA extends AbstractCLA<Date>
                     throw new ParseException("date format: " + e.getMessage(), 0);
                 }
 
-        if (sdf == null)
-            return parseWithPredefinedParsers(valueStr);
         try
         {
+            if (sdf == null)
+                return TemporalHelper.parseWithPredefinedParsers(valueStr);
             return sdf.parse(valueStr);
         } catch (final Exception e)
         {
@@ -103,45 +104,11 @@ public class DateCLA extends AbstractCLA<Date>
         return result;
     }
 
-    /**
-     * <p>parseSpecialDate.</p>
-     *
-     * @param pattern a {@link java.lang.String} object.
-     * @return a {@link java.util.Date} object.
-     */
-    protected Date parseSpecialDate(final String pattern)
+    /** {@inheritDoc} */
+    @Override
+    public boolean supportsCaseSensitive()
     {
-        if (TemporalHelper.specialAlgoTODAY.equalsIgnoreCase(pattern))
-        {
-            final Calendar cal = Calendar.getInstance();
-            cal.set(Calendar.HOUR_OF_DAY, 0);
-            cal.set(Calendar.MINUTE, 0);
-            cal.set(Calendar.SECOND, 0);
-            cal.set(Calendar.MILLISECOND, 0);
-            return cal.getTime();
-        }
-        if (TemporalHelper.specialAlgoNOW.equalsIgnoreCase(pattern))
-            return new Date();
-        return new Date();
-    }
-
-    Date parseWithPredefinedParsers(final String valueStr) throws ParseException
-    {
-        for (int f = 0; f < TemporalHelper.predefinedMat.length; f++)
-        {
-            if (TemporalHelper.predefinedMat[f] == null)
-                continue;
-            TemporalHelper.predefinedMat[f].reset(valueStr);
-            if (TemporalHelper.predefinedMat[f].matches())
-            {
-                if (TemporalHelper.predefinedFmt[f] == null)
-                    return parseSpecialDate(TemporalHelper.predefinedAlg[f]);
-                return TemporalHelper.predefinedFmt[f].parse(valueStr);
-            }
-        }
-        throw new ParseException(
-                toString() + " is not in a predefined date / time format (" + valueStr + ")",
-                0);
+        return true;
     }
 
     /** {@inheritDoc} */
