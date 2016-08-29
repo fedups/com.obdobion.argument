@@ -2,8 +2,10 @@ package com.obdobion.argument.type;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 
+import com.obdobion.calendar.CalendarFactory;
 import com.obdobion.calendar.TemporalHelper;
 
 /**
@@ -35,7 +37,10 @@ public class DateCLA extends AbstractCLA<Date>
         try
         {
             if (sdf == null)
-                return TemporalHelper.parseWithPredefinedParsers(valueStr);
+            {
+                final LocalDateTime ldt = TemporalHelper.parseWithPredefinedParsers(valueStr);
+                return new Date(CalendarFactory.asDateLong(ldt));
+            }
             return sdf.parse(valueStr);
         } catch (final Exception e)
         {

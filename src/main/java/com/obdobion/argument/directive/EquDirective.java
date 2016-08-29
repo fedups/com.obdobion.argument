@@ -2,8 +2,8 @@ package com.obdobion.argument.directive;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,9 +46,9 @@ public class EquDirective extends DirectiveCommand
         {
             Object equResult;
             equResult = equ.evaluate(data);
-            if (equResult instanceof Calendar)
-                resultAsATokenValue = new SimpleDateFormat("yyyy/MM/dd@HH:mm:ss.SSS")
-                        .format(((Calendar) equResult).getTime());
+            if (equResult instanceof LocalDateTime)
+                resultAsATokenValue = DateTimeFormatter.ofPattern("yyyy/MM/dd@HH:mm:ss.SSS")
+                        .format((LocalDateTime) equResult);
             else
                 resultAsATokenValue = equResult.toString();
 
