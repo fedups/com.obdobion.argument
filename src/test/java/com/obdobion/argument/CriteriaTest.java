@@ -32,6 +32,7 @@ public class CriteriaTest
      * <p>rangeAndList.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void rangeAndList() throws Exception
@@ -53,6 +54,7 @@ public class CriteriaTest
      * <p>rangeAndMatches.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void rangeAndMatches() throws Exception

@@ -36,6 +36,7 @@ public class AnnotateRangeCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void minOnly() throws Exception
@@ -53,6 +54,7 @@ public class AnnotateRangeCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void minOnlyError() throws Exception
@@ -76,6 +78,7 @@ public class AnnotateRangeCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void unitializeInstance() throws Exception
@@ -93,6 +96,7 @@ public class AnnotateRangeCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void unitializePrimative() throws Exception

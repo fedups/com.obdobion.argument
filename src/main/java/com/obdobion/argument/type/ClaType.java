@@ -3,6 +3,11 @@ package com.obdobion.argument.type;
 import java.io.File;
 import java.lang.reflect.Field;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Pattern;
@@ -11,7 +16,9 @@ import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>ClaType class.</p>
+ * <p>
+ * ClaType class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -23,8 +30,13 @@ public enum ClaType
     DOUBLE("double", DoubleCLA.class),
     FLOAT("float", FloatCLA.class),
     PATTERN("pattern", PatternCLA.class),
+    DATETIMEFORMATTER("datetimeformatter", DateTimeFormatterCLA.class),
+    SIMPLEDATEFORMAT("simpledateformat", SimpleDateFormatCLA.class),
     DATE("date", DateCLA.class),
     CALENDAR("calendar", CalendarCLA.class),
+    LOCALDATETIME("localdatetime", LocalDateTimeCLA.class),
+    LOCALDATE("localdate", LocalDateCLA.class),
+    LOCALTIME("localtime", LocalTimeCLA.class),
     LONG("long", LongCLA.class),
     ENUM("enum", EnumCLA.class),
     INTEGER("integer", IntegerCLA.class),
@@ -37,10 +49,14 @@ public enum ClaType
     POJO("pojo", PojoCLA.class);
 
     /**
-     * <p>forField.</p>
+     * <p>
+     * forField.
+     * </p>
      *
-     * @param field a {@link java.lang.reflect.Field} object.
-     * @param argAnnotation a {@link com.obdobion.argument.annotation.Arg} object.
+     * @param field
+     *            a {@link java.lang.reflect.Field} object.
+     * @param argAnnotation
+     *            a {@link com.obdobion.argument.annotation.Arg} object.
      * @return a {@link com.obdobion.argument.type.ClaType} object.
      */
     static public ClaType forField(final Field field, final Arg argAnnotation)
@@ -87,6 +103,14 @@ public enum ClaType
                 || fieldType == Pattern[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<java.util.regex.Pattern>"))
             return PATTERN;
+        if (fieldType == DateTimeFormatter.class
+                || fieldType == DateTimeFormatter[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.time.format.DateTimeFormatter>"))
+            return DATETIMEFORMATTER;
+        if (fieldType == SimpleDateFormat.class
+                || fieldType == SimpleDateFormat[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.text.SimpleDateFormat>"))
+            return SIMPLEDATEFORMAT;
         if (fieldType == Date.class
                 || fieldType == Date[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<java.util.Date>"))
@@ -95,6 +119,18 @@ public enum ClaType
                 || fieldType == Calendar[].class
                 || field.getGenericType().getTypeName().equals("java.util.List<java.util.Calendar>"))
             return CALENDAR;
+        if (fieldType == LocalDateTime.class
+                || fieldType == LocalDateTime[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.time.LocalDateTime>"))
+            return LOCALDATETIME;
+        if (fieldType == LocalDate.class
+                || fieldType == LocalDate[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.time.LocalDate>"))
+            return LOCALDATE;
+        if (fieldType == LocalTime.class
+                || fieldType == LocalTime[].class
+                || field.getGenericType().getTypeName().equals("java.util.List<java.time.LocalTime>"))
+            return LOCALTIME;
         if (fieldType.isEnum()
         // || (fieldType.isArray() && fieldType.getComponentType().isEnum())
         )
@@ -151,13 +187,19 @@ public enum ClaType
     }
 
     /**
-     * <p>argumentInstance.</p>
+     * <p>
+     * argumentInstance.
+     * </p>
      *
-     * @param commandPrefix a char.
-     * @param keychar a char.
-     * @param keyword a {@link java.lang.String} object.
+     * @param commandPrefix
+     *            a char.
+     * @param keychar
+     *            a char.
+     * @param keyword
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     public ICmdLineArg<?> argumentInstance(final char commandPrefix, final char keychar, final String keyword)
             throws ParseException
@@ -181,7 +223,9 @@ public enum ClaType
     }
 
     /**
-     * <p>Getter for the field <code>typeName</code>.</p>
+     * <p>
+     * Getter for the field <code>typeName</code>.
+     * </p>
      *
      * @return a {@link java.lang.Object} object.
      */

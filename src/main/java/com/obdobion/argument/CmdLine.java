@@ -6,6 +6,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +50,7 @@ import com.obdobion.argument.variables.VariablePuller;
  */
 public class CmdLine implements ICmdLine, Cloneable
 {
+    /** Constant <code>ClassLoader</code> */
     static public ClassLoader  ClassLoader         = CmdLine.class.getClassLoader();
 
     final static Logger        logger              = LoggerFactory.getLogger(CmdLine.class);
@@ -1022,12 +1028,23 @@ public class CmdLine implements ICmdLine, Cloneable
         cmdline.add(sysgen);
 
         sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, MinHelpCommandName, null);
-        sysgen.setHelp("Show help message.");
+        sysgen.setHelp("Show a help message.");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
-
         sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, commandPrefix, MaxHelpCommandName);
-        sysgen.setHelp("Show full help message.");
+        sysgen.setHelp("Show a very abbreviated help message.");
+        sysgen.setSystemGenerated(true);
+        cmdline.add(sysgen);
+        sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, commandPrefix, MaxHelpCommandName + ":1");
+        sysgen.setHelp("Show a help message.");
+        sysgen.setSystemGenerated(true);
+        cmdline.add(sysgen);
+        sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, commandPrefix, MaxHelpCommandName + ":2");
+        sysgen.setHelp("Show a brief description with the help message.");
+        sysgen.setSystemGenerated(true);
+        cmdline.add(sysgen);
+        sysgen = ClaType.BOOLEAN.argumentInstance(commandPrefix, commandPrefix, MaxHelpCommandName + ":3");
+        sysgen.setHelp("Show the most detailed help message.");
         sysgen.setSystemGenerated(true);
         cmdline.add(sysgen);
     }
@@ -1461,6 +1478,22 @@ public class CmdLine implements ICmdLine, Cloneable
 
     /** {@inheritDoc} */
     @Override
+    public DateTimeFormatter getValueAsDateTimeFormatter() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + toString() + " in a DateTimeFormatter", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DateTimeFormatter[] getValueAsDateTimeFormatterArray() throws ParseException
+    {
+        // should not be called.
+        throw new ParseException("invalid to store " + toString() + " in a DateTimeFormatter[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public double[] getValueAsdoubleArray() throws ParseException
     {
         // should not be called.
@@ -1533,6 +1566,27 @@ public class CmdLine implements ICmdLine, Cloneable
 
     /** {@inheritDoc} */
     @Override
+    public LocalDate[] getValueAsLocalDateArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + toString() + " in a LocalDate[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LocalDateTime[] getValueAsLocalDateTimeArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + toString() + " in a LocalDateTime[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LocalTime[] getValueAsLocalTimeArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + toString() + " in a LocalTime[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public long[] getValueAslongArray() throws ParseException
     {
         // should not be called.
@@ -1561,6 +1615,20 @@ public class CmdLine implements ICmdLine, Cloneable
     {
         // should not be called.
         throw new ParseException("invalid to store " + toString() + " in a Pattern[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SimpleDateFormat getValueAsSimpleDateFormat() throws ParseException
+    {
+        throw new ParseException("invalid to store " + toString() + " in a SimpleDateFormat", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SimpleDateFormat[] getValueAsSimpleDateFormatArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + toString() + " in a SimpleDateFormat[]", 0);
     }
 
     /** {@inheritDoc} */
@@ -1758,14 +1826,29 @@ public class CmdLine implements ICmdLine, Cloneable
      */
     public boolean isUsageRun()
     {
+        boolean isUr = false;
+
         ICmdLineArg<?> arg = arg("" + commandPrefix + MinHelpCommandName);
-        boolean usageRun = arg != null && arg.isParsed();
-        if (!usageRun)
-        {
-            arg = arg("" + commandPrefix + commandPrefix + MaxHelpCommandName);
-            usageRun = arg != null && arg.isParsed();
-        }
-        return usageRun;
+        isUr = arg != null && arg.isParsed();
+        if (isUr)
+            return true;
+
+        arg = arg("" + commandPrefix + commandPrefix + MaxHelpCommandName);
+        isUr = arg != null && arg.isParsed();
+        if (isUr)
+            return true;
+
+        arg = arg("" + commandPrefix + commandPrefix + MaxHelpCommandName + ":1");
+        isUr = arg != null && arg.isParsed();
+        if (isUr)
+            return true;
+
+        arg = arg("" + commandPrefix + commandPrefix + MaxHelpCommandName + ":2");
+        isUr = arg != null && arg.isParsed();
+        if (isUr)
+            return true;
+
+        return false;
     }
 
     /**
@@ -2046,12 +2129,25 @@ public class CmdLine implements ICmdLine, Cloneable
                             final BooleanCLA arg = (BooleanCLA) args.get(args.size() - 1);
                             if (arg.getKeychar() != null && arg.getKeychar() == MinHelpCommandName)
                             {
-                                System.out.println(UsageBuilder.getWriter(this, false).toString());
+                                System.out.println(UsageBuilder.getWriter(this, 1).toString());
                                 return;
                             }
-                            if (arg.getKeyword() != null && arg.getKeyword().equalsIgnoreCase(MaxHelpCommandName))
+                            if (arg.getKeyword() != null
+                                    && arg.getKeyword().equalsIgnoreCase(MaxHelpCommandName))
                             {
-                                System.out.println(UsageBuilder.getWriter(this, true).toString());
+                                System.out.println(UsageBuilder.getWriter(this, 3).toString());
+                                return;
+                            }
+                            if (arg.getKeyword() != null
+                                    && arg.getKeyword().equalsIgnoreCase(MaxHelpCommandName + ":1"))
+                            {
+                                System.out.println(UsageBuilder.getWriter(this, 1).toString());
+                                return;
+                            }
+                            if (arg.getKeyword() != null
+                                    && arg.getKeyword().equalsIgnoreCase(MaxHelpCommandName + ":2"))
+                            {
+                                System.out.println(UsageBuilder.getWriter(this, 2).toString());
                                 return;
                             }
                         }

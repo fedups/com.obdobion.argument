@@ -54,6 +54,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void camelCapConvertsToNull() throws Exception
@@ -69,6 +70,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void camelCaps() throws Exception
@@ -84,6 +86,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void camelCapsWithNumber() throws Exception
@@ -99,6 +102,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void caseSensitivity() throws Exception
@@ -114,6 +118,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void enumListValidation() throws Exception
@@ -129,6 +134,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void invalidEnum() throws Exception
@@ -151,6 +157,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void tooManyCamelCaps() throws Exception
@@ -173,6 +180,7 @@ public class EnumTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void validEnum() throws Exception

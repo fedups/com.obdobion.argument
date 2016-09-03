@@ -26,6 +26,7 @@ public class IncludeTest
      * @param specs a {@link java.lang.String} object.
      * @return a {@link java.io.File} object.
      * @throws java.io.IOException if any.
+     * @since 4.3.1
      */
     static public File createSpecFile(final String specs) throws IOException
     {
@@ -51,6 +52,7 @@ public class IncludeTest
      * <p>includeExactPath.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void includeExactPath() throws Exception
@@ -73,6 +75,7 @@ public class IncludeTest
      * <p>includeNotFoundNotQuoted.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void includeNotFoundNotQuoted() throws Exception
@@ -91,6 +94,7 @@ public class IncludeTest
      * <p>includeNotFoundQuoted.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void includeNotFoundQuoted() throws Exception
@@ -109,6 +113,7 @@ public class IncludeTest
      * <p>includeNotFoundWithSpace.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void includeNotFoundWithSpace()
@@ -128,6 +133,7 @@ public class IncludeTest
      * <p>includeUsingDefaultPath.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void includeUsingDefaultPath() throws Exception

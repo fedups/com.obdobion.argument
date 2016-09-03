@@ -9,7 +9,9 @@ import com.obdobion.argument.CmdLineTest.GroupMaster.Grouping;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>CmdLineTest class.</p>
+ * <p>
+ * CmdLineTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -170,9 +172,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>booleanConcats1.</p>
+     * <p>
+     * booleanConcats1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void booleanConcats1() throws Exception
@@ -186,9 +192,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>booleanConcats2.</p>
+     * <p>
+     * booleanConcats2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void booleanConcats2() throws Exception
@@ -202,9 +212,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>booleanConcats3.</p>
+     * <p>
+     * booleanConcats3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void booleanConcats3() throws Exception
@@ -218,9 +232,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>booleanConcats4.</p>
+     * <p>
+     * booleanConcats4.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void booleanConcats4() throws Exception
@@ -234,9 +252,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>booleanConcats5.</p>
+     * <p>
+     * booleanConcats5.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void booleanConcats5() throws Exception
@@ -250,9 +272,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>cPlusPlusName.</p>
+     * <p>
+     * cPlusPlusName.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void cPlusPlusName() throws Exception
@@ -263,9 +289,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>dashDoubleDash1.</p>
+     * <p>
+     * dashDoubleDash1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void dashDoubleDash1() throws Exception
@@ -277,9 +307,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>dashDoubleDash2.</p>
+     * <p>
+     * dashDoubleDash2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void dashDoubleDash2() throws Exception
@@ -291,9 +325,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>dashDoubleDash3.</p>
+     * <p>
+     * dashDoubleDash3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void dashDoubleDash3() throws Exception
@@ -305,9 +343,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>equalsOnCharCommand.</p>
+     * <p>
+     * equalsOnCharCommand.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void equalsOnCharCommand() throws Exception
@@ -320,9 +362,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>equalsOnWordCommands1.</p>
+     * <p>
+     * equalsOnWordCommands1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void equalsOnWordCommands1() throws Exception
@@ -333,9 +379,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>equalsOnWordCommands2.</p>
+     * <p>
+     * equalsOnWordCommands2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void equalsOnWordCommands2() throws Exception
@@ -348,9 +398,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>grouping.</p>
+     * <p>
+     * grouping.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void grouping() throws Exception
@@ -362,9 +416,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>groupingGroups.</p>
+     * <p>
+     * groupingGroups.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void groupingGroups() throws Exception
@@ -377,9 +435,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>integers.</p>
+     * <p>
+     * integers.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void integers() throws Exception
@@ -393,9 +455,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>longs.</p>
+     * <p>
+     * longs.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void longs() throws Exception
@@ -409,9 +475,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>multiValuedString1.</p>
+     * <p>
+     * multiValuedString1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void multiValuedString1() throws Exception
@@ -422,9 +492,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>multiValuedString2.</p>
+     * <p>
+     * multiValuedString2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void multiValuedString2() throws Exception
@@ -436,9 +510,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>multiValuedString3.</p>
+     * <p>
+     * multiValuedString3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void multiValuedString3() throws Exception
@@ -451,9 +529,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>numberInAKeyWordIsOK.</p>
+     * <p>
+     * numberInAKeyWordIsOK.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void numberInAKeyWordIsOK() throws Exception
@@ -469,9 +551,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>numericKeyCharIsBad.</p>
+     * <p>
+     * numericKeyCharIsBad.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void numericKeyCharIsBad() throws Exception
@@ -488,9 +574,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>numericKeyCharIsBad2.</p>
+     * <p>
+     * numericKeyCharIsBad2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void numericKeyCharIsBad2() throws Exception
@@ -507,9 +597,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>parmed1.</p>
+     * <p>
+     * parmed1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parmed1() throws Exception
@@ -523,9 +617,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>parmed2.</p>
+     * <p>
+     * parmed2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parmed2() throws Exception
@@ -539,9 +637,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>parmed3.</p>
+     * <p>
+     * parmed3.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parmed3() throws Exception
@@ -555,9 +657,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>parmed4.</p>
+     * <p>
+     * parmed4.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parmed4() throws Exception
@@ -571,9 +677,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>patternMatching1.</p>
+     * <p>
+     * patternMatching1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void patternMatching1() throws Exception
@@ -585,9 +695,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>patternMatching2.</p>
+     * <p>
+     * patternMatching2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void patternMatching2() throws Exception
@@ -600,9 +714,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>positionalBooleans.</p>
+     * <p>
+     * positionalBooleans.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void positionalBooleans() throws Exception
@@ -617,9 +735,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>testBoolean1.</p>
+     * <p>
+     * testBoolean1.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testBoolean1() throws Exception
@@ -634,9 +756,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>testBoolean2.</p>
+     * <p>
+     * testBoolean2.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testBoolean2() throws Exception
@@ -651,9 +777,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>testDouble.</p>
+     * <p>
+     * testDouble.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testDouble() throws Exception
@@ -667,9 +797,13 @@ public class CmdLineTest
     }
 
     /**
-     * <p>testFloat.</p>
+     * <p>
+     * testFloat.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testFloat() throws Exception

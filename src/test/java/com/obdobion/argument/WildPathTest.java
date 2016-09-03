@@ -17,6 +17,7 @@ public class WildPathTest
      * <p>startingPathAbsolute.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathAbsolute() throws Exception
@@ -29,6 +30,7 @@ public class WildPathTest
      * <p>startingPathAbsoluteWildcards.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathAbsoluteWildcards() throws Exception
@@ -41,6 +43,7 @@ public class WildPathTest
      * <p>startingPathQuestionmarkWildcards.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathQuestionmarkWildcards() throws Exception
@@ -61,6 +64,7 @@ public class WildPathTest
      * <p>startingPathRelative.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathRelative() throws Exception
@@ -73,6 +77,7 @@ public class WildPathTest
      * <p>startingPathRelativeWildcards.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathRelativeWildcards() throws Exception
@@ -85,6 +90,7 @@ public class WildPathTest
      * <p>startingPathStarWildcards.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void startingPathStarWildcards() throws Exception

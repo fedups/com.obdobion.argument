@@ -27,6 +27,8 @@ public class ByteCLATest
 
     /**
      * <p>Constructor for ByteCLATest.</p>
+     *
+     * @since 4.3.1
      */
     public ByteCLATest()
     {
@@ -36,6 +38,7 @@ public class ByteCLATest
      * <p>byteArrayObject.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void byteArrayObject() throws Exception
@@ -53,6 +56,7 @@ public class ByteCLATest
      * <p>byteArrayPrimitive.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void byteArrayPrimitive() throws Exception
@@ -71,6 +75,7 @@ public class ByteCLATest
      * <p>hexLiteral.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void hexLiteral() throws Exception
@@ -88,6 +93,7 @@ public class ByteCLATest
      * <p>singleByteAlpha.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteAlpha() throws Exception
@@ -101,6 +107,7 @@ public class ByteCLATest
      * <p>singleByteBadData.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteBadData() throws Exception
@@ -122,6 +129,7 @@ public class ByteCLATest
      * <p>singleByteNegative.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteNegative() throws Exception
@@ -135,6 +143,7 @@ public class ByteCLATest
      * <p>singleByteNumericMax.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteNumericMax() throws Exception
@@ -148,6 +157,7 @@ public class ByteCLATest
      * <p>singleByteNumericMin.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteNumericMin() throws Exception
@@ -161,6 +171,7 @@ public class ByteCLATest
      * <p>singleByteObject.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteObject() throws Exception
@@ -174,6 +185,7 @@ public class ByteCLATest
      * <p>singleByteSingleDigit.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteSingleDigit() throws Exception
@@ -187,6 +199,7 @@ public class ByteCLATest
      * <p>singleByteSingleDigitAlpha.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteSingleDigitAlpha() throws Exception
@@ -200,6 +213,7 @@ public class ByteCLATest
      * <p>singleByteTooBig.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleByteTooBig() throws Exception

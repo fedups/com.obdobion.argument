@@ -152,6 +152,8 @@ public class AnnotateAllTypesTest
 
     /**
      * <p>testAllDefaultValues.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void testAllDefaultValues()
@@ -221,6 +223,8 @@ public class AnnotateAllTypesTest
 
     /**
      * <p>testAllSpecifiedValues.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void testAllSpecifiedValues()
@@ -400,6 +404,8 @@ public class AnnotateAllTypesTest
 
     /**
      * <p>testUsage.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void testUsage()

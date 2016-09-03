@@ -2,14 +2,16 @@ package com.obdobion.argument.directive;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.input.Token;
+import com.obdobion.calendar.TemporalHelper;
 
 /**
  * This class parses phrases that will be used to run an equation. That result
@@ -47,9 +49,15 @@ public class EquDirective extends DirectiveCommand
             Object equResult;
             equResult = equ.evaluate(data);
             if (equResult instanceof LocalDateTime)
-                resultAsATokenValue = DateTimeFormatter.ofPattern("yyyy/MM/dd@HH:mm:ss.SSS")
-                        .format((LocalDateTime) equResult);
-            else
+            {
+                final LocalDateTime ldt = (LocalDateTime) equResult;
+                if (ldt.toLocalDate().equals(LocalDate.MIN))
+                    resultAsATokenValue = TemporalHelper.getOutputTF().format(ldt);
+                else if (ldt.toLocalTime().equals(LocalTime.MIN))
+                    resultAsATokenValue = TemporalHelper.getOutputDF().format(ldt);
+                else
+                    resultAsATokenValue = TemporalHelper.getOutputDTF().format(ldt);
+            } else
                 resultAsATokenValue = equResult.toString();
 
         } catch (final Exception e)

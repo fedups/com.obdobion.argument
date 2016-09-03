@@ -1,5 +1,6 @@
 package com.obdobion.argument;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -37,16 +38,19 @@ public class CalendarTest
     }
 
     @Arg
-    Calendar       calArg;
+    SimpleDateFormat formatter;
+
+    @Arg
+    Calendar         calArg;
 
     @Arg(caseSensitive = true, defaultValues = "now")
-    Calendar       calForHelp;
+    Calendar         calForHelp;
 
     @Arg
-    Calendar[]     calArray;
+    Calendar[]       calArray;
 
     @Arg
-    List<Calendar> calList;
+    List<Calendar>   calList;
 
     /**
      * <p>
@@ -55,6 +59,7 @@ public class CalendarTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void arrays() throws Exception
@@ -66,11 +71,29 @@ public class CalendarTest
 
     /**
      * <p>
+     * arrays.
+     * </p>
+     *
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
+     */
+    @Test
+    public void formatter() throws Exception
+    {
+        CmdLine.load(this, "--format 'MMM 22, yyyy HH:mm' --calArray '2016/08/06' '2016/08/06@14:18'");
+        Assert.assertEquals("Aug 22, 2016 00:00", formatter.format(calArray[0].getTime()));
+        Assert.assertEquals("Aug 22, 2016 14:18", formatter.format(calArray[1].getTime()));
+    }
+
+    /**
+     * <p>
      * helpDefaultNow.
      * </p>
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void helpDefaultNow() throws Exception
@@ -78,6 +101,15 @@ public class CalendarTest
         CmdLine.load(this, "--help");
     }
 
+    /**
+     * <p>
+     * json.
+     * </p>
+     *
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.4
+     */
     @Test
     public void json() throws Exception
     {
@@ -92,6 +124,7 @@ public class CalendarTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void lists() throws Exception
@@ -108,6 +141,7 @@ public class CalendarTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void simpleUse() throws Exception

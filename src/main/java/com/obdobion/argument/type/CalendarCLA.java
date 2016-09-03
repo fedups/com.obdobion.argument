@@ -64,10 +64,10 @@ public class CalendarCLA extends AbstractCLA<Calendar>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
             out.append('"');
-            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ).getTime()));
             out.append('"');
         }
     }
@@ -76,11 +76,11 @@ public class CalendarCLA extends AbstractCLA<Calendar>
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
             out.append(prefix);
             out.append("=");
-            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ).getTime()));
             out.append("\n");
         }
     }
@@ -89,9 +89,9 @@ public class CalendarCLA extends AbstractCLA<Calendar>
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
-            out.append(TemporalHelper.outputSDF.format(getValue(occ).getTime()));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ).getTime()));
         }
     }
 

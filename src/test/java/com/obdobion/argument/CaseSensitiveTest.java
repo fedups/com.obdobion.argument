@@ -26,6 +26,7 @@ public class CaseSensitiveTest
      * <p>caseDoesNotMatter1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseDoesNotMatter1() throws Exception
@@ -39,6 +40,7 @@ public class CaseSensitiveTest
      * <p>caseDoesNotMatter2.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseDoesNotMatter2() throws Exception
@@ -52,6 +54,7 @@ public class CaseSensitiveTest
      * <p>caseDoesNotMatter3.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseDoesNotMatter3() throws Exception
@@ -65,6 +68,7 @@ public class CaseSensitiveTest
      * <p>caseDoesNotMatter4.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseDoesNotMatter4() throws Exception
@@ -78,6 +82,7 @@ public class CaseSensitiveTest
      * <p>caseMattersValid1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseMattersValid1() throws Exception
@@ -91,6 +96,7 @@ public class CaseSensitiveTest
      * <p>caseMattersValid2.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void caseMattersValid2() throws Exception
@@ -104,6 +110,7 @@ public class CaseSensitiveTest
      * <p>extendingPartialSelectionWhenCaseDoesNotMatter.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void extendingPartialSelectionWhenCaseDoesNotMatter() throws Exception
@@ -117,6 +124,7 @@ public class CaseSensitiveTest
      * <p>extendingPartialSelectionWhenCaseMatters.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void extendingPartialSelectionWhenCaseMatters() throws Exception

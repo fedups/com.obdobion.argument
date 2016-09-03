@@ -25,6 +25,7 @@ public class RequiredTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void requireInteger() throws Exception

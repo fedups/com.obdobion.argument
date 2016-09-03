@@ -29,6 +29,7 @@ public class NumbersTest
      * <p>negativeIntegers.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegers() throws Exception
@@ -42,6 +43,7 @@ public class NumbersTest
      * <p>negativeIntegersViaKeyCharEqualSign.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegersViaKeyCharEqualSign() throws Exception
@@ -54,6 +56,7 @@ public class NumbersTest
      * <p>negativeIntegersViaKeyCharNoDelim.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegersViaKeyCharNoDelim() throws Exception
@@ -66,6 +69,7 @@ public class NumbersTest
      * <p>negativeIntegersViaKeyWord.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegersViaKeyWord() throws Exception
@@ -78,6 +82,7 @@ public class NumbersTest
      * <p>negativeIntegersViaKeyWordWithEmbeddedDash.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegersViaKeyWordWithEmbeddedDash() throws Exception
@@ -90,6 +95,7 @@ public class NumbersTest
      * <p>negativeIntegersViaKeyWordWithEmbeddedDashShortened.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negativeIntegersViaKeyWordWithEmbeddedDashShortened() throws Exception
@@ -102,6 +108,7 @@ public class NumbersTest
      * <p>positiveIntegers.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void positiveIntegers() throws Exception
@@ -115,6 +122,7 @@ public class NumbersTest
      * <p>positiveIntegersNoSpace.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void positiveIntegersNoSpace() throws Exception

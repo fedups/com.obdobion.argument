@@ -23,6 +23,7 @@ public class WindowsTest
      * <p>compact.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void compact() throws Exception
@@ -36,6 +37,7 @@ public class WindowsTest
      * <p>negate.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negate() throws Exception
@@ -49,6 +51,7 @@ public class WindowsTest
      * <p>simple.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void simple() throws Exception

@@ -8,6 +8,12 @@ import org.junit.Test;
 
 import com.obdobion.argument.annotation.Arg;
 
+/**
+ * <p>DirectiveTest class.</p>
+ *
+ * @author Chris DeGreef fedupforone@gmail.com
+ * @since 4.3.1
+ */
 public class DirectiveTest
 {
     @Arg
@@ -25,6 +31,12 @@ public class DirectiveTest
     @Arg
     String strVar;
 
+    /**
+     * <p>asDate.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void asDate() throws Exception
     {
@@ -32,6 +44,12 @@ public class DirectiveTest
         assertValidReturnDate(2008, Calendar.APRIL, 3, 0, 0, 0, 0);
     }
 
+    /**
+     * <p>asFloat.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void asFloat() throws Exception
     {
@@ -39,6 +57,12 @@ public class DirectiveTest
         Assert.assertEquals(2400.24F, floatVar, 0);
     }
 
+    /**
+     * <p>asInt.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void asInt() throws Exception
     {
@@ -46,6 +70,12 @@ public class DirectiveTest
         Assert.assertEquals(2400, intVar);
     }
 
+    /**
+     * <p>asLong.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void asLong() throws Exception
     {
@@ -73,6 +103,12 @@ public class DirectiveTest
         Assert.assertEquals(millisecond, cal.get(Calendar.MILLISECOND));
     }
 
+    /**
+     * <p>asString.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void asString() throws Exception
     {
@@ -80,6 +116,12 @@ public class DirectiveTest
         Assert.assertEquals("abyz", strVar);
     }
 
+    /**
+     * <p>equalSignAsASpecialEquDirective.</p>
+     *
+     * @throws java.lang.Exception if any.
+     * @since 4.3.4
+     */
     @Test
     public void equalSignAsASpecialEquDirective() throws Exception
     {

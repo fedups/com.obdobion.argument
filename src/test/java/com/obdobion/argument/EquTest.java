@@ -7,7 +7,9 @@ import com.obdobion.algebrain.Equ;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>EquTest class.</p>
+ * <p>
+ * EquTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -18,9 +20,13 @@ public class EquTest
     public Equ equ;
 
     /**
-     * <p>parensEquationsWithDot.</p>
+     * <p>
+     * parensEquationsWithDot.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parensEquationsWithDot() throws Exception
@@ -30,9 +36,13 @@ public class EquTest
     }
 
     /**
-     * <p>parensEquationsWithEscape.</p>
+     * <p>
+     * parensEquationsWithEscape.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parensEquationsWithEscape() throws Exception
@@ -42,9 +52,13 @@ public class EquTest
     }
 
     /**
-     * <p>parensEquationsWithSet.</p>
+     * <p>
+     * parensEquationsWithSet.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void parensEquationsWithSet() throws Exception
@@ -54,9 +68,13 @@ public class EquTest
     }
 
     /**
-     * <p>quotedEquation.</p>
+     * <p>
+     * quotedEquation.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void quotedEquation() throws Exception
@@ -66,14 +84,18 @@ public class EquTest
     }
 
     /**
-     * <p>simpleEquation.</p>
+     * <p>
+     * simpleEquation.
+     * </p>
      *
-     * @throws java.lang.Exception if any.
+     * @throws java.lang.Exception
+     *             if any.
+     * @since 4.3.1
      */
     @Test
     public void simpleEquation() throws Exception
     {
         CmdLine.load(this, "-e'2+3'");
-        Assert.assertEquals(5.0, (Double) equ.evaluate(), 0D);
+        Assert.assertEquals(5, ((Long) equ.evaluate()).intValue());
     }
 }

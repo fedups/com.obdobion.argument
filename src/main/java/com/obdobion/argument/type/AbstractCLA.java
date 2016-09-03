@@ -3,6 +3,11 @@ package com.obdobion.argument.type;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,6 +47,15 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     /** Constant <code>newline="System.getProperty(line.separator)"</code> */
     public static String         newline         = System.getProperty("line.separator");
 
+    /**
+     * <p>
+     * createCamelCapVersionOfKeyword.
+     * </p>
+     *
+     * @param _keyword
+     *            a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String createCamelCapVersionOfKeyword(final String _keyword)
     {
         if (_keyword == null || _keyword.trim().length() == 0)
@@ -56,6 +70,15 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
         return sb.toString();
     }
 
+    /**
+     * <p>
+     * createMetaphoneVersionOfKeyword.
+     * </p>
+     *
+     * @param _keyword
+     *            a {@link java.lang.String} object.
+     * @return a {@link java.lang.String} object.
+     */
     static public String createMetaphoneVersionOfKeyword(final String _keyword)
     {
         if (_keyword == null || _keyword.trim().length() == 0)
@@ -539,6 +562,20 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     /** {@inheritDoc} */
     @Override
+    public DateTimeFormatter getValueAsDateTimeFormatter() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a DateTimeFormatter", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public DateTimeFormatter[] getValueAsDateTimeFormatterArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a DateTimeFormatter[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public double[] getValueAsdoubleArray() throws ParseException
     {
         throw new ParseException("invalid to store " + this.toString() + " in an double[]", 0);
@@ -602,6 +639,27 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
 
     /** {@inheritDoc} */
     @Override
+    public LocalDate[] getValueAsLocalDateArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a LocalDate[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LocalDateTime[] getValueAsLocalDateTimeArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a LocalDateTime[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public LocalTime[] getValueAsLocalTimeArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a LocalTime[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public long[] getValueAslongArray() throws ParseException
     {
         throw new ParseException("invalid to store " + this.toString() + " in an long[]", 0);
@@ -626,6 +684,20 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
     public Pattern[] getValueAsPatternArray() throws ParseException
     {
         throw new ParseException("invalid to store " + this.toString() + " in a Pattern[]", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SimpleDateFormat getValueAsSimpleDateFormat() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a SimpleDateFormat", 0);
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public SimpleDateFormat[] getValueAsSimpleDateFormatArray() throws ParseException
+    {
+        throw new ParseException("invalid to store " + this.toString() + " in a SimpleDateFormat[]", 0);
     }
 
     /** {@inheritDoc} */

@@ -31,6 +31,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void floatRange1() throws Exception
@@ -45,6 +46,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void floatRange2() throws Exception
@@ -66,6 +68,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void floatRange3() throws Exception
@@ -88,6 +91,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void integerRange1() throws Exception
@@ -102,6 +106,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void integerRange2() throws Exception
@@ -124,6 +129,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void integerRange3() throws Exception
@@ -138,6 +144,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void integerRange4() throws Exception
@@ -159,6 +166,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void integerRange5() throws Exception
@@ -181,6 +189,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange1() throws Exception
@@ -195,6 +204,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange2() throws Exception
@@ -209,6 +219,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange3() throws Exception
@@ -230,6 +241,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange4() throws Exception
@@ -244,6 +256,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange5() throws Exception
@@ -265,6 +278,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange6() throws Exception
@@ -286,6 +300,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange7() throws Exception
@@ -300,6 +315,7 @@ public class RangeTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.4
      */
     @Test
     public void stringRange8() throws Exception

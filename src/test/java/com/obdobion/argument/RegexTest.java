@@ -26,6 +26,8 @@ public class RegexTest
 
     /**
      * <p>Constructor for RegexTest.</p>
+     *
+     * @since 4.3.1
      */
     public RegexTest()
     {
@@ -36,6 +38,7 @@ public class RegexTest
      * <p>invalidRegex.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void invalidRegex() throws Exception
@@ -54,6 +57,7 @@ public class RegexTest
      * <p>validRegex.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void validRegex() throws Exception
@@ -70,6 +74,7 @@ public class RegexTest
      * <p>validRegexArrayCaseDoesNotMatter.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void validRegexArrayCaseDoesNotMatter() throws Exception
@@ -86,6 +91,7 @@ public class RegexTest
      * <p>validRegexArrayCaseMatters.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void validRegexArrayCaseMatters() throws Exception
@@ -102,6 +108,7 @@ public class RegexTest
      * <p>validRegexArrayCaseMattersA.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void validRegexArrayCaseMattersA() throws Exception

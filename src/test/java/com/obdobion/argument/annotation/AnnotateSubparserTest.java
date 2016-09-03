@@ -55,6 +55,7 @@ public class AnnotateSubparserTest
      * <p>testDefaults.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testDefaults() throws Exception
@@ -69,6 +70,7 @@ public class AnnotateSubparserTest
      * <p>testUsage.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testUsage() throws Exception
@@ -82,6 +84,7 @@ public class AnnotateSubparserTest
      * <p>testValues.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testValues() throws Exception

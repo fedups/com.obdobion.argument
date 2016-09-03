@@ -68,6 +68,7 @@ public class AnnotateFactoryCreationTests
      * <p>listWithFactory.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void listWithFactory() throws Exception
@@ -84,6 +85,7 @@ public class AnnotateFactoryCreationTests
      * <p>testNoParmOnFactory.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testNoParmOnFactory() throws Exception
@@ -100,6 +102,7 @@ public class AnnotateFactoryCreationTests
      * <p>testParmOnFactory.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testParmOnFactory() throws Exception

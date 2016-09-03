@@ -23,6 +23,7 @@ public class AbbreviationTest
      * <p>exactMatchOnShorterOtherwiseAmbiguous1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void exactMatchOnShorterOtherwiseAmbiguous1() throws Exception
@@ -35,6 +36,7 @@ public class AbbreviationTest
      * <p>exactMatchOnShorterOtherwiseAmbiguous2.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void exactMatchOnShorterOtherwiseAmbiguous2() throws Exception

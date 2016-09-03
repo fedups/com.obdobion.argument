@@ -52,6 +52,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testAlternateNaming() throws Exception
@@ -77,6 +78,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testAtLeast2() throws Exception
@@ -105,6 +107,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testAtMost2() throws Exception
@@ -129,6 +132,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testCaseSensitive() throws Exception
@@ -147,6 +151,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testDateFormatting() throws Exception
@@ -175,6 +180,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testLongName() throws Exception
@@ -193,6 +199,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testPostional() throws Exception
@@ -222,6 +229,7 @@ public class AnnotateSimpleModifiersTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void testShortName() throws Exception

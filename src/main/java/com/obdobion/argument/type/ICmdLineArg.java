@@ -3,6 +3,11 @@ package com.obdobion.argument.type;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -13,929 +18,1345 @@ import com.obdobion.argument.criteria.ICmdLineArgCriteria;
 import com.obdobion.argument.input.Token;
 
 /**
- * <p>ICmdLineArg interface.</p>
+ * <p>
+ * ICmdLineArg interface.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
 public interface ICmdLineArg<E>
 {
     /**
-     * <p>applyDefaults.</p>
+     * <p>
+     * applyDefaults.
+     * </p>
      */
     void applyDefaults();
 
     /**
-     * <p>asDefinedType.</p>
+     * <p>
+     * asDefinedType.
+     * </p>
      *
-     * @param sb a {@link java.lang.StringBuilder} object.
+     * @param sb
+     *            a {@link java.lang.StringBuilder} object.
      */
     void asDefinedType(StringBuilder sb);
 
     /**
-     * <p>asEnum.</p>
+     * <p>
+     * asEnum.
+     * </p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param possibleConstants an array of {@link java.lang.Object} objects.
+     * @param name
+     *            a {@link java.lang.String} object.
+     * @param possibleConstants
+     *            an array of {@link java.lang.Object} objects.
      * @return a {@link java.lang.Object} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Object asEnum(String name, Object[] possibleConstants) throws ParseException;
 
     /**
-     * <p>asEnumArray.</p>
+     * <p>
+     * asEnumArray.
+     * </p>
      *
-     * @param name a {@link java.lang.String} object.
-     * @param possibleConstants an array of {@link java.lang.Object} objects.
+     * @param name
+     *            a {@link java.lang.String} object.
+     * @param possibleConstants
+     *            an array of {@link java.lang.Object} objects.
      * @return an array of {@link java.lang.Object} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Object[] asEnumArray(String name, Object[] possibleConstants) throws ParseException;
 
     /**
-     * <p>clone.</p>
+     * <p>
+     * clone.
+     * </p>
      *
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.lang.CloneNotSupportedException if any.
+     * @throws java.lang.CloneNotSupportedException
+     *             if any.
      */
     ICmdLineArg<E> clone() throws CloneNotSupportedException;
 
     /**
-     * <p>convert.</p>
+     * <p>
+     * convert.
+     * </p>
      *
-     * @param valueStr a {@link java.lang.String} object.
+     * @param valueStr
+     *            a {@link java.lang.String} object.
      * @return a E object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     E convert(String valueStr) throws ParseException, IOException;
 
     /**
-     * <p>convert.</p>
+     * <p>
+     * convert.
+     * </p>
      *
-     * @param valueStr a {@link java.lang.String} object.
-     * @param caseSensitive a boolean.
-     * @param target a {@link java.lang.Object} object.
+     * @param valueStr
+     *            a {@link java.lang.String} object.
+     * @param caseSensitive
+     *            a boolean.
+     * @param target
+     *            a {@link java.lang.Object} object.
      * @return a E object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     E convert(String valueStr, boolean caseSensitive, Object target) throws ParseException, IOException;
 
     /**
-     * <p>defaultInstanceClass.</p>
+     * <p>
+     * defaultInstanceClass.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String defaultInstanceClass();
 
     /**
-     * <p>dontAllowCamelCaps.</p>
+     * <p>
+     * dontAllowCamelCaps.
+     * </p>
      */
     void dontAllowCamelCaps();
 
     /**
-     * <p>exportCommandLine.</p>
+     * <p>
+     * exportCommandLine.
+     * </p>
      *
-     * @param file a {@link java.io.File} object.
-     * @throws java.io.IOException if any.
+     * @param file
+     *            a {@link java.io.File} object.
+     * @throws java.io.IOException
+     *             if any.
      */
     void exportCommandLine(File file) throws IOException;
 
     /**
-     * <p>exportCommandLine.</p>
+     * <p>
+     * exportCommandLine.
+     * </p>
      *
-     * @param str a {@link java.lang.StringBuilder} object.
+     * @param str
+     *            a {@link java.lang.StringBuilder} object.
      */
     void exportCommandLine(StringBuilder str);
 
     /**
-     * <p>exportNamespace.</p>
+     * <p>
+     * exportNamespace.
+     * </p>
      *
-     * @param file a {@link java.io.File} object.
-     * @throws java.io.IOException if any.
+     * @param file
+     *            a {@link java.io.File} object.
+     * @throws java.io.IOException
+     *             if any.
      */
     void exportNamespace(File file) throws IOException;
 
     /**
-     * <p>exportNamespace.</p>
+     * <p>
+     * exportNamespace.
+     * </p>
      *
-     * @param prefix a {@link java.lang.String} object.
-     * @param str a {@link java.lang.StringBuilder} object.
+     * @param prefix
+     *            a {@link java.lang.String} object.
+     * @param str
+     *            a {@link java.lang.StringBuilder} object.
      */
     void exportNamespace(String prefix, StringBuilder str);
 
     /**
-     * <p>exportXml.</p>
+     * <p>
+     * exportXml.
+     * </p>
      *
-     * @param tag a {@link java.lang.String} object.
-     * @param file a {@link java.io.File} object.
-     * @throws java.io.IOException if any.
+     * @param tag
+     *            a {@link java.lang.String} object.
+     * @param file
+     *            a {@link java.io.File} object.
+     * @throws java.io.IOException
+     *             if any.
      */
     void exportXml(String tag, File file) throws IOException;
 
     /**
-     * <p>exportXml.</p>
+     * <p>
+     * exportXml.
+     * </p>
      *
-     * @param str a {@link java.lang.StringBuilder} object.
+     * @param str
+     *            a {@link java.lang.StringBuilder} object.
      */
     void exportXml(StringBuilder str);
 
     /**
-     * <p>genericClassName.</p>
+     * <p>
+     * genericClassName.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String genericClassName();
 
     /**
-     * <p>getCamelCaps.</p>
+     * <p>
+     * getCamelCaps.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getCamelCaps();
 
     /**
-     * <p>getCriteria.</p>
+     * <p>
+     * getCriteria.
+     * </p>
      *
-     * @return a {@link com.obdobion.argument.criteria.ICmdLineArgCriteria} object.
+     * @return a {@link com.obdobion.argument.criteria.ICmdLineArgCriteria}
+     *         object.
      */
     ICmdLineArgCriteria<?> getCriteria();
 
     /**
-     * <p>getDefaultValues.</p>
+     * <p>
+     * getDefaultValues.
+     * </p>
      *
      * @return a {@link java.util.List} object.
      */
     List<E> getDefaultValues();
 
     /**
-     * <p>getDelegateOrValue.</p>
+     * <p>
+     * getDelegateOrValue.
+     * </p>
      *
      * @return a {@link java.lang.Object} object.
      */
     Object getDelegateOrValue();
 
     /**
-     * <p>getDelegateOrValue.</p>
+     * <p>
+     * getDelegateOrValue.
+     * </p>
      *
-     * @param occurrence a int.
+     * @param occurrence
+     *            a int.
      * @return a {@link java.lang.Object} object.
      */
     Object getDelegateOrValue(int occurrence);
 
     /**
-     * <p>getEnumClassName.</p>
+     * <p>
+     * getEnumClassName.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getEnumClassName();
 
     /**
-     * <p>getFactoryArgName.</p>
+     * <p>
+     * getFactoryArgName.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getFactoryArgName();
 
     /**
-     * <p>getFactoryMethodName.</p>
+     * <p>
+     * getFactoryMethodName.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getFactoryMethodName();
 
     /**
-     * <p>getFormat.</p>
+     * <p>
+     * getFormat.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getFormat();
 
     /**
-     * <p>getHelp.</p>
+     * <p>
+     * getHelp.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getHelp();
 
     /**
-     * <p>getInstanceClass.</p>
+     * <p>
+     * getInstanceClass.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getInstanceClass();
 
     /**
-     * <p>getKeychar.</p>
+     * <p>
+     * getKeychar.
+     * </p>
      *
      * @return a {@link java.lang.Character} object.
      */
     Character getKeychar();
 
     /**
-     * <p>getKeyword.</p>
+     * <p>
+     * getKeyword.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getKeyword();
 
     /**
-     * <p>getMetaphone.</p>
+     * <p>
+     * getMetaphone.
+     * </p>
      *
      * @return a {@link java.lang.Object} object.
      */
     Object getMetaphone();
 
     /**
-     * <p>getMultipleMax.</p>
+     * <p>
+     * getMultipleMax.
+     * </p>
      *
      * @return a int.
      */
     int getMultipleMax();
 
     /**
-     * <p>getMultipleMin.</p>
+     * <p>
+     * getMultipleMin.
+     * </p>
      *
      * @return a int.
      */
     int getMultipleMin();
 
     /**
-     * <p>getUniqueId.</p>
+     * <p>
+     * getUniqueId.
+     * </p>
      *
      * @return a int.
      */
     int getUniqueId();
 
     /**
-     * <p>getValue.</p>
+     * <p>
+     * getValue.
+     * </p>
      *
      * @return a E object.
      */
     E getValue();
 
     /**
-     * <p>getValue.</p>
+     * <p>
+     * getValue.
+     * </p>
      *
-     * @param index a int.
+     * @param index
+     *            a int.
      * @return a E object.
      */
     E getValue(int index);
 
     /**
-     * <p>getValueAsbyteArray.</p>
+     * <p>
+     * getValueAsbyteArray.
+     * </p>
      *
      * @return an array of byte.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     byte[] getValueAsbyteArray() throws ParseException;
 
     /**
-     * <p>getValueAsByteArray.</p>
+     * <p>
+     * getValueAsByteArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Byte} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Byte[] getValueAsByteArray() throws ParseException;
 
     /**
-     * <p>getValueAsCalendarArray.</p>
+     * <p>
+     * getValueAsCalendarArray.
+     * </p>
      *
      * @return an array of {@link java.util.Calendar} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Calendar[] getValueAsCalendarArray() throws ParseException;
 
     /**
-     * <p>getValueAsCharacterArray.</p>
+     * <p>
+     * getValueAsCharacterArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Character} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Character[] getValueAsCharacterArray() throws ParseException;
 
     /**
-     * <p>getValueAscharArray.</p>
+     * <p>
+     * getValueAscharArray.
+     * </p>
      *
      * @return an array of char.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     char[] getValueAscharArray() throws ParseException;
 
     /**
-     * <p>getValueAsDateArray.</p>
+     * <p>
+     * getValueAsDateArray.
+     * </p>
      *
      * @return an array of {@link java.util.Date} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Date[] getValueAsDateArray() throws ParseException;
 
     /**
-     * <p>getValueAsdoubleArray.</p>
+     * <p>
+     * getValueAsDateTimeFormatter.
+     * </p>
+     *
+     * @return a {@link java.time.format.DateTimeFormatter} object.
+     * @throws java.text.ParseException
+     *             if any.
+     * @since 4.3.1
+     */
+    DateTimeFormatter getValueAsDateTimeFormatter() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAsDateTimeFormatterArray.
+     * </p>
+     *
+     * @return an array of {@link java.time.format.DateTimeFormatter} objects.
+     * @throws java.text.ParseException
+     *             if any.
+     */
+    DateTimeFormatter[] getValueAsDateTimeFormatterArray() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAsdoubleArray.
+     * </p>
      *
      * @return an array of double.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     double[] getValueAsdoubleArray() throws ParseException;
 
     /**
-     * <p>getValueAsDoubleArray.</p>
+     * <p>
+     * getValueAsDoubleArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Double} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Double[] getValueAsDoubleArray() throws ParseException;
 
     /**
-     * <p>getValueAsEquation.</p>
+     * <p>
+     * getValueAsEquation.
+     * </p>
      *
      * @return a {@link com.obdobion.algebrain.Equ} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Equ getValueAsEquation() throws ParseException;
 
     /**
-     * <p>getValueAsEquationArray.</p>
+     * <p>
+     * getValueAsEquationArray.
+     * </p>
      *
      * @return an array of {@link com.obdobion.algebrain.Equ} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Equ[] getValueAsEquationArray() throws ParseException;
 
     /**
-     * <p>getValueAsFileArray.</p>
+     * <p>
+     * getValueAsFileArray.
+     * </p>
      *
      * @return an array of {@link java.io.File} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     File[] getValueAsFileArray() throws ParseException;
 
     /**
-     * <p>getValueAsfloatArray.</p>
+     * <p>
+     * getValueAsfloatArray.
+     * </p>
      *
      * @return an array of float.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     float[] getValueAsfloatArray() throws ParseException;
 
     /**
-     * <p>getValueAsFloatArray.</p>
+     * <p>
+     * getValueAsFloatArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Float} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Float[] getValueAsFloatArray() throws ParseException;
 
     /**
-     * <p>getValueAsintArray.</p>
+     * <p>
+     * getValueAsintArray.
+     * </p>
      *
      * @return an array of int.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     int[] getValueAsintArray() throws ParseException;
 
     /**
-     * <p>getValueAsIntegerArray.</p>
+     * <p>
+     * getValueAsIntegerArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Integer} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Integer[] getValueAsIntegerArray() throws ParseException;
 
     /**
-     * <p>getValueAslongArray.</p>
+     * <p>
+     * getValueAsLocalDateArray.
+     * </p>
+     *
+     * @return an array of {@link java.time.LocalDate} objects.
+     * @throws java.text.ParseException
+     *             if any.
+     */
+    LocalDate[] getValueAsLocalDateArray() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAsLocalDateTimeArray.
+     * </p>
+     *
+     * @return an array of {@link java.time.LocalDateTime} objects.
+     * @throws java.text.ParseException
+     *             if any.
+     */
+    LocalDateTime[] getValueAsLocalDateTimeArray() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAsLocalTimeArray.
+     * </p>
+     *
+     * @return an array of {@link java.time.LocalTime} objects.
+     * @throws java.text.ParseException
+     *             if any.
+     */
+    LocalTime[] getValueAsLocalTimeArray() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAslongArray.
+     * </p>
      *
      * @return an array of long.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     long[] getValueAslongArray() throws ParseException;
 
     /**
-     * <p>getValueAsLongArray.</p>
+     * <p>
+     * getValueAsLongArray.
+     * </p>
      *
      * @return an array of {@link java.lang.Long} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Long[] getValueAsLongArray() throws ParseException;
 
     /**
-     * <p>getValueAsPattern.</p>
+     * <p>
+     * getValueAsPattern.
+     * </p>
      *
      * @return a {@link java.util.regex.Pattern} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Pattern getValueAsPattern() throws ParseException;
 
     /**
-     * <p>getValueAsPatternArray.</p>
+     * <p>
+     * getValueAsPatternArray.
+     * </p>
      *
      * @return an array of {@link java.util.regex.Pattern} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     Pattern[] getValueAsPatternArray() throws ParseException;
 
     /**
-     * <p>getValueAsStringArray.</p>
+     * <p>getValueAsSimpleDateFormat.</p>
+     *
+     * @return a {@link java.text.SimpleDateFormat} object.
+     * @throws java.text.ParseException if any.
+     * @since 4.3.2
+     */
+    SimpleDateFormat getValueAsSimpleDateFormat() throws ParseException;
+
+    /**
+     * <p>getValueAsSimpleDateFormatArray.</p>
+     *
+     * @return an array of {@link java.text.SimpleDateFormat} objects.
+     * @throws java.text.ParseException if any.
+     */
+    SimpleDateFormat[] getValueAsSimpleDateFormatArray() throws ParseException;
+
+    /**
+     * <p>
+     * getValueAsStringArray.
+     * </p>
      *
      * @return an array of {@link java.lang.String} objects.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     String[] getValueAsStringArray() throws ParseException;
 
     /**
-     * <p>getVariable.</p>
+     * <p>
+     * getVariable.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */
     String getVariable();
 
     /**
-     * <p>hasValue.</p>
+     * <p>
+     * hasValue.
+     * </p>
      *
      * @return a boolean.
      */
     boolean hasValue();
 
     /**
-     * <p>isCamelCapsAllowed.</p>
+     * <p>
+     * isCamelCapsAllowed.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isCamelCapsAllowed();
 
     /**
-     * <p>isCaseSensitive.</p>
+     * <p>
+     * isCaseSensitive.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isCaseSensitive();
 
     /**
-     * <p>isMetaphoneAllowed.</p>
+     * <p>
+     * isMetaphoneAllowed.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isMetaphoneAllowed();
 
     /**
-     * <p>isMultiple.</p>
+     * <p>
+     * isMultiple.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isMultiple();
 
     /**
-     * <p>isParsed.</p>
+     * <p>
+     * isParsed.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isParsed();
 
     /**
-     * <p>isPositional.</p>
+     * <p>
+     * isPositional.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isPositional();
 
     /**
-     * <p>isRequired.</p>
+     * <p>
+     * isRequired.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isRequired();
 
     /**
-     * <p>isRequiredValue.</p>
+     * <p>
+     * isRequiredValue.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isRequiredValue();
 
     /**
-     * <p>isSystemGenerated.</p>
+     * <p>
+     * isSystemGenerated.
+     * </p>
      *
      * @return a boolean.
      */
     boolean isSystemGenerated();
 
     /**
-     * <p>reset.</p>
+     * <p>
+     * reset.
+     * </p>
      */
     void reset();
 
     /**
-     * <p>resetCriteria.</p>
+     * <p>
+     * resetCriteria.
+     * </p>
      *
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> resetCriteria();
 
     /**
-     * <p>salience.</p>
+     * <p>
+     * salience.
+     * </p>
      *
-     * @param word a {@link com.obdobion.argument.input.Token} object.
+     * @param word
+     *            a {@link com.obdobion.argument.input.Token} object.
      * @return a int.
      */
     int salience(Token word);
 
     /**
-     * <p>setCamelCapsAllowed.</p>
+     * <p>
+     * setCamelCapsAllowed.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setCamelCapsAllowed(boolean bool);
 
     /**
-     * <p>setCaseSensitive.</p>
+     * <p>
+     * setCaseSensitive.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setCaseSensitive(boolean bool);
 
     /**
-     * <p>setDefaultValue.</p>
+     * <p>
+     * setDefaultValue.
+     * </p>
      *
-     * @param defaultValue a {@link java.lang.String} object.
+     * @param defaultValue
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     ICmdLineArg<E> setDefaultValue(String defaultValue) throws ParseException, IOException;
 
     /**
-     * <p>setEnumCriteria.</p>
+     * <p>
+     * setEnumCriteria.
+     * </p>
      *
-     * @param enumClassName a {@link java.lang.String} object.
+     * @param enumClassName
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     ICmdLineArg<E> setEnumCriteria(String enumClassName) throws ParseException, IOException;
 
     /**
-     * <p>setEnumCriteriaAllowError.</p>
+     * <p>
+     * setEnumCriteriaAllowError.
+     * </p>
      *
-     * @param enumClassName a {@link java.lang.String} object.
+     * @param enumClassName
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setEnumCriteriaAllowError(String enumClassName);
 
     /**
-     * <p>setFactoryArgName.</p>
+     * <p>
+     * setFactoryArgName.
+     * </p>
      *
-     * @param argName a {@link java.lang.String} object.
+     * @param argName
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setFactoryArgName(String argName);
 
     /**
-     * <p>setFactoryMethodName.</p>
+     * <p>
+     * setFactoryMethodName.
+     * </p>
      *
-     * @param methodName a {@link java.lang.String} object.
+     * @param methodName
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setFactoryMethodName(String methodName) throws ParseException;
 
     /**
-     * <p>setFormat.</p>
+     * <p>
+     * setFormat.
+     * </p>
      *
-     * @param format a {@link java.lang.String} object.
+     * @param format
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setFormat(String format) throws ParseException;
 
     /**
-     * <p>setHelp.</p>
+     * <p>
+     * setHelp.
+     * </p>
      *
-     * @param p_helpString a {@link java.lang.String} object.
+     * @param p_helpString
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setHelp(String p_helpString);
 
     /**
-     * <p>setInstanceClass.</p>
+     * <p>
+     * setInstanceClass.
+     * </p>
      *
-     * @param p_instanceClassString a {@link java.lang.String} object.
+     * @param p_instanceClassString
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setInstanceClass(String p_instanceClassString) throws ParseException;
 
     /**
-     * <p>setKeychar.</p>
+     * <p>
+     * setKeychar.
+     * </p>
      *
-     * @param _keychar a {@link java.lang.Character} object.
+     * @param _keychar
+     *            a {@link java.lang.Character} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setKeychar(final Character _keychar);
 
     /**
-     * <p>setKeyword.</p>
+     * <p>
+     * setKeyword.
+     * </p>
      *
-     * @param _keyword a {@link java.lang.String} object.
+     * @param _keyword
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setKeyword(final String _keyword);
 
     /**
-     * <p>setListCriteria.</p>
+     * <p>
+     * setListCriteria.
+     * </p>
      *
-     * @param values an array of {@link java.lang.String} objects.
+     * @param values
+     *            an array of {@link java.lang.String} objects.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     ICmdLineArg<E> setListCriteria(String[] values) throws ParseException, IOException;
 
     /**
-     * <p>setMetaphoneAllowed.</p>
+     * <p>
+     * setMetaphoneAllowed.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setMetaphoneAllowed(boolean bool);
 
     /**
-     * <p>setMultiple.</p>
+     * <p>
+     * setMultiple.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setMultiple(boolean bool) throws ParseException;
 
     /**
-     * <p>setMultiple.</p>
+     * <p>
+     * setMultiple.
+     * </p>
      *
-     * @param min a int.
+     * @param min
+     *            a int.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setMultiple(int min) throws ParseException;
 
     /**
-     * <p>setMultiple.</p>
+     * <p>
+     * setMultiple.
+     * </p>
      *
-     * @param min a int.
-     * @param max a int.
+     * @param min
+     *            a int.
+     * @param max
+     *            a int.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setMultiple(int min, int max) throws ParseException;
 
     /**
-     * <p>setObject.</p>
+     * <p>
+     * setObject.
+     * </p>
      *
-     * @param value a {@link java.lang.Object} object.
+     * @param value
+     *            a {@link java.lang.Object} object.
      */
     void setObject(Object value);
 
     /**
-     * <p>setParsed.</p>
+     * <p>
+     * setParsed.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
-    ICmdLineArg<E> setParsed(boolean bool);
+    ICmdLineArg<E> setParsed(boolean bool);;
 
     /**
-     * <p>setPositional.</p>
+     * <p>
+     * setPositional.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setPositional(boolean bool);
 
     /**
-     * <p>setRangeCriteria.</p>
+     * <p>
+     * setRangeCriteria.
+     * </p>
      *
-     * @param min a {@link java.lang.String} object.
-     * @param max a {@link java.lang.String} object.
+     * @param min
+     *            a {@link java.lang.String} object.
+     * @param max
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
-     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException
+     *             if any.
+     * @throws java.io.IOException
+     *             if any.
      */
     ICmdLineArg<E> setRangeCriteria(String min, String max) throws ParseException, IOException;
 
     /**
-     * <p>setRegxCriteria.</p>
+     * <p>
+     * setRegxCriteria.
+     * </p>
      *
-     * @param pattern a {@link java.lang.String} object.
+     * @param pattern
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setRegxCriteria(String pattern) throws ParseException;;
 
     /**
-     * <p>setRequired.</p>
+     * <p>
+     * setRequired.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setRequired(boolean bool);
 
     /**
-     * <p>setRequiredValue.</p>
+     * <p>
+     * setRequiredValue.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
     ICmdLineArg<E> setRequiredValue(boolean bool) throws ParseException;
 
     /**
-     * <p>setSystemGenerated.</p>
+     * <p>
+     * setSystemGenerated.
+     * </p>
      *
-     * @param bool a boolean.
+     * @param bool
+     *            a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException if any.
+     * @throws java.text.ParseException
+     *             if any.
      */
-    ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;;
+    ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;
 
     /**
-     * <p>setType.</p>
+     * <p>
+     * setType.
+     * </p>
      *
-     * @param claType a {@link com.obdobion.argument.type.ClaType} object.
+     * @param claType
+     *            a {@link com.obdobion.argument.type.ClaType} object.
      */
     void setType(ClaType claType);
 
     /**
-     * <p>setUniqueId.</p>
+     * <p>
+     * setUniqueId.
+     * </p>
      *
-     * @param i a int.
+     * @param i
+     *            a int.
      */
     void setUniqueId(int i);
 
     /**
-     * <p>setValue.</p>
+     * <p>
+     * setValue.
+     * </p>
      *
-     * @param value a E object.
+     * @param value
+     *            a E object.
      */
     void setValue(E value);
 
     /**
-     * <p>setValue.</p>
+     * <p>
+     * setValue.
+     * </p>
      *
-     * @param index a int.
-     * @param value a E object.
+     * @param index
+     *            a int.
+     * @param value
+     *            a E object.
      */
     void setValue(int index, E value);
 
     /**
-     * <p>setVariable.</p>
+     * <p>
+     * setVariable.
+     * </p>
      *
-     * @param p_variableString a {@link java.lang.String} object.
+     * @param p_variableString
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setVariable(String p_variableString);
 
     /**
-     * <p>size.</p>
+     * <p>
+     * size.
+     * </p>
      *
      * @return a int.
      */
     int size();
 
     /**
-     * <p>supportsCamelCaps.</p>
+     * <p>
+     * supportsCamelCaps.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsCamelCaps();
 
     /**
-     * <p>supportsCaseSensitive.</p>
+     * <p>
+     * supportsCaseSensitive.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsCaseSensitive();
 
     /**
-     * <p>supportsDefaultValues.</p>
+     * <p>
+     * supportsDefaultValues.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsDefaultValues();
 
     /**
-     * <p>supportsExcludeArgs.</p>
+     * <p>
+     * supportsExcludeArgs.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsExcludeArgs();
 
     /**
-     * <p>supportsFactoryArgName.</p>
+     * <p>
+     * supportsFactoryArgName.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsFactoryArgName();
 
     /**
-     * <p>supportsFactoryMethod.</p>
+     * <p>
+     * supportsFactoryMethod.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsFactoryMethod();
 
     /**
-     * <p>supportsFormat.</p>
+     * <p>
+     * supportsFormat.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsFormat();
 
     /**
-     * <p>supportsHelp.</p>
+     * <p>
+     * supportsHelp.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsHelp();
 
     /**
-     * <p>supportsInList.</p>
+     * <p>
+     * supportsInList.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsInList();
 
     /**
-     * <p>supportsInstanceClass.</p>
+     * <p>
+     * supportsInstanceClass.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsInstanceClass();
 
     /**
-     * <p>supportsLongName.</p>
+     * <p>
+     * supportsLongName.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsLongName();
 
     /**
-     * <p>supportsMatches.</p>
+     * <p>
+     * supportsMatches.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsMatches();
 
     /**
-     * <p>supportsMetaphone.</p>
+     * <p>
+     * supportsMetaphone.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsMetaphone();
 
     /**
-     * <p>supportsMultimax.</p>
+     * <p>
+     * supportsMultimax.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsMultimax();
 
     /**
-     * <p>supportsMultimin.</p>
+     * <p>
+     * supportsMultimin.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsMultimin();
 
     /**
-     * <p>supportsPositional.</p>
+     * <p>
+     * supportsPositional.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsPositional();
 
     /**
-     * <p>supportsRange.</p>
+     * <p>
+     * supportsRange.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsRange();
 
     /**
-     * <p>supportsRequired.</p>
+     * <p>
+     * supportsRequired.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsRequired();
 
     /**
-     * <p>supportsShortName.</p>
+     * <p>
+     * supportsShortName.
+     * </p>
      *
      * @return a boolean.
      */
     boolean supportsShortName();
 
     /**
-     * <p>useDefaults.</p>
+     * <p>
+     * useDefaults.
+     * </p>
      */
     void useDefaults();
 }

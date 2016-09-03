@@ -22,6 +22,8 @@ public class WildFileTest
 
     /**
      * <p>patternConversionsNix.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void patternConversionsNix()
@@ -35,6 +37,8 @@ public class WildFileTest
 
     /**
      * <p>patternConversionsNixMatching.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void patternConversionsNixMatching()
@@ -54,6 +58,8 @@ public class WildFileTest
 
     /**
      * <p>patternConversionsWin.</p>
+     *
+     * @since 4.3.1
      */
     @Test
     public void patternConversionsWin()
@@ -69,6 +75,7 @@ public class WildFileTest
      * <p>recursiveDirSearchFileNotFound.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void recursiveDirSearchFileNotFound() throws Exception
@@ -81,6 +88,7 @@ public class WildFileTest
      * <p>specificDirSearch.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void specificDirSearch() throws Exception
@@ -93,6 +101,7 @@ public class WildFileTest
      * <p>validRegex.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void validRegex() throws Exception
@@ -105,6 +114,7 @@ public class WildFileTest
      * <p>wildDirSearch1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void wildDirSearch1() throws Exception
@@ -117,6 +127,7 @@ public class WildFileTest
      * <p>wildDirSearch2.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void wildDirSearch2() throws Exception

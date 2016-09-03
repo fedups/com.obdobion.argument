@@ -42,6 +42,7 @@ public class AnnotateFactoryCreationWithEnumArgTest
      * <p>enumArg.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void enumArg() throws Exception

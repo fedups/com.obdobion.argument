@@ -30,6 +30,7 @@ public class QuotedLiteralsTest
      * <p>dosFileNames.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void dosFileNames() throws Exception
@@ -42,6 +43,7 @@ public class QuotedLiteralsTest
      * <p>dosFileNames2.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void dosFileNames2() throws Exception
@@ -54,6 +56,7 @@ public class QuotedLiteralsTest
      * <p>doubleQuotes.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void doubleQuotes() throws Exception
@@ -66,6 +69,7 @@ public class QuotedLiteralsTest
      * <p>doubleQuotesFromStream.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void doubleQuotesFromStream() throws Exception
@@ -88,6 +92,7 @@ public class QuotedLiteralsTest
      * <p>negative1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void negative1() throws Exception
@@ -101,6 +106,7 @@ public class QuotedLiteralsTest
      * <p>newLine.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void newLine() throws Exception
@@ -113,6 +119,7 @@ public class QuotedLiteralsTest
      * <p>quotesInQuotes.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void quotesInQuotes() throws Exception
@@ -126,6 +133,7 @@ public class QuotedLiteralsTest
      * <p>singleQuotes.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void singleQuotes() throws Exception
@@ -138,6 +146,7 @@ public class QuotedLiteralsTest
      * <p>stringMultipleQuotes.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void stringMultipleQuotes() throws Exception
@@ -151,6 +160,7 @@ public class QuotedLiteralsTest
      * <p>unixFileNames.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void unixFileNames() throws Exception
@@ -163,6 +173,7 @@ public class QuotedLiteralsTest
      * <p>urlFileNames.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void urlFileNames() throws Exception

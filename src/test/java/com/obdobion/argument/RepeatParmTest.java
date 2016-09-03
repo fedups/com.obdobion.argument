@@ -43,6 +43,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void repeatedBoolean() throws Exception
@@ -58,6 +59,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void repeatedMultiple() throws Exception
@@ -74,6 +76,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void repeatedNonMultiple() throws Exception
@@ -98,6 +101,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void repeatedPositional() throws Exception
@@ -114,6 +118,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     public void testTurnOffIntegerListOnly() throws Exception
     {
@@ -128,6 +133,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffFirst() throws Exception
@@ -143,6 +149,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffInteger() throws Exception
@@ -158,6 +165,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffIntegerList() throws Exception
@@ -173,6 +181,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffIntegerListWithDef() throws Exception
@@ -188,6 +197,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffIntegerOnly() throws Exception
@@ -203,6 +213,7 @@ public class RepeatParmTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void turnOffLast() throws Exception

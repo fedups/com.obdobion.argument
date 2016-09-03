@@ -74,6 +74,8 @@ public class VariableTest
 
     /**
      * <p>Constructor for VariableTest.</p>
+     *
+     * @since 4.3.1
      */
     public VariableTest()
     {
@@ -84,6 +86,7 @@ public class VariableTest
      * <p>groupWithoutOwnVariable.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void groupWithoutOwnVariable() throws Exception
@@ -96,6 +99,7 @@ public class VariableTest
      * <p>nullAssigner.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void nullAssigner() throws Exception
@@ -117,6 +121,7 @@ public class VariableTest
      * <p>variablebooleanAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variablebooleanAssignment() throws Exception
@@ -129,6 +134,7 @@ public class VariableTest
      * <p>variableBooleanAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableBooleanAssignment() throws Exception
@@ -141,6 +147,7 @@ public class VariableTest
      * <p>variablefloatArrayAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variablefloatArrayAssignment() throws Exception
@@ -154,6 +161,7 @@ public class VariableTest
      * <p>variableFloatArrayAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableFloatArrayAssignment() throws Exception
@@ -167,6 +175,7 @@ public class VariableTest
      * <p>variableFloatAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableFloatAssignment() throws Exception
@@ -179,6 +188,7 @@ public class VariableTest
      * <p>variableGroupArrayStringAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableGroupArrayStringAssignment() throws Exception
@@ -193,6 +203,7 @@ public class VariableTest
      * <p>variableGroupGroupStringAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableGroupGroupStringAssignment() throws Exception
@@ -205,6 +216,7 @@ public class VariableTest
      * <p>variableGroupListStringAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableGroupListStringAssignment() throws Exception
@@ -219,6 +231,7 @@ public class VariableTest
      * <p>variableGroupStringAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableGroupStringAssignment() throws Exception
@@ -231,6 +244,7 @@ public class VariableTest
      * <p>variableGroupStringAssignmentToObjectList.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableGroupStringAssignmentToObjectList() throws Exception
@@ -244,6 +258,7 @@ public class VariableTest
      * <p>variableIntArrayAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableIntArrayAssignment() throws Exception
@@ -257,6 +272,7 @@ public class VariableTest
      * <p>variableintAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableintAssignment() throws Exception
@@ -269,6 +285,7 @@ public class VariableTest
      * <p>variableIntegerArrayAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableIntegerArrayAssignment() throws Exception
@@ -282,6 +299,7 @@ public class VariableTest
      * <p>variableIntegerAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableIntegerAssignment() throws Exception
@@ -294,6 +312,7 @@ public class VariableTest
      * <p>variableStringArrayAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableStringArrayAssignment() throws Exception
@@ -307,6 +326,7 @@ public class VariableTest
      * <p>variableStringAssignment.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void variableStringAssignment() throws Exception

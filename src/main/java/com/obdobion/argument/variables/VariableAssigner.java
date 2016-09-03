@@ -103,6 +103,14 @@ public class VariableAssigner implements IVariableAssigner
                 field.set(target, arg.getValueAsPatternArray());
             else if (isPattern(field))
                 field.set(target, arg.getValueAsPattern());
+            else if (isDateTimeFormatterArray(field))
+                field.set(target, arg.getValueAsDateTimeFormatterArray());
+            else if (isDateTimeFormatter(field))
+                field.set(target, arg.getValueAsDateTimeFormatter());
+            else if (isSimpleDateFormatArray(field))
+                field.set(target, arg.getValueAsSimpleDateFormatArray());
+            else if (isSimpleDateFormat(field))
+                field.set(target, arg.getValueAsSimpleDateFormat());
             else if (isEquationArray(field))
                 field.set(target, arg.getValueAsEquationArray());
             else if (isEquation(field))
@@ -111,6 +119,12 @@ public class VariableAssigner implements IVariableAssigner
                 field.set(target, arg.getValueAsDateArray());
             else if (isCalendarArray(field))
                 field.set(target, arg.getValueAsCalendarArray());
+            else if (isLocalDateTimeArray(field))
+                field.set(target, arg.getValueAsLocalDateTimeArray());
+            else if (isLocalDateArray(field))
+                field.set(target, arg.getValueAsLocalDateArray());
+            else if (isLocalTimeArray(field))
+                field.set(target, arg.getValueAsLocalTimeArray());
             else if (isByteArray(field))
                 field.set(target, arg.getValueAsByteArray());
             else if (isCharacterArray(field))
@@ -348,6 +362,16 @@ public class VariableAssigner implements IVariableAssigner
         return "[Ljava.util.Date;".equals(field.getType().getName());
     }
 
+    private static boolean isDateTimeFormatter(final Field field)
+    {
+        return "java.time.format.DateTimeFormatter".equals(field.getType().getName());
+    }
+
+    private static boolean isDateTimeFormatterArray(final Field field)
+    {
+        return "[Ljava.time.format.DateTimeFormatter;".equals(field.getType().getName());
+    }
+
     private static boolean isdoubleArray(final Field field)
     {
         return "[D".equals(field.getType().getName());
@@ -414,6 +438,21 @@ public class VariableAssigner implements IVariableAssigner
         return false;
     }
 
+    private static boolean isLocalDateArray(final Field field)
+    {
+        return "[Ljava.time.LocalDate;".equals(field.getType().getName());
+    }
+
+    private static boolean isLocalDateTimeArray(final Field field)
+    {
+        return "[Ljava.time.LocalDateTime;".equals(field.getType().getName());
+    }
+
+    private static boolean isLocalTimeArray(final Field field)
+    {
+        return "[Ljava.time.LocalTime;".equals(field.getType().getName());
+    }
+
     private static boolean islongArray(final Field field)
     {
         return "[J".equals(field.getType().getName());
@@ -432,6 +471,16 @@ public class VariableAssigner implements IVariableAssigner
     private static boolean isPatternArray(final Field field)
     {
         return "[Ljava.util.regex.Pattern;".equals(field.getType().getName());
+    }
+
+    private static boolean isSimpleDateFormat(final Field field)
+    {
+        return "java.text.SimpleDateFormat".equals(field.getType().getName());
+    }
+
+    private static boolean isSimpleDateFormatArray(final Field field)
+    {
+        return "[Ljava.text.SimpleDateFormat;".equals(field.getType().getName());
     }
 
     private static boolean isStringArray(final Field field)

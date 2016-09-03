@@ -51,6 +51,7 @@ public class BooleanTest
      * <p>Constructor for BooleanTest.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     public BooleanTest() throws Exception
     {
@@ -60,6 +61,7 @@ public class BooleanTest
      * <p>resetMoreThanOne.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void resetMoreThanOne() throws Exception
@@ -74,6 +76,7 @@ public class BooleanTest
      * <p>resetOnlyOneOfTwo.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void resetOnlyOneOfTwo() throws Exception
@@ -88,6 +91,7 @@ public class BooleanTest
      * <p>setToDefaultChar.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void setToDefaultChar() throws Exception
@@ -101,6 +105,7 @@ public class BooleanTest
      * <p>setToDefaultWord.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void setToDefaultWord() throws Exception
@@ -114,6 +119,7 @@ public class BooleanTest
      * <p>simpleSetFalse.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void simpleSetFalse() throws Exception
@@ -127,6 +133,7 @@ public class BooleanTest
      * <p>simpleSetTrue.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void simpleSetTrue() throws Exception

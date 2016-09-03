@@ -30,6 +30,7 @@ public class AnnotateRegexCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void regex() throws Exception
@@ -47,6 +48,7 @@ public class AnnotateRegexCriteriaTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void regexNot() throws Exception

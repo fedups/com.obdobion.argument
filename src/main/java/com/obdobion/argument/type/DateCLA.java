@@ -59,10 +59,10 @@ public class DateCLA extends AbstractCLA<Date>
     @Override
     protected void exportCommandLineData(final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
             out.append('"');
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ)));
             out.append('"');
         }
     }
@@ -71,11 +71,11 @@ public class DateCLA extends AbstractCLA<Date>
     @Override
     protected void exportNamespaceData(final String prefix, final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
             out.append(prefix);
             out.append("=");
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ)));
             out.append("\n");
         }
     }
@@ -84,9 +84,9 @@ public class DateCLA extends AbstractCLA<Date>
     @Override
     protected void exportXmlData(final StringBuilder out, final int occ)
     {
-        synchronized (TemporalHelper.outputSDF)
+        synchronized (TemporalHelper.getOutputSDF())
         {
-            out.append(TemporalHelper.outputSDF.format(getValue(occ)));
+            out.append(TemporalHelper.getOutputSDF().format(getValue(occ)));
         }
     }
 

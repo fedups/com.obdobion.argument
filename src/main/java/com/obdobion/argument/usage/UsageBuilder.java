@@ -3,7 +3,9 @@ package com.obdobion.argument.usage;
 import com.obdobion.argument.ICmdLine;
 
 /**
- * <p>Abstract UsageBuilder class.</p>
+ * <p>
+ * Abstract UsageBuilder class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -14,21 +16,37 @@ abstract public class UsageBuilder
     public static String     newline       = System.getProperty("line.separator");
 
     /**
-     * <p>getWriter.</p>
+     * <p>
+     * getWriter.
+     * </p>
      *
-     * @param arg a {@link com.obdobion.argument.ICmdLine} object.
-     * @param verbose a boolean.
+     * @param arg
+     *            a {@link com.obdobion.argument.ICmdLine} object.
      * @return a {@link java.lang.Object} object.
+     * @param verboseLevel
+     *            a int.
      */
-    public static Object getWriter(
-            final ICmdLine arg,
-            final boolean verbose)
+    public static Object getWriter(final ICmdLine arg, final int verboseLevel)
     {
         final UsageBuilder ub;
-        if (verbose)
-            ub = new UsageBuilderVerbose();
-        else
-            ub = new UsageBuilderCondensed();
+        switch (verboseLevel)
+        {
+        case 0:
+            ub = new UsageBuilderLevel1();
+            break;
+        case 1:
+            ub = new UsageBuilderLevel1();
+            break;
+        case 2:
+            ub = new UsageBuilderLevel2();
+            break;
+        case 3:
+            ub = new UsageBuilderLevel3();
+            break;
+        default:
+            ub = new UsageBuilderLevel1();
+            break;
+        }
         ub.prettyPrint(arg);
         return ub;
     }
@@ -36,17 +54,37 @@ abstract public class UsageBuilder
     final private StringBuilder sb;
     int                         currentIndentLevelForWrapping;
     int                         currentLineLength;
+    int                         allignment;
 
     UsageBuilder()
     {
         sb = new StringBuilder();
     }
 
+    boolean allign()
+    {
+        boolean aSpaceWasAdded = false;
+        for (int x = currentLineLength; x < allignment; x++)
+        {
+            append(" ");
+            aSpaceWasAdded = true;
+        }
+        return aSpaceWasAdded;
+    }
+
+    void allign(final int column)
+    {
+        allignment = column;
+        if (!allign())
+            append("  ");
+    }
+
     /**
      * Send values to this method with embedded new lines (\n) if that is
      * desired.
      *
-     * @param value a {@link java.lang.String} object.
+     * @param value
+     *            a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.usage.UsageBuilder} object.
      */
     public UsageBuilder append(
@@ -69,12 +107,10 @@ abstract public class UsageBuilder
             {
                 aLine = lines[line];
                 if (line != 0)
-                {
                     newLine();
-                }
             }
 
-            if (currentLineLength == (getIndentSize() * currentIndentLevelForWrapping))
+            if (currentLineLength == 0)
                 indent();
             if (currentLineLength + aLine.length() >= MaxLineLength)
             {
@@ -101,12 +137,20 @@ abstract public class UsageBuilder
         indent(currentIndentLevelForWrapping);
     }
 
-    void indent(
-            final int indentLevel)
+    void indent(final int indentLevel)
     {
-        for (int i = 0; i < indentLevel; i++)
-            for (int s = 0; s < getIndentSize(); s++)
+        if (allignment > 0)
+        {
+            for (int a = currentLineLength; a < allignment; a++)
                 sb.append(" ");
+            currentLineLength = allignment;
+        } else
+        {
+            for (int i = 0; i < indentLevel; i++)
+                for (int s = 0; s < getIndentSize(); s++)
+                    sb.append(" ");
+            currentLineLength = indentLevel * getIndentSize();
+        }
     }
 
     UsageBuilder newLine()
@@ -118,38 +162,35 @@ abstract public class UsageBuilder
             final int indentLevel)
     {
         currentIndentLevelForWrapping = indentLevel;
-        currentLineLength = getIndentSize() * indentLevel;
+        currentLineLength = 0;
         sb.append(newline);
         return this;
     }
 
-    abstract void prettyPrint(
-            final ICmdLine arg);
+    abstract void prettyPrint(final ICmdLine arg);
 
     /**
-     * <p>setIndentLevel.</p>
+     * <p>
+     * setIndentLevel.
+     * </p>
      *
-     * @param indentLevel a int.
+     * @param indentLevel
+     *            a int.
      */
-    public void setIndentLevel(
-            final int indentLevel)
+    public void setIndentLevel(final int indentLevel)
     {
-        this.currentIndentLevelForWrapping = indentLevel;
+        currentIndentLevelForWrapping = indentLevel;
     }
 
-    String[] split(
-            final String line,
-            final int availableBytesLeft)
+    String[] split(final String line, final int availableBytesLeft)
     {
         int splitPoint = 0;
         for (int b = 0; b < availableBytesLeft; b++)
-        {
             /*
              * look for the last space within the printable part of the line.
              */
             if (line.charAt(b) == ' ')
                 splitPoint = b;
-        }
         return new String[] {
                 line.substring(0, splitPoint).trim(),
                 line.substring(splitPoint).trim()
@@ -161,5 +202,10 @@ abstract public class UsageBuilder
     public String toString()
     {
         return sb.toString().trim();
+    }
+
+    void unallign()
+    {
+        allignment = 0;
     }
 }

@@ -1,0 +1,8 @@
+[-a --item <string>]         This is developer supplied narrative.
+[-b --items <string>...]     This is developer supplied narrative.
+[-c --test2 ()]              This is developer supplied narrative.
+    [<string>]               This is developer supplied narrative.
+    [-b --items <string>]    This is developer supplied narrative.
+[-d --test2multi ()...]      This is developer supplied narrative.
+    [<string>]               This is developer supplied narrative.
+    [-b --items <string>]    This is developer supplied narrative.

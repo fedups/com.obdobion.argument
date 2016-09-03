@@ -15,6 +15,7 @@ import com.obdobion.argument.annotation.AnnotateRegexCriteriaTest;
 import com.obdobion.argument.annotation.AnnotateSimpleModifiersTest;
 import com.obdobion.argument.annotation.AnnotateStandardClassesTest;
 import com.obdobion.argument.annotation.AnnotateSubparserTest;
+import com.obdobion.argument.help.test1.HelpTest;
 
 /**
  * <p>
@@ -40,7 +41,7 @@ import com.obdobion.argument.annotation.AnnotateSubparserTest;
         AnnotateInListCriteriaTest.class,
 
         PullTest.class,
-
+        HelpTest.class,
         ExportImportTest.class,
 
         AbbreviationTest.class,
@@ -59,6 +60,9 @@ import com.obdobion.argument.annotation.AnnotateSubparserTest;
         IncludeTest.class,
         InstantiatorTest.class,
         ListTest.class,
+        LocalDateTimeTest.class,
+        LocalDateTest.class,
+        LocalTimeTest.class,
         MultipleTest.class,
         NumbersTest.class,
         PositionalTest.class,

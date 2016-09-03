@@ -1,0 +1,22 @@
+The name of the Program. A longer version of the top level documentation help
+
+[-a --item <string>]         This is developer supplied narrative. If
+                             unspecified, the default will be abc. 
+
+[-b --items <string>...]     This is developer supplied narrative. Although no
+                             value is required, if you specify one you must
+                             specify at least 1.
+
+[-c --test2 ()]              This is developer supplied narrative. 
+
+    [<string>]               This is developer supplied narrative. 
+
+    [-b --items <string>]    This is developer supplied narrative. 
+
+[-d --test2multi ()...]      This is developer supplied narrative. Although no
+                             value is required, if you specify one you must
+                             specify at least 1.
+
+    [<string>]               This is developer supplied narrative. 
+
+    [-b --items <string>]    This is developer supplied narrative.

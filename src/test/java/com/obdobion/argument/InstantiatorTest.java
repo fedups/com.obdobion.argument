@@ -137,6 +137,7 @@ public class InstantiatorTest
      * <p>arrayVariableExactClassName.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void arrayVariableExactClassName() throws Exception
@@ -153,6 +154,7 @@ public class InstantiatorTest
      * <p>arrayVariableShortClassName.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void arrayVariableShortClassName() throws Exception
@@ -169,6 +171,7 @@ public class InstantiatorTest
      * <p>badMethod.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void badMethod() throws Exception
@@ -189,6 +192,7 @@ public class InstantiatorTest
      * <p>classFromVariable.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void classFromVariable() throws Exception
@@ -203,6 +207,7 @@ public class InstantiatorTest
      * <p>colorExample1.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void colorExample1() throws Exception
@@ -216,6 +221,7 @@ public class InstantiatorTest
      * <p>enumKey.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void enumKey() throws Exception
@@ -233,6 +239,7 @@ public class InstantiatorTest
      * <p>integerListByDefault.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void integerListByDefault() throws Exception
@@ -249,6 +256,7 @@ public class InstantiatorTest
      * <p>listGroupVariable.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void listGroupVariable() throws Exception
@@ -268,6 +276,7 @@ public class InstantiatorTest
      * <p>listStringVariable.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void listStringVariable() throws Exception
@@ -284,6 +293,7 @@ public class InstantiatorTest
      * <p>listVariable.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void listVariable() throws Exception
@@ -300,6 +310,7 @@ public class InstantiatorTest
      * <p>listVariableDefaultClassDefaultMethodClass.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void listVariableDefaultClassDefaultMethodClass() throws Exception
@@ -316,6 +327,7 @@ public class InstantiatorTest
      * <p>stringKey.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void stringKey() throws Exception

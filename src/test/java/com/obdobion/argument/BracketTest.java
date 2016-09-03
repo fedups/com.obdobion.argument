@@ -30,6 +30,7 @@ public class BracketTest
      * <p>testMultiGroup.</p>
      *
      * @throws java.lang.Exception if any.
+     * @since 4.3.1
      */
     @Test
     public void testMultiGroup() throws Exception

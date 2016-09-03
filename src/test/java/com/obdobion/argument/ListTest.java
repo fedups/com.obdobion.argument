@@ -30,6 +30,7 @@ public class ListTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void ambiguousCase0() throws Exception
@@ -51,6 +52,7 @@ public class ListTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void ambiguousCase1() throws Exception
@@ -66,6 +68,7 @@ public class ListTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void ambiguousCase2() throws Exception
@@ -81,6 +84,7 @@ public class ListTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void ambiguousCase3() throws Exception
@@ -102,6 +106,7 @@ public class ListTest
      *
      * @throws java.lang.Exception
      *             if any.
+     * @since 4.3.1
      */
     @Test
     public void exact() throws Exception
