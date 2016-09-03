@@ -129,12 +129,9 @@ public class UsageBuilderLevel1 extends UsageBuilder
      * usageDetail.
      * </p>
      *
-     * @param commandPrefix
-     *            a char.
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @param _indentLevel
-     *            a int.
+     * @param commandPrefix a char.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param _indentLevel a int.
      */
     public void usageDetail(
             final char commandPrefix,
@@ -162,6 +159,5 @@ public class UsageBuilderLevel1 extends UsageBuilder
             final char commandPrefix,
             final ICmdLine icmdLine,
             final int indentLevel)
-    {
-    }
+    {}
 }

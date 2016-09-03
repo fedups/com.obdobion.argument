@@ -9,7 +9,9 @@ import com.obdobion.argument.annotation.Arg;
 import com.obdobion.argument.type.CLAFactory;
 
 /**
- * <p>InstantiatorTest class.</p>
+ * <p>
+ * InstantiatorTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -29,8 +31,7 @@ public class InstantiatorTest
     }
 
     static public class BlueColor extends AbstractColor
-    {
-    }
+    {}
 
     abstract public static class Finder
     {
@@ -59,12 +60,14 @@ public class InstantiatorTest
     }
 
     static public class RedColor extends AbstractColor
-    {
-    }
+    {}
 
     public enum Suit
     {
-        HEARTS, SPADES, CLUBS, DIAMONDS
+        HEARTS,
+        SPADES,
+        CLUBS,
+        DIAMONDS
     }
 
     public static class SuitFinder extends Finder
@@ -76,16 +79,13 @@ public class InstantiatorTest
     }
 
     public static class WhatFinder extends Finder
-    {
-    }
+    {}
 
     public static class WhenFinder extends Finder
-    {
-    }
+    {}
 
     public static class WhereFinder extends Finder
-    {
-    }
+    {}
 
     @Arg(factoryMethod = "find",
             caseSensitive = true,
@@ -134,7 +134,9 @@ public class InstantiatorTest
     public List<Integer> integerList;
 
     /**
-     * <p>arrayVariableExactClassName.</p>
+     * <p>
+     * arrayVariableExactClassName.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -151,7 +153,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>arrayVariableShortClassName.</p>
+     * <p>
+     * arrayVariableShortClassName.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -168,7 +172,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>badMethod.</p>
+     * <p>
+     * badMethod.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -189,7 +195,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>classFromVariable.</p>
+     * <p>
+     * classFromVariable.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -204,7 +212,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>colorExample1.</p>
+     * <p>
+     * colorExample1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -218,7 +228,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>enumKey.</p>
+     * <p>
+     * enumKey.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -236,7 +248,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>integerListByDefault.</p>
+     * <p>
+     * integerListByDefault.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -253,7 +267,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>listGroupVariable.</p>
+     * <p>
+     * listGroupVariable.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -273,7 +289,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>listStringVariable.</p>
+     * <p>
+     * listStringVariable.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -290,7 +308,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>listVariable.</p>
+     * <p>
+     * listVariable.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -307,7 +327,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>listVariableDefaultClassDefaultMethodClass.</p>
+     * <p>
+     * listVariableDefaultClassDefaultMethodClass.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -324,7 +346,9 @@ public class InstantiatorTest
     }
 
     /**
-     * <p>stringKey.</p>
+     * <p>
+     * stringKey.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

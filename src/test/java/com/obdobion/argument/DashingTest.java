@@ -73,8 +73,7 @@ public class DashingTest
      * camelCaps.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void camelCaps() throws Exception
@@ -89,8 +88,7 @@ public class DashingTest
      * camelCapsCompetesWithExactKeyword.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void camelCapsCompetesWithExactKeyword() throws Exception
@@ -113,8 +111,7 @@ public class DashingTest
      * camelCapsCompetesWithPartialKeyword.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void camelCapsCompetesWithPartialKeyword() throws Exception
@@ -129,8 +126,7 @@ public class DashingTest
      * embeddedDash1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash1() throws Exception
@@ -146,8 +142,7 @@ public class DashingTest
      * embeddedDash2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash2() throws Exception
@@ -163,8 +158,7 @@ public class DashingTest
      * embeddedDash3.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash3() throws Exception
@@ -180,8 +174,7 @@ public class DashingTest
      * embeddedDash4.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash4() throws Exception
@@ -197,8 +190,7 @@ public class DashingTest
      * embeddedDash5.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash5() throws Exception
@@ -219,8 +211,7 @@ public class DashingTest
      * embeddedDash6.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash6() throws Exception
@@ -236,8 +227,7 @@ public class DashingTest
      * embeddedDash7.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash7() throws Exception
@@ -254,8 +244,7 @@ public class DashingTest
      * embeddedDash8.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash8() throws Exception
@@ -272,8 +261,7 @@ public class DashingTest
      * embeddedDash9.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void embeddedDash9() throws Exception
@@ -290,8 +278,7 @@ public class DashingTest
      * metaphoneIssues.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void metaphoneIssues() throws Exception
@@ -320,8 +307,7 @@ public class DashingTest
      * metaphoneVersion.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void metaphoneVersion() throws Exception

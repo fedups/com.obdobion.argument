@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>BooleanTest class.</p>
+ * <p>
+ * BooleanTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -48,17 +50,20 @@ public class BooleanTest
     }
 
     /**
-     * <p>Constructor for BooleanTest.</p>
+     * <p>
+     * Constructor for BooleanTest.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     public BooleanTest() throws Exception
-    {
-    }
+    {}
 
     /**
-     * <p>resetMoreThanOne.</p>
+     * <p>
+     * resetMoreThanOne.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -73,7 +78,9 @@ public class BooleanTest
     }
 
     /**
-     * <p>resetOnlyOneOfTwo.</p>
+     * <p>
+     * resetOnlyOneOfTwo.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -88,7 +95,9 @@ public class BooleanTest
     }
 
     /**
-     * <p>setToDefaultChar.</p>
+     * <p>
+     * setToDefaultChar.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -102,7 +111,9 @@ public class BooleanTest
     }
 
     /**
-     * <p>setToDefaultWord.</p>
+     * <p>
+     * setToDefaultWord.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -116,7 +127,9 @@ public class BooleanTest
     }
 
     /**
-     * <p>simpleSetFalse.</p>
+     * <p>
+     * simpleSetFalse.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -130,7 +143,9 @@ public class BooleanTest
     }
 
     /**
-     * <p>simpleSetTrue.</p>
+     * <p>
+     * simpleSetTrue.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

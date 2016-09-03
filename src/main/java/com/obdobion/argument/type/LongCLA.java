@@ -5,7 +5,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * <p>LongCLA class.</p>
+ * <p>
+ * LongCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

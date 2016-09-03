@@ -17,8 +17,7 @@ public class ComparableSimpleDateFormat implements Comparable<String>
      * compile.
      * </p>
      *
-     * @param valueStr
-     *            a {@link java.lang.String} object.
+     * @param valueStr a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ComparableSimpleDateFormat}
      *         object.
      */
@@ -35,10 +34,8 @@ public class ComparableSimpleDateFormat implements Comparable<String>
      * compile.
      * </p>
      *
-     * @param valueStr
-     *            a {@link java.lang.String} object.
-     * @param caseInsensitive
-     *            a int.
+     * @param valueStr a {@link java.lang.String} object.
+     * @param caseInsensitive a int.
      * @return a {@link com.obdobion.argument.type.ComparableSimpleDateFormat}
      *         object.
      */

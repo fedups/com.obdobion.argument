@@ -46,8 +46,7 @@ public class HelpTest
      * testLevelHelp3.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void testLevelHelp() throws Exception
@@ -66,8 +65,7 @@ public class HelpTest
      * testLevelHelp1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void testLevelHelp1() throws Exception
@@ -86,8 +84,7 @@ public class HelpTest
      * testLevelHelp2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void testLevelHelp2() throws Exception
@@ -106,8 +103,7 @@ public class HelpTest
      * testQuestion.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      */
     @Test
     public void testQuestion() throws Exception

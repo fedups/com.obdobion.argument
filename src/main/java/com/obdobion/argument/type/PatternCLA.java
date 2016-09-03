@@ -5,7 +5,9 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * <p>PatternCLA class.</p>
+ * <p>
+ * PatternCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

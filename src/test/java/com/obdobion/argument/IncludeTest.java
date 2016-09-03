@@ -11,7 +11,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>IncludeTest class.</p>
+ * <p>
+ * IncludeTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -21,7 +23,9 @@ public class IncludeTest
     static final File workDir = new File("\\tmp");
 
     /**
-     * <p>createSpecFile.</p>
+     * <p>
+     * createSpecFile.
+     * </p>
      *
      * @param specs a {@link java.lang.String} object.
      * @return a {@link java.io.File} object.
@@ -49,7 +53,9 @@ public class IncludeTest
     String  workDirectory;
 
     /**
-     * <p>includeExactPath.</p>
+     * <p>
+     * includeExactPath.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -72,7 +78,9 @@ public class IncludeTest
     }
 
     /**
-     * <p>includeNotFoundNotQuoted.</p>
+     * <p>
+     * includeNotFoundNotQuoted.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -91,7 +99,9 @@ public class IncludeTest
     }
 
     /**
-     * <p>includeNotFoundQuoted.</p>
+     * <p>
+     * includeNotFoundQuoted.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -110,7 +120,9 @@ public class IncludeTest
     }
 
     /**
-     * <p>includeNotFoundWithSpace.</p>
+     * <p>
+     * includeNotFoundWithSpace.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -130,7 +142,9 @@ public class IncludeTest
     }
 
     /**
-     * <p>includeUsingDefaultPath.</p>
+     * <p>
+     * includeUsingDefaultPath.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

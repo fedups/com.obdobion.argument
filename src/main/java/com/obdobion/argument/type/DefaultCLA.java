@@ -7,7 +7,9 @@ import com.obdobion.argument.CmdLine;
 import com.obdobion.argument.input.Token;
 
 /**
- * <p>DefaultCLA class.</p>
+ * <p>
+ * DefaultCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -26,7 +28,9 @@ public class DefaultCLA extends AbstractCLA<String>
     }
 
     /**
-     * <p>applyDefaults.</p>
+     * <p>
+     * applyDefaults.
+     * </p>
      *
      * @param commandPrefix a char.
      * @param allKnownArgs a {@link java.util.List} object.

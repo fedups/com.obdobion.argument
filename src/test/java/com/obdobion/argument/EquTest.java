@@ -24,8 +24,7 @@ public class EquTest
      * parensEquationsWithDot.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -40,8 +39,7 @@ public class EquTest
      * parensEquationsWithEscape.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -56,8 +54,7 @@ public class EquTest
      * parensEquationsWithSet.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -72,8 +69,7 @@ public class EquTest
      * quotedEquation.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -88,8 +84,7 @@ public class EquTest
      * simpleEquation.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

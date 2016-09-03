@@ -3,14 +3,18 @@ package com.obdobion.argument.type;
 import com.obdobion.algebrain.Equ;
 
 /**
- * <p>ComparableEqu class.</p>
+ * <p>
+ * ComparableEqu class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
 public class ComparableEqu implements Comparable<Equ>
 {
     /**
-     * <p>compile.</p>
+     * <p>
+     * compile.
+     * </p>
      *
      * @param valueStr a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ComparableEqu} object.

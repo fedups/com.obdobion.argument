@@ -9,7 +9,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateFactoryCreationWithEnumArgTest class.</p>
+ * <p>
+ * AnnotateFactoryCreationWithEnumArgTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -32,14 +34,19 @@ public class AnnotateFactoryCreationWithEnumArgTest
 
     public static enum KeyType
     {
-        INT, STR, CHR, FLT
+        INT,
+        STR,
+        CHR,
+        FLT
     }
 
     @Arg(factoryMethod = "create", factoryArgName = "type")
     private Config cfg;
 
     /**
-     * <p>enumArg.</p>
+     * <p>
+     * enumArg.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

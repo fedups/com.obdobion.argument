@@ -17,22 +17,28 @@ public class EnumTest
 {
     static public enum SplineBoxTest
     {
-        edgetobottom, EdgeToCenter, EdgeToTop
+        edgetobottom,
+        EdgeToCenter,
+        EdgeToTop
     }
 
     static public enum TestEnum
     {
-        KEY1, KEY2, KEY3
+        KEY1,
+        KEY2,
+        KEY3
     }
 
     static public enum TestEnumForCamelCapsA
     {
-        AllowingCamelCaps, NotAllowingCamelCaps
+        AllowingCamelCaps,
+        NotAllowingCamelCaps
     }
 
     static public enum TestEnumForCamelCapsB
     {
-        AllowingCamelCaps, AllowingCamelCaps2
+        AllowingCamelCaps,
+        AllowingCamelCaps2
     }
 
     @Arg(shortName = 'i')
@@ -52,8 +58,7 @@ public class EnumTest
      * splineBoxTest.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -68,8 +73,7 @@ public class EnumTest
      * camelCaps.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -84,8 +88,7 @@ public class EnumTest
      * camelCapsWithNumber.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -100,8 +103,7 @@ public class EnumTest
      * caseSensitivity.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -116,8 +118,7 @@ public class EnumTest
      * enumListValidation.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -132,8 +133,7 @@ public class EnumTest
      * invalidEnum.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -155,8 +155,7 @@ public class EnumTest
      * tooManyCamelCaps.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -178,8 +177,7 @@ public class EnumTest
      * validEnum.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

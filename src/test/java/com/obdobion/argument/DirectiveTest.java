@@ -9,7 +9,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>DirectiveTest class.</p>
+ * <p>
+ * DirectiveTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.3.1
@@ -32,7 +34,9 @@ public class DirectiveTest
     String strVar;
 
     /**
-     * <p>asDate.</p>
+     * <p>
+     * asDate.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -45,7 +49,9 @@ public class DirectiveTest
     }
 
     /**
-     * <p>asFloat.</p>
+     * <p>
+     * asFloat.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -58,7 +64,9 @@ public class DirectiveTest
     }
 
     /**
-     * <p>asInt.</p>
+     * <p>
+     * asInt.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -71,7 +79,9 @@ public class DirectiveTest
     }
 
     /**
-     * <p>asLong.</p>
+     * <p>
+     * asLong.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -104,7 +114,9 @@ public class DirectiveTest
     }
 
     /**
-     * <p>asString.</p>
+     * <p>
+     * asString.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -117,7 +129,9 @@ public class DirectiveTest
     }
 
     /**
-     * <p>equalSignAsASpecialEquDirective.</p>
+     * <p>
+     * equalSignAsASpecialEquDirective.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4

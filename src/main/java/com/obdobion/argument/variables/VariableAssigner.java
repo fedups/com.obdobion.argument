@@ -282,15 +282,11 @@ public class VariableAssigner implements IVariableAssigner
      * findFieldInAnyParentOrMyself.
      * </p>
      *
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @param targetClass
-     *            a {@link java.lang.Class} object.
-     * @param errMsg
-     *            a {@link java.lang.String} object.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param targetClass a {@link java.lang.Class} object.
+     * @param errMsg a {@link java.lang.String} object.
      * @return a {@link java.lang.reflect.Field} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     static public Field findFieldInAnyParentOrMyself(
             final ICmdLineArg<?> arg,
@@ -630,8 +626,8 @@ public class VariableAssigner implements IVariableAssigner
      * Setter for the field <code>instance</code>.
      * </p>
      *
-     * @param newInstance
-     *            a {@link com.obdobion.argument.variables.IVariableAssigner}
+     * @param newInstance a
+     *            {@link com.obdobion.argument.variables.IVariableAssigner}
      *            object.
      * @return a {@link com.obdobion.argument.variables.IVariableAssigner}
      *         object.

@@ -47,8 +47,7 @@ public class LocalTimeTest
      * arrays.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -64,8 +63,7 @@ public class LocalTimeTest
      * helpDefaultNow.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -75,7 +73,9 @@ public class LocalTimeTest
     }
 
     /**
-     * <p>json.</p>
+     * <p>
+     * json.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -92,8 +92,7 @@ public class LocalTimeTest
      * lists.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -109,8 +108,7 @@ public class LocalTimeTest
      * simpleUse.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

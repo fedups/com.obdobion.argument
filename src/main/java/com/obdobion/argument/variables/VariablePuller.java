@@ -12,7 +12,9 @@ import com.obdobion.argument.type.CmdLineCLA;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * <p>VariablePuller class.</p>
+ * <p>
+ * VariablePuller class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -23,7 +25,9 @@ public class VariablePuller
     static private VariablePuller instance;
 
     /**
-     * <p>Getter for the field <code>instance</code>.</p>
+     * <p>
+     * Getter for the field <code>instance</code>.
+     * </p>
      *
      * @return a {@link com.obdobion.argument.variables.VariablePuller} object.
      */
@@ -35,7 +39,9 @@ public class VariablePuller
     }
 
     /**
-     * <p>pull.</p>
+     * <p>
+     * pull.
+     * </p>
      *
      * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @param variableSource a {@link java.lang.Object} object.

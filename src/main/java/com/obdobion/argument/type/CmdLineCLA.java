@@ -6,7 +6,9 @@ import java.text.ParseException;
 import com.obdobion.argument.ICmdLine;
 
 /**
- * <p>CmdLineCLA class.</p>
+ * <p>
+ * CmdLineCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

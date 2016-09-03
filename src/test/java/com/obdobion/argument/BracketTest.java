@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>BracketTest class.</p>
+ * <p>
+ * BracketTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -27,7 +29,9 @@ public class BracketTest
     Group[] group;
 
     /**
-     * <p>testMultiGroup.</p>
+     * <p>
+     * testMultiGroup.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

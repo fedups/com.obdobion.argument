@@ -29,8 +29,7 @@ public class EquDirective extends DirectiveCommand
      * Constructor for DateDirective.
      * </p>
      *
-     * @param _data
-     *            a {@link java.lang.String} object.
+     * @param _data a {@link java.lang.String} object.
      */
     public EquDirective(final String _data)
     {

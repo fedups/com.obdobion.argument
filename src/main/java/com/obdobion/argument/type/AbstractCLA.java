@@ -52,8 +52,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * createCamelCapVersionOfKeyword.
      * </p>
      *
-     * @param _keyword
-     *            a {@link java.lang.String} object.
+     * @param _keyword a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.
      */
     static public String createCamelCapVersionOfKeyword(final String _keyword)
@@ -75,8 +74,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * createMetaphoneVersionOfKeyword.
      * </p>
      *
-     * @param _keyword
-     *            a {@link java.lang.String} object.
+     * @param _keyword a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.
      */
     static public String createMetaphoneVersionOfKeyword(final String _keyword)
@@ -91,10 +89,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * uncompileQuoter.
      * </p>
      *
-     * @param out
-     *            a {@link java.lang.StringBuilder} object.
-     * @param value
-     *            a {@link java.lang.String} object.
+     * @param out a {@link java.lang.StringBuilder} object.
+     * @param value a {@link java.lang.String} object.
      */
     static public void uncompileQuoter(final StringBuilder out, final String value)
     {
@@ -256,10 +252,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * exportCommandLineData.
      * </p>
      *
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
-     * @param occ
-     *            a int.
+     * @param str a {@link java.lang.StringBuilder} object.
+     * @param occ a int.
      */
     abstract protected void exportCommandLineData(StringBuilder str, int occ);
 
@@ -295,12 +289,9 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * exportNamespaceData.
      * </p>
      *
-     * @param prefix
-     *            a {@link java.lang.String} object.
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
-     * @param occ
-     *            a int.
+     * @param prefix a {@link java.lang.String} object.
+     * @param str a {@link java.lang.StringBuilder} object.
+     * @param occ a int.
      */
     abstract protected void exportNamespaceData(String prefix, StringBuilder str, int occ);
 
@@ -346,10 +337,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * exportXmlData.
      * </p>
      *
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
-     * @param occ
-     *            a int.
+     * @param str a {@link java.lang.StringBuilder} object.
+     * @param occ a int.
      */
     abstract protected void exportXmlData(StringBuilder str, int occ);
 
@@ -876,8 +865,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * Setter for the field <code>defaultValues</code>.
      * </p>
      *
-     * @param _defaultValues
-     *            a {@link java.util.List} object.
+     * @param _defaultValues a {@link java.util.List} object.
      */
     protected void setDefaultValues(final List<E> _defaultValues)
     {
@@ -889,13 +877,10 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * Setter for the field <code>defaultValues</code>.
      * </p>
      *
-     * @param defaults
-     *            an array of {@link java.lang.String} objects.
+     * @param defaults an array of {@link java.lang.String} objects.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     public ICmdLineArg<E> setDefaultValues(final String[] defaults)
             throws ParseException, IOException
@@ -1154,8 +1139,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * setValue.
      * </p>
      *
-     * @param value
-     *            a {@link java.util.List} object.
+     * @param value a {@link java.util.List} object.
      */
     public void setValue(final List<E> value)
     {
@@ -1168,8 +1152,7 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * Setter for the field <code>values</code>.
      * </p>
      *
-     * @param _values
-     *            a {@link java.util.List} object.
+     * @param _values a {@link java.util.List} object.
      */
     protected void setValues(final List<E> _values)
     {
@@ -1376,10 +1359,8 @@ abstract public class AbstractCLA<E> implements ICmdLineArg<E>, Cloneable
      * xmlEncode.
      * </p>
      *
-     * @param in
-     *            a {@link java.lang.String} object.
-     * @param builder
-     *            a {@link java.lang.StringBuilder} object.
+     * @param in a {@link java.lang.String} object.
+     * @param builder a {@link java.lang.StringBuilder} object.
      */
     protected void xmlEncode(
             final String in,

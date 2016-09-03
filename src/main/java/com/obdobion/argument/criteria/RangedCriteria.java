@@ -3,7 +3,9 @@ package com.obdobion.argument.criteria;
 import com.obdobion.argument.usage.UsageBuilder;
 
 /**
- * <p>RangedCriteria class.</p>
+ * <p>
+ * RangedCriteria class.
+ * </p>
  *
  * @param <E>
  * @author Chris DeGreef fedupforone@gmail.com
@@ -15,7 +17,9 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
     E max;
 
     /**
-     * <p>Constructor for RangedCriteria.</p>
+     * <p>
+     * Constructor for RangedCriteria.
+     * </p>
      *
      * @param inclusiveMin a E object.
      * @param inclusiveMax a E object.
@@ -62,7 +66,9 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     /**
-     * <p>Getter for the field <code>max</code>.</p>
+     * <p>
+     * Getter for the field <code>max</code>.
+     * </p>
      *
      * @return a E object.
      */
@@ -72,7 +78,9 @@ public class RangedCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     /**
-     * <p>Getter for the field <code>min</code>.</p>
+     * <p>
+     * Getter for the field <code>min</code>.
+     * </p>
      *
      * @return a E object.
      */

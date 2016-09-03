@@ -1,7 +1,9 @@
 package com.obdobion.argument.input;
 
 /**
- * <p>NodeOc class.</p>
+ * <p>
+ * NodeOc class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

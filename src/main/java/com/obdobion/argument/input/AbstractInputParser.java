@@ -5,7 +5,9 @@ import java.util.List;
 import com.obdobion.argument.type.AbstractCLA;
 
 /**
- * <p>Abstract AbstractInputParser class.</p>
+ * <p>
+ * Abstract AbstractInputParser class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -26,7 +28,9 @@ abstract public class AbstractInputParser
     }
 
     /**
-     * <p>quote.</p>
+     * <p>
+     * quote.
+     * </p>
      *
      * @param value a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.
@@ -39,7 +43,9 @@ abstract public class AbstractInputParser
     }
 
     /**
-     * <p>Constructor for AbstractInputParser.</p>
+     * <p>
+     * Constructor for AbstractInputParser.
+     * </p>
      */
     public AbstractInputParser()
     {
@@ -47,7 +53,9 @@ abstract public class AbstractInputParser
     }
 
     /**
-     * <p>buildCommandLine.</p>
+     * <p>
+     * buildCommandLine.
+     * </p>
      *
      * @param out a {@link java.lang.StringBuilder} object.
      * @param depth a {@link java.util.List} object.
@@ -129,7 +137,9 @@ abstract public class AbstractInputParser
     }
 
     /**
-     * <p>buildTokens.</p>
+     * <p>
+     * buildTokens.
+     * </p>
      *
      * @param commandPrefix a char.
      * @param tokens a {@link java.util.List} object.

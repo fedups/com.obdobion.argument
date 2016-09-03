@@ -20,7 +20,9 @@ import org.xml.sax.helpers.DefaultHandler;
 import com.obdobion.argument.type.ICmdLineArg;
 
 /**
- * <p>XmlParser class.</p>
+ * <p>
+ * XmlParser class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -31,7 +33,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     final static private String delimAttr = "delim";
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param file a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -45,7 +49,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param input a {@link java.io.InputStream} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -58,7 +64,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param input a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -72,7 +80,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param input a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -97,7 +107,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
      * @param args a {@link java.util.List} object.
      * @return a {@link java.lang.String} object.
@@ -112,7 +124,9 @@ public class XmlParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
      * @param args a {@link java.util.List} object.
      * @param out a {@link java.lang.StringBuilder} object.

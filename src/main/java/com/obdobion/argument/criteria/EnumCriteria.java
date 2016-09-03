@@ -17,7 +17,9 @@ public class EnumCriteria<E> extends ListCriteria<E>
 {
 
     /**
-     * <p>Constructor for EnumCriteria.</p>
+     * <p>
+     * Constructor for EnumCriteria.
+     * </p>
      *
      * @param listOfValidValues a {@link java.util.List} object.
      */

@@ -31,8 +31,7 @@ public class AnnotateInListCriteriaTest
      * inList.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -49,8 +48,7 @@ public class AnnotateInListCriteriaTest
      * inListInt.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -67,8 +65,7 @@ public class AnnotateInListCriteriaTest
      * notInList.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -92,8 +89,7 @@ public class AnnotateInListCriteriaTest
      * notInListInt.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

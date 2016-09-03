@@ -5,7 +5,9 @@ import java.util.List;
 import com.obdobion.argument.usage.UsageBuilder;
 
 /**
- * <p>ListCriteria class.</p>
+ * <p>
+ * ListCriteria class.
+ * </p>
  *
  * @param <E>
  * @author Chris DeGreef fedupforone@gmail.com
@@ -15,7 +17,9 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     List<E> list;
 
     /**
-     * <p>Constructor for ListCriteria.</p>
+     * <p>
+     * Constructor for ListCriteria.
+     * </p>
      *
      * @param listOfValidValues a {@link java.util.List} object.
      */
@@ -65,7 +69,9 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     /**
-     * <p>Getter for the field <code>list</code>.</p>
+     * <p>
+     * Getter for the field <code>list</code>.
+     * </p>
      *
      * @return a {@link java.util.List} object.
      */
@@ -78,10 +84,8 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
     @Override
     public boolean isSelected(final Comparable<E> value, final boolean caseSensitive)
     {
-        if (!list.isEmpty() && list.get(0) instanceof String && !caseSensitive)
-        {
-            return list.contains(((String) value).toLowerCase());
-        }
+        if (!list.isEmpty() && list.get(0) instanceof String
+                && !caseSensitive) { return list.contains(((String) value).toLowerCase()); }
         return list.contains(value);
     }
 
@@ -94,10 +98,7 @@ public class ListCriteria<E> implements ICmdLineArgCriteria<E>
         /*
          * Only string lists make sense to normalize.
          */
-        if (!(value instanceof String))
-        {
-            return value;
-        }
+        if (!(value instanceof String)) { return value; }
 
         String stringValue = (String) value;
         for (final E listItem : list)

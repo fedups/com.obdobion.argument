@@ -3,7 +3,9 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 
 /**
- * <p>WildFilesCLA class.</p>
+ * <p>
+ * WildFilesCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

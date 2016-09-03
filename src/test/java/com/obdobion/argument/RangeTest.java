@@ -29,8 +29,7 @@ public class RangeTest
      * floatRange1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -44,8 +43,7 @@ public class RangeTest
      * floatRange2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -66,8 +64,7 @@ public class RangeTest
      * floatRange3.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -89,8 +86,7 @@ public class RangeTest
      * integerRange1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -104,8 +100,7 @@ public class RangeTest
      * integerRange2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -127,8 +122,7 @@ public class RangeTest
      * integerRange3.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -142,8 +136,7 @@ public class RangeTest
      * integerRange4.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -164,8 +157,7 @@ public class RangeTest
      * integerRange5.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -187,8 +179,7 @@ public class RangeTest
      * stringRange1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -202,8 +193,7 @@ public class RangeTest
      * stringRange2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -217,8 +207,7 @@ public class RangeTest
      * stringRange3.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -239,8 +228,7 @@ public class RangeTest
      * stringRange4.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -254,8 +242,7 @@ public class RangeTest
      * stringRange5.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -276,8 +263,7 @@ public class RangeTest
      * stringRange6.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -298,8 +284,7 @@ public class RangeTest
      * stringRange7.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -313,8 +298,7 @@ public class RangeTest
      * stringRange8.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test

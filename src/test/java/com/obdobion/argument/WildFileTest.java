@@ -10,7 +10,9 @@ import com.obdobion.argument.type.WildFiles;
 import com.obdobion.argument.type.WildPath;
 
 /**
- * <p>WildFileTest class.</p>
+ * <p>
+ * WildFileTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -21,7 +23,9 @@ public class WildFileTest
     public WildFiles wildFile;
 
     /**
-     * <p>patternConversionsNix.</p>
+     * <p>
+     * patternConversionsNix.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -36,7 +40,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>patternConversionsNixMatching.</p>
+     * <p>
+     * patternConversionsNixMatching.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -57,7 +63,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>patternConversionsWin.</p>
+     * <p>
+     * patternConversionsWin.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -72,7 +80,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>recursiveDirSearchFileNotFound.</p>
+     * <p>
+     * recursiveDirSearchFileNotFound.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -85,7 +95,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>specificDirSearch.</p>
+     * <p>
+     * specificDirSearch.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -98,7 +110,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>validRegex.</p>
+     * <p>
+     * validRegex.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -111,7 +125,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>wildDirSearch1.</p>
+     * <p>
+     * wildDirSearch1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -124,7 +140,9 @@ public class WildFileTest
     }
 
     /**
-     * <p>wildDirSearch2.</p>
+     * <p>
+     * wildDirSearch2.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

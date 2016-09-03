@@ -6,7 +6,9 @@ import java.util.regex.Pattern;
 import com.obdobion.argument.usage.UsageBuilder;
 
 /**
- * <p>RegxCriteria class.</p>
+ * <p>
+ * RegxCriteria class.
+ * </p>
  *
  * @param <E>
  * @author Chris DeGreef fedupforone@gmail.com
@@ -17,7 +19,9 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     String  patternParm;
 
     /**
-     * <p>Constructor for RegxCriteria.</p>
+     * <p>
+     * Constructor for RegxCriteria.
+     * </p>
      *
      * @param _pattern a {@link java.lang.String} object.
      */
@@ -54,7 +58,9 @@ public class RegxCriteria<E> implements ICmdLineArgCriteria<E>
     }
 
     /**
-     * <p>Getter for the field <code>patternParm</code>.</p>
+     * <p>
+     * Getter for the field <code>patternParm</code>.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */

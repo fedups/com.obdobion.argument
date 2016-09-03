@@ -11,7 +11,9 @@ import com.obdobion.argument.criteria.ListCriteria;
 import com.obdobion.argument.criteria.RegxCriteria;
 
 /**
- * <p>CLAFactory class.</p>
+ * <p>
+ * CLAFactory class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -22,7 +24,9 @@ public class CLAFactory
     static CLAFactory          instance;
 
     /**
-     * <p>Getter for the field <code>instance</code>.</p>
+     * <p>
+     * Getter for the field <code>instance</code>.
+     * </p>
      *
      * @return a {@link com.obdobion.argument.type.CLAFactory} object.
      */
@@ -34,7 +38,9 @@ public class CLAFactory
     }
 
     /**
-     * <p>instanceType.</p>
+     * <p>
+     * instanceType.
+     * </p>
      *
      * @param oneField a {@link java.lang.reflect.Field} object.
      * @return a {@link java.lang.Class} object.
@@ -51,7 +57,9 @@ public class CLAFactory
     }
 
     /**
-     * <p>reset.</p>
+     * <p>
+     * reset.
+     * </p>
      */
     static public void reset()
     {
@@ -141,7 +149,8 @@ public class CLAFactory
      *
      * @param commandPrefix a char.
      * @param p_oneField a {@link java.lang.reflect.Field} object.
-     * @param argAnnotation a {@link com.obdobion.argument.annotation.Arg} object.
+     * @param argAnnotation a {@link com.obdobion.argument.annotation.Arg}
+     *            object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @throws java.text.ParseException if any.
      * @throws java.io.IOException if any.
@@ -325,9 +334,8 @@ public class CLAFactory
      *
      *
      * @param arg
-     * @param argAnnotation
-     *            is only needed to evaluate parameters that are not stored on
-     *            the arg itself; like excludeArgs.
+     * @param argAnnotation is only needed to evaluate parameters that are not
+     *            stored on the arg itself; like excludeArgs.
      * @throws ParseException
      */
     private void verifyArgument(final ICmdLineArg<?> arg, final Arg argAnnotation, final Class<?> fieldType)

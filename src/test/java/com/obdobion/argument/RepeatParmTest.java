@@ -41,8 +41,7 @@ public class RepeatParmTest
      * repeatedBoolean.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -57,8 +56,7 @@ public class RepeatParmTest
      * repeatedMultiple.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -74,8 +72,7 @@ public class RepeatParmTest
      * repeatedNonMultiple.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -99,8 +96,7 @@ public class RepeatParmTest
      * repeatedPositional.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -116,8 +112,7 @@ public class RepeatParmTest
      * testTurnOffIntegerListOnly.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     public void testTurnOffIntegerListOnly() throws Exception
@@ -131,8 +126,7 @@ public class RepeatParmTest
      * turnOffFirst.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -147,8 +141,7 @@ public class RepeatParmTest
      * turnOffInteger.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -163,8 +156,7 @@ public class RepeatParmTest
      * turnOffIntegerList.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -179,8 +171,7 @@ public class RepeatParmTest
      * turnOffIntegerListWithDef.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -195,8 +186,7 @@ public class RepeatParmTest
      * turnOffIntegerOnly.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -211,8 +201,7 @@ public class RepeatParmTest
      * turnOffLast.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

@@ -22,8 +22,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * add.
      * </p>
      *
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     void add(ICmdLineArg<?> arg);
 
@@ -32,10 +31,8 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * add.
      * </p>
      *
-     * @param index
-     *            a int.
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param index a int.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     void add(int index, ICmdLineArg<?> arg);
 
@@ -44,8 +41,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * addDefaultIncludeDirectory.
      * </p>
      *
-     * @param directory
-     *            a {@link java.io.File} object.
+     * @param directory a {@link java.io.File} object.
      */
     void addDefaultIncludeDirectory(File directory);
 
@@ -63,8 +59,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * arg.
      * </p>
      *
-     * @param commandToken
-     *            a {@link java.lang.String} object.
+     * @param commandToken a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<?> arg(String commandToken);
@@ -74,11 +69,9 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * argForVariableName.
      * </p>
      *
-     * @param variableName
-     *            a {@link java.lang.String} object.
+     * @param variableName a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     public ICmdLineArg<?> argForVariableName(final String variableName) throws ParseException;
 
@@ -87,10 +80,8 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * assignVariables.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @param target a {@link java.lang.Object} object.
+     * @throws java.text.ParseException if any.
      */
     void assignVariables(Object target) throws ParseException;
 
@@ -130,8 +121,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * indexOf.
      * </p>
      *
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @return a int.
      */
     int indexOf(ICmdLineArg<?> arg);
@@ -141,13 +131,10 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * parse.
      * </p>
      *
-     * @param cmd
-     *            a {@link com.obdobion.argument.input.IParserInput} object.
+     * @param cmd a {@link com.obdobion.argument.input.IParserInput} object.
      * @return a {@link java.lang.Object} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     Object parse(IParserInput cmd) throws IOException, ParseException;
 
@@ -156,15 +143,11 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * parse.
      * </p>
      *
-     * @param cmd
-     *            a {@link com.obdobion.argument.input.IParserInput} object.
-     * @param target
-     *            a {@link java.lang.Object} object.
+     * @param cmd a {@link com.obdobion.argument.input.IParserInput} object.
+     * @param target a {@link java.lang.Object} object.
      * @return a {@link java.lang.Object} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     Object parse(IParserInput cmd, Object target) throws IOException, ParseException;
 
@@ -173,15 +156,11 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * parse.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link java.lang.Object} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     Object parse(Object target, String... args) throws IOException, ParseException;
 
@@ -190,13 +169,10 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * parse.
      * </p>
      *
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link java.lang.Object} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     Object parse(String... args) throws IOException, ParseException;
 
@@ -205,10 +181,8 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * pull.
      * </p>
      *
-     * @param variableSource
-     *            a {@link java.lang.Object} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @param variableSource a {@link java.lang.Object} object.
+     * @throws java.text.ParseException if any.
      */
     void pull(Object variableSource) throws ParseException;
 
@@ -217,8 +191,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * remove.
      * </p>
      *
-     * @param arg
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param arg a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     void remove(ICmdLineArg<?> arg);
 
@@ -227,8 +200,7 @@ public interface ICmdLine extends Comparable<ICmdLine>, ICmdLineArg<ICmdLine>
      * remove.
      * </p>
      *
-     * @param argIndex
-     *            a int.
+     * @param argIndex a int.
      */
     void remove(int argIndex);
 

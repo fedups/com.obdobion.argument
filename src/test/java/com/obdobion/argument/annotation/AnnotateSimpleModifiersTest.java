@@ -50,8 +50,7 @@ public class AnnotateSimpleModifiersTest
      * testAlternateNaming.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -76,8 +75,7 @@ public class AnnotateSimpleModifiersTest
      * testAtLeast2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -105,8 +103,7 @@ public class AnnotateSimpleModifiersTest
      * testAtMost2.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -130,8 +127,7 @@ public class AnnotateSimpleModifiersTest
      * testCaseSensitive.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -149,8 +145,7 @@ public class AnnotateSimpleModifiersTest
      * testDateFormatting.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -178,8 +173,7 @@ public class AnnotateSimpleModifiersTest
      * testLongName.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -197,8 +191,7 @@ public class AnnotateSimpleModifiersTest
      * testPostional.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -227,8 +220,7 @@ public class AnnotateSimpleModifiersTest
      * testShortName.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

@@ -6,12 +6,15 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * <p>Args class.</p>
+ * <p>
+ * Args class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Args {
+public @interface Args
+{
     Arg[] value();
 }

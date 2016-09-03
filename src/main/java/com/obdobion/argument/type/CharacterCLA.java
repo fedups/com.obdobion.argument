@@ -3,7 +3,9 @@ package com.obdobion.argument.type;
 import java.text.ParseException;
 
 /**
- * <p>CharacterCLA class.</p>
+ * <p>
+ * CharacterCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

@@ -52,15 +52,11 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * getInstance.
      * </p>
      *
-     * @param commandPrefix
-     *            a char.
-     * @param allowEmbeddedCommandPrefix
-     *            a boolean.
-     * @param args
-     *            a {@link java.io.File} object.
+     * @param commandPrefix a char.
+     * @param allowEmbeddedCommandPrefix a boolean.
+     * @param args a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.io.IOException if any.
      */
     static public IParserInput getInstance(
             final char commandPrefix,
@@ -80,12 +76,9 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * getInstance.
      * </p>
      *
-     * @param commandPrefix
-     *            a char.
-     * @param allowEmbeddedCommandPrefix
-     *            a boolean.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param commandPrefix a char.
+     * @param allowEmbeddedCommandPrefix a boolean.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
      */
     static public IParserInput getInstance(
@@ -111,13 +104,10 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * getInstance.
      * </p>
      *
-     * @param commandPrefix
-     *            a char.
-     * @param args
-     *            a {@link java.io.File} object.
+     * @param commandPrefix a char.
+     * @param args a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.io.IOException if any.
      */
     static public IParserInput getInstance(
             final char commandPrefix,
@@ -132,10 +122,8 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * getInstance.
      * </p>
      *
-     * @param commandPrefix
-     *            a char.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param commandPrefix a char.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
      */
     static public IParserInput getInstance(
@@ -150,8 +138,7 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * unparseTokens.
      * </p>
      *
-     * @param args
-     *            a {@link java.util.List} object.
+     * @param args a {@link java.util.List} object.
      * @return a {@link java.lang.String} object.
      */
     static public String unparseTokens(
@@ -167,10 +154,8 @@ public class CommandLineParser extends AbstractInputParser implements IParserInp
      * unparseTokens.
      * </p>
      *
-     * @param args
-     *            a {@link java.util.List} object.
-     * @param out
-     *            a {@link java.lang.StringBuilder} object.
+     * @param args a {@link java.util.List} object.
+     * @param out a {@link java.lang.StringBuilder} object.
      */
     static public void unparseTokens(
             final List<ICmdLineArg<?>> args,

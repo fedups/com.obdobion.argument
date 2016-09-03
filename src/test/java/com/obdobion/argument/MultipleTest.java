@@ -37,8 +37,7 @@ public class MultipleTest
      * minOnlyFail.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -60,8 +59,7 @@ public class MultipleTest
      * minOnlyFailGroup.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -83,8 +81,7 @@ public class MultipleTest
      * oneOnlyFailGroup.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

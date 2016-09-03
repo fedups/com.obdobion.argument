@@ -12,7 +12,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateStandardClassesTest class.</p>
+ * <p>
+ * AnnotateStandardClassesTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -35,7 +37,9 @@ public class AnnotateStandardClassesTest
     private List<Dimension> dimList;
 
     /**
-     * <p>dim.</p>
+     * <p>
+     * dim.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      */
@@ -51,7 +55,9 @@ public class AnnotateStandardClassesTest
     }
 
     /**
-     * <p>dimArray.</p>
+     * <p>
+     * dimArray.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      */
@@ -69,7 +75,9 @@ public class AnnotateStandardClassesTest
     }
 
     /**
-     * <p>dimList.</p>
+     * <p>
+     * dimList.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      */

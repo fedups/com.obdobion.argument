@@ -9,7 +9,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateDefaultsTest class.</p>
+ * <p>
+ * AnnotateDefaultsTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -20,7 +22,9 @@ public class AnnotateDefaultsTest
     private String[] stringDefaults;
 
     /**
-     * <p>allowDefaults.</p>
+     * <p>
+     * allowDefaults.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -41,7 +45,9 @@ public class AnnotateDefaultsTest
     }
 
     /**
-     * <p>overrideDefaults.</p>
+     * <p>
+     * overrideDefaults.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

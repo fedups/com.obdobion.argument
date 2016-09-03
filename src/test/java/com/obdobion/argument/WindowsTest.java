@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>WindowsTest class.</p>
+ * <p>
+ * WindowsTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -20,7 +22,9 @@ public class WindowsTest
     boolean bBool;
 
     /**
-     * <p>compact.</p>
+     * <p>
+     * compact.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -34,7 +38,9 @@ public class WindowsTest
     }
 
     /**
-     * <p>negate.</p>
+     * <p>
+     * negate.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -48,7 +54,9 @@ public class WindowsTest
     }
 
     /**
-     * <p>simple.</p>
+     * <p>
+     * simple.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

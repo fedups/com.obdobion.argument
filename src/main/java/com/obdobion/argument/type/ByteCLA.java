@@ -1,7 +1,9 @@
 package com.obdobion.argument.type;
 
 /**
- * <p>ByteCLA class.</p>
+ * <p>
+ * ByteCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -11,7 +13,10 @@ public class ByteCLA extends AbstractCLA<Byte>
      * These literals represent the number that happens to be the same as its
      * index.
      */
-    /** Constant <code>ByteLiteral="{null,soh,stx,etx,eot,enq,ack,bel,bs,ht"{trunked}</code> */
+    /**
+     * Constant
+     * <code>ByteLiteral="{null,soh,stx,etx,eot,enq,ack,bel,bs,ht"{trunked}</code>
+     */
     static public final String[] ByteLiteral = {
             "null",
             "soh",
@@ -49,7 +54,9 @@ public class ByteCLA extends AbstractCLA<Byte>
     };
 
     /**
-     * <p>asLiteral.</p>
+     * <p>
+     * asLiteral.
+     * </p>
      *
      * @param aByte a byte.
      * @return a {@link java.lang.String} object.
@@ -62,7 +69,9 @@ public class ByteCLA extends AbstractCLA<Byte>
     }
 
     /**
-     * <p>byteToLit.</p>
+     * <p>
+     * byteToLit.
+     * </p>
      *
      * @param number a {@link java.lang.String} object.
      * @return a {@link java.lang.String} object.

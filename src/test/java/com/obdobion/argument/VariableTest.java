@@ -11,7 +11,9 @@ import com.obdobion.argument.variables.NullAssigner;
 import com.obdobion.argument.variables.VariableAssigner;
 
 /**
- * <p>VariableTest class.</p>
+ * <p>
+ * VariableTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -73,7 +75,9 @@ public class VariableTest
     public List<MyGroup> testGroupList;
 
     /**
-     * <p>Constructor for VariableTest.</p>
+     * <p>
+     * Constructor for VariableTest.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -83,7 +87,9 @@ public class VariableTest
     }
 
     /**
-     * <p>groupWithoutOwnVariable.</p>
+     * <p>
+     * groupWithoutOwnVariable.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -96,7 +102,9 @@ public class VariableTest
     }
 
     /**
-     * <p>nullAssigner.</p>
+     * <p>
+     * nullAssigner.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -118,7 +126,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variablebooleanAssignment.</p>
+     * <p>
+     * variablebooleanAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -131,7 +141,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableBooleanAssignment.</p>
+     * <p>
+     * variableBooleanAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -144,7 +156,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variablefloatArrayAssignment.</p>
+     * <p>
+     * variablefloatArrayAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -158,7 +172,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableFloatArrayAssignment.</p>
+     * <p>
+     * variableFloatArrayAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -172,7 +188,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableFloatAssignment.</p>
+     * <p>
+     * variableFloatAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -185,7 +203,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableGroupArrayStringAssignment.</p>
+     * <p>
+     * variableGroupArrayStringAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -200,7 +220,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableGroupGroupStringAssignment.</p>
+     * <p>
+     * variableGroupGroupStringAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -213,7 +235,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableGroupListStringAssignment.</p>
+     * <p>
+     * variableGroupListStringAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -228,7 +252,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableGroupStringAssignment.</p>
+     * <p>
+     * variableGroupStringAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -241,7 +267,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableGroupStringAssignmentToObjectList.</p>
+     * <p>
+     * variableGroupStringAssignmentToObjectList.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -255,7 +283,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableIntArrayAssignment.</p>
+     * <p>
+     * variableIntArrayAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -269,7 +299,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableintAssignment.</p>
+     * <p>
+     * variableintAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -282,7 +314,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableIntegerArrayAssignment.</p>
+     * <p>
+     * variableIntegerArrayAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -296,7 +330,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableIntegerAssignment.</p>
+     * <p>
+     * variableIntegerAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -309,7 +345,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableStringArrayAssignment.</p>
+     * <p>
+     * variableStringArrayAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -323,7 +361,9 @@ public class VariableTest
     }
 
     /**
-     * <p>variableStringAssignment.</p>
+     * <p>
+     * variableStringAssignment.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

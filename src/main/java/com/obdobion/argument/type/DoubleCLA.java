@@ -4,7 +4,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * <p>DoubleCLA class.</p>
+ * <p>
+ * DoubleCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

@@ -1,25 +1,32 @@
 package com.obdobion.argument.input;
 
 /**
- * <p>IParserInput interface.</p>
+ * <p>
+ * IParserInput interface.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
-public interface IParserInput {
+public interface IParserInput
+{
 
     /**
-     * <p>parseTokens.</p>
+     * <p>
+     * parseTokens.
+     * </p>
      *
      * @return an array of {@link com.obdobion.argument.input.Token} objects.
      */
-    public Token[] parseTokens ();
+    public Token[] parseTokens();
 
     /**
-     * <p>substring.</p>
+     * <p>
+     * substring.
+     * </p>
      *
      * @param inclusiveStart a int.
      * @param exclusiveEnd a int.
      * @return a {@link java.lang.String} object.
      */
-    public String substring (int inclusiveStart, int exclusiveEnd);
+    public String substring(int inclusiveStart, int exclusiveEnd);
 }

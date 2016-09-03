@@ -29,10 +29,8 @@ public class Token
      * Constructor for Token.
      * </p>
      *
-     * @param _commandPrefix
-     *            a char.
-     * @param _value
-     *            a {@link java.lang.String} object.
+     * @param _commandPrefix a char.
+     * @param _value a {@link java.lang.String} object.
      */
     public Token(final char _commandPrefix, final String _value)
     {
@@ -44,16 +42,11 @@ public class Token
      * Constructor for Token.
      * </p>
      *
-     * @param _commandPrefix
-     *            a char.
-     * @param _value
-     *            a {@link java.lang.String} object.
-     * @param startIndex
-     *            a int.
-     * @param endIndex
-     *            a int.
-     * @param forceLiteral
-     *            a boolean.
+     * @param _commandPrefix a char.
+     * @param _value a {@link java.lang.String} object.
+     * @param startIndex a int.
+     * @param endIndex a int.
+     * @param forceLiteral a boolean.
      */
     public Token(
             final char _commandPrefix,
@@ -74,14 +67,14 @@ public class Token
         else if (!isParserDirective())
             switch (dashes())
             {
-            case 1:
-                charCommand = true;
-                break;
-            case 2:
-                wordCommand = true;
-                break;
-            default:
-                literal = true;
+                case 1:
+                    charCommand = true;
+                    break;
+                case 2:
+                    wordCommand = true;
+                    break;
+                default:
+                    literal = true;
             }
     }
 
@@ -184,8 +177,7 @@ public class Token
      * isCharCommand.
      * </p>
      *
-     * @param argDef
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param argDef a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @return a boolean.
      */
     public boolean isCharCommand(final ICmdLineArg<?> argDef)
@@ -306,8 +298,7 @@ public class Token
      * isWordCommand.
      * </p>
      *
-     * @param argDef
-     *            a {@link com.obdobion.argument.type.ICmdLineArg} object.
+     * @param argDef a {@link com.obdobion.argument.type.ICmdLineArg} object.
      * @return a boolean.
      */
     public boolean isWordCommand(final ICmdLineArg<?> argDef)
@@ -387,8 +378,7 @@ public class Token
      * Setter for the field <code>literal</code>.
      * </p>
      *
-     * @param _literal
-     *            a boolean.
+     * @param _literal a boolean.
      */
     protected void setLiteral(final boolean _literal)
     {
@@ -400,8 +390,7 @@ public class Token
      * Setter for the field <code>used</code>.
      * </p>
      *
-     * @param _used
-     *            a boolean.
+     * @param _used a boolean.
      */
     public void setUsed(final boolean _used)
     {
@@ -413,8 +402,7 @@ public class Token
      * Setter for the field <code>value</code>.
      * </p>
      *
-     * @param _value
-     *            a {@link java.lang.String} object.
+     * @param _value a {@link java.lang.String} object.
      */
     protected void setValue(final String _value)
     {

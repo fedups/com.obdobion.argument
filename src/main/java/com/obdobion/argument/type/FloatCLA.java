@@ -4,7 +4,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * <p>FloatCLA class.</p>
+ * <p>
+ * FloatCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

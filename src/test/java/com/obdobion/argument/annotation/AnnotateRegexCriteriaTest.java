@@ -28,8 +28,7 @@ public class AnnotateRegexCriteriaTest
      * regex.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -46,8 +45,7 @@ public class AnnotateRegexCriteriaTest
      * regexNot.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

@@ -26,8 +26,7 @@ public class ExceptionTest
      * badCharCommand.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -48,8 +47,7 @@ public class ExceptionTest
      * badWordCommand.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -70,8 +68,7 @@ public class ExceptionTest
      * missingRightBracket.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -92,8 +89,7 @@ public class ExceptionTest
      * tooManyRightBracket.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

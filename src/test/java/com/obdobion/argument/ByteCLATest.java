@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>ByteCLATest class.</p>
+ * <p>
+ * ByteCLATest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -26,16 +28,19 @@ public class ByteCLATest
     }
 
     /**
-     * <p>Constructor for ByteCLATest.</p>
+     * <p>
+     * Constructor for ByteCLATest.
+     * </p>
      *
      * @since 4.3.1
      */
     public ByteCLATest()
-    {
-    }
+    {}
 
     /**
-     * <p>byteArrayObject.</p>
+     * <p>
+     * byteArrayObject.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -53,7 +58,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>byteArrayPrimitive.</p>
+     * <p>
+     * byteArrayPrimitive.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -72,7 +79,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>hexLiteral.</p>
+     * <p>
+     * hexLiteral.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -90,7 +99,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteAlpha.</p>
+     * <p>
+     * singleByteAlpha.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -104,7 +115,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteBadData.</p>
+     * <p>
+     * singleByteBadData.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -126,7 +139,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteNegative.</p>
+     * <p>
+     * singleByteNegative.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -140,7 +155,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteNumericMax.</p>
+     * <p>
+     * singleByteNumericMax.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -154,7 +171,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteNumericMin.</p>
+     * <p>
+     * singleByteNumericMin.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -168,7 +187,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteObject.</p>
+     * <p>
+     * singleByteObject.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -182,7 +203,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteSingleDigit.</p>
+     * <p>
+     * singleByteSingleDigit.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -196,7 +219,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteSingleDigitAlpha.</p>
+     * <p>
+     * singleByteSingleDigitAlpha.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -210,7 +235,9 @@ public class ByteCLATest
     }
 
     /**
-     * <p>singleByteTooBig.</p>
+     * <p>
+     * singleByteTooBig.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

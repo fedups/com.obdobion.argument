@@ -9,7 +9,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateSubparserTest class.</p>
+ * <p>
+ * AnnotateSubparserTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -52,7 +54,9 @@ public class AnnotateSubparserTest
     private final RootConfig cfg = new RootConfig();
 
     /**
-     * <p>testDefaults.</p>
+     * <p>
+     * testDefaults.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -67,7 +71,9 @@ public class AnnotateSubparserTest
     }
 
     /**
-     * <p>testUsage.</p>
+     * <p>
+     * testUsage.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -81,7 +87,9 @@ public class AnnotateSubparserTest
     }
 
     /**
-     * <p>testValues.</p>
+     * <p>
+     * testValues.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

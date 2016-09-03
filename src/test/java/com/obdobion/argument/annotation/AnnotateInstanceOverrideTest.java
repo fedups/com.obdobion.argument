@@ -19,8 +19,7 @@ import com.obdobion.argument.input.IParserInput;
 public class AnnotateInstanceOverrideTest
 {
     public static class FirstNameOnly extends NamedInstance
-    {
-    }
+    {}
 
     public static interface INamed
     {
@@ -56,7 +55,9 @@ public class AnnotateInstanceOverrideTest
     private INamed[] polymorphic;
 
     /**
-     * <p>instanceOverride.</p>
+     * <p>
+     * instanceOverride.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

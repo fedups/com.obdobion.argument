@@ -23,8 +23,7 @@ public class RequiredTest
      * requireInteger.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

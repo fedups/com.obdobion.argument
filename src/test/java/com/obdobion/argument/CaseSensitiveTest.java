@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>CaseSensitiveTest class.</p>
+ * <p>
+ * CaseSensitiveTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -23,7 +25,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseDoesNotMatter1.</p>
+     * <p>
+     * caseDoesNotMatter1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -37,7 +41,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseDoesNotMatter2.</p>
+     * <p>
+     * caseDoesNotMatter2.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -51,7 +57,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseDoesNotMatter3.</p>
+     * <p>
+     * caseDoesNotMatter3.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -65,7 +73,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseDoesNotMatter4.</p>
+     * <p>
+     * caseDoesNotMatter4.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -79,7 +89,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseMattersValid1.</p>
+     * <p>
+     * caseMattersValid1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -93,7 +105,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>caseMattersValid2.</p>
+     * <p>
+     * caseMattersValid2.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -107,7 +121,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>extendingPartialSelectionWhenCaseDoesNotMatter.</p>
+     * <p>
+     * extendingPartialSelectionWhenCaseDoesNotMatter.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -121,7 +137,9 @@ public class CaseSensitiveTest
     }
 
     /**
-     * <p>extendingPartialSelectionWhenCaseMatters.</p>
+     * <p>
+     * extendingPartialSelectionWhenCaseMatters.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

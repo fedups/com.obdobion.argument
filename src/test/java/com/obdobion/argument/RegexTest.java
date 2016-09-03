@@ -9,7 +9,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>RegexTest class.</p>
+ * <p>
+ * RegexTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -25,7 +27,9 @@ public class RegexTest
     public Pattern[] regexA;
 
     /**
-     * <p>Constructor for RegexTest.</p>
+     * <p>
+     * Constructor for RegexTest.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -35,7 +39,9 @@ public class RegexTest
     }
 
     /**
-     * <p>invalidRegex.</p>
+     * <p>
+     * invalidRegex.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -54,7 +60,9 @@ public class RegexTest
     }
 
     /**
-     * <p>validRegex.</p>
+     * <p>
+     * validRegex.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -71,7 +79,9 @@ public class RegexTest
     }
 
     /**
-     * <p>validRegexArrayCaseDoesNotMatter.</p>
+     * <p>
+     * validRegexArrayCaseDoesNotMatter.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -88,7 +98,9 @@ public class RegexTest
     }
 
     /**
-     * <p>validRegexArrayCaseMatters.</p>
+     * <p>
+     * validRegexArrayCaseMatters.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -105,7 +117,9 @@ public class RegexTest
     }
 
     /**
-     * <p>validRegexArrayCaseMattersA.</p>
+     * <p>
+     * validRegexArrayCaseMattersA.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

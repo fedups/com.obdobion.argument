@@ -80,7 +80,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 @Repeatable(Args.class)
-public @interface Arg {
+public @interface Arg
+{
 
     /**
      * Indicates that the user can specify the argument on the command-line

@@ -7,7 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * <p>BooleanCLA class.</p>
+ * <p>
+ * BooleanCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -18,7 +20,9 @@ public class BooleanCLA extends AbstractCLA<Boolean>
     String[]                     validWords = new String[] { "yes", "no" };
 
     /**
-     * <p>Constructor for BooleanCLA.</p>
+     * <p>
+     * Constructor for BooleanCLA.
+     * </p>
      */
     public BooleanCLA()
     {

@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>NumbersTest class.</p>
+ * <p>
+ * NumbersTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -26,7 +28,9 @@ public class NumbersTest
     int beeName;
 
     /**
-     * <p>negativeIntegers.</p>
+     * <p>
+     * negativeIntegers.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -40,7 +44,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>negativeIntegersViaKeyCharEqualSign.</p>
+     * <p>
+     * negativeIntegersViaKeyCharEqualSign.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -53,7 +59,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>negativeIntegersViaKeyCharNoDelim.</p>
+     * <p>
+     * negativeIntegersViaKeyCharNoDelim.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -66,7 +74,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>negativeIntegersViaKeyWord.</p>
+     * <p>
+     * negativeIntegersViaKeyWord.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -79,7 +89,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>negativeIntegersViaKeyWordWithEmbeddedDash.</p>
+     * <p>
+     * negativeIntegersViaKeyWordWithEmbeddedDash.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -92,7 +104,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>negativeIntegersViaKeyWordWithEmbeddedDashShortened.</p>
+     * <p>
+     * negativeIntegersViaKeyWordWithEmbeddedDashShortened.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -105,7 +119,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>positiveIntegers.</p>
+     * <p>
+     * positiveIntegers.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -119,7 +135,9 @@ public class NumbersTest
     }
 
     /**
-     * <p>positiveIntegersNoSpace.</p>
+     * <p>
+     * positiveIntegersNoSpace.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

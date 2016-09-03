@@ -38,8 +38,7 @@ public interface ICmdLineArg<E>
      * asDefinedType.
      * </p>
      *
-     * @param sb
-     *            a {@link java.lang.StringBuilder} object.
+     * @param sb a {@link java.lang.StringBuilder} object.
      */
     void asDefinedType(StringBuilder sb);
 
@@ -48,13 +47,10 @@ public interface ICmdLineArg<E>
      * asEnum.
      * </p>
      *
-     * @param name
-     *            a {@link java.lang.String} object.
-     * @param possibleConstants
-     *            an array of {@link java.lang.Object} objects.
+     * @param name a {@link java.lang.String} object.
+     * @param possibleConstants an array of {@link java.lang.Object} objects.
      * @return a {@link java.lang.Object} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Object asEnum(String name, Object[] possibleConstants) throws ParseException;
 
@@ -63,13 +59,10 @@ public interface ICmdLineArg<E>
      * asEnumArray.
      * </p>
      *
-     * @param name
-     *            a {@link java.lang.String} object.
-     * @param possibleConstants
-     *            an array of {@link java.lang.Object} objects.
+     * @param name a {@link java.lang.String} object.
+     * @param possibleConstants an array of {@link java.lang.Object} objects.
      * @return an array of {@link java.lang.Object} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Object[] asEnumArray(String name, Object[] possibleConstants) throws ParseException;
 
@@ -79,8 +72,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.lang.CloneNotSupportedException
-     *             if any.
+     * @throws java.lang.CloneNotSupportedException if any.
      */
     ICmdLineArg<E> clone() throws CloneNotSupportedException;
 
@@ -89,13 +81,10 @@ public interface ICmdLineArg<E>
      * convert.
      * </p>
      *
-     * @param valueStr
-     *            a {@link java.lang.String} object.
+     * @param valueStr a {@link java.lang.String} object.
      * @return a E object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     E convert(String valueStr) throws ParseException, IOException;
 
@@ -104,17 +93,12 @@ public interface ICmdLineArg<E>
      * convert.
      * </p>
      *
-     * @param valueStr
-     *            a {@link java.lang.String} object.
-     * @param caseSensitive
-     *            a boolean.
-     * @param target
-     *            a {@link java.lang.Object} object.
+     * @param valueStr a {@link java.lang.String} object.
+     * @param caseSensitive a boolean.
+     * @param target a {@link java.lang.Object} object.
      * @return a E object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     E convert(String valueStr, boolean caseSensitive, Object target) throws ParseException, IOException;
 
@@ -139,10 +123,8 @@ public interface ICmdLineArg<E>
      * exportCommandLine.
      * </p>
      *
-     * @param file
-     *            a {@link java.io.File} object.
-     * @throws java.io.IOException
-     *             if any.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
      */
     void exportCommandLine(File file) throws IOException;
 
@@ -151,8 +133,7 @@ public interface ICmdLineArg<E>
      * exportCommandLine.
      * </p>
      *
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
+     * @param str a {@link java.lang.StringBuilder} object.
      */
     void exportCommandLine(StringBuilder str);
 
@@ -161,10 +142,8 @@ public interface ICmdLineArg<E>
      * exportNamespace.
      * </p>
      *
-     * @param file
-     *            a {@link java.io.File} object.
-     * @throws java.io.IOException
-     *             if any.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
      */
     void exportNamespace(File file) throws IOException;
 
@@ -173,10 +152,8 @@ public interface ICmdLineArg<E>
      * exportNamespace.
      * </p>
      *
-     * @param prefix
-     *            a {@link java.lang.String} object.
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
+     * @param prefix a {@link java.lang.String} object.
+     * @param str a {@link java.lang.StringBuilder} object.
      */
     void exportNamespace(String prefix, StringBuilder str);
 
@@ -185,12 +162,9 @@ public interface ICmdLineArg<E>
      * exportXml.
      * </p>
      *
-     * @param tag
-     *            a {@link java.lang.String} object.
-     * @param file
-     *            a {@link java.io.File} object.
-     * @throws java.io.IOException
-     *             if any.
+     * @param tag a {@link java.lang.String} object.
+     * @param file a {@link java.io.File} object.
+     * @throws java.io.IOException if any.
      */
     void exportXml(String tag, File file) throws IOException;
 
@@ -199,8 +173,7 @@ public interface ICmdLineArg<E>
      * exportXml.
      * </p>
      *
-     * @param str
-     *            a {@link java.lang.StringBuilder} object.
+     * @param str a {@link java.lang.StringBuilder} object.
      */
     void exportXml(StringBuilder str);
 
@@ -255,8 +228,7 @@ public interface ICmdLineArg<E>
      * getDelegateOrValue.
      * </p>
      *
-     * @param occurrence
-     *            a int.
+     * @param occurrence a int.
      * @return a {@link java.lang.Object} object.
      */
     Object getDelegateOrValue(int occurrence);
@@ -383,8 +355,7 @@ public interface ICmdLineArg<E>
      * getValue.
      * </p>
      *
-     * @param index
-     *            a int.
+     * @param index a int.
      * @return a E object.
      */
     E getValue(int index);
@@ -395,8 +366,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of byte.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     byte[] getValueAsbyteArray() throws ParseException;
 
@@ -406,8 +376,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Byte} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Byte[] getValueAsByteArray() throws ParseException;
 
@@ -417,8 +386,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.util.Calendar} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Calendar[] getValueAsCalendarArray() throws ParseException;
 
@@ -428,8 +396,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Character} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Character[] getValueAsCharacterArray() throws ParseException;
 
@@ -439,8 +406,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of char.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     char[] getValueAscharArray() throws ParseException;
 
@@ -450,8 +416,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.util.Date} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Date[] getValueAsDateArray() throws ParseException;
 
@@ -461,8 +426,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return a {@link java.time.format.DateTimeFormatter} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      * @since 4.3.1
      */
     DateTimeFormatter getValueAsDateTimeFormatter() throws ParseException;
@@ -473,8 +437,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.time.format.DateTimeFormatter} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     DateTimeFormatter[] getValueAsDateTimeFormatterArray() throws ParseException;
 
@@ -484,8 +447,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of double.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     double[] getValueAsdoubleArray() throws ParseException;
 
@@ -495,8 +457,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Double} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Double[] getValueAsDoubleArray() throws ParseException;
 
@@ -506,8 +467,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return a {@link com.obdobion.algebrain.Equ} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Equ getValueAsEquation() throws ParseException;
 
@@ -517,8 +477,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link com.obdobion.algebrain.Equ} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Equ[] getValueAsEquationArray() throws ParseException;
 
@@ -528,8 +487,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.io.File} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     File[] getValueAsFileArray() throws ParseException;
 
@@ -539,8 +497,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of float.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     float[] getValueAsfloatArray() throws ParseException;
 
@@ -550,8 +507,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Float} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Float[] getValueAsFloatArray() throws ParseException;
 
@@ -561,8 +517,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of int.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     int[] getValueAsintArray() throws ParseException;
 
@@ -572,8 +527,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Integer} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Integer[] getValueAsIntegerArray() throws ParseException;
 
@@ -583,8 +537,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.time.LocalDate} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     LocalDate[] getValueAsLocalDateArray() throws ParseException;
 
@@ -594,8 +547,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.time.LocalDateTime} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     LocalDateTime[] getValueAsLocalDateTimeArray() throws ParseException;
 
@@ -605,8 +557,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.time.LocalTime} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     LocalTime[] getValueAsLocalTimeArray() throws ParseException;
 
@@ -616,8 +567,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of long.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     long[] getValueAslongArray() throws ParseException;
 
@@ -627,8 +577,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.Long} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Long[] getValueAsLongArray() throws ParseException;
 
@@ -638,8 +587,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return a {@link java.util.regex.Pattern} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Pattern getValueAsPattern() throws ParseException;
 
@@ -649,13 +597,14 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.util.regex.Pattern} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     Pattern[] getValueAsPatternArray() throws ParseException;
 
     /**
-     * <p>getValueAsSimpleDateFormat.</p>
+     * <p>
+     * getValueAsSimpleDateFormat.
+     * </p>
      *
      * @return a {@link java.text.SimpleDateFormat} object.
      * @throws java.text.ParseException if any.
@@ -664,7 +613,9 @@ public interface ICmdLineArg<E>
     SimpleDateFormat getValueAsSimpleDateFormat() throws ParseException;
 
     /**
-     * <p>getValueAsSimpleDateFormatArray.</p>
+     * <p>
+     * getValueAsSimpleDateFormatArray.
+     * </p>
      *
      * @return an array of {@link java.text.SimpleDateFormat} objects.
      * @throws java.text.ParseException if any.
@@ -677,8 +628,7 @@ public interface ICmdLineArg<E>
      * </p>
      *
      * @return an array of {@link java.lang.String} objects.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     String[] getValueAsStringArray() throws ParseException;
 
@@ -802,8 +752,7 @@ public interface ICmdLineArg<E>
      * salience.
      * </p>
      *
-     * @param word
-     *            a {@link com.obdobion.argument.input.Token} object.
+     * @param word a {@link com.obdobion.argument.input.Token} object.
      * @return a int.
      */
     int salience(Token word);
@@ -813,8 +762,7 @@ public interface ICmdLineArg<E>
      * setCamelCapsAllowed.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setCamelCapsAllowed(boolean bool);
@@ -824,8 +772,7 @@ public interface ICmdLineArg<E>
      * setCaseSensitive.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setCaseSensitive(boolean bool);
@@ -835,13 +782,10 @@ public interface ICmdLineArg<E>
      * setDefaultValue.
      * </p>
      *
-     * @param defaultValue
-     *            a {@link java.lang.String} object.
+     * @param defaultValue a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     ICmdLineArg<E> setDefaultValue(String defaultValue) throws ParseException, IOException;
 
@@ -850,13 +794,10 @@ public interface ICmdLineArg<E>
      * setEnumCriteria.
      * </p>
      *
-     * @param enumClassName
-     *            a {@link java.lang.String} object.
+     * @param enumClassName a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     ICmdLineArg<E> setEnumCriteria(String enumClassName) throws ParseException, IOException;
 
@@ -865,8 +806,7 @@ public interface ICmdLineArg<E>
      * setEnumCriteriaAllowError.
      * </p>
      *
-     * @param enumClassName
-     *            a {@link java.lang.String} object.
+     * @param enumClassName a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setEnumCriteriaAllowError(String enumClassName);
@@ -876,8 +816,7 @@ public interface ICmdLineArg<E>
      * setFactoryArgName.
      * </p>
      *
-     * @param argName
-     *            a {@link java.lang.String} object.
+     * @param argName a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setFactoryArgName(String argName);
@@ -887,11 +826,9 @@ public interface ICmdLineArg<E>
      * setFactoryMethodName.
      * </p>
      *
-     * @param methodName
-     *            a {@link java.lang.String} object.
+     * @param methodName a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setFactoryMethodName(String methodName) throws ParseException;
 
@@ -900,11 +837,9 @@ public interface ICmdLineArg<E>
      * setFormat.
      * </p>
      *
-     * @param format
-     *            a {@link java.lang.String} object.
+     * @param format a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setFormat(String format) throws ParseException;
 
@@ -913,8 +848,7 @@ public interface ICmdLineArg<E>
      * setHelp.
      * </p>
      *
-     * @param p_helpString
-     *            a {@link java.lang.String} object.
+     * @param p_helpString a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setHelp(String p_helpString);
@@ -924,11 +858,9 @@ public interface ICmdLineArg<E>
      * setInstanceClass.
      * </p>
      *
-     * @param p_instanceClassString
-     *            a {@link java.lang.String} object.
+     * @param p_instanceClassString a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setInstanceClass(String p_instanceClassString) throws ParseException;
 
@@ -937,8 +869,7 @@ public interface ICmdLineArg<E>
      * setKeychar.
      * </p>
      *
-     * @param _keychar
-     *            a {@link java.lang.Character} object.
+     * @param _keychar a {@link java.lang.Character} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setKeychar(final Character _keychar);
@@ -948,8 +879,7 @@ public interface ICmdLineArg<E>
      * setKeyword.
      * </p>
      *
-     * @param _keyword
-     *            a {@link java.lang.String} object.
+     * @param _keyword a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setKeyword(final String _keyword);
@@ -959,13 +889,10 @@ public interface ICmdLineArg<E>
      * setListCriteria.
      * </p>
      *
-     * @param values
-     *            an array of {@link java.lang.String} objects.
+     * @param values an array of {@link java.lang.String} objects.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     ICmdLineArg<E> setListCriteria(String[] values) throws ParseException, IOException;
 
@@ -974,8 +901,7 @@ public interface ICmdLineArg<E>
      * setMetaphoneAllowed.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setMetaphoneAllowed(boolean bool);
@@ -985,11 +911,9 @@ public interface ICmdLineArg<E>
      * setMultiple.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setMultiple(boolean bool) throws ParseException;
 
@@ -998,11 +922,9 @@ public interface ICmdLineArg<E>
      * setMultiple.
      * </p>
      *
-     * @param min
-     *            a int.
+     * @param min a int.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setMultiple(int min) throws ParseException;
 
@@ -1011,13 +933,10 @@ public interface ICmdLineArg<E>
      * setMultiple.
      * </p>
      *
-     * @param min
-     *            a int.
-     * @param max
-     *            a int.
+     * @param min a int.
+     * @param max a int.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setMultiple(int min, int max) throws ParseException;
 
@@ -1026,8 +945,7 @@ public interface ICmdLineArg<E>
      * setObject.
      * </p>
      *
-     * @param value
-     *            a {@link java.lang.Object} object.
+     * @param value a {@link java.lang.Object} object.
      */
     void setObject(Object value);
 
@@ -1036,8 +954,7 @@ public interface ICmdLineArg<E>
      * setParsed.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setParsed(boolean bool);;
@@ -1047,8 +964,7 @@ public interface ICmdLineArg<E>
      * setPositional.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setPositional(boolean bool);
@@ -1058,15 +974,11 @@ public interface ICmdLineArg<E>
      * setRangeCriteria.
      * </p>
      *
-     * @param min
-     *            a {@link java.lang.String} object.
-     * @param max
-     *            a {@link java.lang.String} object.
+     * @param min a {@link java.lang.String} object.
+     * @param max a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     ICmdLineArg<E> setRangeCriteria(String min, String max) throws ParseException, IOException;
 
@@ -1075,11 +987,9 @@ public interface ICmdLineArg<E>
      * setRegxCriteria.
      * </p>
      *
-     * @param pattern
-     *            a {@link java.lang.String} object.
+     * @param pattern a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setRegxCriteria(String pattern) throws ParseException;;
 
@@ -1088,8 +998,7 @@ public interface ICmdLineArg<E>
      * setRequired.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setRequired(boolean bool);
@@ -1099,11 +1008,9 @@ public interface ICmdLineArg<E>
      * setRequiredValue.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setRequiredValue(boolean bool) throws ParseException;
 
@@ -1112,11 +1019,9 @@ public interface ICmdLineArg<E>
      * setSystemGenerated.
      * </p>
      *
-     * @param bool
-     *            a boolean.
+     * @param bool a boolean.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.text.ParseException if any.
      */
     ICmdLineArg<E> setSystemGenerated(boolean bool) throws ParseException;
 
@@ -1125,8 +1030,7 @@ public interface ICmdLineArg<E>
      * setType.
      * </p>
      *
-     * @param claType
-     *            a {@link com.obdobion.argument.type.ClaType} object.
+     * @param claType a {@link com.obdobion.argument.type.ClaType} object.
      */
     void setType(ClaType claType);
 
@@ -1135,8 +1039,7 @@ public interface ICmdLineArg<E>
      * setUniqueId.
      * </p>
      *
-     * @param i
-     *            a int.
+     * @param i a int.
      */
     void setUniqueId(int i);
 
@@ -1145,8 +1048,7 @@ public interface ICmdLineArg<E>
      * setValue.
      * </p>
      *
-     * @param value
-     *            a E object.
+     * @param value a E object.
      */
     void setValue(E value);
 
@@ -1155,10 +1057,8 @@ public interface ICmdLineArg<E>
      * setValue.
      * </p>
      *
-     * @param index
-     *            a int.
-     * @param value
-     *            a E object.
+     * @param index a int.
+     * @param value a E object.
      */
     void setValue(int index, E value);
 
@@ -1167,8 +1067,7 @@ public interface ICmdLineArg<E>
      * setVariable.
      * </p>
      *
-     * @param p_variableString
-     *            a {@link java.lang.String} object.
+     * @param p_variableString a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ICmdLineArg} object.
      */
     ICmdLineArg<E> setVariable(String p_variableString);

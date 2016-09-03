@@ -116,8 +116,7 @@ public class PositionalTest
      * groupingGroupsPositionalBooleans.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -133,8 +132,7 @@ public class PositionalTest
      * groupingGroupsPositionalGroups.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -150,8 +148,7 @@ public class PositionalTest
      * groupingGroupsPositionalGroupsAndBooleans.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -167,8 +164,7 @@ public class PositionalTest
      * groupMultiple.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -185,8 +181,7 @@ public class PositionalTest
      * multipleValuesWithMultiplePositionals.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -209,8 +204,7 @@ public class PositionalTest
      * stringMultiple.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -227,8 +221,7 @@ public class PositionalTest
      * testString.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -244,8 +237,7 @@ public class PositionalTest
      * twoStrings.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -262,8 +254,7 @@ public class PositionalTest
      * twoStringsOnlyUsed1.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

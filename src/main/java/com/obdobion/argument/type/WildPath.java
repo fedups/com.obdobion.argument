@@ -55,8 +55,7 @@ public class WildPath
      * convertFileWildCardToRegx.
      * </p>
      *
-     * @param wildcard
-     *            a {@link java.lang.String} object.
+     * @param wildcard a {@link java.lang.String} object.
      * @return a {@link java.util.regex.Pattern} object.
      */
     public static Pattern convertFileWildCardToRegx(final String wildcard)
@@ -84,8 +83,7 @@ public class WildPath
      * Constructor for WildPath.
      * </p>
      *
-     * @param pattern
-     *            a {@link java.lang.String} object.
+     * @param pattern a {@link java.lang.String} object.
      */
     public WildPath(final String pattern)
     {
@@ -114,10 +112,8 @@ public class WildPath
      * </p>
      *
      * @return a {@link java.util.List} object.
-     * @throws java.text.ParseException
-     *             if any.
-     * @throws java.io.IOException
-     *             if any.
+     * @throws java.text.ParseException if any.
+     * @throws java.io.IOException if any.
      */
     public List<File> files() throws ParseException, IOException
     {

@@ -5,7 +5,9 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 
 /**
- * <p>IntegerCLA class.</p>
+ * <p>
+ * IntegerCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

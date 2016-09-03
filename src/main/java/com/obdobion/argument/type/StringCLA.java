@@ -1,7 +1,9 @@
 package com.obdobion.argument.type;
 
 /**
- * <p>StringCLA class.</p>
+ * <p>
+ * StringCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

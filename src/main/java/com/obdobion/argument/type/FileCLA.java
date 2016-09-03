@@ -4,7 +4,9 @@ import java.io.File;
 import java.text.ParseException;
 
 /**
- * <p>FileCLA class.</p>
+ * <p>
+ * FileCLA class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */

@@ -46,8 +46,7 @@ public class LocalDateTest
      * arrays.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -63,8 +62,7 @@ public class LocalDateTest
      * helpDefaultNow.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -74,7 +72,9 @@ public class LocalDateTest
     }
 
     /**
-     * <p>json.</p>
+     * <p>
+     * json.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      */
@@ -90,8 +90,7 @@ public class LocalDateTest
      * lists.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -107,8 +106,7 @@ public class LocalDateTest
      * simpleUse.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

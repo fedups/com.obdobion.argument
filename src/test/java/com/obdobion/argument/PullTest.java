@@ -9,7 +9,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>PullTest class.</p>
+ * <p>
+ * PullTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -40,16 +42,19 @@ public class PullTest
     private List<InnerParm> innerParmList;
 
     /**
-     * <p>Constructor for PullTest.</p>
+     * <p>
+     * Constructor for PullTest.
+     * </p>
      *
      * @since 4.3.1
      */
     public PullTest()
-    {
-    }
+    {}
 
     /**
-     * <p>updateArray.</p>
+     * <p>
+     * updateArray.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -71,7 +76,9 @@ public class PullTest
     }
 
     /**
-     * <p>updateInnerParm.</p>
+     * <p>
+     * updateInnerParm.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -91,7 +98,9 @@ public class PullTest
     }
 
     /**
-     * <p>updateInnerParmArray.</p>
+     * <p>
+     * updateInnerParmArray.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -122,7 +131,9 @@ public class PullTest
     }
 
     /**
-     * <p>updateInnerParmList.</p>
+     * <p>
+     * updateInnerParmList.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -154,7 +165,9 @@ public class PullTest
     }
 
     /**
-     * <p>updateList.</p>
+     * <p>
+     * updateList.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -179,7 +192,9 @@ public class PullTest
     }
 
     /**
-     * <p>updateSimple.</p>
+     * <p>
+     * updateSimple.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

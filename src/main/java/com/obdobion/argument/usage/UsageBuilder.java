@@ -20,32 +20,30 @@ abstract public class UsageBuilder
      * getWriter.
      * </p>
      *
-     * @param arg
-     *            a {@link com.obdobion.argument.ICmdLine} object.
+     * @param arg a {@link com.obdobion.argument.ICmdLine} object.
      * @return a {@link java.lang.Object} object.
-     * @param verboseLevel
-     *            a int.
+     * @param verboseLevel a int.
      */
     public static Object getWriter(final ICmdLine arg, final int verboseLevel)
     {
         final UsageBuilder ub;
         switch (verboseLevel)
         {
-        case 0:
-            ub = new UsageBuilderLevel1();
-            break;
-        case 1:
-            ub = new UsageBuilderLevel1();
-            break;
-        case 2:
-            ub = new UsageBuilderLevel2();
-            break;
-        case 3:
-            ub = new UsageBuilderLevel3();
-            break;
-        default:
-            ub = new UsageBuilderLevel1();
-            break;
+            case 0:
+                ub = new UsageBuilderLevel1();
+                break;
+            case 1:
+                ub = new UsageBuilderLevel1();
+                break;
+            case 2:
+                ub = new UsageBuilderLevel2();
+                break;
+            case 3:
+                ub = new UsageBuilderLevel3();
+                break;
+            default:
+                ub = new UsageBuilderLevel1();
+                break;
         }
         ub.prettyPrint(arg);
         return ub;
@@ -83,8 +81,7 @@ abstract public class UsageBuilder
      * Send values to this method with embedded new lines (\n) if that is
      * desired.
      *
-     * @param value
-     *            a {@link java.lang.String} object.
+     * @param value a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.usage.UsageBuilder} object.
      */
     public UsageBuilder append(
@@ -174,8 +171,7 @@ abstract public class UsageBuilder
      * setIndentLevel.
      * </p>
      *
-     * @param indentLevel
-     *            a int.
+     * @param indentLevel a int.
      */
     public void setIndentLevel(final int indentLevel)
     {

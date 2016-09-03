@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * <p>WildFiles class.</p>
+ * <p>
+ * WildFiles class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
@@ -40,7 +42,9 @@ public class WildFiles
     }
 
     /**
-     * <p>files.</p>
+     * <p>
+     * files.
+     * </p>
      *
      * @return a {@link java.util.List} object.
      * @throws java.text.ParseException if any.

@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.type.WildPath;
 
 /**
- * <p>WildPathTest class.</p>
+ * <p>
+ * WildPathTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -14,7 +16,9 @@ import com.obdobion.argument.type.WildPath;
 public class WildPathTest
 {
     /**
-     * <p>startingPathAbsolute.</p>
+     * <p>
+     * startingPathAbsolute.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -27,7 +31,9 @@ public class WildPathTest
     }
 
     /**
-     * <p>startingPathAbsoluteWildcards.</p>
+     * <p>
+     * startingPathAbsoluteWildcards.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -40,7 +46,9 @@ public class WildPathTest
     }
 
     /**
-     * <p>startingPathQuestionmarkWildcards.</p>
+     * <p>
+     * startingPathQuestionmarkWildcards.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -61,7 +69,9 @@ public class WildPathTest
     }
 
     /**
-     * <p>startingPathRelative.</p>
+     * <p>
+     * startingPathRelative.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -74,7 +84,9 @@ public class WildPathTest
     }
 
     /**
-     * <p>startingPathRelativeWildcards.</p>
+     * <p>
+     * startingPathRelativeWildcards.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -87,7 +99,9 @@ public class WildPathTest
     }
 
     /**
-     * <p>startingPathStarWildcards.</p>
+     * <p>
+     * startingPathStarWildcards.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

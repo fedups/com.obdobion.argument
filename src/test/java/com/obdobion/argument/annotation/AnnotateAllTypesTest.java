@@ -19,7 +19,9 @@ import com.obdobion.argument.input.IParserInput;
 import com.obdobion.argument.type.WildFiles;
 
 /**
- * <p>AnnotateAllTypesTest class.</p>
+ * <p>
+ * AnnotateAllTypesTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -151,7 +153,9 @@ public class AnnotateAllTypesTest
     */
 
     /**
-     * <p>testAllDefaultValues.</p>
+     * <p>
+     * testAllDefaultValues.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -222,7 +226,9 @@ public class AnnotateAllTypesTest
     }
 
     /**
-     * <p>testAllSpecifiedValues.</p>
+     * <p>
+     * testAllSpecifiedValues.
+     * </p>
      *
      * @since 4.3.1
      */
@@ -403,7 +409,9 @@ public class AnnotateAllTypesTest
     }
 
     /**
-     * <p>testUsage.</p>
+     * <p>
+     * testUsage.
+     * </p>
      *
      * @since 4.3.1
      */

@@ -3,14 +3,18 @@ package com.obdobion.argument.type;
 import java.util.regex.Pattern;
 
 /**
- * <p>ComparablePattern class.</p>
+ * <p>
+ * ComparablePattern class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  */
 public class ComparablePattern implements Comparable<Pattern>
 {
     /**
-     * <p>compile.</p>
+     * <p>
+     * compile.
+     * </p>
      *
      * @param valueStr a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.type.ComparablePattern} object.
@@ -23,7 +27,9 @@ public class ComparablePattern implements Comparable<Pattern>
     }
 
     /**
-     * <p>compile.</p>
+     * <p>
+     * compile.
+     * </p>
      *
      * @param valueStr a {@link java.lang.String} object.
      * @param caseInsensitive a int.
@@ -78,7 +84,9 @@ public class ComparablePattern implements Comparable<Pattern>
     }
 
     /**
-     * <p>pattern.</p>
+     * <p>
+     * pattern.
+     * </p>
      *
      * @return a {@link java.lang.String} object.
      */

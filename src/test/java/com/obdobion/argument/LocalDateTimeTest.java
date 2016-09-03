@@ -58,8 +58,7 @@ public class LocalDateTimeTest
      * arrays.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -71,7 +70,9 @@ public class LocalDateTimeTest
     }
 
     /**
-     * <p>format.</p>
+     * <p>
+     * format.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.4
@@ -89,8 +90,7 @@ public class LocalDateTimeTest
      * helpDefaultNow.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -104,8 +104,7 @@ public class LocalDateTimeTest
      * json.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.4
      */
     @Test
@@ -120,8 +119,7 @@ public class LocalDateTimeTest
      * lists.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test
@@ -137,8 +135,7 @@ public class LocalDateTimeTest
      * simpleUse.
      * </p>
      *
-     * @throws java.lang.Exception
-     *             if any.
+     * @throws java.lang.Exception if any.
      * @since 4.3.1
      */
     @Test

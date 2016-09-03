@@ -83,10 +83,8 @@ public class CmdLine implements ICmdLine, Cloneable
      * format.
      * </p>
      *
-     * @param format
-     *            a {@link java.lang.String} object.
-     * @param args
-     *            a {@link java.lang.Object} object.
+     * @param format a {@link java.lang.String} object.
+     * @param args a {@link java.lang.Object} object.
      * @return a {@link java.lang.String} object.
      */
     static public String format(final String format, final Object... args)
@@ -102,17 +100,12 @@ public class CmdLine implements ICmdLine, Cloneable
      * load.
      * </p>
      *
-     * @param cmdLine
-     *            a {@link com.obdobion.argument.ICmdLine} object.
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param cmdLine a {@link com.obdobion.argument.ICmdLine} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine load(final ICmdLine cmdLine, final Object target, final String... args)
             throws IOException, ParseException
@@ -128,15 +121,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * load.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine load(final Object target, final String... args) throws IOException, ParseException
     {
@@ -148,15 +137,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * loadProperties.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param propertyFile
-     *            a {@link java.io.File} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param propertyFile a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine loadProperties(final Object target, final File propertyFile)
             throws IOException, ParseException
@@ -173,15 +158,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * loadProperties.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine loadProperties(final Object target, final String... args)
             throws IOException, ParseException
@@ -198,14 +179,10 @@ public class CmdLine implements ICmdLine, Cloneable
      * loadWin.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public void loadWin(final Object target, final String... args) throws IOException, ParseException
     {
@@ -220,15 +197,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * loadXml.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param propertyFile
-     *            a {@link java.io.File} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param propertyFile a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine loadXml(final Object target, final File propertyFile)
             throws IOException, ParseException
@@ -245,15 +218,11 @@ public class CmdLine implements ICmdLine, Cloneable
      * loadXml.
      * </p>
      *
-     * @param target
-     *            a {@link java.lang.Object} object.
-     * @param args
-     *            a {@link java.lang.String} object.
+     * @param target a {@link java.lang.Object} object.
+     * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.ICmdLine} object.
-     * @throws java.io.IOException
-     *             if any.
-     * @throws java.text.ParseException
-     *             if any.
+     * @throws java.io.IOException if any.
+     * @throws java.text.ParseException if any.
      */
     static public ICmdLine loadXml(final Object target, final String... args)
             throws IOException, ParseException
@@ -270,14 +239,10 @@ public class CmdLine implements ICmdLine, Cloneable
      * matchingArgs.
      * </p>
      *
-     * @param bestArgs
-     *            a {@link java.util.List} object.
-     * @param possibleArgs
-     *            a {@link java.util.List} object.
-     * @param token
-     *            a {@link com.obdobion.argument.input.Token} object.
-     * @param includeAlreadyParsed
-     *            a boolean.
+     * @param bestArgs a {@link java.util.List} object.
+     * @param possibleArgs a {@link java.util.List} object.
+     * @param token a {@link com.obdobion.argument.input.Token} object.
+     * @param includeAlreadyParsed a boolean.
      * @return a int.
      */
     static public int matchingArgs(
@@ -610,8 +575,7 @@ public class CmdLine implements ICmdLine, Cloneable
      * Constructor for CmdLine.
      * </p>
      *
-     * @param _name
-     *            a {@link java.lang.String} object.
+     * @param _name a {@link java.lang.String} object.
      */
     public CmdLine(final String _name)
     {
@@ -623,12 +587,9 @@ public class CmdLine implements ICmdLine, Cloneable
      * Constructor for CmdLine.
      * </p>
      *
-     * @param _name
-     *            a {@link java.lang.String} object.
-     * @param _commandPrefix
-     *            a char.
-     * @param _notPrefix
-     *            a char.
+     * @param _name a {@link java.lang.String} object.
+     * @param _commandPrefix a char.
+     * @param _notPrefix a char.
      */
     public CmdLine(final String _name, final char _commandPrefix, final char _notPrefix)
     {
@@ -640,10 +601,8 @@ public class CmdLine implements ICmdLine, Cloneable
      * Constructor for CmdLine.
      * </p>
      *
-     * @param _name
-     *            a {@link java.lang.String} object.
-     * @param _help
-     *            a {@link java.lang.String} object.
+     * @param _name a {@link java.lang.String} object.
+     * @param _help a {@link java.lang.String} object.
      */
     public CmdLine(final String _name, final String _help)
     {
@@ -655,14 +614,10 @@ public class CmdLine implements ICmdLine, Cloneable
      * Constructor for CmdLine.
      * </p>
      *
-     * @param _name
-     *            a {@link java.lang.String} object.
-     * @param _help
-     *            a {@link java.lang.String} object.
-     * @param _commandPrefix
-     *            a char.
-     * @param _notPrefix
-     *            a char.
+     * @param _name a {@link java.lang.String} object.
+     * @param _help a {@link java.lang.String} object.
+     * @param _commandPrefix a char.
+     * @param _notPrefix a char.
      */
     public CmdLine(final String _name, final String _help, final char _commandPrefix, final char _notPrefix)
     {
@@ -679,22 +634,22 @@ public class CmdLine implements ICmdLine, Cloneable
 
         /*-
         final String defaultHelp = INCLUDE_FILE_PREFIX
-                +
-                "<filename> will import a specification from filename. You can return an argument to its default value with "
-                + commandPrefix
-                + notPrefix
-                + " <argument>; eg: "
-                + commandPrefix
-                + "debug and "
-                + commandPrefix
-                + "help can be turned off with "
-                + commandPrefix
-                + notPrefix
-                + "debug,help";
+            +
+            "<filename> will import a specification from filename. You can return an argument to its default value with "
+            + commandPrefix
+            + notPrefix
+            + " <argument>; eg: "
+            + commandPrefix
+            + "debug and "
+            + commandPrefix
+            + "help can be turned off with "
+            + commandPrefix
+            + notPrefix
+            + "debug,help";
         if (help == null)
-            setHelp(defaultHelp + "\n");
+        setHelp(defaultHelp + "\n");
         else
-            setHelp(help + "\n\n" + defaultHelp + "\n");
+        setHelp(help + "\n\n" + defaultHelp + "\n");
         */
     }
 
@@ -862,8 +817,8 @@ public class CmdLine implements ICmdLine, Cloneable
 
         /*-
         if (alreadySeen.contains(targetClass))
-            throw new ParseException("recursive argument definition at " +
-                    targetClass.toString(), 0);
+        throw new ParseException("recursive argument definition at " +
+                targetClass.toString(), 0);
         */
 
         alreadySeen.add(targetClass);
@@ -1987,11 +1942,9 @@ public class CmdLine implements ICmdLine, Cloneable
     }
 
     /**
-     * @param args
-     *            null is ok
+     * @param args null is ok
      * @param tokens
-     * @param target
-     *            null is ok
+     * @param target null is ok
      * @throws ParseException
      * @throws IOException
      */
@@ -2566,8 +2519,7 @@ public class CmdLine implements ICmdLine, Cloneable
      * Setter for the field <code>name</code>.
      * </p>
      *
-     * @param _name
-     *            a {@link java.lang.String} object.
+     * @param _name a {@link java.lang.String} object.
      */
     public void setName(final String _name)
     {

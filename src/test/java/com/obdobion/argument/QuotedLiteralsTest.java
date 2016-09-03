@@ -10,7 +10,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>QuotedLiteralsTest class.</p>
+ * <p>
+ * QuotedLiteralsTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -27,7 +29,9 @@ public class QuotedLiteralsTest
     float    floatA;
 
     /**
-     * <p>dosFileNames.</p>
+     * <p>
+     * dosFileNames.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -40,7 +44,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>dosFileNames2.</p>
+     * <p>
+     * dosFileNames2.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -53,7 +59,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>doubleQuotes.</p>
+     * <p>
+     * doubleQuotes.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -66,7 +74,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>doubleQuotesFromStream.</p>
+     * <p>
+     * doubleQuotesFromStream.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -89,7 +99,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>negative1.</p>
+     * <p>
+     * negative1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -103,7 +115,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>newLine.</p>
+     * <p>
+     * newLine.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -116,7 +130,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>quotesInQuotes.</p>
+     * <p>
+     * quotesInQuotes.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -130,7 +146,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>singleQuotes.</p>
+     * <p>
+     * singleQuotes.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -143,7 +161,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>stringMultipleQuotes.</p>
+     * <p>
+     * stringMultipleQuotes.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -157,7 +177,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>unixFileNames.</p>
+     * <p>
+     * unixFileNames.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -170,7 +192,9 @@ public class QuotedLiteralsTest
     }
 
     /**
-     * <p>urlFileNames.</p>
+     * <p>
+     * urlFileNames.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

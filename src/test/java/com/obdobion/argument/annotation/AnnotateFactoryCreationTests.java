@@ -11,7 +11,9 @@ import com.obdobion.argument.input.CommandLineParser;
 import com.obdobion.argument.input.IParserInput;
 
 /**
- * <p>AnnotateFactoryCreationTests class.</p>
+ * <p>
+ * AnnotateFactoryCreationTests class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -19,8 +21,7 @@ import com.obdobion.argument.input.IParserInput;
 public class AnnotateFactoryCreationTests
 {
     public static abstract class AbstractMyClass
-    {
-    }
+    {}
 
     public static class MyClass extends AbstractMyClass
     {
@@ -65,7 +66,9 @@ public class AnnotateFactoryCreationTests
     public List<AbstractMyClass> headerInDefs;
 
     /**
-     * <p>listWithFactory.</p>
+     * <p>
+     * listWithFactory.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -82,7 +85,9 @@ public class AnnotateFactoryCreationTests
     }
 
     /**
-     * <p>testNoParmOnFactory.</p>
+     * <p>
+     * testNoParmOnFactory.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -99,7 +104,9 @@ public class AnnotateFactoryCreationTests
     }
 
     /**
-     * <p>testParmOnFactory.</p>
+     * <p>
+     * testParmOnFactory.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

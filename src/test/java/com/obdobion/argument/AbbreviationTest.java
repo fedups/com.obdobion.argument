@@ -6,7 +6,9 @@ import org.junit.Test;
 import com.obdobion.argument.annotation.Arg;
 
 /**
- * <p>AbbreviationTest class.</p>
+ * <p>
+ * AbbreviationTest class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.1.2
@@ -20,7 +22,9 @@ public class AbbreviationTest
     String items;
 
     /**
-     * <p>exactMatchOnShorterOtherwiseAmbiguous1.</p>
+     * <p>
+     * exactMatchOnShorterOtherwiseAmbiguous1.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1
@@ -33,7 +37,9 @@ public class AbbreviationTest
     }
 
     /**
-     * <p>exactMatchOnShorterOtherwiseAmbiguous2.</p>
+     * <p>
+     * exactMatchOnShorterOtherwiseAmbiguous2.
+     * </p>
      *
      * @throws java.lang.Exception if any.
      * @since 4.3.1

@@ -26,7 +26,9 @@ import com.obdobion.argument.type.ICmdLineArg;
 public class NamespaceParser extends AbstractInputParser implements IParserInput
 {
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param file a {@link java.io.File} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -48,7 +50,9 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>getInstance.</p>
+     * <p>
+     * getInstance.
+     * </p>
      *
      * @param args a {@link java.lang.String} object.
      * @return a {@link com.obdobion.argument.input.IParserInput} object.
@@ -105,7 +109,9 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
      * @param args a {@link java.util.List} object.
      * @return a {@link java.lang.String} object.
@@ -118,7 +124,9 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
     }
 
     /**
-     * <p>unparseTokens.</p>
+     * <p>
+     * unparseTokens.
+     * </p>
      *
      * @param prefix a {@link java.lang.String} object.
      * @param args a {@link java.util.List} object.

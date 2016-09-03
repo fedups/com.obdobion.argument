@@ -10,7 +10,9 @@ import java.net.URL;
 import org.junit.Assert;
 
 /**
- * <p>HelpHelp class.</p>
+ * <p>
+ * HelpHelp class.
+ * </p>
  *
  * @author Chris DeGreef fedupforone@gmail.com
  * @since 4.3.4
@@ -22,7 +24,9 @@ public class HelpHelp
     ByteArrayOutputStream baos;
 
     /**
-     * <p>compare.</p>
+     * <p>
+     * compare.
+     * </p>
      *
      * @param fileName a {@link java.lang.String} object.
      * @param debug a boolean.
@@ -56,7 +60,9 @@ public class HelpHelp
     }
 
     /**
-     * <p>startCapture.</p>
+     * <p>
+     * startCapture.
+     * </p>
      */
     public void startCapture()
     {
@@ -67,7 +73,9 @@ public class HelpHelp
     }
 
     /**
-     * <p>stopCapture.</p>
+     * <p>
+     * stopCapture.
+     * </p>
      */
     public void stopCapture()
     {
