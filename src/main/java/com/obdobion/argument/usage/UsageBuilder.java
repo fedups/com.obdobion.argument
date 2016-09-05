@@ -87,13 +87,13 @@ abstract public class UsageBuilder
     public UsageBuilder append(
             final String value)
     {
-        final String[] lines = value.split("\\n");
-        String remainderOfLongLine = "";
+        final String[] lines = value.split("\\n", -1);
+        String remainderOfLongLine = null;
         String aLine = null;
 
-        for (int line = 0; remainderOfLongLine.trim().length() > 0 || line < lines.length; line++)
+        for (int line = 0; remainderOfLongLine != null || line < lines.length; line++)
         {
-            if (remainderOfLongLine.trim().length() > 0)
+            if (remainderOfLongLine != null)
             {
                 aLine = remainderOfLongLine;
                 /*
@@ -117,7 +117,7 @@ abstract public class UsageBuilder
                 remainderOfLongLine = parts[1];
                 continue;
             }
-            remainderOfLongLine = "";
+            remainderOfLongLine = null;
             sb.append(aLine);
             currentLineLength += aLine.length();
         }

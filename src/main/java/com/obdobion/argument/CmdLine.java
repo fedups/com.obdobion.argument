@@ -630,7 +630,7 @@ public class CmdLine implements ICmdLine, Cloneable
         setName(_name);
 
         if (_help != null)
-            setHelp(_help + "\n");
+            setHelp(_help);
 
         /*-
         final String defaultHelp = INCLUDE_FILE_PREFIX
