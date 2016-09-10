@@ -6,7 +6,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import com.obdobion.argument.annotation.Arg;
-import com.obdobion.argument.type.CLAFactory;
 
 /**
  * <p>
@@ -89,30 +88,30 @@ public class InstantiatorTest
 
     @Arg(factoryMethod = "find",
             caseSensitive = true,
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME,
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME,
             inEnum = "com.obdobion.argument.InstantiatorTest$Suit")
     public List<Finder>  suits;
 
-    @Arg(factoryMethod = "create", factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME, inList = { "red", "blue" })
+    @Arg(factoryMethod = "create", factoryArgName = Arg.SELF_REFERENCING_ARGNAME, inList = { "red", "blue" })
     public AbstractColor color;
 
     @Arg(shortName = 'm',
             factoryMethod = "fXnd",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     @Arg(shortName = 'p',
             longName = "finderP",
             caseSensitive = true,
             factoryMethod = "find",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     public Finder        finder;
 
     @Arg(longName = "listFinderWithCase",
             caseSensitive = true,
             factoryMethod = "find",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     @Arg(shortName = 'o',
             factoryMethod = "find",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     public List<Finder>  listFinder;
 
     @Arg(shortName = 'g', factoryMethod = "find", factoryArgName = "value")
@@ -121,10 +120,10 @@ public class InstantiatorTest
     @Arg(shortName = 'n',
             longName = "arrayFinderN",
             factoryMethod = "find",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     @Arg(shortName = 'i',
             factoryMethod = "com.obdobion.argument.InstantiatorTest$Finder.find",
-            factoryArgName = CLAFactory.SELF_REFERENCING_ARGNAME)
+            factoryArgName = Arg.SELF_REFERENCING_ARGNAME)
     public Finder[]      arrayFinder;
 
     @Arg(caseSensitive = true)

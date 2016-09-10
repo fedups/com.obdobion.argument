@@ -544,11 +544,6 @@ public class VariableAssigner implements IVariableAssigner
                     ParseException
     {
         String baseClassName = _baseClassName;
-        /*
-         * Allow an instantiated instance variable to used rather than replaced.
-         */
-        if (reusable && field.get(target) != null)
-            return field.get(target);
 
         Object groupInstance;
         if (baseClassName == null)
@@ -556,6 +551,19 @@ public class VariableAssigner implements IVariableAssigner
                 baseClassName = group.getInstanceClass();
             else
                 baseClassName = field.getType().getName();
+
+        /*
+         * Allow an instantiated instance variable to be used rather than
+         * replaced.
+         */
+        if (reusable && field.get(target) != null)
+        {
+            final Object value = field.get(target);
+            if (!value.getClass().getName().equals(baseClassName))
+                throw new ParseException("Error in instance creation for \"" + group.toString() + "\", "
+                        + value.getClass().getName() + " can not be reassigned to " + baseClassName, 0);
+            return value;
+        }
 
         Class<?> clazz;
         Method method;

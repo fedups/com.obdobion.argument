@@ -20,8 +20,7 @@ import com.obdobion.argument.criteria.RegxCriteria;
 public class CLAFactory
 {
     /** Constant <code>SELF_REFERENCING_ARGNAME="this"</code> */
-    static final public String SELF_REFERENCING_ARGNAME = "this";
-    static CLAFactory          instance;
+    static CLAFactory instance;
 
     /**
      * <p>

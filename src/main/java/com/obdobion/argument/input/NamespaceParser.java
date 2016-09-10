@@ -41,7 +41,8 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
         {
             String aConfigLine = null;
             while ((aConfigLine = reader.readLine()) != null)
-                args.add(aConfigLine);
+                if (aConfigLine.length() > 0 && aConfigLine.charAt(0) != '#')
+                    args.add(aConfigLine);
         }
 
         final NamespaceParser parser = new NamespaceParser();
@@ -66,7 +67,22 @@ public class NamespaceParser extends AbstractInputParser implements IParserInput
 
     static private String parseNamespaceLine(final String arg, final List<NodeOc> line)
     {
-        final String[] keyValue = arg.split("=");
+        /*
+         * Scanning for the equal sign rather than simply splitting on it allows
+         * for equal signs in the value portion without effecting the logic of
+         * this method.
+         */
+        final int indexOfSeparator = arg.indexOf('=');
+        final String[] keyValue = new String[2];
+
+        if (indexOfSeparator <= 0)
+            keyValue[0] = "";
+        else
+            keyValue[0] = arg.substring(0, indexOfSeparator);
+        if (indexOfSeparator == arg.length() - 1)
+            keyValue[1] = "";
+        else
+            keyValue[1] = arg.substring(indexOfSeparator + 1);
 
         /*
          * "a.b.c." represents a positional (unnamed) final level. If the split

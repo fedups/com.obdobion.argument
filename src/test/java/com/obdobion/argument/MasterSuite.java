@@ -40,6 +40,7 @@ import com.obdobion.argument.help.test1.HelpTest;
         AnnotateRegexCriteriaTest.class,
         AnnotateInListCriteriaTest.class,
 
+        PolymorphismTest.class,
         PullTest.class,
         HelpTest.class,
         ExportImportTest.class,

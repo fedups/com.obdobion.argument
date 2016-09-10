@@ -82,6 +82,7 @@ import java.lang.annotation.Target;
 @Repeatable(Args.class)
 public @interface Arg
 {
+    static final public String SELF_REFERENCING_ARGNAME = "this";
 
     /**
      * Indicates that the user can specify the argument on the command-line

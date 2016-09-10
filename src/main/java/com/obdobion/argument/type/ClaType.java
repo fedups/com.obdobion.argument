@@ -168,7 +168,7 @@ public enum ClaType
          * SELF_REFERENCING_ARGNAME.
          */
         if (!argAnnotation.factoryMethod().equals("")
-                && argAnnotation.factoryArgName().equalsIgnoreCase(CLAFactory.SELF_REFERENCING_ARGNAME))
+                && argAnnotation.factoryArgName().equalsIgnoreCase(Arg.SELF_REFERENCING_ARGNAME))
             return POJO;
 
         return SUBPARSER;
