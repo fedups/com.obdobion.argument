@@ -20,7 +20,7 @@ import com.obdobion.argument.annotation.Arg;
  */
 public class IncludeTest
 {
-    static final File workDir = new File("\\tmp");
+    static final File workDir = new File(System.getProperty("java.io.tmpdir"));
 
     /**
      * <p>

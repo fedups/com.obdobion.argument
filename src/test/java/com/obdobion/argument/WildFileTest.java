@@ -120,7 +120,7 @@ public class WildFileTest
     @Test
     public void validRegex() throws Exception
     {
-        CmdLine.load(this, ".project .c*");
+        CmdLine.load(this, "LICENSE READ*");
         Assert.assertEquals(2, wildFile.files().size());
     }
 
