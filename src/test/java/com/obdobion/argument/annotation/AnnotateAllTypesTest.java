@@ -6,9 +6,12 @@ import java.lang.management.MemoryType;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 import java.util.regex.Pattern;
 
+import org.junit.After;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import com.obdobion.algebrain.Equ;
@@ -151,6 +154,21 @@ public class AnnotateAllTypesTest
     @Arg()
     public List<MemoryType> enumVarList;
     */
+
+    TimeZone               defaultTimeZone;
+
+    @After
+    public void resetTimezone()
+    {
+        TimeZone.setDefault(defaultTimeZone);
+    }
+
+    @Before
+    public void setSpecificTimezone()
+    {
+        defaultTimeZone = TimeZone.getDefault();
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 
     /**
      * <p>
@@ -342,15 +360,15 @@ public class AnnotateAllTypesTest
             Assert.assertEquals('b', charVars[1].charValue());
             Assert.assertEquals('a', byteVars[1].byteValue());
 
-            Assert.assertEquals(1469595600000L, dateVar.getTime());
+            Assert.assertEquals(1469577600000L, dateVar.getTime());
             Assert.assertEquals(MemoryType.HEAP, enumVar);
             Assert.assertEquals("a", equVar.toString());
             Assert.assertEquals("b", fileVar.getName());
             Assert.assertEquals("c", patternVar.pattern());
             Assert.assertEquals("d", wildFilesVar.toString());
 
-            Assert.assertEquals(1469595600000L, dateVars[0].getTime());
-            Assert.assertEquals(1469682000000L, dateVars[1].getTime());
+            Assert.assertEquals(1469577600000L, dateVars[0].getTime());
+            Assert.assertEquals(1469664000000L, dateVars[1].getTime());
 
             Assert.assertEquals("b", equVars[0].toString());
             Assert.assertEquals("a", equVars[1].toString());
@@ -395,12 +413,38 @@ public class AnnotateAllTypesTest
             Assert.assertEquals(".*", patternVarList.get(0).pattern());
             Assert.assertEquals("$[0-1]*^", patternVarList.get(1).pattern());
 
-            Assert.assertEquals(1469768400000L, dateVarList.get(0).getTime());
-            Assert.assertEquals(1469854800000L, dateVarList.get(1).getTime());
+            Assert.assertEquals(1469750400000L, dateVarList.get(0).getTime());
+            Assert.assertEquals(1469836800000L, dateVarList.get(1).getTime());
 
             Assert.assertEquals("g", equVarList.get(0).toString());
             Assert.assertEquals("h", equVarList.get(1).toString());
             Assert.assertEquals("i", equVarList.get(2).toString());
+
+        } catch (IOException | ParseException e)
+        {
+            Assert.fail(e.getMessage());
+        }
+    }
+
+    /**
+     * <p>
+     * testAllSpecifiedValues.
+     * </p>
+     *
+     * @since 4.3.1
+     */
+    @Test
+    public void testDate()
+    {
+        final ICmdLine cmdParser = new CmdLine("testDate", "", '-', '!');
+        final IParserInput userInput = CommandLineParser.getInstance('-', new String[] {
+                " --dateVar 2016/07/27",
+        });
+        try
+        {
+            cmdParser.parse(userInput, this);
+
+            Assert.assertEquals(1469577600000L, dateVar.getTime());
 
         } catch (IOException | ParseException e)
         {
