@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.obdobion</groupId>
 	<artifactId>argument</artifactId>
-	<version>4.3.5</version>
+	<version>4.3.8</version>
     <name>${project.groupId}.${project.artifactId}</name>
 	<description>A command line parser for Java</description>
 	<url>https://github.com/fedups/com.obdobion.argument</url>
@@ -25,15 +25,21 @@
             <organizationUrl>http://www.github.com/fedups</organizationUrl>
         </developer>
     </developers>
+    
     <scm>
         <connection>scm:git:git@github.com:fedups/com.obdobion.argument.git</connection>
         <developerConnection>scm:git:git@github.com:fedups/com.obdobion.argument.git</developerConnection>
         <url>git@github.com:fedups/com.obdobion.argument.git</url>
     </scm>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>https://github.com/fedups/com.obdobion.argument/issues</url>
+    </issueManagement>
 	
 	<properties>
-		<calendar.version>2.2.0</calendar.version>
-		<algebrain.version>2.2.1</algebrain.version>
+		<calendar.version>2.2.3</calendar.version>
+		<algebrain.version>2.2.3</algebrain.version>
 
 		<java.target.version>1.8</java.target.version>
 		<java.source.version>1.8</java.source.version>
